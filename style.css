@@ -2,62 +2,127 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Inter',sans-serif;
+font-family:Inter;
 }
 
 body{
-background:#0b0f1a;
+background:#0a0f1c;
 color:white;
 }
 
-nav{
-position:fixed;
-width:100%;
-background:rgba(10,15,25,0.8);
-backdrop-filter:blur(10px);
-padding:20px;
-z-index:1000;
-}
-
-.nav-container{
+.container{
 max-width:1200px;
 margin:auto;
+padding:0 20px;
+}
+
+.navbar{
+position:fixed;
+width:100%;
+background:rgba(10,15,28,0.7);
+backdrop-filter:blur(20px);
+padding:20px 0;
+}
+
+.nav-content{
 display:flex;
 justify-content:space-between;
 align-items:center;
 }
 
-nav a{
-margin-left:25px;
+.nav-links a{
+margin-left:30px;
 text-decoration:none;
 color:#94a3b8;
-font-weight:500;
 }
 
-nav a:hover{
-color:white;
-}
-
-header{
-height:100vh;
+.hero{
+min-height:100vh;
 display:flex;
-justify-content:center;
 align-items:center;
-background:linear-gradient(120deg,#0f172a,#020617);
-text-align:center;
+}
+
+.hero-content{
+display:grid;
+grid-template-columns:1.2fr 1fr;
+gap:60px;
+align-items:center;
 }
 
 .hero h1{
-font-size:56px;
+font-size:54px;
+line-height:1.1;
 margin-bottom:20px;
 }
 
 .hero p{
-font-size:20px;
 color:#94a3b8;
+margin-bottom:30px;
 }
 
-section{
-padding:120px 20px;
-max-width:1100px;
+.hero-img{
+width:100%;
+border-radius:20px;
+}
+
+.btn{
+padding:15px 25px;
+background:linear-gradient(90deg,#3b82f6,#06b6d4);
+border-radius:10px;
+text-decoration:none;
+color:white;
+}
+
+.section{
+padding:120px 0;
+}
+
+.about-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+
+.about-card{
+background:#020617;
+padding:30px;
+border-radius:20px;
+}
+
+.timeline-item{
+background:#020617;
+padding:30px;
+border-radius:20px;
+margin-top:20px;
+}
+
+.grid-3{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+
+.grid-2{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:30px;
+}
+
+.travel-card img,
+.wildlife-card img{
+width:100%;
+border-radius:20px;
+margin-bottom:15px;
+}
+
+.contact-card{
+background:#020617;
+padding:40px;
+border-radius:20px;
+}
+
+footer{
+text-align:center;
+padding:40px;
+background:#020617;
 }
