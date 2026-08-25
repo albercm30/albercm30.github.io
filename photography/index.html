@@ -9,606 +9,373 @@
     <title>Photography — Alberto Castellano</title>
 
     <link rel="stylesheet" href="/style.css">
-
-    <style>
-        /* ---------------------------------
-           PHOTOGRAPHY PAGE
-        --------------------------------- */
-
-        .photo-intro {
-            max-width: 720px;
-            margin-bottom: 70px;
-        }
-
-        .photo-intro p {
-            font-size: 17px;
-            color: var(--soft);
-            max-width: 650px;
-        }
-
-        .photo-count {
-            font-family: var(--mono);
-            font-size: 10px;
-            color: var(--soft);
-            margin-top: 20px;
-        }
-
-        /* Filter */
-
-        .photo-filters {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 35px;
-            flex-wrap: wrap;
-        }
-
-        .photo-filter {
-            border: 1px solid var(--line);
-            background: transparent;
-            padding: 9px 14px;
-            font-family: var(--mono);
-            font-size: 10px;
-            color: var(--soft);
-            cursor: pointer;
-            transition: .2s;
-        }
-
-        .photo-filter:hover,
-        .photo-filter.active {
-            background: var(--ink);
-            color: var(--paper);
-            border-color: var(--ink);
-        }
-
-        /* Gallery */
-
-        .photo-gallery {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 12px;
-        }
-
-        .photo-card {
-            position: relative;
-            overflow: hidden;
-            background: #ddd;
-            cursor: pointer;
-        }
-
-        .photo-card.large {
-            grid-column: span 7;
-            height: 570px;
-        }
-
-        .photo-card.medium {
-            grid-column: span 5;
-            height: 420px;
-        }
-
-        .photo-card.small {
-            grid-column: span 4;
-            height: 370px;
-        }
-
-        .photo-card.wide {
-            grid-column: span 8;
-            height: 470px;
-        }
-
-        .photo-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform .6s ease;
-        }
-
-        .photo-card:hover img {
-            transform: scale(1.035);
-        }
-
-        .photo-overlay {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: flex-end;
-            padding: 22px;
-            background: linear-gradient(
-                transparent 50%,
-                rgba(0, 0, 0, .68)
-            );
-            opacity: 0;
-            transition: .25s;
-        }
-
-        .photo-card:hover .photo-overlay {
-            opacity: 1;
-        }
-
-        .photo-info {
-            color: white;
-        }
-
-        .photo-location {
-            font-family: var(--mono);
-            font-size: 9px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            opacity: .8;
-        }
-
-        .photo-title {
-            font-family: var(--serif);
-            font-size: 27px;
-            margin-top: 4px;
-        }
-
-        .photo-meta {
-            font-family: var(--mono);
-            font-size: 9px;
-            opacity: .75;
-            margin-top: 5px;
-        }
-
-        /* Featured photograph */
-
-        .featured-photo {
-            margin: 110px 0;
-            display: grid;
-            grid-template-columns: 1.5fr .7fr;
-            gap: 50px;
-            align-items: end;
-        }
-
-        .featured-image {
-            height: 650px;
-            overflow: hidden;
-        }
-
-        .featured-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .featured-text {
-            padding-bottom: 10px;
-        }
-
-        .featured-text h2 {
-            font-family: var(--serif);
-            font-size: 45px;
-            line-height: 1.05;
-            font-weight: 500;
-            margin: 15px 0;
-        }
-
-        .featured-text p {
-            color: var(--soft);
-            font-size: 13px;
-        }
-
-        .camera-data {
-            border-top: 1px solid var(--line);
-            margin-top: 30px;
-            padding-top: 18px;
-            font-family: var(--mono);
-            font-size: 9px;
-            color: var(--soft);
-            line-height: 2;
-        }
-
-        /* Lightbox */
-
-        .lightbox {
-            position: fixed;
-            inset: 0;
-            background: rgba(20, 22, 19, .96);
-            z-index: 999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-        }
-
-        .lightbox.open {
-            display: flex;
-        }
-
-        .lightbox img {
-            max-width: 92vw;
-            max-height: 88vh;
-            object-fit: contain;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 25px;
-            right: 30px;
-            color: white;
-            background: none;
-            border: none;
-            font-size: 30px;
-            cursor: pointer;
-        }
-
-        .lightbox-caption {
-            position: absolute;
-            bottom: 22px;
-            left: 30px;
-            color: white;
-            font-family: var(--mono);
-            font-size: 9px;
-        }
-
-        @media(max-width: 850px) {
-
-            .photo-gallery {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .photo-card.large,
-            .photo-card.medium,
-            .photo-card.small,
-            .photo-card.wide {
-                grid-column: span 1;
-                height: 330px;
-            }
-
-            .featured-photo {
-                grid-template-columns: 1fr;
-            }
-
-            .featured-image {
-                height: 500px;
-            }
-        }
-
-        @media(max-width: 520px) {
-
-            .photo-gallery {
-                grid-template-columns: 1fr;
-            }
-
-            .photo-card.large,
-            .photo-card.medium,
-            .photo-card.small,
-            .photo-card.wide {
-                grid-column: span 1;
-                height: 350px;
-            }
-
-            .featured-image {
-                height: 420px;
-            }
-
-            .featured-text h2 {
-                font-size: 36px;
-            }
-        }
-    </style>
 </head>
 
 <body>
 
-    <!-- Navigation -->
     <div id="nav"></div>
-
 
     <main class="page">
 
         <div class="wrap">
 
-            <!-- HEADER -->
+            <!-- PAGE INTRO -->
 
-            <div class="page-head photo-intro">
+            <div class="page-head">
 
                 <div class="label">
-                    PHOTOGRAPHY / FIELD ARCHIVE
+                    PHOTOGRAPHY / VISUAL ARCHIVE
                 </div>
 
                 <h1>
-                    Mostly looking<br>
-                    for <em>moments.</em>
+                    Places I've<br>
+                    <em>seen.</em>
                 </h1>
 
-                <p>
-                    Wildlife, underwater, mountains and the places
-                    between destinations. Photography is mostly an
-                    excuse to stay outside a little longer.
+                <p class="page-intro">
+                    A collection of photographs from trips, mountains,
+                    underwater encounters and wildlife.
                 </p>
-
-                <div class="photo-count">
-                    2023 — PRESENT · WILDLIFE / TRAVEL / DIVING / MOUNTAINS
-                </div>
-
-            </div>
-
-
-            <!-- FILTERS -->
-
-            <div class="photo-filters">
-
-                <button class="photo-filter active" data-filter="all">
-                    ALL
-                </button>
-
-                <button class="photo-filter" data-filter="wildlife">
-                    WILDLIFE
-                </button>
-
-                <button class="photo-filter" data-filter="diving">
-                    UNDERWATER
-                </button>
-
-                <button class="photo-filter" data-filter="mountains">
-                    MOUNTAINS
-                </button>
-
-                <button class="photo-filter" data-filter="travel">
-                    TRAVEL
-                </button>
-
-            </div>
-
-
-            <!-- GALLERY -->
-
-            <div class="photo-gallery">
-
-
-                <!-- 01 -->
-
-                <article
-                    class="photo-card large"
-                    data-category="wildlife"
-                    data-title="Whale Shark"
-                    data-location="Holbox, Mexico · 2026">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1600&q=85"
-                        alt="Underwater marine life">
-
-                    <div class="photo-overlay">
-
-                        <div class="photo-info">
-
-                            <div class="photo-location">
-                                WILDLIFE · HOLBOX, MEXICO
-                            </div>
-
-                            <div class="photo-title">
-                                Whale Shark
-                            </div>
-
-                            <div class="photo-meta">
-                                JUNE 2026 · MARINE LIFE
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- 02 -->
-
-                <article
-                    class="photo-card medium"
-                    data-category="mountains"
-                    data-title="Dolomites"
-                    data-location="Italy · 2026">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=85"
-                        alt="Mountain landscape">
-
-                    <div class="photo-overlay">
-
-                        <div class="photo-info">
-
-                            <div class="photo-location">
-                                MOUNTAINS · ITALY
-                            </div>
-
-                            <div class="photo-title">
-                                Dolomites
-                            </div>
-
-                            <div class="photo-meta">
-                                2026 · HIKING
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- 03 -->
-
-                <article
-                    class="photo-card small"
-                    data-category="travel"
-                    data-title="Guatemala"
-                    data-location="Acatenango · 2026">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=85"
-                        alt="Landscape">
-
-                    <div class="photo-overlay">
-
-                        <div class="photo-info">
-
-                            <div class="photo-location">
-                                GUATEMALA
-                            </div>
-
-                            <div class="photo-title">
-                                Acatenango
-                            </div>
-
-                            <div class="photo-meta">
-                                2026 · VOLCANO
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- 04 -->
-
-                <article
-                    class="photo-card wide"
-                    data-category="diving"
-                    data-title="Raja Ampat"
-                    data-location="Indonesia">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=1600&q=85"
-                        alt="Diving underwater">
-
-                    <div class="photo-overlay">
-
-                        <div class="photo-info">
-
-                            <div class="photo-location">
-                                UNDERWATER · INDONESIA
-                            </div>
-
-                            <div class="photo-title">
-                                Raja Ampat
-                            </div>
-
-                            <div class="photo-meta">
-                                MARINE LIFE · DIVING
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- 05 -->
-
-                <article
-                    class="photo-card small"
-                    data-category="wildlife"
-                    data-title="Orangutan"
-                    data-location="Sumatra, Indonesia">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1558674373-9d1f9c7f0e86?auto=format&fit=crop&w=1000&q=85"
-                        alt="Wildlife">
-
-                    <div class="photo-overlay">
-
-                        <div class="photo-info">
-
-                            <div class="photo-location">
-                                WILDLIFE · SUMATRA
-                            </div>
-
-                            <div class="photo-title">
-                                Orangutan
-                            </div>
-
-                            <div class="photo-meta">
-                                INDONESIA · JUNGLE
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- 06 -->
-
-                <article
-                    class="photo-card wide"
-                    data-category="travel"
-                    data-title="Australia"
-                    data-location="Daintree · Australia">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1600&q=85"
-                        alt="Australian landscape">
-
-                    <div class="photo-overlay">
-
-                        <div class="photo-info">
-
-                            <div class="photo-location">
-                                AUSTRALIA · DAINTREE
-                            </div>
-
-                            <div class="photo-title">
-                                Into the rainforest
-                            </div>
-
-                            <div class="photo-meta">
-                                2025 · TRAVEL
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </article>
 
             </div>
 
 
             <!-- FEATURED PHOTOGRAPH -->
 
-            <section class="featured-photo">
+            <section class="photo-feature">
 
-                <div class="featured-image">
+                <div class="photo-feature-image">
 
                     <img
-                        src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1800&q=90"
+                        src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=85"
                         alt="Mountain landscape">
 
                 </div>
 
-                <div class="featured-text">
+                <div class="photo-feature-info">
 
                     <div class="label">
-                        CURRENTLY / FAVOURITE
+                        FEATURED / 01
                     </div>
 
                     <h2>
-                        Somewhere between
-                        the trailhead and
-                        the summit.
+                        The mountains
+                        always look
+                        different up close.
                     </h2>
 
                     <p>
-                        I like photographs that remind me where I was,
-                        rather than photographs that simply look good.
+                        Dolomites, Italy
                     </p>
 
-                    <div class="camera-data">
+                    <span>
+                        SEPTEMBER 2026 · HIKING
+                    </span>
 
-                        CAMERA<br>
-                        Canon EOS R100<br><br>
+                </div>
 
-                        LENS<br>
-                        RF-S 55–210mm<br><br>
+            </section>
 
-                        LOCATION<br>
-                        Dolomites, Italy
 
-                    </div>
+            <!-- RECENT PHOTOGRAPHS -->
+
+            <section class="section">
+
+                <div class="section-top">
+
+                    <h2 class="section-title">
+                        Recent photographs
+                    </h2>
+
+                    <span class="section-note">
+                        06 photographs
+                    </span>
+
+                </div>
+
+
+                <div class="photo-grid">
+
+
+                    <!-- PHOTO 01 -->
+
+                    <figure class="photo-item photo-large">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1400&q=85"
+                            alt="Underwater marine life">
+
+                        <figcaption>
+
+                            <span>
+                                01
+                            </span>
+
+                            <div>
+                                <strong>
+                                    Underwater
+                                </strong>
+
+                                <small>
+                                    Marine life · Australia
+                                </small>
+                            </div>
+
+                        </figcaption>
+
+                    </figure>
+
+
+                    <!-- PHOTO 02 -->
+
+                    <figure class="photo-item">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1100&q=85"
+                            alt="Mountain landscape">
+
+                        <figcaption>
+
+                            <span>
+                                02
+                            </span>
+
+                            <div>
+                                <strong>
+                                    Acatenango
+                                </strong>
+
+                                <small>
+                                    Guatemala · 2026
+                                </small>
+                            </div>
+
+                        </figcaption>
+
+                    </figure>
+
+
+                    <!-- PHOTO 03 -->
+
+                    <figure class="photo-item">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1100&q=85"
+                            alt="Rainforest landscape">
+
+                        <figcaption>
+
+                            <span>
+                                03
+                            </span>
+
+                            <div>
+                                <strong>
+                                    Daintree
+                                </strong>
+
+                                <small>
+                                    Australia · 2025
+                                </small>
+                            </div>
+
+                        </figcaption>
+
+                    </figure>
+
+
+                    <!-- PHOTO 04 -->
+
+                    <figure class="photo-item">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1100&q=85"
+                            alt="Landscape">
+
+                        <figcaption>
+
+                            <span>
+                                04
+                            </span>
+
+                            <div>
+                                <strong>
+                                    South Island
+                                </strong>
+
+                                <small>
+                                    New Zealand · 2026
+                                </small>
+                            </div>
+
+                        </figcaption>
+
+                    </figure>
+
+
+                    <!-- PHOTO 05 -->
+
+                    <figure class="photo-item photo-large">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1558674373-9d1f9c7f0e86?auto=format&fit=crop&w=1400&q=85"
+                            alt="Wildlife">
+
+                        <figcaption>
+
+                            <span>
+                                05
+                            </span>
+
+                            <div>
+                                <strong>
+                                    Wildlife
+                                </strong>
+
+                                <small>
+                                    Indonesia · 2026
+                                </small>
+                            </div>
+
+                        </figcaption>
+
+                    </figure>
+
+
+                    <!-- PHOTO 06 -->
+
+                    <figure class="photo-item">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=1100&q=85"
+                            alt="Diving">
+
+                        <figcaption>
+
+                            <span>
+                                06
+                            </span>
+
+                            <div>
+                                <strong>
+                                    Raja Ampat
+                                </strong>
+
+                                <small>
+                                    Indonesia · Diving
+                                </small>
+                            </div>
+
+                        </figcaption>
+
+                    </figure>
+
+                </div>
+
+            </section>
+
+
+            <!-- CATEGORIES -->
+
+            <section class="section">
+
+                <div class="section-top">
+
+                    <h2 class="section-title">
+                        What I photograph
+                    </h2>
+
+                    <span class="section-note">
+                        by subject
+                    </span>
+
+                </div>
+
+
+                <div class="photo-categories">
+
+                    <a href="/wildlife/" class="photo-category">
+
+                        <span>01</span>
+
+                        <div>
+
+                            <h3>
+                                Wildlife
+                            </h3>
+
+                            <p>
+                                Animals I travelled to see.
+                            </p>
+
+                        </div>
+
+                        <b>↗</b>
+
+                    </a>
+
+
+                    <a href="/diving/" class="photo-category">
+
+                        <span>02</span>
+
+                        <div>
+
+                            <h3>
+                                Underwater
+                            </h3>
+
+                            <p>
+                                Dives, reefs and marine life.
+                            </p>
+
+                        </div>
+
+                        <b>↗</b>
+
+                    </a>
+
+
+                    <a href="/mountains/" class="photo-category">
+
+                        <span>03</span>
+
+                        <div>
+
+                            <h3>
+                                Mountains
+                            </h3>
+
+                            <p>
+                                Trails, peaks and alpine landscapes.
+                            </p>
+
+                        </div>
+
+                        <b>↗</b>
+
+                    </a>
+
+
+                    <a href="/travel/" class="photo-category">
+
+                        <span>04</span>
+
+                        <div>
+
+                            <h3>
+                                Travel
+                            </h3>
+
+                            <p>
+                                Everything that happens between destinations.
+                            </p>
+
+                        </div>
+
+                        <b>↗</b>
+
+                    </a>
 
                 </div>
 
@@ -619,157 +386,334 @@
     </main>
 
 
-    <!-- LIGHTBOX -->
+    <!-- PAGE-SPECIFIC CSS -->
 
-    <div class="lightbox" id="lightbox">
+    <style>
 
-        <button
-            class="lightbox-close"
-            id="lightboxClose">
-            ×
-        </button>
+        .photo-feature {
 
-        <img
-            id="lightboxImage"
-            src=""
-            alt="">
+            display: grid;
 
-        <div
-            class="lightbox-caption"
-            id="lightboxCaption">
-        </div>
+            grid-template-columns:
+                1.45fr
+                .55fr;
 
-    </div>
+            gap: 45px;
+
+            margin-top: 70px;
+
+            align-items: end;
+
+        }
+
+
+        .photo-feature-image {
+
+            height: 620px;
+
+            overflow: hidden;
+
+            background: #ddd;
+
+        }
+
+
+        .photo-feature-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+
+        .photo-feature-info {
+
+            padding-bottom: 8px;
+
+        }
+
+
+        .photo-feature-info h2 {
+
+            font-family: var(--serif);
+
+            font-size: 40px;
+
+            line-height: 1.08;
+
+            font-weight: 500;
+
+            margin: 17px 0;
+
+        }
+
+
+        .photo-feature-info p {
+
+            color: var(--soft);
+
+            font-size: 13px;
+
+            margin: 0 0 6px;
+
+        }
+
+
+        .photo-feature-info span:last-child {
+
+            font-family: var(--mono);
+
+            font-size: 9px;
+
+            color: var(--soft);
+
+        }
+
+
+        /* Gallery */
+
+        .photo-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 28px 18px;
+
+        }
+
+
+        .photo-item {
+
+            margin: 0;
+
+            position: relative;
+
+        }
+
+
+        .photo-item img {
+
+            display: block;
+
+            width: 100%;
+
+            height: 400px;
+
+            object-fit: cover;
+
+        }
+
+
+        .photo-item.photo-large img {
+
+            height: 530px;
+
+        }
+
+
+        .photo-item figcaption {
+
+            display: grid;
+
+            grid-template-columns: 35px 1fr;
+
+            gap: 12px;
+
+            padding-top: 12px;
+
+            border-top: 1px solid var(--line);
+
+            margin-top: 10px;
+
+        }
+
+
+        .photo-item figcaption > span {
+
+            font-family: var(--mono);
+
+            font-size: 9px;
+
+            color: var(--soft);
+
+        }
+
+
+        .photo-item strong {
+
+            display: block;
+
+            font-family: var(--serif);
+
+            font-size: 20px;
+
+            font-weight: 500;
+
+        }
+
+
+        .photo-item small {
+
+            display: block;
+
+            margin-top: 3px;
+
+            font-family: var(--mono);
+
+            font-size: 8px;
+
+            color: var(--soft);
+
+            text-transform: uppercase;
+
+        }
+
+
+        /* Categories */
+
+        .photo-categories {
+
+            border-top: 1px solid var(--line);
+
+        }
+
+
+        .photo-category {
+
+            display: grid;
+
+            grid-template-columns:
+                60px
+                1fr
+                30px;
+
+            gap: 20px;
+
+            align-items: center;
+
+            padding: 25px 0;
+
+            border-bottom: 1px solid var(--line);
+
+            transition: padding .2s;
+
+        }
+
+
+        .photo-category:hover {
+
+            padding-left: 10px;
+
+        }
+
+
+        .photo-category > span {
+
+            font-family: var(--mono);
+
+            font-size: 9px;
+
+            color: var(--soft);
+
+        }
+
+
+        .photo-category h3 {
+
+            margin: 0;
+
+            font-family: var(--serif);
+
+            font-size: 28px;
+
+            font-weight: 500;
+
+        }
+
+
+        .photo-category p {
+
+            margin: 3px 0 0;
+
+            font-size: 11px;
+
+            color: var(--soft);
+
+        }
+
+
+        .photo-category b {
+
+            font-size: 18px;
+
+            font-weight: 400;
+
+        }
+
+
+        @media(max-width: 850px) {
+
+            .photo-feature {
+
+                grid-template-columns: 1fr;
+
+                gap: 25px;
+
+            }
+
+
+            .photo-feature-image {
+
+                height: 500px;
+
+            }
+
+        }
+
+
+        @media(max-width: 600px) {
+
+            .photo-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .photo-item img,
+            .photo-item.photo-large img {
+
+                height: 380px;
+
+            }
+
+
+            .photo-feature-image {
+
+                height: 400px;
+
+            }
+
+
+            .photo-feature-info h2 {
+
+                font-size: 33px;
+
+            }
+
+        }
+
+    </style>
 
 
     <script src="/js/site.js"></script>
 
-
-    <script>
-
-        /*
-        -----------------------------------------
-        PHOTO FILTERS
-        -----------------------------------------
-        */
-
-        const filters =
-            document.querySelectorAll(".photo-filter");
-
-        const photos =
-            document.querySelectorAll(".photo-card");
-
-
-        filters.forEach(filter => {
-
-            filter.addEventListener("click", () => {
-
-                filters.forEach(button =>
-                    button.classList.remove("active")
-                );
-
-                filter.classList.add("active");
-
-                const selected =
-                    filter.dataset.filter;
-
-
-                photos.forEach(photo => {
-
-                    if (
-                        selected === "all" ||
-                        photo.dataset.category === selected
-                    ) {
-
-                        photo.style.display = "";
-
-                    } else {
-
-                        photo.style.display = "none";
-
-                    }
-
-                });
-
-            });
-
-        });
-
-
-        /*
-        -----------------------------------------
-        LIGHTBOX
-        -----------------------------------------
-        */
-
-        const lightbox =
-            document.getElementById("lightbox");
-
-        const lightboxImage =
-            document.getElementById("lightboxImage");
-
-        const lightboxCaption =
-            document.getElementById("lightboxCaption");
-
-        const closeButton =
-            document.getElementById("lightboxClose");
-
-
-        photos.forEach(photo => {
-
-            photo.addEventListener("click", () => {
-
-                const image =
-                    photo.querySelector("img");
-
-                lightboxImage.src =
-                    image.src;
-
-                lightboxImage.alt =
-                    image.alt;
-
-                lightboxCaption.textContent =
-                    photo.dataset.title +
-                    " · " +
-                    photo.dataset.location;
-
-                lightbox.classList.add("open");
-
-            });
-
-        });
-
-
-        closeButton.addEventListener("click", () => {
-
-            lightbox.classList.remove("open");
-
-        });
-
-
-        lightbox.addEventListener("click", event => {
-
-            if (event.target === lightbox) {
-
-                lightbox.classList.remove("open");
-
-            }
-
-        });
-
-
-        document.addEventListener("keydown", event => {
-
-            if (event.key === "Escape") {
-
-                lightbox.classList.remove("open");
-
-            }
-
-        });
-
-    </script>
-
 </body>
+
 </html>
 ```
