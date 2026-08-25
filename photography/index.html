@@ -1,360 +1,22 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <title>Photography — Alberto Castellano</title>
 
-    <!-- GLOBAL WEBSITE CSS -->
     <link rel="stylesheet" href="/style.css">
-
-    <!-- PHOTOGRAPHY-SPECIFIC CSS -->
-    <style>
-
-        /* ================================
-           PHOTOGRAPHY PAGE
-           Uses the same variables and
-           typography as the main website.
-        ================================= */
-
-        .photo-page {
-            padding-bottom: 100px;
-        }
-
-
-        /* ================================
-           PHOTO GRID
-        ================================= */
-
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 18px;
-            align-items: start;
-        }
-
-
-        .photo {
-            position: relative;
-            overflow: hidden;
-            margin: 0;
-            background: #ddd9d0;
-        }
-
-
-        .photo img {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-
-            transition:
-                transform 0.45s ease;
-        }
-
-
-        .photo:hover img {
-            transform: scale(1.025);
-        }
-
-
-        /* ================================
-           INDIVIDUAL PHOTO SIZES
-        ================================= */
-
-        .photo:nth-child(1) {
-            grid-column: span 7;
-            height: 510px;
-        }
-
-
-        .photo:nth-child(2) {
-            grid-column: span 5;
-            height: 390px;
-        }
-
-
-        .photo:nth-child(3) {
-            grid-column: span 5;
-            height: 430px;
-            margin-top: -102px;
-        }
-
-
-        .photo:nth-child(4) {
-            grid-column: span 7;
-            height: 470px;
-        }
-
-
-        .photo:nth-child(5) {
-            grid-column: span 4;
-            height: 430px;
-        }
-
-
-        .photo:nth-child(6) {
-            grid-column: span 8;
-            height: 500px;
-            margin-top: -68px;
-        }
-
-
-        /* ================================
-           PHOTO CAPTION
-        ================================= */
-
-        .photo::after {
-            content: "";
-
-            position: absolute;
-
-            left: 0;
-            right: 0;
-            bottom: 0;
-
-            height: 42%;
-
-            background:
-                linear-gradient(
-                    to bottom,
-                    transparent,
-                    rgba(20, 24, 21, 0.55)
-                );
-
-            pointer-events: none;
-        }
-
-
-        .photo small {
-            position: absolute;
-
-            left: 15px;
-            bottom: 14px;
-
-            z-index: 2;
-
-            color: white;
-
-            font-family: var(--mono);
-            font-size: 9px;
-            letter-spacing: 0.7px;
-
-            text-transform: uppercase;
-
-            text-shadow:
-                0 1px 7px rgba(0, 0, 0, 0.35);
-        }
-
-
-        /* ================================
-           SECTION HEADER
-        ================================= */
-
-        .photo-section-header {
-            display: flex;
-
-            justify-content: space-between;
-            align-items: baseline;
-
-            border-bottom: 1px solid var(--ink);
-
-            padding-bottom: 12px;
-            margin-bottom: 28px;
-        }
-
-
-        .photo-section-header h2 {
-            margin: 0;
-
-            font-family: var(--serif);
-            font-size: 34px;
-            font-weight: 500;
-        }
-
-
-        .photo-section-header span {
-            font-family: var(--mono);
-            font-size: 9px;
-
-            color: var(--soft);
-
-            text-transform: uppercase;
-        }
-
-
-        /* ================================
-           SMALL CLOSING SECTION
-        ================================= */
-
-        .photo-note {
-            margin-top: 85px;
-
-            padding-top: 24px;
-
-            border-top: 1px solid var(--line);
-
-            display: grid;
-
-            grid-template-columns: 1fr 1fr;
-
-            gap: 50px;
-        }
-
-
-        .photo-note h2 {
-            margin: 12px 0;
-
-            font-family: var(--serif);
-            font-size: 32px;
-            line-height: 1.08;
-            font-weight: 500;
-        }
-
-
-        .photo-note p {
-            max-width: 520px;
-
-            margin: 0;
-
-            color: var(--soft);
-
-            font-size: 12px;
-        }
-
-
-        .photo-note-meta {
-            font-family: var(--mono);
-            font-size: 9px;
-            line-height: 2;
-
-            color: var(--soft);
-
-            text-transform: uppercase;
-        }
-
-
-        /* ================================
-           TABLET
-        ================================= */
-
-        @media (max-width: 850px) {
-
-            .photo-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-
-            .photo:nth-child(n) {
-                grid-column: span 1;
-
-                height: 350px;
-
-                margin-top: 0;
-            }
-
-
-            .photo:nth-child(1),
-            .photo:nth-child(4),
-            .photo:nth-child(6) {
-
-                grid-column: span 2;
-
-                height: 460px;
-            }
-
-
-            .photo-note {
-                grid-template-columns: 1fr;
-
-                gap: 25px;
-            }
-
-        }
-
-
-        /* ================================
-           MOBILE
-        ================================= */
-
-        @media (max-width: 520px) {
-
-            .photo-page {
-                padding-bottom: 70px;
-            }
-
-
-            .photo-grid {
-                grid-template-columns: 1fr;
-
-                gap: 18px;
-            }
-
-
-            .photo:nth-child(n),
-            .photo:nth-child(1),
-            .photo:nth-child(4),
-            .photo:nth-child(6) {
-
-                grid-column: span 1;
-
-                height: 380px;
-
-                margin-top: 0;
-            }
-
-
-            .photo-section-header {
-                display: block;
-            }
-
-
-            .photo-section-header span {
-                display: block;
-
-                margin-top: 8px;
-            }
-
-
-            .photo-note {
-                margin-top: 65px;
-            }
-
-
-            .photo-note h2 {
-                font-size: 28px;
-            }
-
-        }
-
-    </style>
-
 </head>
-
 
 <body>
 
-
-    <!-- =================================
-         NAVIGATION
-    ================================== -->
-
     <div id="nav"></div>
 
-
-    <!-- =================================
-         MAIN CONTENT
-    ================================== -->
-
-    <main class="page photo-page">
+    <main class="page">
 
         <div class="wrap">
-
-
-            <!-- =================================
-                 PAGE INTRO
-            ================================== -->
 
             <div class="page-head">
 
@@ -362,226 +24,68 @@
                     PHOTOGRAPHY
                 </div>
 
-
                 <h1>
-
                     Mostly looking<br>
-
                     for <em>moments.</em>
-
                 </h1>
 
-
                 <p class="page-intro">
-
                     Wildlife, underwater, mountains and whatever
                     happens between destinations.
-
                 </p>
 
             </div>
 
 
+            <div class="photo-grid">
 
-            <!-- =================================
-                 PHOTO SECTION
-            ================================== -->
-
-            <section>
-
-
-                <div class="photo-section-header">
-
-                    <h2>
-                        Selected photographs
-                    </h2>
-
-
-                    <span>
-                        2025 — PRESENT
-                    </span>
-
+                <div class="photo">
+                    <img
+                        src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1400&q=85"
+                        alt="Dolomites mountains">
+                    <small>DOLOMITES / MOUNTAINS</small>
                 </div>
 
-
-
-                <!-- =================================
-                     GALLERY
-                ================================== -->
-
-                <div class="photo-grid">
-
-
-                    <!-- PHOTO 01 -->
-
-                    <figure class="photo">
-
-                        <img
-                            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=85"
-                            alt="Mountain landscape">
-
-                        <small>
-                            DOLOMITES / MOUNTAINS
-                        </small>
-
-                    </figure>
-
-
-
-                    <!-- PHOTO 02 -->
-
-                    <figure class="photo">
-
-                        <img
-                            src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1300&q=85"
-                            alt="Underwater marine life">
-
-                        <small>
-                            UNDERWATER / MARINE
-                        </small>
-
-                    </figure>
-
-
-
-                    <!-- PHOTO 03 -->
-
-                    <figure class="photo">
-
-                        <img
-                            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1300&q=85"
-                            alt="Mountain landscape">
-
-                        <small>
-                            GUATEMALA / VOLCANO
-                        </small>
-
-                    </figure>
-
-
-
-                    <!-- PHOTO 04 -->
-
-                    <figure class="photo">
-
-                        <img
-                            src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=85"
-                            alt="New Zealand landscape">
-
-                        <small>
-                            NEW ZEALAND / ALPINE
-                        </small>
-
-                    </figure>
-
-
-
-                    <!-- PHOTO 05 -->
-
-                    <figure class="photo">
-
-                        <img
-                            src="https://images.unsplash.com/photo-1558674373-9d1f9c7f0e86?auto=format&fit=crop&w=1300&q=85"
-                            alt="Wildlife in Indonesia">
-
-                        <small>
-                            INDONESIA / WILDLIFE
-                        </small>
-
-                    </figure>
-
-
-
-                    <!-- PHOTO 06 -->
-
-                    <figure class="photo">
-
-                        <img
-                            src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=1600&q=85"
-                            alt="Diving underwater">
-
-                        <small>
-                            RAJA AMPAT / DIVING
-                        </small>
-
-                    </figure>
-
-
+                <div class="photo">
+                    <img
+                        src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=85"
+                        alt="Underwater marine life">
+                    <small>UNDERWATER / MARINE</small>
                 </div>
 
-            </section>
-
-
-
-            <!-- =================================
-                 CLOSING NOTE
-            ================================== -->
-
-            <section class="photo-note">
-
-
-                <div>
-
-                    <div class="label">
-                        BEHIND THE CAMERA
-                    </div>
-
-
-                    <h2>
-
-                        The camera is mostly
-                        an excuse to stay longer.
-
-                    </h2>
-
-
-                    <p>
-
-                        Most photographs come from trips where
-                        photography wasn't really the main reason
-                        for going. The mountains, wildlife and ocean
-                        usually came first.
-
-                    </p>
-
+                <div class="photo">
+                    <img
+                        src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85"
+                        alt="Guatemala landscape">
+                    <small>GUATEMALA / VOLCANO</small>
                 </div>
 
-
-
-                <div class="photo-note-meta">
-
-                    CAMERA<br>
-
-                    CANON EOS R100
-
-                    <br><br>
-
-                    SUBJECTS<br>
-
-                    WILDLIFE / UNDERWATER /
-                    MOUNTAINS / TRAVEL
-
-                    <br><br>
-
-                    ARCHIVE<br>
-
-                    2025 — PRESENT
-
+                <div class="photo">
+                    <img
+                        src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1400&q=85"
+                        alt="New Zealand landscape">
+                    <small>NEW ZEALAND / ALPINE</small>
                 </div>
 
+                <div class="photo">
+                    <img
+                        src="https://images.unsplash.com/photo-1558674373-9d1f9c7f0e86?auto=format&fit=crop&w=1200&q=85"
+                        alt="Wildlife">
+                    <small>INDONESIA / WILDLIFE</small>
+                </div>
 
-            </section>
+                <div class="photo">
+                    <img
+                        src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=1400&q=85"
+                        alt="Diving">
+                    <small>RAJA AMPAT / DIVING</small>
+                </div>
 
+            </div>
 
         </div>
 
     </main>
-
-
-
-    <!-- =================================
-         FOOTER
-    ================================== -->
 
     <footer class="footer wrap">
 
@@ -595,14 +99,8 @@
 
     </footer>
 
-
-
-    <!-- =================================
-         GLOBAL JAVASCRIPT
-    ================================== -->
-
     <script src="/js/site.js"></script>
 
-
 </body>
+
 </html>
