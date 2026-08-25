@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -15,7 +14,7 @@
     </title>
 
 
-    <!-- Google Fonts -->
+    <!-- Fonts -->
 
     <link
         rel="preconnect"
@@ -34,7 +33,7 @@
     >
 
 
-    <!-- Global stylesheet -->
+    <!-- Global website CSS -->
 
     <link
         rel="stylesheet"
@@ -42,11 +41,9 @@
     >
 
 
-    <style>
+    <!-- Photography page CSS -->
 
-        /* ==========================================
-           PHOTOGRAPHY PAGE
-        ========================================== */
+    <style>
 
         .photography-gallery-section {
             padding-top: 70px;
@@ -54,27 +51,19 @@
         }
 
 
-        /* ==========================================
+        /* ==============================
            CATEGORY BUTTONS
-        ========================================== */
+        ============================== */
 
-        .photo-categories {
-
+        .photo-tabs {
             display: flex;
-
-            align-items: center;
-
-            gap: 8px;
-
             flex-wrap: wrap;
-
+            gap: 8px;
             margin-bottom: 30px;
-
         }
 
 
         .photo-tab {
-
             appearance: none;
             -webkit-appearance: none;
 
@@ -94,57 +83,38 @@
 
             cursor: pointer;
 
-            transition:
-                background 0.2s ease,
-                color 0.2s ease,
-                border-color 0.2s ease,
-                transform 0.2s ease;
-
+            transition: .2s ease;
         }
 
 
         .photo-tab:hover {
-
             border-color: var(--ink);
-
             color: var(--ink);
-
-            transform: translateY(-1px);
-
         }
 
 
-        .photo-tab.active {
-
+        .photo-tab.is-active {
             background: var(--green);
-
             border-color: var(--green);
-
             color: #ffffff;
-
         }
 
 
-        /* ==========================================
-           CATEGORY SECTION
-        ========================================== */
+        /* ==============================
+           CATEGORY PANELS
+        ============================== */
 
-        .photo-category {
-
+        .gallery-panel {
             display: none;
-
         }
 
 
-        .photo-category.active {
-
+        .gallery-panel.is-visible {
             display: block;
-
         }
 
 
         .photo-category-header {
-
             display: flex;
 
             justify-content: space-between;
@@ -158,12 +128,10 @@
             padding-bottom: 12px;
 
             margin-bottom: 18px;
-
         }
 
 
         .photo-category-title {
-
             margin: 0;
 
             font-family: var(--serif);
@@ -173,12 +141,10 @@
             line-height: 1;
 
             font-weight: 500;
-
         }
 
 
         .photo-category-meta {
-
             font-family: var(--mono);
 
             font-size: 9px;
@@ -186,23 +152,19 @@
             color: var(--soft);
 
             text-transform: uppercase;
-
         }
 
 
-        /* ==========================================
-           HORIZONTAL SCROLL AREA
-        ========================================== */
+        /* ==============================
+           HORIZONTAL PHOTO RAIL
+        ============================== */
 
         .photo-rail-wrap {
-
             position: relative;
-
         }
 
 
         .photo-rail {
-
             display: flex;
 
             gap: 14px;
@@ -217,40 +179,34 @@
 
             scrollbar-width: thin;
 
-            scrollbar-color: var(--line) transparent;
-
+            scrollbar-color:
+                var(--line)
+                transparent;
         }
 
 
         .photo-rail::-webkit-scrollbar {
-
             height: 7px;
-
         }
 
 
         .photo-rail::-webkit-scrollbar-track {
-
             background: transparent;
-
         }
 
 
         .photo-rail::-webkit-scrollbar-thumb {
-
             background: var(--line);
 
-            border-radius: 50px;
-
+            border-radius: 999px;
         }
 
 
-        /* ==========================================
+        /* ==============================
            PHOTO CARD
-        ========================================== */
+        ============================== */
 
         .photo-card {
-
             flex: 0 0 430px;
 
             height: 500px;
@@ -259,15 +215,13 @@
 
             overflow: hidden;
 
-            background: #ddd9d0;
+            background: #dedbd3;
 
             border-radius: 3px;
-
         }
 
 
         .photo-card img {
-
             width: 100%;
 
             height: 100%;
@@ -278,19 +232,15 @@
 
             transition:
                 transform .5s ease;
-
         }
 
 
         .photo-card:hover img {
-
             transform: scale(1.025);
-
         }
 
 
         .photo-card::after {
-
             content: "";
 
             position: absolute;
@@ -301,16 +251,14 @@
                 linear-gradient(
                     to bottom,
                     transparent,
-                    rgba(0, 0, 0, .62)
+                    rgba(0,0,0,.62)
                 );
 
             pointer-events: none;
-
         }
 
 
         .photo-card-info {
-
             position: absolute;
 
             z-index: 2;
@@ -322,12 +270,10 @@
             bottom: 17px;
 
             color: white;
-
         }
 
 
         .photo-card-info strong {
-
             display: block;
 
             font-family: var(--serif);
@@ -337,12 +283,10 @@
             line-height: 1.05;
 
             font-weight: 500;
-
         }
 
 
         .photo-card-info span {
-
             display: block;
 
             margin-top: 6px;
@@ -356,16 +300,96 @@
             text-transform: uppercase;
 
             color: rgba(255,255,255,.86);
-
         }
 
 
-        /* ==========================================
+        /* ==============================
+           PLACEHOLDERS
+        ============================== */
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            position: relative;
+
+            color: rgba(255,255,255,.9);
+
+            overflow: hidden;
+        }
+
+
+        .photo-placeholder::before {
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+            height: 220px;
+
+            border: 1px solid
+                rgba(255,255,255,.2);
+
+            transform: rotate(45deg);
+        }
+
+
+        .photo-placeholder span {
+            position: relative;
+
+            z-index: 2;
+
+            font-family: var(--mono);
+
+            font-size: 10px;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
+        }
+
+
+        .nature-placeholder {
+            background:
+                linear-gradient(
+                    135deg,
+                    #dce6dc,
+                    #66806f
+                );
+        }
+
+
+        .city-placeholder {
+            background:
+                linear-gradient(
+                    135deg,
+                    #dedbd4,
+                    #71756f
+                );
+        }
+
+
+        .people-placeholder {
+            background:
+                linear-gradient(
+                    135deg,
+                    #e3d7cc,
+                    #8d7868
+                );
+        }
+
+
+        /* ==============================
            SCROLL CONTROLS
-        ========================================== */
+        ============================== */
 
         .rail-controls {
-
             display: flex;
 
             justify-content: flex-end;
@@ -373,12 +397,10 @@
             gap: 7px;
 
             margin-top: 12px;
-
         }
 
 
         .rail-control {
-
             width: 36px;
 
             height: 36px;
@@ -395,31 +417,24 @@
 
             font-size: 16px;
 
-            transition:
-                background .2s ease,
-                color .2s ease,
-                border-color .2s ease;
-
+            transition: .2s ease;
         }
 
 
         .rail-control:hover {
-
             background: var(--ink);
 
             border-color: var(--ink);
 
             color: white;
-
         }
 
 
-        /* ==========================================
-           FEATURE
-        ========================================== */
+        /* ==============================
+           FEATURE SECTION
+        ============================== */
 
         .photo-feature {
-
             margin-top: 70px;
 
             background: var(--dark);
@@ -429,23 +444,19 @@
             border-radius: 16px;
 
             padding: 44px;
-
         }
 
 
         .photo-feature h2 {
-
             max-width: 720px;
 
             margin: 7px 0 15px;
 
             font-size: 42px;
-
         }
 
 
         .photo-feature p:last-child {
-
             max-width: 680px;
 
             color: #b4beb5;
@@ -453,61 +464,48 @@
             font-size: 13px;
 
             margin: 0;
-
         }
 
 
-        /* ==========================================
-           MOBILE
-        ========================================== */
+        /* ==============================
+           TABLET
+        ============================== */
 
         @media (max-width: 700px) {
 
             .photography-gallery-section {
-
                 padding-top: 55px;
 
                 padding-bottom: 75px;
-
             }
 
 
             .photo-category-header {
-
                 display: block;
-
             }
 
 
             .photo-category-meta {
-
                 display: block;
 
                 margin-top: 8px;
-
             }
 
 
             .photo-card {
-
                 flex-basis: 78vw;
 
                 height: 470px;
-
             }
 
 
             .photo-feature {
-
                 padding: 30px;
-
             }
 
 
             .photo-feature h2 {
-
                 font-size: 34px;
-
             }
 
         }
@@ -520,17 +518,17 @@
 <body>
 
 
-    <!-- ==========================================
+    <!-- ==============================
          NAVIGATION
-    ========================================== -->
+    ============================== -->
 
     <div id="nav"></div>
 
 
 
-    <!-- ==========================================
+    <!-- ==============================
          HERO
-    ========================================== -->
+    ============================== -->
 
     <section class="page-hero">
 
@@ -564,21 +562,27 @@
 
 
 
-    <!-- ==========================================
+    <!-- ==============================
          PHOTOGRAPHY
-    ========================================== -->
+    ============================== -->
 
     <section class="section shell photography-gallery-section">
 
 
-        <!-- CATEGORY TABS -->
+        <!-- CATEGORY BUTTONS -->
 
-        <div class="photo-categories">
+        <div
+            class="photo-tabs"
+            role="tablist"
+            aria-label="Photography categories"
+        >
 
             <button
-                class="photo-tab active"
+                class="photo-tab is-active"
                 type="button"
-                data-target="wildlife"
+                data-category="wildlife"
+                role="tab"
+                aria-selected="true"
             >
                 Wildlife
             </button>
@@ -587,7 +591,9 @@
             <button
                 class="photo-tab"
                 type="button"
-                data-target="nature"
+                data-category="nature"
+                role="tab"
+                aria-selected="false"
             >
                 Nature
             </button>
@@ -596,7 +602,9 @@
             <button
                 class="photo-tab"
                 type="button"
-                data-target="cities"
+                data-category="cities"
+                role="tab"
+                aria-selected="false"
             >
                 Cities
             </button>
@@ -605,7 +613,9 @@
             <button
                 class="photo-tab"
                 type="button"
-                data-target="people"
+                data-category="people"
+                role="tab"
+                aria-selected="false"
             >
                 People
             </button>
@@ -614,13 +624,13 @@
 
 
 
-        <!-- ==========================================
+        <!-- ==============================
              WILDLIFE
-        ========================================== -->
+        ============================== -->
 
         <section
-            class="photo-category active"
-            id="wildlife"
+            class="gallery-panel is-visible"
+            data-panel="wildlife"
         >
 
             <div class="photo-category-header">
@@ -628,6 +638,7 @@
                 <h2 class="photo-category-title">
                     Wildlife
                 </h2>
+
 
                 <span class="photo-category-meta">
                     Field encounters · 2025 — present
@@ -642,7 +653,6 @@
                     class="photo-rail"
                     data-rail="wildlife"
                 >
-
 
                     <article class="photo-card">
 
@@ -664,7 +674,6 @@
                         </div>
 
                     </article>
-
 
 
                     <article class="photo-card">
@@ -689,50 +698,30 @@
                     </article>
 
 
-
                     <article class="photo-card">
 
-                        <img
-                            src="/assets/wildlife/IMG_9074.JPEG"
-                            alt="Wildlife photograph"
-                        >
+                        <div class="photo-placeholder">
+
+                            <span>
+                                Next wildlife photo
+                            </span>
+
+                        </div>
 
                         <div class="photo-card-info">
 
                             <strong>
-                                First sighting
+                                More to come
                             </strong>
 
                             <span>
-                                Wildlife · Encounter
+                                Wildlife · Placeholder
                             </span>
 
                         </div>
 
                     </article>
 
-
-
-                    <article class="photo-card">
-
-                        <img
-                            src="/assets/wildlife/IMG_1736.JPEG"
-                            alt="Wildlife photograph"
-                        >
-
-                        <div class="photo-card-info">
-
-                            <strong>
-                                Field notes
-                            </strong>
-
-                            <span>
-                                Wildlife · Archive
-                            </span>
-
-                        </div>
-
-                    </article>
 
                 </div>
 
@@ -742,8 +731,8 @@
                     <button
                         class="rail-control"
                         type="button"
-                        data-direction="left"
                         data-rail="wildlife"
+                        data-direction="left"
                     >
                         ←
                     </button>
@@ -752,8 +741,8 @@
                     <button
                         class="rail-control"
                         type="button"
-                        data-direction="right"
                         data-rail="wildlife"
+                        data-direction="right"
                     >
                         →
                     </button>
@@ -766,13 +755,13 @@
 
 
 
-        <!-- ==========================================
+        <!-- ==============================
              NATURE
-        ========================================== -->
+        ============================== -->
 
         <section
-            class="photo-category"
-            id="nature"
+            class="gallery-panel"
+            data-panel="nature"
         >
 
             <div class="photo-category-header">
@@ -780,6 +769,7 @@
                 <h2 class="photo-category-title">
                     Nature
                 </h2>
+
 
                 <span class="photo-category-meta">
                     Landscapes · Mountains · Oceans
@@ -797,15 +787,43 @@
 
                     <article class="photo-card">
 
-                        <img
-                            src="/assets/wildlife/IMG_1736.JPEG"
-                            alt="Nature photograph"
-                        >
+                        <div class="photo-placeholder nature-placeholder">
+
+                            <span>
+                                Nature placeholder
+                            </span>
+
+                        </div>
 
                         <div class="photo-card-info">
 
                             <strong>
-                                Open landscape
+                                Mountains
+                            </strong>
+
+                            <span>
+                                Nature · Alpine
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="photo-card">
+
+                        <div class="photo-placeholder nature-placeholder">
+
+                            <span>
+                                Nature placeholder
+                            </span>
+
+                        </div>
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                Open landscapes
                             </strong>
 
                             <span>
@@ -819,63 +837,22 @@
 
                     <article class="photo-card">
 
-                        <img
-                            src="/assets/wildlife/IMG_9074.JPEG"
-                            alt="Nature photograph"
-                        >
-
-                        <div class="photo-card-info">
-
-                            <strong>
-                                Into the wild
-                            </strong>
+                        <div class="photo-placeholder nature-placeholder">
 
                             <span>
-                                Nature · Exploration
+                                Nature placeholder
                             </span>
 
                         </div>
 
-                    </article>
-
-
-                    <article class="photo-card">
-
-                        <img
-                            src="/assets/wildlife/IMG_1736.JPEG"
-                            alt="Nature photograph"
-                        >
-
                         <div class="photo-card-info">
 
                             <strong>
-                                Landscape
+                                Ocean
                             </strong>
 
                             <span>
-                                Nature · Archive
-                            </span>
-
-                        </div>
-
-                    </article>
-
-
-                    <article class="photo-card">
-
-                        <img
-                            src="/assets/wildlife/IMG_9074.JPEG"
-                            alt="Nature photograph"
-                        >
-
-                        <div class="photo-card-info">
-
-                            <strong>
-                                Outside
-                            </strong>
-
-                            <span>
-                                Nature · Field notes
+                                Nature · Marine
                             </span>
 
                         </div>
@@ -890,8 +867,8 @@
                     <button
                         class="rail-control"
                         type="button"
-                        data-direction="left"
                         data-rail="nature"
+                        data-direction="left"
                     >
                         ←
                     </button>
@@ -900,8 +877,8 @@
                     <button
                         class="rail-control"
                         type="button"
-                        data-direction="right"
                         data-rail="nature"
+                        data-direction="right"
                     >
                         →
                     </button>
@@ -914,13 +891,13 @@
 
 
 
-        <!-- ==========================================
+        <!-- ==============================
              CITIES
-        ========================================== -->
+        ============================== -->
 
         <section
-            class="photo-category"
-            id="cities"
+            class="gallery-panel"
+            data-panel="cities"
         >
 
             <div class="photo-category-header">
@@ -928,6 +905,7 @@
                 <h2 class="photo-category-title">
                     Cities
                 </h2>
+
 
                 <span class="photo-category-meta">
                     Streets · Architecture · Everyday life
@@ -945,10 +923,13 @@
 
                     <article class="photo-card">
 
-                        <img
-                            src="/assets/wildlife/IMG_9074.JPEG"
-                            alt="City photograph"
-                        >
+                        <div class="photo-placeholder city-placeholder">
+
+                            <span>
+                                City placeholder
+                            </span>
+
+                        </div>
 
                         <div class="photo-card-info">
 
@@ -967,10 +948,13 @@
 
                     <article class="photo-card">
 
-                        <img
-                            src="/assets/wildlife/IMG_1736.JPEG"
-                            alt="City photograph"
-                        >
+                        <div class="photo-placeholder city-placeholder">
+
+                            <span>
+                                City placeholder
+                            </span>
+
+                        </div>
 
                         <div class="photo-card-info">
 
@@ -989,10 +973,13 @@
 
                     <article class="photo-card">
 
-                        <img
-                            src="/assets/wildlife/IMG_9074.JPEG"
-                            alt="City photograph"
-                        >
+                        <div class="photo-placeholder city-placeholder">
+
+                            <span>
+                                City placeholder
+                            </span>
+
+                        </div>
 
                         <div class="photo-card-info">
 
@@ -1008,28 +995,6 @@
 
                     </article>
 
-
-                    <article class="photo-card">
-
-                        <img
-                            src="/assets/wildlife/IMG_1736.JPEG"
-                            alt="City photograph"
-                        >
-
-                        <div class="photo-card-info">
-
-                            <strong>
-                                Somewhere new
-                            </strong>
-
-                            <span>
-                                Cities · Travel
-                            </span>
-
-                        </div>
-
-                    </article>
-
                 </div>
 
 
@@ -1038,8 +1003,8 @@
                     <button
                         class="rail-control"
                         type="button"
-                        data-direction="left"
                         data-rail="cities"
+                        data-direction="left"
                     >
                         ←
                     </button>
@@ -1048,8 +1013,8 @@
                     <button
                         class="rail-control"
                         type="button"
-                        data-direction="right"
                         data-rail="cities"
+                        data-direction="right"
                     >
                         →
                     </button>
@@ -1062,13 +1027,13 @@
 
 
 
-        <!-- ==========================================
+        <!-- ==============================
              PEOPLE
-        ========================================== -->
+        ============================== -->
 
         <section
-            class="photo-category"
-            id="people"
+            class="gallery-panel"
+            data-panel="people"
         >
 
             <div class="photo-category-header">
@@ -1076,6 +1041,7 @@
                 <h2 class="photo-category-title">
                     People
                 </h2>
+
 
                 <span class="photo-category-meta">
                     Portraits · Moments · Journeys
@@ -1093,10 +1059,13 @@
 
                     <article class="photo-card">
 
-                        <img
-                            src="/assets/wildlife/IMG_1736.JPEG"
-                            alt="People photograph"
-                        >
+                        <div class="photo-placeholder people-placeholder">
+
+                            <span>
+                                People placeholder
+                            </span>
+
+                        </div>
 
                         <div class="photo-card-info">
 
@@ -1115,10 +1084,13 @@
 
                     <article class="photo-card">
 
-                        <img
-                            src="/assets/wildlife/IMG_9074.JPEG"
-                            alt="People photograph"
-                        >
+                        <div class="photo-placeholder people-placeholder">
+
+                            <span>
+                                People placeholder
+                            </span>
+
+                        </div>
 
                         <div class="photo-card-info">
 
@@ -1137,10 +1109,13 @@
 
                     <article class="photo-card">
 
-                        <img
-                            src="/assets/wildlife/IMG_1736.JPEG"
-                            alt="People photograph"
-                        >
+                        <div class="photo-placeholder people-placeholder">
+
+                            <span>
+                                People placeholder
+                            </span>
+
+                        </div>
 
                         <div class="photo-card-info">
 
@@ -1156,28 +1131,6 @@
 
                     </article>
 
-
-                    <article class="photo-card">
-
-                        <img
-                            src="/assets/wildlife/IMG_9074.JPEG"
-                            alt="People photograph"
-                        >
-
-                        <div class="photo-card-info">
-
-                            <strong>
-                                Journey
-                            </strong>
-
-                            <span>
-                                People · Travel
-                            </span>
-
-                        </div>
-
-                    </article>
-
                 </div>
 
 
@@ -1186,8 +1139,8 @@
                     <button
                         class="rail-control"
                         type="button"
-                        data-direction="left"
                         data-rail="people"
+                        data-direction="left"
                     >
                         ←
                     </button>
@@ -1196,8 +1149,8 @@
                     <button
                         class="rail-control"
                         type="button"
-                        data-direction="right"
                         data-rail="people"
+                        data-direction="right"
                     >
                         →
                     </button>
@@ -1210,9 +1163,9 @@
 
 
 
-        <!-- ==========================================
+        <!-- ==============================
              FEATURE
-        ========================================== -->
+        ============================== -->
 
         <div class="photo-feature">
 
@@ -1230,9 +1183,9 @@
 
 
             <p>
-                Every photograph can eventually be connected
-                to a country, trip, wildlife encounter,
-                dive site or mountain route.
+                Replace the placeholders as you add photographs.
+                Each image can later be connected to its country,
+                trip, wildlife encounter or dive.
             </p>
 
         </div>
@@ -1241,9 +1194,9 @@
 
 
 
-    <!-- ==========================================
+    <!-- ==============================
          CONTACT
-    ========================================== -->
+    ============================== -->
 
     <div class="contact">
 
@@ -1301,9 +1254,9 @@
 
 
 
-    <!-- ==========================================
+    <!-- ==============================
          FOOTER
-    ========================================== -->
+    ============================== -->
 
     <footer class="footer shell">
 
@@ -1320,12 +1273,16 @@
 
 
 
-    <!-- ==========================================
-         JAVASCRIPT
-    ========================================== -->
+    <!-- ==============================
+         GLOBAL JS
+    ============================== -->
 
     <script src="/js/site.js"></script>
 
+
+    <!-- ==============================
+         PHOTOGRAPHY JS
+    ============================== -->
 
     <script>
 
@@ -1333,10 +1290,11 @@
             "DOMContentLoaded",
             function () {
 
-
-                /* =================================
-                   CATEGORY TABS
-                ================================= */
+                /*
+                ===============================
+                CATEGORY TABS
+                ===============================
+                */
 
                 const tabs =
                     document.querySelectorAll(
@@ -1344,9 +1302,9 @@
                     );
 
 
-                const categories =
+                const panels =
                     document.querySelectorAll(
-                        ".photo-category"
+                        ".gallery-panel"
                     );
 
 
@@ -1357,61 +1315,81 @@
                             "click",
                             function () {
 
-                                const target =
+                                const selectedCategory =
                                     tab.getAttribute(
-                                        "data-target"
+                                        "data-category"
                                     );
 
 
-                                /* Remove active
-                                   from all tabs */
+                                /*
+                                Update tabs
+                                */
 
                                 tabs.forEach(
                                     function (item) {
 
-                                        item.classList.remove(
-                                            "active"
-                                        );
+                                        if (
+                                            item === tab
+                                        ) {
+
+                                            item.classList.add(
+                                                "is-active"
+                                            );
+
+                                            item.setAttribute(
+                                                "aria-selected",
+                                                "true"
+                                            );
+
+                                        } else {
+
+                                            item.classList.remove(
+                                                "is-active"
+                                            );
+
+                                            item.setAttribute(
+                                                "aria-selected",
+                                                "false"
+                                            );
+
+                                        }
 
                                     }
                                 );
 
 
-                                /* Activate clicked tab */
+                                /*
+                                Update panels
+                                */
 
-                                tab.classList.add(
-                                    "active"
-                                );
+                                panels.forEach(
+                                    function (panel) {
+
+                                        const panelCategory =
+                                            panel.getAttribute(
+                                                "data-panel"
+                                            );
 
 
-                                /* Hide categories */
+                                        if (
+                                            panelCategory ===
+                                            selectedCategory
+                                        ) {
 
-                                categories.forEach(
-                                    function (category) {
+                                            panel.classList.add(
+                                                "is-visible"
+                                            );
 
-                                        category.classList.remove(
-                                            "active"
-                                        );
+                                        } else {
+
+                                            panel.classList.remove(
+                                                "is-visible"
+                                            );
+
+                                        }
 
                                     }
                                 );
-
-
-                                /* Show selected */
-
-                                const selected =
-                                    document.getElementById(
-                                        target
-                                    );
-
-
-                                if (selected) {
-
-                                    selected.classList.add(
-                                        "active"
-                                    );
-
-                                }
 
                             }
                         );
@@ -1421,9 +1399,11 @@
 
 
 
-                /* =================================
-                   HORIZONTAL SCROLL BUTTONS
-                ================================= */
+                /*
+                ===============================
+                HORIZONTAL SCROLL
+                ===============================
+                */
 
                 const controls =
                     document.querySelectorAll(
@@ -1465,17 +1445,16 @@
                                 }
 
 
-                                const amount = 444;
-
-
                                 rail.scrollBy({
 
                                     left:
-                                        direction === "right"
-                                            ? amount
-                                            : -amount,
+                                        direction ===
+                                        "right"
+                                            ? 445
+                                            : -445,
 
-                                    behavior: "smooth"
+                                    behavior:
+                                        "smooth"
 
                                 });
 
@@ -1491,5 +1470,4 @@
     </script>
 
 </body>
-
 </html>
