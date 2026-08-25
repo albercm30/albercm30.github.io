@@ -1,0 +1,10 @@
+{
+  "stats": {
+    "countries": 25,
+    "dives": 50,
+    "mountains": 10,
+    "species": 80,
+    "continents": 5
+  },
+  "note": "Central content database. Expand this as the site grows."
+}
