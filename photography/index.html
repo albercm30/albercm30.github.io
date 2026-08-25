@@ -34,7 +34,7 @@
     >
 
 
-    <!-- Global website CSS -->
+    <!-- Your global website CSS -->
 
     <link
         rel="stylesheet"
@@ -42,12 +42,12 @@
     >
 
 
-    <!-- Photography-specific CSS -->
+    <!-- Photography page CSS -->
 
     <style>
 
         /* =========================================
-           PAGE
+           PHOTOGRAPHY SECTION
         ========================================= */
 
         .photography-section {
@@ -61,24 +61,16 @@
         ========================================= */
 
         .filters {
-
             display: flex;
-
             flex-wrap: wrap;
-
             gap: 8px;
-
             margin-bottom: 34px;
-
         }
 
 
         .filter {
-
             border: 1px solid var(--line);
-
             background: transparent;
-
             color: var(--soft);
 
             border-radius: 8px;
@@ -86,39 +78,32 @@
             padding: 8px 13px;
 
             font-size: 10px;
-
             font-weight: 700;
 
             cursor: pointer;
 
+            appearance: none;
+            -webkit-appearance: none;
+
             transition:
                 background 0.2s ease,
-                color 0.2s ease,
                 border-color 0.2s ease,
+                color 0.2s ease,
                 transform 0.2s ease;
-
         }
 
 
         .filter:hover {
-
-            transform: translateY(-1px);
-
             border-color: var(--ink);
-
             color: var(--ink);
-
+            transform: translateY(-1px);
         }
 
 
         .filter.active {
-
             background: var(--green);
-
             border-color: var(--green);
-
-            color: white;
-
+            color: #ffffff;
         }
 
 
@@ -127,7 +112,6 @@
         ========================================= */
 
         .gallery {
-
             display: grid;
 
             grid-template-columns:
@@ -136,12 +120,10 @@
             gap: 14px;
 
             align-items: start;
-
         }
 
 
         .photo {
-
             position: relative;
 
             overflow: hidden;
@@ -149,14 +131,11 @@
             background: #d8d8d2;
 
             isolation: isolate;
-
         }
 
 
         .photo img {
-
             width: 100%;
-
             height: 100%;
 
             display: block;
@@ -164,16 +143,13 @@
             object-fit: cover;
 
             transition:
-                transform 0.6s
+                transform 0.55s
                 cubic-bezier(.2,.7,.2,1);
-
         }
 
 
         .photo:hover img {
-
-            transform: scale(1.035);
-
+            transform: scale(1.03);
         }
 
 
@@ -182,101 +158,79 @@
         ========================================= */
 
         .photo1 {
-
             grid-column: span 7;
-
             height: 510px;
-
         }
 
 
         .photo2 {
-
             grid-column: span 5;
-
             height: 360px;
-
         }
 
 
         .photo3 {
-
             grid-column: span 5;
-
             height: 435px;
-
             margin-top: -82px;
-
         }
 
 
         .photo4 {
-
             grid-column: span 7;
-
             height: 470px;
-
         }
 
 
         .photo5 {
-
             grid-column: span 4;
-
             height: 420px;
-
         }
 
 
         .photo6 {
-
             grid-column: span 8;
-
             height: 495px;
-
             margin-top: -65px;
-
         }
 
 
         /* =========================================
-           IMAGE OVERLAY
+           PHOTO DARK GRADIENT
         ========================================= */
 
         .photo::after {
-
             content: "";
 
             position: absolute;
 
             left: 0;
-
             right: 0;
-
             bottom: 0;
 
-            height: 38%;
+            height: 40%;
 
             background:
                 linear-gradient(
                     to bottom,
                     transparent,
-                    rgba(0, 0, 0, .55)
+                    rgba(0, 0, 0, 0.55)
                 );
 
             pointer-events: none;
 
             z-index: 1;
-
         }
 
 
-        .photo span {
+        /* =========================================
+           PHOTO LABEL
+        ========================================= */
 
+        .photo span {
             position: absolute;
 
             left: 15px;
-
             bottom: 14px;
 
             z-index: 2;
@@ -293,16 +247,29 @@
 
             text-shadow:
                 0 2px 8px rgba(0,0,0,.35);
-
         }
 
 
         /* =========================================
-           FEATURE SECTION
+           FILTERED STATE
+
+           IMPORTANT:
+           We use visibility + height + margin,
+           rather than display:none.
+           This avoids layout issues with the
+           asymmetrical gallery.
+        ========================================= */
+
+        .photo.is-hidden {
+            display: none !important;
+        }
+
+
+        /* =========================================
+           FEATURE BLOCK
         ========================================= */
 
         .feature {
-
             margin-top: 80px;
 
             border-radius: 16px;
@@ -321,34 +288,28 @@
             position: relative;
 
             overflow: hidden;
-
         }
 
 
         .feature::after {
-
             content: "";
 
             position: absolute;
 
             width: 320px;
-
             height: 320px;
 
             right: -130px;
-
             top: -150px;
 
             border-radius: 50%;
 
             border: 1px solid
                 rgba(255,255,255,.08);
-
         }
 
 
         .feature h2 {
-
             position: relative;
 
             z-index: 2;
@@ -358,12 +319,10 @@
             margin-top: 7px;
 
             font-size: 42px;
-
         }
 
 
         .feature p:last-child {
-
             position: relative;
 
             z-index: 2;
@@ -375,18 +334,6 @@
             color: #b4beb5;
 
             font-size: 13px;
-
-        }
-
-
-        /* =========================================
-           HIDDEN PHOTOS
-        ========================================= */
-
-        .photo.hidden {
-
-            display: none;
-
         }
 
 
@@ -397,66 +344,46 @@
         @media (max-width: 950px) {
 
             .gallery {
-
                 grid-template-columns:
                     repeat(2, 1fr);
-
             }
 
 
             .photo1,
             .photo4,
             .photo6 {
-
                 grid-column: span 2;
-
             }
 
 
             .photo2,
             .photo3,
             .photo5 {
-
                 grid-column: span 1;
-
             }
 
 
             .photo3,
             .photo6 {
-
                 margin-top: 0;
-
             }
 
 
             .photo1 {
-
                 height: 470px;
-
             }
 
 
             .photo2,
             .photo3,
             .photo5 {
-
                 height: 350px;
-
             }
 
 
-            .photo4 {
-
-                height: 440px;
-
-            }
-
-
+            .photo4,
             .photo6 {
-
                 height: 440px;
-
             }
 
         }
@@ -469,20 +396,14 @@
         @media (max-width: 600px) {
 
             .photography-section {
-
                 padding-top: 65px;
-
                 padding-bottom: 75px;
-
             }
 
 
             .gallery {
-
                 grid-template-columns: 1fr;
-
                 gap: 12px;
-
             }
 
 
@@ -492,37 +413,28 @@
             .photo4,
             .photo5,
             .photo6 {
-
                 grid-column: span 1;
 
                 height: 360px;
 
                 margin-top: 0;
-
             }
 
 
             .photo1,
             .photo4 {
-
                 height: 410px;
-
             }
 
 
             .feature {
-
                 margin-top: 62px;
-
                 padding: 34px 28px;
-
             }
 
 
             .feature h2 {
-
                 font-size: 34px;
-
             }
 
         }
@@ -540,7 +452,6 @@
     ========================================= -->
 
     <div id="nav"></div>
-
 
 
     <!-- =========================================
@@ -594,8 +505,8 @@
 
             <button
                 class="filter active"
-                data-filter="all"
                 type="button"
+                data-filter="all"
             >
                 All
             </button>
@@ -603,8 +514,8 @@
 
             <button
                 class="filter"
-                data-filter="wildlife"
                 type="button"
+                data-filter="wildlife"
             >
                 Wildlife
             </button>
@@ -612,8 +523,8 @@
 
             <button
                 class="filter"
-                data-filter="underwater"
                 type="button"
+                data-filter="underwater"
             >
                 Underwater
             </button>
@@ -621,8 +532,8 @@
 
             <button
                 class="filter"
-                data-filter="mountains"
                 type="button"
+                data-filter="mountains"
             >
                 Mountains
             </button>
@@ -630,8 +541,8 @@
 
             <button
                 class="filter"
-                data-filter="travel"
                 type="button"
+                data-filter="travel"
             >
                 Travel
             </button>
@@ -641,7 +552,7 @@
 
 
         <!-- =========================================
-             GALLERY
+             PHOTO GALLERY
         ========================================= -->
 
         <div class="gallery">
@@ -655,9 +566,8 @@
             >
 
                 <img
-                    src="/assets/photos/wildlife/IMG_9074.JPEG"
+                    src="/assets/wildlife/IMG_9074.JPEG"
                     alt="Wildlife photograph"
-                    loading="lazy"
                 >
 
                 <span>
@@ -676,9 +586,8 @@
             >
 
                 <img
-                    src="/assets/photos/wildlife/IMG_9074.JPEG"
-                    alt="Wildlife photograph"
-                    loading="lazy"
+                    src="/assets/wildlife/IMG_9074.JPEG"
+                    alt="Underwater photograph"
                 >
 
                 <span>
@@ -697,9 +606,8 @@
             >
 
                 <img
-                    src="/assets/photos/wildlife/IMG_9074.JPEG"
-                    alt="Wildlife photograph"
-                    loading="lazy"
+                    src="/assets/wildlife/IMG_9074.JPEG"
+                    alt="Mountain photograph"
                 >
 
                 <span>
@@ -718,9 +626,8 @@
             >
 
                 <img
-                    src="/assets/photos/wildlife/IMG_9074.JPEG"
+                    src="/assets/wildlife/IMG_9074.JPEG"
                     alt="Travel photograph"
-                    loading="lazy"
                 >
 
                 <span>
@@ -739,9 +646,8 @@
             >
 
                 <img
-                    src="/assets/photos/wildlife/IMG_9074.JPEG"
+                    src="/assets/wildlife/IMG_9074.JPEG"
                     alt="Wildlife photograph"
-                    loading="lazy"
                 >
 
                 <span>
@@ -760,9 +666,8 @@
             >
 
                 <img
-                    src="/assets/photos/wildlife/IMG_9074.JPEG"
+                    src="/assets/wildlife/IMG_9074.JPEG"
                     alt="Travel photograph"
-                    loading="lazy"
                 >
 
                 <span>
@@ -791,20 +696,14 @@
 
 
             <h2>
-
-                The best version of this page
-                will be built around your own photographs.
-
+                Replace the placeholders with your own work.
             </h2>
 
 
             <p>
-
-                Replace the temporary images with photographs
-                from your trips and connect them to the
-                corresponding country, wildlife encounter,
-                dive site or mountain.
-
+                The layout is ready for a real photography archive.
+                Add your images and connect them to trips,
+                countries, wildlife encounters and dive sites.
             </p>
 
         </div>
@@ -831,18 +730,14 @@
 
 
             <h2>
-
                 Let's build something
                 <em>interesting.</em>
-
             </h2>
 
 
             <p>
-
                 Data, AI, travel, wildlife —
                 or some combination of all four.
-
             </p>
 
 
@@ -888,6 +783,7 @@
             © 2026 Alberto Castellano
         </span>
 
+
         <span>
             Data · AI · Travel · Wildlife · Photography
         </span>
@@ -897,7 +793,7 @@
 
 
     <!-- =========================================
-         GLOBAL JAVASCRIPT
+         GLOBAL JS
     ========================================= -->
 
     <script src="/js/site.js"></script>
@@ -905,7 +801,7 @@
 
 
     <!-- =========================================
-         FILTER FUNCTIONALITY
+         PHOTO FILTER JS
     ========================================= -->
 
     <script>
@@ -932,14 +828,18 @@
                             "click",
                             function () {
 
+                                const filter =
+                                    button.dataset.filter;
+
+
                                 /*
                                  * Update active button
                                  */
 
                                 buttons.forEach(
-                                    function (btn) {
+                                    function (item) {
 
-                                        btn.classList.remove(
+                                        item.classList.remove(
                                             "active"
                                         );
 
@@ -953,15 +853,7 @@
 
 
                                 /*
-                                 * Selected category
-                                 */
-
-                                const selected =
-                                    button.dataset.filter;
-
-
-                                /*
-                                 * Show / hide photos
+                                 * Update gallery
                                  */
 
                                 photos.forEach(
@@ -971,19 +863,21 @@
                                             photo.dataset.category;
 
 
-                                        if (
-                                            selected === "all" ||
-                                            category === selected
-                                        ) {
+                                        const shouldShow =
+                                            filter === "all" ||
+                                            category === filter;
+
+
+                                        if (shouldShow) {
 
                                             photo.classList.remove(
-                                                "hidden"
+                                                "is-hidden"
                                             );
 
                                         } else {
 
                                             photo.classList.add(
-                                                "hidden"
+                                                "is-hidden"
                                             );
 
                                         }
