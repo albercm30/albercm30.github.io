@@ -14,6 +14,9 @@
         Photography · Alberto Castellano
     </title>
 
+
+    <!-- Fonts -->
+
     <link
         rel="preconnect"
         href="https://fonts.googleapis.com"
@@ -30,17 +33,22 @@
         rel="stylesheet"
     >
 
+
+    <!-- Global website CSS -->
+
     <link
         rel="stylesheet"
         href="/style.css"
     >
 
+
+    <!-- Photography-specific CSS -->
+
     <style>
 
         /* =========================================
-           PHOTOGRAPHY PAGE
-           Uses the existing global design system.
-        ========================================== */
+           PAGE
+        ========================================= */
 
         .photography-section {
             padding-top: 82px;
@@ -49,19 +57,28 @@
 
 
         /* =========================================
-           FILTERS
-        ========================================== */
+           FILTER BUTTONS
+        ========================================= */
 
         .filters {
+
             display: flex;
+
             flex-wrap: wrap;
+
             gap: 8px;
+
             margin-bottom: 34px;
+
         }
 
+
         .filter {
+
             border: 1px solid var(--line);
+
             background: transparent;
+
             color: var(--soft);
 
             border-radius: 8px;
@@ -69,64 +86,173 @@
             padding: 8px 13px;
 
             font-size: 10px;
+
             font-weight: 700;
 
             cursor: pointer;
 
             transition:
-                background .2s ease,
-                color .2s ease,
-                border-color .2s ease,
-                transform .2s ease;
+                background 0.2s ease,
+                color 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease;
+
         }
+
 
         .filter:hover {
+
             transform: translateY(-1px);
+
             border-color: var(--ink);
+
             color: var(--ink);
+
         }
 
+
         .filter.active {
+
             background: var(--green);
+
             border-color: var(--green);
+
             color: white;
+
         }
 
 
         /* =========================================
            GALLERY
-        ========================================== */
+        ========================================= */
 
         .gallery {
+
             display: grid;
 
             grid-template-columns:
                 repeat(12, 1fr);
 
             gap: 14px;
+
+            align-items: start;
+
         }
 
 
         .photo {
+
             position: relative;
 
             overflow: hidden;
 
-            border-radius: 3px;
-
             background: #d8d8d2;
 
             isolation: isolate;
+
         }
 
 
+        .photo img {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            transition:
+                transform 0.6s
+                cubic-bezier(.2,.7,.2,1);
+
+        }
+
+
+        .photo:hover img {
+
+            transform: scale(1.035);
+
+        }
+
+
+        /* =========================================
+           PHOTO SIZES
+        ========================================= */
+
+        .photo1 {
+
+            grid-column: span 7;
+
+            height: 510px;
+
+        }
+
+
+        .photo2 {
+
+            grid-column: span 5;
+
+            height: 360px;
+
+        }
+
+
+        .photo3 {
+
+            grid-column: span 5;
+
+            height: 435px;
+
+            margin-top: -82px;
+
+        }
+
+
+        .photo4 {
+
+            grid-column: span 7;
+
+            height: 470px;
+
+        }
+
+
+        .photo5 {
+
+            grid-column: span 4;
+
+            height: 420px;
+
+        }
+
+
+        .photo6 {
+
+            grid-column: span 8;
+
+            height: 495px;
+
+            margin-top: -65px;
+
+        }
+
+
+        /* =========================================
+           IMAGE OVERLAY
+        ========================================= */
+
         .photo::after {
+
             content: "";
 
             position: absolute;
 
             left: 0;
+
             right: 0;
+
             bottom: 0;
 
             height: 38%;
@@ -138,77 +264,19 @@
                     rgba(0, 0, 0, .55)
                 );
 
+            pointer-events: none;
+
             z-index: 1;
 
-            pointer-events: none;
         }
 
-
-        .photo img {
-            width: 100%;
-            height: 100%;
-
-            display: block;
-
-            object-fit: cover;
-
-            transition:
-                transform .6s cubic-bezier(.2,.7,.2,1);
-        }
-
-
-        .photo:hover img {
-            transform: scale(1.035);
-        }
-
-
-        /* =========================================
-           GALLERY COMPOSITION
-        ========================================== */
-
-        .photo1 {
-            grid-column: span 7;
-            height: 510px;
-        }
-
-        .photo2 {
-            grid-column: span 5;
-            height: 360px;
-        }
-
-        .photo3 {
-            grid-column: span 5;
-            height: 435px;
-
-            margin-top: -82px;
-        }
-
-        .photo4 {
-            grid-column: span 7;
-            height: 470px;
-        }
-
-        .photo5 {
-            grid-column: span 4;
-            height: 420px;
-        }
-
-        .photo6 {
-            grid-column: span 8;
-            height: 495px;
-
-            margin-top: -65px;
-        }
-
-
-        /* =========================================
-           IMAGE LABELS
-        ========================================== */
 
         .photo span {
+
             position: absolute;
 
             left: 15px;
+
             bottom: 14px;
 
             z-index: 2;
@@ -225,14 +293,16 @@
 
             text-shadow:
                 0 2px 8px rgba(0,0,0,.35);
+
         }
 
 
         /* =========================================
-           FEATURE BLOCK
-        ========================================== */
+           FEATURE SECTION
+        ========================================= */
 
         .feature {
+
             margin-top: 80px;
 
             border-radius: 16px;
@@ -251,27 +321,34 @@
             position: relative;
 
             overflow: hidden;
+
         }
 
 
         .feature::after {
+
             content: "";
 
             position: absolute;
 
             width: 320px;
+
             height: 320px;
 
             right: -130px;
+
             top: -150px;
 
             border-radius: 50%;
 
-            border: 1px solid rgba(255,255,255,.08);
+            border: 1px solid
+                rgba(255,255,255,.08);
+
         }
 
 
         .feature h2 {
+
             position: relative;
 
             z-index: 2;
@@ -281,10 +358,12 @@
             margin-top: 7px;
 
             font-size: 42px;
+
         }
 
 
         .feature p:last-child {
+
             position: relative;
 
             z-index: 2;
@@ -296,77 +375,114 @@
             color: #b4beb5;
 
             font-size: 13px;
+
         }
 
 
         /* =========================================
-           RESPONSIVE
-        ========================================== */
+           HIDDEN PHOTOS
+        ========================================= */
+
+        .photo.hidden {
+
+            display: none;
+
+        }
+
+
+        /* =========================================
+           TABLET
+        ========================================= */
 
         @media (max-width: 950px) {
 
             .gallery {
+
                 grid-template-columns:
                     repeat(2, 1fr);
+
             }
 
 
             .photo1,
             .photo4,
             .photo6 {
+
                 grid-column: span 2;
+
             }
 
 
             .photo2,
             .photo3,
             .photo5 {
+
                 grid-column: span 1;
+
             }
 
 
             .photo3,
             .photo6 {
+
                 margin-top: 0;
+
             }
 
 
             .photo1 {
+
                 height: 470px;
+
             }
 
 
             .photo2,
             .photo3,
             .photo5 {
+
                 height: 350px;
+
             }
 
 
             .photo4 {
+
                 height: 440px;
+
             }
 
 
             .photo6 {
+
                 height: 440px;
+
             }
 
         }
 
 
+        /* =========================================
+           MOBILE
+        ========================================= */
+
         @media (max-width: 600px) {
 
             .photography-section {
+
                 padding-top: 65px;
+
                 padding-bottom: 75px;
+
             }
 
 
             .gallery {
+
                 grid-template-columns: 1fr;
 
                 gap: 12px;
+
             }
 
 
@@ -382,6 +498,7 @@
                 height: 360px;
 
                 margin-top: 0;
+
             }
 
 
@@ -389,18 +506,23 @@
             .photo4 {
 
                 height: 410px;
+
             }
 
 
             .feature {
+
                 margin-top: 62px;
 
                 padding: 34px 28px;
+
             }
 
 
             .feature h2 {
+
                 font-size: 34px;
+
             }
 
         }
@@ -415,7 +537,7 @@
 
     <!-- =========================================
          NAVIGATION
-    ========================================== -->
+    ========================================= -->
 
     <div id="nav"></div>
 
@@ -423,7 +545,7 @@
 
     <!-- =========================================
          PAGE HERO
-    ========================================== -->
+    ========================================= -->
 
     <section class="page-hero">
 
@@ -458,33 +580,59 @@
 
 
     <!-- =========================================
-         GALLERY
-    ========================================== -->
+         PHOTOGRAPHY SECTION
+    ========================================= -->
 
     <section class="section shell photography-section">
 
 
-        <!-- FILTERS -->
+        <!-- =========================================
+             FILTER BUTTONS
+        ========================================= -->
 
         <div class="filters">
 
-            <button class="filter active">
+            <button
+                class="filter active"
+                data-filter="all"
+                type="button"
+            >
                 All
             </button>
 
-            <button class="filter">
+
+            <button
+                class="filter"
+                data-filter="wildlife"
+                type="button"
+            >
                 Wildlife
             </button>
 
-            <button class="filter">
+
+            <button
+                class="filter"
+                data-filter="underwater"
+                type="button"
+            >
                 Underwater
             </button>
 
-            <button class="filter">
+
+            <button
+                class="filter"
+                data-filter="mountains"
+                type="button"
+            >
                 Mountains
             </button>
 
-            <button class="filter">
+
+            <button
+                class="filter"
+                data-filter="travel"
+                type="button"
+            >
                 Travel
             </button>
 
@@ -492,32 +640,44 @@
 
 
 
-        <!-- PHOTO GRID -->
+        <!-- =========================================
+             GALLERY
+        ========================================= -->
 
         <div class="gallery">
 
 
-            <div class="photo photo1">
+            <!-- WILDLIFE -->
+
+            <div
+                class="photo photo1"
+                data-category="wildlife"
+            >
 
                 <img
-                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=85"
-                    alt="Mountain landscape"
+                    src="/assets/photos/wildlife/IMG_9074.JPEG"
+                    alt="Wildlife photograph"
                     loading="lazy"
                 >
 
                 <span>
-                    DOLOMITES · MOUNTAINS
+                    WILDLIFE · FEATURED
                 </span>
 
             </div>
 
 
 
-            <div class="photo photo2">
+            <!-- UNDERWATER -->
+
+            <div
+                class="photo photo2"
+                data-category="underwater"
+            >
 
                 <img
-                    src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1300&q=85"
-                    alt="Underwater marine life"
+                    src="/assets/photos/wildlife/IMG_9074.JPEG"
+                    alt="Wildlife photograph"
                     loading="lazy"
                 >
 
@@ -529,64 +689,84 @@
 
 
 
-            <div class="photo photo3">
+            <!-- MOUNTAINS -->
+
+            <div
+                class="photo photo3"
+                data-category="mountains"
+            >
 
                 <img
-                    src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1300&q=85"
-                    alt="Guatemala landscape"
+                    src="/assets/photos/wildlife/IMG_9074.JPEG"
+                    alt="Wildlife photograph"
                     loading="lazy"
                 >
 
                 <span>
-                    GUATEMALA · VOLCANO
+                    MOUNTAINS · ALPINE
                 </span>
 
             </div>
 
 
 
-            <div class="photo photo4">
+            <!-- TRAVEL -->
+
+            <div
+                class="photo photo4"
+                data-category="travel"
+            >
 
                 <img
-                    src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=85"
-                    alt="New Zealand alpine landscape"
+                    src="/assets/photos/wildlife/IMG_9074.JPEG"
+                    alt="Travel photograph"
                     loading="lazy"
                 >
 
                 <span>
-                    NEW ZEALAND · ALPINE
+                    TRAVEL · EXPLORATION
                 </span>
 
             </div>
 
 
 
-            <div class="photo photo5">
+            <!-- WILDLIFE -->
+
+            <div
+                class="photo photo5"
+                data-category="wildlife"
+            >
 
                 <img
-                    src="https://images.unsplash.com/photo-1558674373-9d1f9c7f0e86?auto=format&fit=crop&w=1200&q=85"
-                    alt="Wildlife"
+                    src="/assets/photos/wildlife/IMG_9074.JPEG"
+                    alt="Wildlife photograph"
                     loading="lazy"
                 >
 
                 <span>
-                    INDONESIA · WILDLIFE
+                    WILDLIFE · FIELD NOTES
                 </span>
 
             </div>
 
 
 
-            <div class="photo photo6">
+            <!-- TRAVEL -->
+
+            <div
+                class="photo photo6"
+                data-category="travel"
+            >
 
                 <img
-                    src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=1600&q=85"
-                    alt="Diving underwater"
+                    src="/assets/photos/wildlife/IMG_9074.JPEG"
+                    alt="Travel photograph"
                     loading="lazy"
                 >
 
                 <span>
-                    AUSTRALIA · TRAVEL
+                    TRAVEL · ON THE ROAD
                 </span>
 
             </div>
@@ -596,7 +776,9 @@
 
 
 
-        <!-- FEATURE -->
+        <!-- =========================================
+             FEATURE
+        ========================================= -->
 
         <div class="feature">
 
@@ -609,15 +791,20 @@
 
 
             <h2>
+
                 The best version of this page
                 will be built around your own photographs.
+
             </h2>
 
 
             <p>
-                Replace the temporary images with photographs from
-                your trips and connect them to the corresponding
-                country, wildlife encounter, dive site or mountain.
+
+                Replace the temporary images with photographs
+                from your trips and connect them to the
+                corresponding country, wildlife encounter,
+                dive site or mountain.
+
             </p>
 
         </div>
@@ -629,7 +816,7 @@
 
     <!-- =========================================
          CONTACT
-    ========================================== -->
+    ========================================= -->
 
     <div class="contact">
 
@@ -644,14 +831,18 @@
 
 
             <h2>
+
                 Let's build something
                 <em>interesting.</em>
+
             </h2>
 
 
             <p>
+
                 Data, AI, travel, wildlife —
                 or some combination of all four.
+
             </p>
 
 
@@ -689,7 +880,7 @@
 
     <!-- =========================================
          FOOTER
-    ========================================== -->
+    ========================================= -->
 
     <footer class="footer shell">
 
@@ -705,7 +896,111 @@
 
 
 
+    <!-- =========================================
+         GLOBAL JAVASCRIPT
+    ========================================= -->
+
     <script src="/js/site.js"></script>
+
+
+
+    <!-- =========================================
+         FILTER FUNCTIONALITY
+    ========================================= -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const buttons =
+                    document.querySelectorAll(
+                        ".filter"
+                    );
+
+                const photos =
+                    document.querySelectorAll(
+                        ".photo"
+                    );
+
+
+                buttons.forEach(
+                    function (button) {
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+                                /*
+                                 * Update active button
+                                 */
+
+                                buttons.forEach(
+                                    function (btn) {
+
+                                        btn.classList.remove(
+                                            "active"
+                                        );
+
+                                    }
+                                );
+
+
+                                button.classList.add(
+                                    "active"
+                                );
+
+
+                                /*
+                                 * Selected category
+                                 */
+
+                                const selected =
+                                    button.dataset.filter;
+
+
+                                /*
+                                 * Show / hide photos
+                                 */
+
+                                photos.forEach(
+                                    function (photo) {
+
+                                        const category =
+                                            photo.dataset.category;
+
+
+                                        if (
+                                            selected === "all" ||
+                                            category === selected
+                                        ) {
+
+                                            photo.classList.remove(
+                                                "hidden"
+                                            );
+
+                                        } else {
+
+                                            photo.classList.add(
+                                                "hidden"
+                                            );
+
+                                        }
+
+                                    }
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    </script>
 
 
 </body>
