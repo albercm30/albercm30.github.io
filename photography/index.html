@@ -15,7 +15,7 @@
     </title>
 
 
-    <!-- Fonts -->
+    <!-- Google Fonts -->
 
     <link
         rel="preconnect"
@@ -34,7 +34,7 @@
     >
 
 
-    <!-- Your global website CSS -->
+    <!-- Global stylesheet -->
 
     <link
         rel="stylesheet"
@@ -42,100 +42,234 @@
     >
 
 
-    <!-- Photography page CSS -->
-
     <style>
 
-        /* =========================================
-           PHOTOGRAPHY SECTION
-        ========================================= */
+        /* ==========================================
+           PHOTOGRAPHY PAGE
+        ========================================== */
 
-        .photography-section {
-            padding-top: 82px;
-            padding-bottom: 105px;
+        .photography-gallery-section {
+            padding-top: 70px;
+            padding-bottom: 110px;
         }
 
 
-        /* =========================================
-           FILTER BUTTONS
-        ========================================= */
+        /* ==========================================
+           CATEGORY BUTTONS
+        ========================================== */
 
-        .filters {
+        .photo-categories {
+
             display: flex;
-            flex-wrap: wrap;
+
+            align-items: center;
+
             gap: 8px;
-            margin-bottom: 34px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 30px;
+
         }
 
 
-        .filter {
-            border: 1px solid var(--line);
-            background: transparent;
-            color: var(--soft);
-
-            border-radius: 8px;
-
-            padding: 8px 13px;
-
-            font-size: 10px;
-            font-weight: 700;
-
-            cursor: pointer;
+        .photo-tab {
 
             appearance: none;
             -webkit-appearance: none;
 
+            border: 1px solid var(--line);
+
+            background: transparent;
+
+            color: var(--soft);
+
+            border-radius: 8px;
+
+            padding: 9px 14px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
             transition:
                 background 0.2s ease,
-                border-color 0.2s ease,
                 color 0.2s ease,
+                border-color 0.2s ease,
                 transform 0.2s ease;
+
         }
 
 
-        .filter:hover {
+        .photo-tab:hover {
+
             border-color: var(--ink);
+
             color: var(--ink);
+
             transform: translateY(-1px);
+
         }
 
 
-        .filter.active {
+        .photo-tab.active {
+
             background: var(--green);
+
             border-color: var(--green);
+
             color: #ffffff;
+
         }
 
 
-        /* =========================================
-           GALLERY
-        ========================================= */
+        /* ==========================================
+           CATEGORY SECTION
+        ========================================== */
 
-        .gallery {
-            display: grid;
+        .photo-category {
 
-            grid-template-columns:
-                repeat(12, 1fr);
+            display: none;
+
+        }
+
+
+        .photo-category.active {
+
+            display: block;
+
+        }
+
+
+        .photo-category-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: baseline;
+
+            gap: 20px;
+
+            border-bottom: 1px solid var(--ink);
+
+            padding-bottom: 12px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .photo-category-title {
+
+            margin: 0;
+
+            font-family: var(--serif);
+
+            font-size: 34px;
+
+            line-height: 1;
+
+            font-weight: 500;
+
+        }
+
+
+        .photo-category-meta {
+
+            font-family: var(--mono);
+
+            font-size: 9px;
+
+            color: var(--soft);
+
+            text-transform: uppercase;
+
+        }
+
+
+        /* ==========================================
+           HORIZONTAL SCROLL AREA
+        ========================================== */
+
+        .photo-rail-wrap {
+
+            position: relative;
+
+        }
+
+
+        .photo-rail {
+
+            display: flex;
 
             gap: 14px;
 
-            align-items: start;
+            overflow-x: auto;
+
+            overflow-y: hidden;
+
+            scroll-behavior: smooth;
+
+            padding: 2px 2px 12px;
+
+            scrollbar-width: thin;
+
+            scrollbar-color: var(--line) transparent;
+
         }
 
 
-        .photo {
+        .photo-rail::-webkit-scrollbar {
+
+            height: 7px;
+
+        }
+
+
+        .photo-rail::-webkit-scrollbar-track {
+
+            background: transparent;
+
+        }
+
+
+        .photo-rail::-webkit-scrollbar-thumb {
+
+            background: var(--line);
+
+            border-radius: 50px;
+
+        }
+
+
+        /* ==========================================
+           PHOTO CARD
+        ========================================== */
+
+        .photo-card {
+
+            flex: 0 0 430px;
+
+            height: 500px;
+
             position: relative;
 
             overflow: hidden;
 
-            background: #d8d8d2;
+            background: #ddd9d0;
 
-            isolation: isolate;
+            border-radius: 3px;
+
         }
 
 
-        .photo img {
+        .photo-card img {
+
             width: 100%;
+
             height: 100%;
 
             display: block;
@@ -143,298 +277,237 @@
             object-fit: cover;
 
             transition:
-                transform 0.55s
-                cubic-bezier(.2,.7,.2,1);
+                transform .5s ease;
+
         }
 
 
-        .photo:hover img {
-            transform: scale(1.03);
+        .photo-card:hover img {
+
+            transform: scale(1.025);
+
         }
 
 
-        /* =========================================
-           PHOTO SIZES
-        ========================================= */
+        .photo-card::after {
 
-        .photo1 {
-            grid-column: span 7;
-            height: 510px;
-        }
-
-
-        .photo2 {
-            grid-column: span 5;
-            height: 360px;
-        }
-
-
-        .photo3 {
-            grid-column: span 5;
-            height: 435px;
-            margin-top: -82px;
-        }
-
-
-        .photo4 {
-            grid-column: span 7;
-            height: 470px;
-        }
-
-
-        .photo5 {
-            grid-column: span 4;
-            height: 420px;
-        }
-
-
-        .photo6 {
-            grid-column: span 8;
-            height: 495px;
-            margin-top: -65px;
-        }
-
-
-        /* =========================================
-           PHOTO DARK GRADIENT
-        ========================================= */
-
-        .photo::after {
             content: "";
 
             position: absolute;
 
-            left: 0;
-            right: 0;
-            bottom: 0;
-
-            height: 40%;
+            inset: 45% 0 0;
 
             background:
                 linear-gradient(
                     to bottom,
                     transparent,
-                    rgba(0, 0, 0, 0.55)
+                    rgba(0, 0, 0, .62)
                 );
 
             pointer-events: none;
 
-            z-index: 1;
         }
 
 
-        /* =========================================
-           PHOTO LABEL
-        ========================================= */
+        .photo-card-info {
 
-        .photo span {
             position: absolute;
-
-            left: 15px;
-            bottom: 14px;
 
             z-index: 2;
 
+            left: 18px;
+
+            right: 18px;
+
+            bottom: 17px;
+
             color: white;
+
+        }
+
+
+        .photo-card-info strong {
+
+            display: block;
+
+            font-family: var(--serif);
+
+            font-size: 27px;
+
+            line-height: 1.05;
+
+            font-weight: 500;
+
+        }
+
+
+        .photo-card-info span {
+
+            display: block;
+
+            margin-top: 6px;
 
             font-family: var(--mono);
 
             font-size: 9px;
 
-            letter-spacing: .8px;
+            letter-spacing: .7px;
 
             text-transform: uppercase;
 
-            text-shadow:
-                0 2px 8px rgba(0,0,0,.35);
+            color: rgba(255,255,255,.86);
+
         }
 
 
-        /* =========================================
-           FILTERED STATE
+        /* ==========================================
+           SCROLL CONTROLS
+        ========================================== */
 
-           IMPORTANT:
-           We use visibility + height + margin,
-           rather than display:none.
-           This avoids layout issues with the
-           asymmetrical gallery.
-        ========================================= */
+        .rail-controls {
 
-        .photo.is-hidden {
-            display: none !important;
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 7px;
+
+            margin-top: 12px;
+
         }
 
 
-        /* =========================================
-           FEATURE BLOCK
-        ========================================= */
+        .rail-control {
 
-        .feature {
-            margin-top: 80px;
+            width: 36px;
 
-            border-radius: 16px;
+            height: 36px;
 
-            padding: 46px 48px;
+            border: 1px solid var(--line);
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #18221c,
-                    #26392e
-                );
+            background: var(--paper);
+
+            color: var(--ink);
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 16px;
+
+            transition:
+                background .2s ease,
+                color .2s ease,
+                border-color .2s ease;
+
+        }
+
+
+        .rail-control:hover {
+
+            background: var(--ink);
+
+            border-color: var(--ink);
 
             color: white;
 
-            position: relative;
-
-            overflow: hidden;
         }
 
 
-        .feature::after {
-            content: "";
+        /* ==========================================
+           FEATURE
+        ========================================== */
 
-            position: absolute;
+        .photo-feature {
 
-            width: 320px;
-            height: 320px;
+            margin-top: 70px;
 
-            right: -130px;
-            top: -150px;
+            background: var(--dark);
 
-            border-radius: 50%;
+            color: white;
 
-            border: 1px solid
-                rgba(255,255,255,.08);
+            border-radius: 16px;
+
+            padding: 44px;
+
         }
 
 
-        .feature h2 {
-            position: relative;
+        .photo-feature h2 {
 
-            z-index: 2;
+            max-width: 720px;
 
-            max-width: 650px;
-
-            margin-top: 7px;
+            margin: 7px 0 15px;
 
             font-size: 42px;
+
         }
 
 
-        .feature p:last-child {
-            position: relative;
+        .photo-feature p:last-child {
 
-            z-index: 2;
-
-            max-width: 630px;
-
-            margin-top: 15px;
+            max-width: 680px;
 
             color: #b4beb5;
 
             font-size: 13px;
-        }
 
-
-        /* =========================================
-           TABLET
-        ========================================= */
-
-        @media (max-width: 950px) {
-
-            .gallery {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-
-
-            .photo1,
-            .photo4,
-            .photo6 {
-                grid-column: span 2;
-            }
-
-
-            .photo2,
-            .photo3,
-            .photo5 {
-                grid-column: span 1;
-            }
-
-
-            .photo3,
-            .photo6 {
-                margin-top: 0;
-            }
-
-
-            .photo1 {
-                height: 470px;
-            }
-
-
-            .photo2,
-            .photo3,
-            .photo5 {
-                height: 350px;
-            }
-
-
-            .photo4,
-            .photo6 {
-                height: 440px;
-            }
+            margin: 0;
 
         }
 
 
-        /* =========================================
+        /* ==========================================
            MOBILE
-        ========================================= */
+        ========================================== */
 
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
 
-            .photography-section {
-                padding-top: 65px;
+            .photography-gallery-section {
+
+                padding-top: 55px;
+
                 padding-bottom: 75px;
+
             }
 
 
-            .gallery {
-                grid-template-columns: 1fr;
-                gap: 12px;
+            .photo-category-header {
+
+                display: block;
+
             }
 
 
-            .photo1,
-            .photo2,
-            .photo3,
-            .photo4,
-            .photo5,
-            .photo6 {
-                grid-column: span 1;
+            .photo-category-meta {
 
-                height: 360px;
+                display: block;
 
-                margin-top: 0;
+                margin-top: 8px;
+
             }
 
 
-            .photo1,
-            .photo4 {
-                height: 410px;
+            .photo-card {
+
+                flex-basis: 78vw;
+
+                height: 470px;
+
             }
 
 
-            .feature {
-                margin-top: 62px;
-                padding: 34px 28px;
+            .photo-feature {
+
+                padding: 30px;
+
             }
 
 
-            .feature h2 {
+            .photo-feature h2 {
+
                 font-size: 34px;
+
             }
 
         }
@@ -447,16 +520,17 @@
 <body>
 
 
-    <!-- =========================================
+    <!-- ==========================================
          NAVIGATION
-    ========================================= -->
+    ========================================== -->
 
     <div id="nav"></div>
 
 
-    <!-- =========================================
-         PAGE HERO
-    ========================================= -->
+
+    <!-- ==========================================
+         HERO
+    ========================================== -->
 
     <section class="page-hero">
 
@@ -478,9 +552,9 @@
 
             <p class="intro">
 
-                Wildlife, underwater, mountains and travel —
-                a visual archive built around the places
-                I care about most.
+                Wildlife, nature, cities and people —
+                a visual archive built around the places,
+                journeys and encounters that matter to me.
 
             </p>
 
@@ -490,202 +564,657 @@
 
 
 
-    <!-- =========================================
-         PHOTOGRAPHY SECTION
-    ========================================= -->
+    <!-- ==========================================
+         PHOTOGRAPHY
+    ========================================== -->
 
-    <section class="section shell photography-section">
+    <section class="section shell photography-gallery-section">
 
 
-        <!-- =========================================
-             FILTER BUTTONS
-        ========================================= -->
+        <!-- CATEGORY TABS -->
 
-        <div class="filters">
+        <div class="photo-categories">
 
             <button
-                class="filter active"
+                class="photo-tab active"
                 type="button"
-                data-filter="all"
-            >
-                All
-            </button>
-
-
-            <button
-                class="filter"
-                type="button"
-                data-filter="wildlife"
+                data-target="wildlife"
             >
                 Wildlife
             </button>
 
 
             <button
-                class="filter"
+                class="photo-tab"
                 type="button"
-                data-filter="underwater"
+                data-target="nature"
             >
-                Underwater
+                Nature
             </button>
 
 
             <button
-                class="filter"
+                class="photo-tab"
                 type="button"
-                data-filter="mountains"
+                data-target="cities"
             >
-                Mountains
+                Cities
             </button>
 
 
             <button
-                class="filter"
+                class="photo-tab"
                 type="button"
-                data-filter="travel"
+                data-target="people"
             >
-                Travel
+                People
             </button>
 
         </div>
 
 
 
-        <!-- =========================================
-             PHOTO GALLERY
-        ========================================= -->
+        <!-- ==========================================
+             WILDLIFE
+        ========================================== -->
 
-        <div class="gallery">
+        <section
+            class="photo-category active"
+            id="wildlife"
+        >
 
+            <div class="photo-category-header">
 
-            <!-- WILDLIFE -->
+                <h2 class="photo-category-title">
+                    Wildlife
+                </h2>
 
-            <div
-                class="photo photo1"
-                data-category="wildlife"
-            >
-
-                <img
-                    src="/assets/wildlife/IMG_9074.JPEG"
-                    alt="Wildlife photograph"
-                >
-
-                <span>
-                    WILDLIFE · FEATURED
+                <span class="photo-category-meta">
+                    Field encounters · 2025 — present
                 </span>
 
             </div>
 
 
+            <div class="photo-rail-wrap">
 
-            <!-- UNDERWATER -->
-
-            <div
-                class="photo photo2"
-                data-category="underwater"
-            >
-
-                <img
-                    src="/assets/wildlife/IMG_9074.JPEG"
-                    alt="Underwater photograph"
+                <div
+                    class="photo-rail"
+                    data-rail="wildlife"
                 >
 
-                <span>
-                    UNDERWATER · MARINE LIFE
+
+                    <article class="photo-card">
+
+                        <img
+                            src="/assets/wildlife/IMG_9074.JPEG"
+                            alt="Wildlife photograph"
+                        >
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                Wild encounter
+                            </strong>
+
+                            <span>
+                                Wildlife · Featured
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="photo-card">
+
+                        <img
+                            src="/assets/wildlife/IMG_1736.JPEG"
+                            alt="Wildlife photograph"
+                        >
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                In the wild
+                            </strong>
+
+                            <span>
+                                Wildlife · Field notes
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="photo-card">
+
+                        <img
+                            src="/assets/wildlife/IMG_9074.JPEG"
+                            alt="Wildlife photograph"
+                        >
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                First sighting
+                            </strong>
+
+                            <span>
+                                Wildlife · Encounter
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="photo-card">
+
+                        <img
+                            src="/assets/wildlife/IMG_1736.JPEG"
+                            alt="Wildlife photograph"
+                        >
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                Field notes
+                            </strong>
+
+                            <span>
+                                Wildlife · Archive
+                            </span>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <div class="rail-controls">
+
+                    <button
+                        class="rail-control"
+                        type="button"
+                        data-direction="left"
+                        data-rail="wildlife"
+                    >
+                        ←
+                    </button>
+
+
+                    <button
+                        class="rail-control"
+                        type="button"
+                        data-direction="right"
+                        data-rail="wildlife"
+                    >
+                        →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==========================================
+             NATURE
+        ========================================== -->
+
+        <section
+            class="photo-category"
+            id="nature"
+        >
+
+            <div class="photo-category-header">
+
+                <h2 class="photo-category-title">
+                    Nature
+                </h2>
+
+                <span class="photo-category-meta">
+                    Landscapes · Mountains · Oceans
                 </span>
 
             </div>
 
 
+            <div class="photo-rail-wrap">
 
-            <!-- MOUNTAINS -->
-
-            <div
-                class="photo photo3"
-                data-category="mountains"
-            >
-
-                <img
-                    src="/assets/wildlife/IMG_9074.JPEG"
-                    alt="Mountain photograph"
+                <div
+                    class="photo-rail"
+                    data-rail="nature"
                 >
 
-                <span>
-                    MOUNTAINS · ALPINE
+                    <article class="photo-card">
+
+                        <img
+                            src="/assets/wildlife/IMG_1736.JPEG"
+                            alt="Nature photograph"
+                        >
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                Open landscape
+                            </strong>
+
+                            <span>
+                                Nature · Landscape
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="photo-card">
+
+                        <img
+                            src="/assets/wildlife/IMG_9074.JPEG"
+                            alt="Nature photograph"
+                        >
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                Into the wild
+                            </strong>
+
+                            <span>
+                                Nature · Exploration
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="photo-card">
+
+                        <img
+                            src="/assets/wildlife/IMG_1736.JPEG"
+                            alt="Nature photograph"
+                        >
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                Landscape
+                            </strong>
+
+                            <span>
+                                Nature · Archive
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="photo-card">
+
+                        <img
+                            src="/assets/wildlife/IMG_9074.JPEG"
+                            alt="Nature photograph"
+                        >
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                Outside
+                            </strong>
+
+                            <span>
+                                Nature · Field notes
+                            </span>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <div class="rail-controls">
+
+                    <button
+                        class="rail-control"
+                        type="button"
+                        data-direction="left"
+                        data-rail="nature"
+                    >
+                        ←
+                    </button>
+
+
+                    <button
+                        class="rail-control"
+                        type="button"
+                        data-direction="right"
+                        data-rail="nature"
+                    >
+                        →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==========================================
+             CITIES
+        ========================================== -->
+
+        <section
+            class="photo-category"
+            id="cities"
+        >
+
+            <div class="photo-category-header">
+
+                <h2 class="photo-category-title">
+                    Cities
+                </h2>
+
+                <span class="photo-category-meta">
+                    Streets · Architecture · Everyday life
                 </span>
 
             </div>
 
 
+            <div class="photo-rail-wrap">
 
-            <!-- TRAVEL -->
-
-            <div
-                class="photo photo4"
-                data-category="travel"
-            >
-
-                <img
-                    src="/assets/wildlife/IMG_9074.JPEG"
-                    alt="Travel photograph"
+                <div
+                    class="photo-rail"
+                    data-rail="cities"
                 >
 
-                <span>
-                    TRAVEL · EXPLORATION
+                    <article class="photo-card">
+
+                        <img
+                            src="/assets/wildlife/IMG_9074.JPEG"
+                            alt="City photograph"
+                        >
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                Street life
+                            </strong>
+
+                            <span>
+                                Cities · Travel
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="photo-card">
+
+                        <img
+                            src="/assets/wildlife/IMG_1736.JPEG"
+                            alt="City photograph"
+                        >
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                Architecture
+                            </strong>
+
+                            <span>
+                                Cities · Details
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="photo-card">
+
+                        <img
+                            src="/assets/wildlife/IMG_9074.JPEG"
+                            alt="City photograph"
+                        >
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                After dark
+                            </strong>
+
+                            <span>
+                                Cities · Night
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="photo-card">
+
+                        <img
+                            src="/assets/wildlife/IMG_1736.JPEG"
+                            alt="City photograph"
+                        >
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                Somewhere new
+                            </strong>
+
+                            <span>
+                                Cities · Travel
+                            </span>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <div class="rail-controls">
+
+                    <button
+                        class="rail-control"
+                        type="button"
+                        data-direction="left"
+                        data-rail="cities"
+                    >
+                        ←
+                    </button>
+
+
+                    <button
+                        class="rail-control"
+                        type="button"
+                        data-direction="right"
+                        data-rail="cities"
+                    >
+                        →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==========================================
+             PEOPLE
+        ========================================== -->
+
+        <section
+            class="photo-category"
+            id="people"
+        >
+
+            <div class="photo-category-header">
+
+                <h2 class="photo-category-title">
+                    People
+                </h2>
+
+                <span class="photo-category-meta">
+                    Portraits · Moments · Journeys
                 </span>
 
             </div>
 
 
+            <div class="photo-rail-wrap">
 
-            <!-- WILDLIFE -->
-
-            <div
-                class="photo photo5"
-                data-category="wildlife"
-            >
-
-                <img
-                    src="/assets/wildlife/IMG_9074.JPEG"
-                    alt="Wildlife photograph"
+                <div
+                    class="photo-rail"
+                    data-rail="people"
                 >
 
-                <span>
-                    WILDLIFE · FIELD NOTES
-                </span>
+                    <article class="photo-card">
+
+                        <img
+                            src="/assets/wildlife/IMG_1736.JPEG"
+                            alt="People photograph"
+                        >
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                On the road
+                            </strong>
+
+                            <span>
+                                People · Travel
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="photo-card">
+
+                        <img
+                            src="/assets/wildlife/IMG_9074.JPEG"
+                            alt="People photograph"
+                        >
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                Portrait
+                            </strong>
+
+                            <span>
+                                People · Portrait
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="photo-card">
+
+                        <img
+                            src="/assets/wildlife/IMG_1736.JPEG"
+                            alt="People photograph"
+                        >
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                A moment
+                            </strong>
+
+                            <span>
+                                People · Documentary
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="photo-card">
+
+                        <img
+                            src="/assets/wildlife/IMG_9074.JPEG"
+                            alt="People photograph"
+                        >
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                Journey
+                            </strong>
+
+                            <span>
+                                People · Travel
+                            </span>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <div class="rail-controls">
+
+                    <button
+                        class="rail-control"
+                        type="button"
+                        data-direction="left"
+                        data-rail="people"
+                    >
+                        ←
+                    </button>
+
+
+                    <button
+                        class="rail-control"
+                        type="button"
+                        data-direction="right"
+                        data-rail="people"
+                    >
+                        →
+                    </button>
+
+                </div>
 
             </div>
 
-
-
-            <!-- TRAVEL -->
-
-            <div
-                class="photo photo6"
-                data-category="travel"
-            >
-
-                <img
-                    src="/assets/wildlife/IMG_9074.JPEG"
-                    alt="Travel photograph"
-                >
-
-                <span>
-                    TRAVEL · ON THE ROAD
-                </span>
-
-            </div>
-
-
-        </div>
+        </section>
 
 
 
-        <!-- =========================================
+        <!-- ==========================================
              FEATURE
-        ========================================= -->
+        ========================================== -->
 
-        <div class="feature">
+        <div class="photo-feature">
 
             <p
                 class="eyebrow"
@@ -696,26 +1225,25 @@
 
 
             <h2>
-                Replace the placeholders with your own work.
+                The archive grows as the trips do.
             </h2>
 
 
             <p>
-                The layout is ready for a real photography archive.
-                Add your images and connect them to trips,
-                countries, wildlife encounters and dive sites.
+                Every photograph can eventually be connected
+                to a country, trip, wildlife encounter,
+                dive site or mountain route.
             </p>
 
         </div>
-
 
     </section>
 
 
 
-    <!-- =========================================
+    <!-- ==========================================
          CONTACT
-    ========================================= -->
+    ========================================== -->
 
     <div class="contact">
 
@@ -773,9 +1301,9 @@
 
 
 
-    <!-- =========================================
+    <!-- ==========================================
          FOOTER
-    ========================================= -->
+    ========================================== -->
 
     <footer class="footer shell">
 
@@ -792,17 +1320,12 @@
 
 
 
-    <!-- =========================================
-         GLOBAL JS
-    ========================================= -->
+    <!-- ==========================================
+         JAVASCRIPT
+    ========================================== -->
 
     <script src="/js/site.js"></script>
 
-
-
-    <!-- =========================================
-         PHOTO FILTER JS
-    ========================================= -->
 
     <script>
 
@@ -810,33 +1333,40 @@
             "DOMContentLoaded",
             function () {
 
-                const buttons =
+
+                /* =================================
+                   CATEGORY TABS
+                ================================= */
+
+                const tabs =
                     document.querySelectorAll(
-                        ".filter"
+                        ".photo-tab"
                     );
 
-                const photos =
+
+                const categories =
                     document.querySelectorAll(
-                        ".photo"
+                        ".photo-category"
                     );
 
 
-                buttons.forEach(
-                    function (button) {
+                tabs.forEach(
+                    function (tab) {
 
-                        button.addEventListener(
+                        tab.addEventListener(
                             "click",
                             function () {
 
-                                const filter =
-                                    button.dataset.filter;
+                                const target =
+                                    tab.getAttribute(
+                                        "data-target"
+                                    );
 
 
-                                /*
-                                 * Update active button
-                                 */
+                                /* Remove active
+                                   from all tabs */
 
-                                buttons.forEach(
+                                tabs.forEach(
                                     function (item) {
 
                                         item.classList.remove(
@@ -847,43 +1377,107 @@
                                 );
 
 
-                                button.classList.add(
+                                /* Activate clicked tab */
+
+                                tab.classList.add(
                                     "active"
                                 );
 
 
-                                /*
-                                 * Update gallery
-                                 */
+                                /* Hide categories */
 
-                                photos.forEach(
-                                    function (photo) {
+                                categories.forEach(
+                                    function (category) {
 
-                                        const category =
-                                            photo.dataset.category;
-
-
-                                        const shouldShow =
-                                            filter === "all" ||
-                                            category === filter;
-
-
-                                        if (shouldShow) {
-
-                                            photo.classList.remove(
-                                                "is-hidden"
-                                            );
-
-                                        } else {
-
-                                            photo.classList.add(
-                                                "is-hidden"
-                                            );
-
-                                        }
+                                        category.classList.remove(
+                                            "active"
+                                        );
 
                                     }
                                 );
+
+
+                                /* Show selected */
+
+                                const selected =
+                                    document.getElementById(
+                                        target
+                                    );
+
+
+                                if (selected) {
+
+                                    selected.classList.add(
+                                        "active"
+                                    );
+
+                                }
+
+                            }
+                        );
+
+                    }
+                );
+
+
+
+                /* =================================
+                   HORIZONTAL SCROLL BUTTONS
+                ================================= */
+
+                const controls =
+                    document.querySelectorAll(
+                        ".rail-control"
+                    );
+
+
+                controls.forEach(
+                    function (button) {
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+                                const railName =
+                                    button.getAttribute(
+                                        "data-rail"
+                                    );
+
+
+                                const direction =
+                                    button.getAttribute(
+                                        "data-direction"
+                                    );
+
+
+                                const rail =
+                                    document.querySelector(
+                                        '.photo-rail[data-rail="' +
+                                        railName +
+                                        '"]'
+                                    );
+
+
+                                if (!rail) {
+
+                                    return;
+
+                                }
+
+
+                                const amount = 444;
+
+
+                                rail.scrollBy({
+
+                                    left:
+                                        direction === "right"
+                                            ? amount
+                                            : -amount,
+
+                                    behavior: "smooth"
+
+                                });
 
                             }
                         );
@@ -895,7 +1489,6 @@
         );
 
     </script>
-
 
 </body>
 
