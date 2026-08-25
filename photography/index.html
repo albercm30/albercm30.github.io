@@ -2,104 +2,711 @@
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <title>Photography — Alberto Castellano</title>
+    <meta
+        name="viewport"
+        content="width=device-width,initial-scale=1"
+    >
 
-    <link rel="stylesheet" href="/style.css">
+    <title>
+        Photography · Alberto Castellano
+    </title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="/style.css"
+    >
+
+    <style>
+
+        /* =========================================
+           PHOTOGRAPHY PAGE
+           Uses the existing global design system.
+        ========================================== */
+
+        .photography-section {
+            padding-top: 82px;
+            padding-bottom: 105px;
+        }
+
+
+        /* =========================================
+           FILTERS
+        ========================================== */
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 34px;
+        }
+
+        .filter {
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--soft);
+
+            border-radius: 8px;
+
+            padding: 8px 13px;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                background .2s ease,
+                color .2s ease,
+                border-color .2s ease,
+                transform .2s ease;
+        }
+
+        .filter:hover {
+            transform: translateY(-1px);
+            border-color: var(--ink);
+            color: var(--ink);
+        }
+
+        .filter.active {
+            background: var(--green);
+            border-color: var(--green);
+            color: white;
+        }
+
+
+        /* =========================================
+           GALLERY
+        ========================================== */
+
+        .gallery {
+            display: grid;
+
+            grid-template-columns:
+                repeat(12, 1fr);
+
+            gap: 14px;
+        }
+
+
+        .photo {
+            position: relative;
+
+            overflow: hidden;
+
+            border-radius: 3px;
+
+            background: #d8d8d2;
+
+            isolation: isolate;
+        }
+
+
+        .photo::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            height: 38%;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    transparent,
+                    rgba(0, 0, 0, .55)
+                );
+
+            z-index: 1;
+
+            pointer-events: none;
+        }
+
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            transition:
+                transform .6s cubic-bezier(.2,.7,.2,1);
+        }
+
+
+        .photo:hover img {
+            transform: scale(1.035);
+        }
+
+
+        /* =========================================
+           GALLERY COMPOSITION
+        ========================================== */
+
+        .photo1 {
+            grid-column: span 7;
+            height: 510px;
+        }
+
+        .photo2 {
+            grid-column: span 5;
+            height: 360px;
+        }
+
+        .photo3 {
+            grid-column: span 5;
+            height: 435px;
+
+            margin-top: -82px;
+        }
+
+        .photo4 {
+            grid-column: span 7;
+            height: 470px;
+        }
+
+        .photo5 {
+            grid-column: span 4;
+            height: 420px;
+        }
+
+        .photo6 {
+            grid-column: span 8;
+            height: 495px;
+
+            margin-top: -65px;
+        }
+
+
+        /* =========================================
+           IMAGE LABELS
+        ========================================== */
+
+        .photo span {
+            position: absolute;
+
+            left: 15px;
+            bottom: 14px;
+
+            z-index: 2;
+
+            color: white;
+
+            font-family: var(--mono);
+
+            font-size: 9px;
+
+            letter-spacing: .8px;
+
+            text-transform: uppercase;
+
+            text-shadow:
+                0 2px 8px rgba(0,0,0,.35);
+        }
+
+
+        /* =========================================
+           FEATURE BLOCK
+        ========================================== */
+
+        .feature {
+            margin-top: 80px;
+
+            border-radius: 16px;
+
+            padding: 46px 48px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #18221c,
+                    #26392e
+                );
+
+            color: white;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .feature::after {
+            content: "";
+
+            position: absolute;
+
+            width: 320px;
+            height: 320px;
+
+            right: -130px;
+            top: -150px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255,255,255,.08);
+        }
+
+
+        .feature h2 {
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 650px;
+
+            margin-top: 7px;
+
+            font-size: 42px;
+        }
+
+
+        .feature p:last-child {
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 630px;
+
+            margin-top: 15px;
+
+            color: #b4beb5;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 950px) {
+
+            .gallery {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .photo1,
+            .photo4,
+            .photo6 {
+                grid-column: span 2;
+            }
+
+
+            .photo2,
+            .photo3,
+            .photo5 {
+                grid-column: span 1;
+            }
+
+
+            .photo3,
+            .photo6 {
+                margin-top: 0;
+            }
+
+
+            .photo1 {
+                height: 470px;
+            }
+
+
+            .photo2,
+            .photo3,
+            .photo5 {
+                height: 350px;
+            }
+
+
+            .photo4 {
+                height: 440px;
+            }
+
+
+            .photo6 {
+                height: 440px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .photography-section {
+                padding-top: 65px;
+                padding-bottom: 75px;
+            }
+
+
+            .gallery {
+                grid-template-columns: 1fr;
+
+                gap: 12px;
+            }
+
+
+            .photo1,
+            .photo2,
+            .photo3,
+            .photo4,
+            .photo5,
+            .photo6 {
+
+                grid-column: span 1;
+
+                height: 360px;
+
+                margin-top: 0;
+            }
+
+
+            .photo1,
+            .photo4 {
+
+                height: 410px;
+            }
+
+
+            .feature {
+                margin-top: 62px;
+
+                padding: 34px 28px;
+            }
+
+
+            .feature h2 {
+                font-size: 34px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
+
+    <!-- =========================================
+         NAVIGATION
+    ========================================== -->
+
     <div id="nav"></div>
 
-    <main class="page">
 
-        <div class="wrap">
 
-            <div class="page-head">
+    <!-- =========================================
+         PAGE HERO
+    ========================================== -->
 
-                <div class="label">
-                    PHOTOGRAPHY
-                </div>
+    <section class="page-hero">
 
-                <h1>
-                    Mostly looking<br>
-                    for <em>moments.</em>
-                </h1>
+        <div class="shell">
 
-                <p class="page-intro">
-                    Wildlife, underwater, mountains and whatever
-                    happens between destinations.
-                </p>
+            <p class="eyebrow">
+                PHOTOGRAPHY
+            </p>
+
+
+            <h1 class="page-title">
+
+                Collecting moments<br>
+
+                from the <em>wild.</em>
+
+            </h1>
+
+
+            <p class="intro">
+
+                Wildlife, underwater, mountains and travel —
+                a visual archive built around the places
+                I care about most.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         GALLERY
+    ========================================== -->
+
+    <section class="section shell photography-section">
+
+
+        <!-- FILTERS -->
+
+        <div class="filters">
+
+            <button class="filter active">
+                All
+            </button>
+
+            <button class="filter">
+                Wildlife
+            </button>
+
+            <button class="filter">
+                Underwater
+            </button>
+
+            <button class="filter">
+                Mountains
+            </button>
+
+            <button class="filter">
+                Travel
+            </button>
+
+        </div>
+
+
+
+        <!-- PHOTO GRID -->
+
+        <div class="gallery">
+
+
+            <div class="photo photo1">
+
+                <img
+                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=85"
+                    alt="Mountain landscape"
+                    loading="lazy"
+                >
+
+                <span>
+                    DOLOMITES · MOUNTAINS
+                </span>
 
             </div>
 
 
-            <div class="photo-grid">
 
-                <div class="photo">
-                    <img
-                        src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1400&q=85"
-                        alt="Dolomites mountains">
-                    <small>DOLOMITES / MOUNTAINS</small>
-                </div>
+            <div class="photo photo2">
 
-                <div class="photo">
-                    <img
-                        src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=85"
-                        alt="Underwater marine life">
-                    <small>UNDERWATER / MARINE</small>
-                </div>
+                <img
+                    src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1300&q=85"
+                    alt="Underwater marine life"
+                    loading="lazy"
+                >
 
-                <div class="photo">
-                    <img
-                        src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85"
-                        alt="Guatemala landscape">
-                    <small>GUATEMALA / VOLCANO</small>
-                </div>
+                <span>
+                    UNDERWATER · MARINE LIFE
+                </span>
 
-                <div class="photo">
-                    <img
-                        src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1400&q=85"
-                        alt="New Zealand landscape">
-                    <small>NEW ZEALAND / ALPINE</small>
-                </div>
+            </div>
 
-                <div class="photo">
-                    <img
-                        src="https://images.unsplash.com/photo-1558674373-9d1f9c7f0e86?auto=format&fit=crop&w=1200&q=85"
-                        alt="Wildlife">
-                    <small>INDONESIA / WILDLIFE</small>
-                </div>
 
-                <div class="photo">
-                    <img
-                        src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=1400&q=85"
-                        alt="Diving">
-                    <small>RAJA AMPAT / DIVING</small>
-                </div>
+
+            <div class="photo photo3">
+
+                <img
+                    src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1300&q=85"
+                    alt="Guatemala landscape"
+                    loading="lazy"
+                >
+
+                <span>
+                    GUATEMALA · VOLCANO
+                </span>
+
+            </div>
+
+
+
+            <div class="photo photo4">
+
+                <img
+                    src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=85"
+                    alt="New Zealand alpine landscape"
+                    loading="lazy"
+                >
+
+                <span>
+                    NEW ZEALAND · ALPINE
+                </span>
+
+            </div>
+
+
+
+            <div class="photo photo5">
+
+                <img
+                    src="https://images.unsplash.com/photo-1558674373-9d1f9c7f0e86?auto=format&fit=crop&w=1200&q=85"
+                    alt="Wildlife"
+                    loading="lazy"
+                >
+
+                <span>
+                    INDONESIA · WILDLIFE
+                </span>
+
+            </div>
+
+
+
+            <div class="photo photo6">
+
+                <img
+                    src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=1600&q=85"
+                    alt="Diving underwater"
+                    loading="lazy"
+                >
+
+                <span>
+                    AUSTRALIA · TRAVEL
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- FEATURE -->
+
+        <div class="feature">
+
+            <p
+                class="eyebrow"
+                style="color:#dce6d8"
+            >
+                YOUR PHOTOS
+            </p>
+
+
+            <h2>
+                The best version of this page
+                will be built around your own photographs.
+            </h2>
+
+
+            <p>
+                Replace the temporary images with photographs from
+                your trips and connect them to the corresponding
+                country, wildlife encounter, dive site or mountain.
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================================
+         CONTACT
+    ========================================== -->
+
+    <div class="contact">
+
+        <div class="shell">
+
+            <p
+                class="eyebrow"
+                style="color:#dce6d8"
+            >
+                GET IN TOUCH
+            </p>
+
+
+            <h2>
+                Let's build something
+                <em>interesting.</em>
+            </h2>
+
+
+            <p>
+                Data, AI, travel, wildlife —
+                or some combination of all four.
+            </p>
+
+
+            <div
+                class="buttons"
+                style="justify-content:center"
+            >
+
+                <a
+                    class="btn"
+                    style="background:white;color:#40573b"
+                    href="mailto:your@email.com"
+                >
+                    Email me ↗
+                </a>
+
+
+                <a
+                    class="btn"
+                    style="border:1px solid #dce6d8;color:white"
+                    href="https://github.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    GitHub ↗
+                </a>
 
             </div>
 
         </div>
 
-    </main>
+    </div>
 
-    <footer class="footer wrap">
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="footer shell">
 
         <span>
-            ALBERTO CASTELLANO · 2026
+            © 2026 Alberto Castellano
         </span>
 
         <span>
-            DATA / AI / TRAVEL / WILDLIFE
+            Data · AI · Travel · Wildlife · Photography
         </span>
 
     </footer>
 
+
+
     <script src="/js/site.js"></script>
+
 
 </body>
 
