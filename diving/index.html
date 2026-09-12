@@ -1,10 +1,1505 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Diving · Alberto Castellano</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet"><link rel="stylesheet" href="/style.css"></head><body><div id="nav"></div>
-<section class="page-hero"><div class="shell"><p class="eyebrow">SCUBA DIVING</p><h1 class="page-title">The world<br><em>below.</em></h1><p class="intro">A dive log focused on marine megafauna, biodiversity and the places where being underwater feels like entering another world.</p></div></section>
-<section class="section shell"><div class="stats reveal"><div class="stat"><strong>19</strong><span>Dives<br>logged</span></div><div class="stat"><strong>4</strong><span>Major<br>destinations</span></div><div class="stat"><strong>29.5m</strong><span>Max<br>depth</span></div><div class="stat"><strong>16</strong><span>Sites<br>visited</span></div><div class="stat"><strong>51 min</strong><span>Longest<br>dive</span></div></div></section>
-<section class="section shell" style="padding-top:20px"><div class="section-head"><div><p class="eyebrow">DIVE DESTINATIONS</p><h2>Where I've gone<br><em>underwater.</em></h2></div><p class="section-note">Each destination can become a detailed dive log with sites, conditions, species and photography.</p></div><div class="grid2">
-<div class="card reveal"><div class="card-body"><p class="micro">REEF</p><h3>Great Barrier Reef</h3><p class="muted">Australia</p><div class="rule"></div><p class="muted">Turtles · Reef sharks · Tropical fish</p></div></div>
-<div class="card reveal"><div class="card-body"><p class="micro">PELAGIC</p><h3>Baja California</h3><p class="muted">Mexico</p><div class="rule"></div><p class="muted">Bull Sharks · Mobulas · Sea lions</p></div></div>
-<div class="card reveal"><div class="card-body"><p class="micro">ISLAND</p><h3>Koh Tao</h3><p class="muted">Thailand</p><div class="rule"></div><p class="muted">Reef life · Rays · Sharks</p></div></div>
-<div class="card reveal"><div class="card-body"><p class="micro">BIODIVERSITY HOTSPOT</p><h3>Malapascua</h3><p class="muted">Philippines</p><div class="rule"></div><p class="muted">Reefs · Thresher Sharks · Vibes</p></div></div>
-</div></section>
-<div class="contact"><div class="shell"><p class="eyebrow" style="color:#dce6d8">GET IN TOUCH</p><h2>Let's build something <em>interesting.</em></h2><p>Data, AI, travel, wildlife — or some combination of all four.</p><div class="buttons" style="justify-content:center"><a class="btn" style="background:white;color:#40573b" href="albertocm30.2001@gmail.com">Email me ↗</a><a class="btn" style="border:1px solid #dce6d8;color:white" href="https://github.com/albercm30" target="_blank">GitHub ↗</a></div></div></div><footer class="footer shell"><span>© 2026 Alberto Castellano Macías</span><span>Data · AI · Travel · Wildlife · Photography</span></footer><script src="/js/site.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>Diving · Alberto Castellano</title>
+
+
+  <!-- =====================================================
+       FONTS
+  ====================================================== -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- =====================================================
+       SITE CSS
+  ====================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="/style.css"
+  >
+
+
+  <!-- =====================================================
+       LEAFLET
+  ====================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIINfQ2xH8vTxN5Q9kR0x1G7Z3f4V8Q3W3M="
+    crossorigin=""
+  >
+
+
+  <style>
+
+    /* =====================================================
+       GENERAL
+    ====================================================== */
+
+    html,
+    body {
+      overflow-x: hidden;
+    }
+
+    .diving-page {
+      background: #f7f7f3;
+    }
+
+
+    /* =====================================================
+       HERO
+    ====================================================== */
+
+    .diving-hero {
+      padding-bottom: 55px;
+    }
+
+    .diving-hero .intro {
+      max-width: 680px;
+    }
+
+
+    /* =====================================================
+       STATS
+    ====================================================== */
+
+    .diving-stats {
+      padding-top: 15px !important;
+      padding-bottom: 25px !important;
+    }
+
+
+    /* =====================================================
+       MAP
+    ====================================================== */
+
+    .dive-map-section {
+      padding-top: 25px !important;
+      padding-bottom: 50px !important;
+    }
+
+    .dive-map-heading {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) 330px;
+      gap: 50px;
+      align-items: end;
+      margin-bottom: 20px;
+    }
+
+    .dive-map-heading h2 {
+      margin-bottom: 0;
+    }
+
+    .dive-map {
+      position: relative;
+      height: 570px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: #dfe6df;
+    }
+
+    #dive-map {
+      width: 100%;
+      height: 100%;
+    }
+
+    .leaflet-container {
+      font-family: var(--sans), "DM Sans", sans-serif;
+      background: #dfe6df;
+    }
+
+    .leaflet-container img {
+      max-width: none !important;
+    }
+
+    .leaflet-container .leaflet-tile {
+      max-width: none !important;
+    }
+
+    .leaflet-container .leaflet-marker-icon,
+    .leaflet-container .leaflet-marker-shadow {
+      max-width: none !important;
+      max-height: none !important;
+    }
+
+    .dive-popup strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 21px;
+      font-weight: 400;
+      margin-bottom: 3px;
+    }
+
+    .dive-popup span {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      color: #687067;
+    }
+
+    .map-note {
+      margin-top: 10px;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .8px;
+      color: var(--soft);
+      text-transform: uppercase;
+    }
+
+
+    /* =====================================================
+       DESTINATIONS
+    ====================================================== */
+
+    .destination-section {
+      padding-top: 50px !important;
+      padding-bottom: 70px !important;
+    }
+
+    .destination-heading {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) 330px;
+      gap: 50px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .destination-heading h2 {
+      margin-bottom: 0;
+    }
+
+    .dive-destinations {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .dive-destination {
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 30px 26px 32px;
+      min-width: 0;
+    }
+
+    .dive-destination .micro {
+      margin-bottom: 12px;
+    }
+
+    .dive-destination h3 {
+      margin: 0 0 7px;
+      font-family: var(--serif);
+      font-size: 34px;
+      font-weight: 400;
+    }
+
+    .dive-destination .country {
+      margin: 0;
+      color: var(--soft);
+      font-size: 14px;
+    }
+
+    .dive-destination .rule {
+      margin: 20px 0 16px;
+    }
+
+    .dive-destination .species {
+      margin: 0;
+      color: #525b52;
+      line-height: 1.6;
+    }
+
+
+    /* =====================================================
+       UNDERWATER ENCOUNTERS
+    ====================================================== */
+
+    .encounters-section {
+      background: #263229;
+      color: white;
+      padding: 75px 0;
+    }
+
+    .encounters-grid {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 80px;
+    }
+
+    .encounters-title {
+      margin: 10px 0 0;
+      font-family: var(--serif);
+      font-size: clamp(48px,6vw,82px);
+      line-height: .92;
+      letter-spacing: -2px;
+      color: white;
+    }
+
+    .encounter-list {
+      border-top: 1px solid rgba(255,255,255,.18);
+    }
+
+    .encounter {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 18px;
+      padding: 21px 0;
+      border-bottom: 1px solid rgba(255,255,255,.18);
+    }
+
+    .encounter-number {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: #aeb8aa;
+      padding-top: 3px;
+    }
+
+    .encounter h3 {
+      margin: 0 0 4px;
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 400;
+      color: white;
+    }
+
+    .encounter p {
+      margin: 0;
+      color: #c4ccc4;
+      font-size: 14px;
+    }
+
+
+    /* =====================================================
+       DIVE LOG
+    ====================================================== */
+
+    .log-section {
+      padding: 75px 0;
+    }
+
+    .log-heading {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) 330px;
+      gap: 50px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .log-heading h2 {
+      margin-bottom: 0;
+    }
+
+    .dive-table {
+      border-top: 1px solid var(--line);
+      width: 100%;
+    }
+
+    .dive-row {
+      display: grid;
+      grid-template-columns: 90px 1.5fr 1fr 100px 100px;
+      gap: 20px;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .dive-row.header {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--soft);
+    }
+
+    .dive-row > span {
+      min-width: 0;
+    }
+
+    .dive-site {
+      font-family: var(--serif);
+      font-size: 19px;
+    }
+
+    .dive-country,
+    .dive-date,
+    .dive-depth,
+    .dive-time {
+      font-size: 13px;
+      color: var(--soft);
+    }
+
+    .dive-placeholder {
+      margin-top: 14px;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      color: var(--soft);
+    }
+
+
+    /* =====================================================
+       CERTIFICATIONS
+    ====================================================== */
+
+    .certification-section {
+      padding-top: 20px !important;
+      padding-bottom: 75px !important;
+    }
+
+    .certification-heading {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) 330px;
+      gap: 50px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .certification-heading h2 {
+      margin-bottom: 0;
+    }
+
+    .certification-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .certification {
+      display: grid;
+      grid-template-columns: 55px 1fr auto;
+      align-items: center;
+      gap: 25px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .certification-number {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--soft);
+    }
+
+    .certification h3 {
+      margin: 0 0 5px;
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 400;
+    }
+
+    .certification p {
+      margin: 0;
+      color: var(--soft);
+      font-size: 14px;
+    }
+
+    .certification-status {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 1px;
+      color: var(--green);
+    }
+
+
+    /* =====================================================
+       PHOTOGRAPHY
+    ====================================================== */
+
+    .photo-section {
+      padding-top: 10px !important;
+      padding-bottom: 75px !important;
+    }
+
+    .photo-heading {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) 330px;
+      gap: 50px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .photo-heading h2 {
+      margin-bottom: 0;
+    }
+
+    .dive-photo-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr .7fr;
+      grid-template-rows: 260px 260px;
+      gap: 10px;
+    }
+
+    .dive-photo {
+      overflow: hidden;
+      background: #dce3dc;
+    }
+
+    .dive-photo:first-child {
+      grid-row: span 2;
+    }
+
+    .dive-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .6s ease;
+    }
+
+    .dive-photo:hover img {
+      transform: scale(1.03);
+    }
+
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--soft);
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ====================================================== */
+
+    @media (max-width: 900px) {
+
+      .dive-map-heading,
+      .destination-heading,
+      .log-heading,
+      .certification-heading,
+      .photo-heading,
+      .encounters-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .dive-row {
+        grid-template-columns: 70px 1.4fr .9fr 80px;
+      }
+
+      .dive-row > span:nth-child(5) {
+        display: none;
+      }
+
+    }
+
+
+    @media (max-width: 700px) {
+
+      .dive-map {
+        height: 430px;
+      }
+
+      .dive-destinations {
+        grid-template-columns: 1fr;
+      }
+
+      .dive-row {
+        grid-template-columns: 55px 1fr 75px;
+      }
+
+      .dive-row > span:nth-child(3) {
+        display: none;
+      }
+
+      .dive-row > span:nth-child(5) {
+        display: none;
+      }
+
+      .dive-row.header > span:nth-child(3) {
+        display: none;
+      }
+
+      .dive-photo-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 220px 170px 170px;
+      }
+
+      .dive-photo:first-child {
+        grid-column: span 2;
+        grid-row: auto;
+      }
+
+      .certification {
+        grid-template-columns: 35px 1fr;
+        gap: 15px;
+      }
+
+      .certification-status {
+        grid-column: 2;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body class="diving-page">
+
+
+<div id="nav"></div>
+
+
+<!-- =====================================================
+     HERO
+====================================================== -->
+
+<section class="page-hero diving-hero">
+
+  <div class="shell">
+
+    <p class="eyebrow">
+      SCUBA DIVING
+    </p>
+
+    <h1 class="page-title">
+      The world<br>
+      <em>below.</em>
+    </h1>
+
+    <p class="intro">
+      A record of the places I've descended, the animals I've
+      encountered, and the dives that made me want to go deeper.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     STATS
+====================================================== -->
+
+<section class="section shell diving-stats">
+
+  <div class="stats reveal">
+
+    <div class="stat">
+      <strong>19</strong>
+      <span>Dives</span>
+    </div>
+
+    <div class="stat">
+      <strong>4</strong>
+      <span>Destinations</span>
+    </div>
+
+    <div class="stat">
+      <strong>29.5m</strong>
+      <span>Max depth</span>
+    </div>
+
+    <div class="stat">
+      <strong>16</strong>
+      <span>Sites</span>
+    </div>
+
+    <div class="stat">
+      <strong>51 min</strong>
+      <span>Longest dive</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     DIVE MAP
+====================================================== -->
+
+<section class="section shell dive-map-section">
+
+  <div class="dive-map-heading">
+
+    <div>
+
+      <p class="eyebrow">
+        DIVE MAP
+      </p>
+
+      <h2>
+        Where I've been<br>
+        <em>below the surface.</em>
+      </h2>
+
+    </div>
+
+    <p class="section-note">
+      A growing map of dive sites, destinations and underwater encounters.
+      The exact SSI sites can be added to the data below as you build the log.
+    </p>
+
+  </div>
+
+
+  <div class="dive-map">
+
+    <div id="dive-map"></div>
+
+  </div>
+
+
+  <p class="map-note">
+    Dive locations shown from the personal dive archive
+  </p>
+
+</section>
+
+
+<!-- =====================================================
+     DESTINATIONS
+====================================================== -->
+
+<section class="section shell destination-section">
+
+  <div class="destination-heading">
+
+    <div>
+
+      <p class="eyebrow">
+        DIVE DESTINATIONS
+      </p>
+
+      <h2>
+        Places I've gone<br>
+        <em>underwater.</em>
+      </h2>
+
+    </div>
+
+    <p class="section-note">
+      Four destinations so far — with many more planned.
+    </p>
+
+  </div>
+
+
+  <div class="dive-destinations">
+
+
+    <div class="dive-destination">
+
+      <p class="micro">
+        REEF
+      </p>
+
+      <h3>
+        Great Barrier Reef
+      </h3>
+
+      <p class="country">
+        Australia
+      </p>
+
+      <div class="rule"></div>
+
+      <p class="species">
+        Turtles · Reef sharks · Tropical fish
+      </p>
+
+    </div>
+
+
+    <div class="dive-destination">
+
+      <p class="micro">
+        PELAGIC
+      </p>
+
+      <h3>
+        Baja California
+      </h3>
+
+      <p class="country">
+        Mexico
+      </p>
+
+      <div class="rule"></div>
+
+      <p class="species">
+        Bull sharks · Mobulas · Sea lions
+      </p>
+
+    </div>
+
+
+    <div class="dive-destination">
+
+      <p class="micro">
+        ISLAND
+      </p>
+
+      <h3>
+        Koh Tao
+      </h3>
+
+      <p class="country">
+        Thailand
+      </p>
+
+      <div class="rule"></div>
+
+      <p class="species">
+        Reef life · Rays · Sharks
+      </p>
+
+    </div>
+
+
+    <div class="dive-destination">
+
+      <p class="micro">
+        BIODIVERSITY HOTSPOT
+      </p>
+
+      <h3>
+        Malapascua
+      </h3>
+
+      <p class="country">
+        Philippines
+      </p>
+
+      <div class="rule"></div>
+
+      <p class="species">
+        Reefs · Thresher sharks · Open water
+      </p>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     UNDERWATER ENCOUNTERS
+====================================================== -->
+
+<section class="encounters-section">
+
+  <div class="shell">
+
+    <div class="encounters-grid">
+
+
+      <div>
+
+        <p
+          class="eyebrow"
+          style="color:#aeb8aa"
+        >
+          UNDERWATER ENCOUNTERS
+        </p>
+
+        <h2 class="encounters-title">
+          The animals<br>
+          that make it<br>
+          worth diving.
+        </h2>
+
+      </div>
+
+
+      <div class="encounter-list">
+
+
+        <div class="encounter">
+
+          <span class="encounter-number">
+            01
+          </span>
+
+          <div>
+
+            <h3>
+              Bull sharks
+            </h3>
+
+            <p>
+              Baja California · Mexico
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="encounter">
+
+          <span class="encounter-number">
+            02
+          </span>
+
+          <div>
+
+            <h3>
+              Thresher sharks
+            </h3>
+
+            <p>
+              Malapascua · Philippines
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="encounter">
+
+          <span class="encounter-number">
+            03
+          </span>
+
+          <div>
+
+            <h3>
+              Sea lions
+            </h3>
+
+            <p>
+              Baja California · Mexico
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="encounter">
+
+          <span class="encounter-number">
+            04
+          </span>
+
+          <div>
+
+            <h3>
+              Reef turtles
+            </h3>
+
+            <p>
+              Great Barrier Reef · Australia
+            </p>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     DIVE LOG
+====================================================== -->
+
+<section class="log-section">
+
+  <div class="shell">
+
+    <div class="log-heading">
+
+      <div>
+
+        <p class="eyebrow">
+          DIVE LOG
+        </p>
+
+        <h2>
+          Every descent is<br>
+          part of the <em>story.</em>
+        </h2>
+
+      </div>
+
+      <p class="section-note">
+        The full log can eventually mirror your SSI records,
+        including site, depth, duration and conditions.
+      </p>
+
+    </div>
+
+
+    <div class="dive-table">
+
+
+      <div class="dive-row header">
+
+        <span>
+          #
+        </span>
+
+        <span>
+          Site
+        </span>
+
+        <span>
+          Destination
+        </span>
+
+        <span>
+          Depth
+        </span>
+
+        <span>
+          Time
+        </span>
+
+      </div>
+
+
+      <!--
+        EXAMPLE ROWS ONLY.
+
+        Replace these with your exact SSI dive data
+        once you have the site names and values.
+      -->
+
+
+      <div class="dive-row">
+
+        <span class="dive-date">
+          01
+        </span>
+
+        <span class="dive-site">
+          Dive site
+        </span>
+
+        <span class="dive-country">
+          Australia
+        </span>
+
+        <span class="dive-depth">
+          —
+        </span>
+
+        <span class="dive-time">
+          —
+        </span>
+
+      </div>
+
+
+      <div class="dive-row">
+
+        <span class="dive-date">
+          02
+        </span>
+
+        <span class="dive-site">
+          Dive site
+        </span>
+
+        <span class="dive-country">
+          Mexico
+        </span>
+
+        <span class="dive-depth">
+          —
+        </span>
+
+        <span class="dive-time">
+          —
+        </span>
+
+      </div>
+
+
+      <div class="dive-row">
+
+        <span class="dive-date">
+          03
+        </span>
+
+        <span class="dive-site">
+          Dive site
+        </span>
+
+        <span class="dive-country">
+          Thailand
+        </span>
+
+        <span class="dive-depth">
+          —
+        </span>
+
+        <span class="dive-time">
+          —
+        </span>
+
+      </div>
+
+
+    </div>
+
+
+    <p class="dive-placeholder">
+      19 dives logged · full site-by-site archive coming from the SSI records
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     CERTIFICATIONS
+====================================================== -->
+
+<section class="section shell certification-section">
+
+  <div class="certification-heading">
+
+    <div>
+
+      <p class="eyebrow">
+        CERTIFICATIONS
+      </p>
+
+      <h2>
+        Learning to go<br>
+        <em>deeper.</em>
+      </h2>
+
+    </div>
+
+    <p class="section-note">
+      The certifications that have taken me further underwater.
+    </p>
+
+  </div>
+
+
+  <div class="certification-list">
+
+
+    <div class="certification">
+
+      <span class="certification-number">
+        01
+      </span>
+
+      <div>
+
+        <h3>
+          Open Water
+        </h3>
+
+        <p>
+          Atlas Divers · Malapascua, Philippines
+        </p>
+
+      </div>
+
+      <span class="certification-status">
+        COMPLETED
+      </span>
+
+    </div>
+
+
+    <div class="certification">
+
+      <span class="certification-number">
+        02
+      </span>
+
+      <div>
+
+        <h3>
+          Advanced Open Water
+        </h3>
+
+        <p>
+          Big Blue Diving · Koh Tao, Thailand
+        </p>
+
+      </div>
+
+      <span class="certification-status">
+        COMPLETED
+      </span>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     UNDERWATER PHOTOGRAPHY
+====================================================== -->
+
+<section class="section shell photo-section">
+
+  <div class="photo-heading">
+
+    <div>
+
+      <p class="eyebrow">
+        BELOW THE SURFACE
+      </p>
+
+      <h2>
+        A few things<br>
+        I've <em>seen.</em>
+      </h2>
+
+    </div>
+
+    <p class="section-note">
+      Underwater photography will eventually connect
+      the dives here with the wider photography archive.
+    </p>
+
+  </div>
+
+
+  <div class="dive-photo-grid">
+
+
+    <div class="dive-photo">
+
+      <div class="photo-placeholder">
+        UNDERWATER PHOTO
+      </div>
+
+      <!--
+      Replace the placeholder above with:
+
+      <img
+        src="/assets/diving/photo-01.jpg"
+        alt="Underwater wildlife"
+      >
+      -->
+
+    </div>
+
+
+    <div class="dive-photo">
+
+      <div class="photo-placeholder">
+        PHOTO
+      </div>
+
+    </div>
+
+
+    <div class="dive-photo">
+
+      <div class="photo-placeholder">
+        PHOTO
+      </div>
+
+    </div>
+
+
+    <div class="dive-photo">
+
+      <div class="photo-placeholder">
+        PHOTO
+      </div>
+
+    </div>
+
+
+    <div class="dive-photo">
+
+      <div class="photo-placeholder">
+        PHOTO
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     GET IN TOUCH
+====================================================== -->
+
+<div class="contact">
+
+  <div class="shell">
+
+    <p
+      class="eyebrow"
+      style="color:#dce6d8"
+    >
+      GET IN TOUCH
+    </p>
+
+
+    <h2>
+      Let's build something <em>interesting.</em>
+    </h2>
+
+
+    <p>
+      Data, AI, travel, wildlife — or some combination of all four.
+    </p>
+
+
+    <div
+      class="buttons"
+      style="justify-content:center"
+    >
+
+      <a
+        class="btn"
+        style="background:white;color:#40573b"
+        href="mailto:albertocm30.2001@gmail.com"
+      >
+        Email me ↗
+      </a>
+
+
+      <a
+        class="btn"
+        style="border:1px solid #dce6d8;color:white"
+        href="https://github.com/albercm30"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub ↗
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer class="footer shell">
+
+  <span>
+    © 2026 Alberto Castellano Macías
+  </span>
+
+  <span>
+    Data · AI · Travel · Wildlife · Photography
+  </span>
+
+</footer>
+
+
+<script
+  src="/js/site.js"
+></script>
+
+
+<!-- =====================================================
+     LEAFLET JS
+====================================================== -->
+
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""
+></script>
+
+
+<script>
+
+/* =====================================================
+   DIVE MAP DATA
+
+   These are destination-level markers for now.
+   Once you have your exact SSI dive-site coordinates,
+   add them here and they will appear individually.
+====================================================== */
+
+const diveSites = [
+
+  {
+    name: "Great Barrier Reef",
+    country: "Australia",
+    type: "Reef",
+    lat: -16.65,
+    lng: 146.85,
+    description: "Great Barrier Reef · Australia"
+  },
+
+
+  {
+    name: "Baja California",
+    country: "Mexico",
+    type: "Pelagic",
+    lat: 24.15,
+    lng: -110.30,
+    description: "Baja California · Mexico"
+  },
+
+
+  {
+    name: "Koh Tao",
+    country: "Thailand",
+    type: "Island",
+    lat: 10.0956,
+    lng: 99.8406,
+    description: "Koh Tao · Thailand"
+  },
+
+
+  {
+    name: "Malapascua",
+    country: "Philippines",
+    type: "Biodiversity hotspot",
+    lat: 11.3290,
+    lng: 124.1170,
+    description: "Malapascua · Philippines"
+  }
+
+];
+
+
+/* =====================================================
+   MAP
+====================================================== */
+
+const diveMap =
+  L.map("dive-map", {
+    worldCopyJump: true,
+    minZoom: 2,
+    maxZoom: 15,
+    zoomControl: false
+  })
+  .setView(
+    [7, 80],
+    2
+  );
+
+
+/* Zoom control */
+
+L.control
+  .zoom({
+    position: "bottomright"
+  })
+  .addTo(diveMap);
+
+
+/* Base map */
+
+L.tileLayer(
+  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+  {
+    maxZoom: 19,
+    attribution:
+      "&copy; OpenStreetMap contributors"
+  }
+)
+.addTo(diveMap);
+
+
+/* =====================================================
+   MARKERS
+====================================================== */
+
+diveSites.forEach(site => {
+
+  const marker =
+    L.circleMarker(
+      [
+        site.lat,
+        site.lng
+      ],
+      {
+        radius: 7,
+        weight: 2,
+        color: "#40573b",
+        fillColor: "#40573b",
+        fillOpacity: .92
+      }
+    )
+    .addTo(diveMap);
+
+
+  marker.bindPopup(`
+    <div class="dive-popup">
+      <strong>${site.name}</strong>
+      <span>${site.type} · ${site.country}</span>
+      <div style="margin-top:8px;font-size:12px">
+        ${site.description}
+      </div>
+    </div>
+  `);
+
+});
+
+
+/* =====================================================
+   RESPONSIVE MAP
+====================================================== */
+
+setTimeout(() => {
+
+  diveMap.invalidateSize(true);
+
+}, 300);
+
+
+window.addEventListener(
+  "resize",
+  () => {
+    diveMap.invalidateSize(true);
+  }
+);
+
+</script>
+
+
+</body>
+</html>
