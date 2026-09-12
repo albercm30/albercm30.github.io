@@ -46,8 +46,8 @@
       --wild-green: #40573b;
       --wild-ink: #1d241f;
       --wild-soft: #6d746d;
-      --wild-line: #d9d8d1;
-      --wild-paper: #f4f1ea;
+      --wild-line: #d9ddd6;
+      --wild-paper: #f7f7f3;
       --wild-white: #fbfaf7;
     }
 
@@ -59,7 +59,7 @@
 
     /* =========================================================
        HERO
-    ========================================================= */
+    ========================================================== */
 
     .wildlife-hero {
       padding: 110px 0 65px;
@@ -69,9 +69,11 @@
 
     .wildlife-hero-inner {
       display: grid;
+
       grid-template-columns:
         minmax(0, 1.25fr)
         minmax(280px, .75fr);
+
       gap: 70px;
       align-items: end;
     }
@@ -154,7 +156,7 @@
 
     /* =========================================================
        MAIN
-    ========================================================= */
+    ========================================================== */
 
     .wildlife-section {
       padding: 52px 0 110px;
@@ -163,7 +165,7 @@
 
     /* =========================================================
        MAP
-    ========================================================= */
+    ========================================================== */
 
     .wildlife-dashboard {
       display: grid;
@@ -250,7 +252,7 @@
 
     /* =========================================================
        LOADING
-    ========================================================= */
+    ========================================================== */
 
     .map-loading {
       position: absolute;
@@ -263,7 +265,7 @@
       place-items: center;
 
       background:
-        rgba(244, 241, 234, .82);
+        rgba(247, 247, 243, .82);
 
       backdrop-filter: blur(2px);
 
@@ -282,7 +284,7 @@
 
     /* =========================================================
        SIDE PANEL
-    ========================================================= */
+    ========================================================== */
 
     .map-panel {
       border:
@@ -373,7 +375,7 @@
 
     /* =========================================================
        FILTERS
-    ========================================================= */
+    ========================================================== */
 
     .map-filter {
       display: grid;
@@ -484,7 +486,7 @@
 
     /* =========================================================
        POPUP
-    ========================================================= */
+    ========================================================== */
 
     .leaflet-popup-content-wrapper,
     .leaflet-popup-tip {
@@ -598,7 +600,7 @@
 
     /* =========================================================
        ARCHIVE
-    ========================================================= */
+    ========================================================== */
 
     .wildlife-stats {
       margin-top: 105px;
@@ -718,7 +720,7 @@
 
     /* =========================================================
        COUNTRIES
-    ========================================================= */
+    ========================================================== */
 
     .wildlife-countries {
       margin-top: 95px;
@@ -846,7 +848,7 @@
 
     /* =========================================================
        RECENT OBSERVATIONS
-    ========================================================= */
+    ========================================================== */
 
     .wildlife-recent {
       margin-top: 95px;
@@ -1054,7 +1056,7 @@
 
     /* =========================================================
        MOBILE
-    ========================================================= */
+    ========================================================== */
 
     @media (max-width: 950px) {
 
@@ -1103,15 +1105,6 @@
 
       .country-list {
         grid-template-columns: 1fr;
-      }
-
-
-      .country-row:nth-child(odd),
-      .country-row:nth-child(even) {
-        margin-left: 0;
-        margin-right: 0;
-        padding-left: 0;
-        border-left: 0;
       }
 
 
@@ -1464,6 +1457,7 @@
 
           </div>
 
+
         </aside>
 
       </div>
@@ -1547,6 +1541,7 @@
             </span>
 
           </div>
+
 
         </div>
 
@@ -1634,44 +1629,48 @@
   </main>
 
 
-</main>
-
   <!-- =====================================================
        GET IN TOUCH
   ====================================================== -->
 
   <section class="contact">
-  
+
     <div class="shell">
-  
+
       <p
         class="eyebrow"
         style="color:#dce6d8"
       >
         GET IN TOUCH
       </p>
-  
+
+
       <h2>
         Let's build something <em>interesting.</em>
       </h2>
-  
+
+
       <p>
         Data, AI, travel, wildlife — or some combination of all four.
       </p>
-  
+
+
       <div
         class="buttons"
         style="justify-content:center"
       >
-  
+
         <a
           class="btn"
           style="background:white;color:#40573b"
-          href="albertocm30.2001@gmail.com"
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=albertocm30.2001@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Email me ↗
         </a>
-  
+
+
         <a
           class="btn"
           style="border:1px solid #dce6d8;color:white"
@@ -1681,14 +1680,26 @@
         >
           GitHub ↗
         </a>
-  
+
       </div>
-  
+
     </div>
-  
+
   </section>
-  
+
+
   <footer class="footer shell">
+
+    <span>
+      © 2026 Alberto Castellano Macías
+    </span>
+
+    <span>
+      Data · AI · Travel · Wildlife · Photography
+    </span>
+
+  </footer>
+
 
   <!-- =====================================================
        LEAFLET
@@ -2261,11 +2272,14 @@
                   "option"
                 );
 
+
               option.value =
                 name;
 
+
               option.textContent =
                 name;
+
 
               speciesFilter.appendChild(
                 option
@@ -2283,11 +2297,14 @@
                   "option"
                 );
 
+
               option.value =
                 year;
 
+
               option.textContent =
                 year;
+
 
               yearFilter.appendChild(
                 option
@@ -2382,6 +2399,7 @@
             `;
 
             return;
+
           }
 
 
@@ -2393,6 +2411,7 @@
 
                   const country =
                     entry[0];
+
 
                   const count =
                     Number(
@@ -2606,8 +2625,10 @@
             speciesFilter.value =
               "all";
 
+
             yearFilter.value =
               "all";
+
 
             applyFilters();
 
@@ -2618,13 +2639,6 @@
         /* =====================================================
            LOAD DATA
         ====================================================== */
-
-        /*
-          IMPORTANT:
-
-          The timestamp prevents GitHub Pages/browser/CDN
-          caching from returning an older wildlife.json.
-        */
 
         const DATA_URL =
           "/data/wildlife.json?v=" +
@@ -2658,6 +2672,7 @@
           .then(
             function (payload) {
 
+
               /* ---------------------------------------------
                  OBSERVATIONS
               --------------------------------------------- */
@@ -2676,9 +2691,6 @@
 
               /* ---------------------------------------------
                  ARCHIVE TOTALS
-
-                 These come directly from the dataset,
-                 NOT from the mapped subset.
               --------------------------------------------- */
 
               state.totalObservations =
@@ -2713,8 +2725,6 @@
 
               /* ---------------------------------------------
                  COUNTRY COUNTS
-
-                 This is the important fix.
               --------------------------------------------- */
 
               state.countryCounts =
@@ -2802,9 +2812,7 @@
                       "en-GB",
                       {
                         day: "numeric",
-
                         month: "short",
-
                         year: "numeric"
                       }
                     ) +
@@ -2845,20 +2853,6 @@
 
   </script>
 
-  <footer class="footer shell">
-  
-    <span>
-      © 2026 Alberto Castellano Macías
-    </span>
-  
-    <span>
-      Data · AI · Travel · Wildlife · Photography
-    </span>
-  
-  </footer>
-
-
-  <script src="/js/site.js"></script>
 
 </body>
 
