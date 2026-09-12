@@ -18,6 +18,7 @@
   ====================================================== -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
+
   <link
     rel="preconnect"
     href="https://fonts.gstatic.com"
@@ -41,13 +42,14 @@
 
 
   <!-- =====================================================
-       LEAFLET
+       LEAFLET CSS
+       No integrity attribute — avoids the broken stylesheet
+       issue from the previous version.
   ====================================================== -->
 
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIINfQ2xH8vTxN5Q9kR0x1G7Z3f4V8Q3W3M="
     crossorigin=""
   >
 
@@ -73,7 +75,7 @@
     ====================================================== */
 
     .diving-hero {
-      padding-bottom: 55px;
+      padding-bottom: 45px;
     }
 
     .diving-hero .intro {
@@ -87,22 +89,22 @@
 
     .diving-stats {
       padding-top: 15px !important;
-      padding-bottom: 25px !important;
+      padding-bottom: 30px !important;
     }
 
 
     /* =====================================================
-       MAP
+       DIVE MAP
     ====================================================== */
 
     .dive-map-section {
       padding-top: 25px !important;
-      padding-bottom: 50px !important;
+      padding-bottom: 55px !important;
     }
 
     .dive-map-heading {
       display: grid;
-      grid-template-columns: minmax(0,1fr) 330px;
+      grid-template-columns: minmax(0, 1fr) 330px;
       gap: 50px;
       align-items: end;
       margin-bottom: 20px;
@@ -113,11 +115,11 @@
     }
 
     .dive-map {
-      position: relative;
+      width: 100%;
       height: 570px;
       border: 1px solid var(--line);
       overflow: hidden;
-      background: #dfe6df;
+      background: #dce5df;
     }
 
     #dive-map {
@@ -125,9 +127,15 @@
       height: 100%;
     }
 
+    /*
+      Important Leaflet fixes.
+      These prevent the global site image rules from
+      breaking Leaflet's tiles and markers.
+    */
+
     .leaflet-container {
       font-family: var(--sans), "DM Sans", sans-serif;
-      background: #dfe6df;
+      background: #dce5df;
     }
 
     .leaflet-container img {
@@ -136,6 +144,7 @@
 
     .leaflet-container .leaflet-tile {
       max-width: none !important;
+      max-height: none !important;
     }
 
     .leaflet-container .leaflet-marker-icon,
@@ -144,20 +153,52 @@
       max-height: none !important;
     }
 
+
+    /* Custom dive markers */
+
+    .dive-marker {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #40573b;
+      border: 3px solid #ffffff;
+      box-shadow:
+        0 1px 5px rgba(0,0,0,.25),
+        0 0 0 1px #40573b;
+    }
+
+
+    /* Popup */
+
     .dive-popup strong {
       display: block;
       font-family: var(--serif);
-      font-size: 21px;
+      font-size: 22px;
       font-weight: 400;
-      margin-bottom: 3px;
+      line-height: 1.05;
+      margin-bottom: 5px;
+      color: #20231f;
     }
 
-    .dive-popup span {
+    .dive-popup .popup-location {
+      display: block;
       font-family: var(--mono);
       font-size: 9px;
       letter-spacing: .8px;
       text-transform: uppercase;
-      color: #687067;
+      color: #6d756d;
+      margin-bottom: 10px;
+    }
+
+    .dive-popup .popup-count {
+      font-size: 13px;
+      color: #505950;
+      margin-bottom: 5px;
+    }
+
+    .dive-popup .popup-type {
+      font-size: 12px;
+      color: #6d756d;
     }
 
     .map-note {
@@ -181,7 +222,7 @@
 
     .destination-heading {
       display: grid;
-      grid-template-columns: minmax(0,1fr) 330px;
+      grid-template-columns: minmax(0, 1fr) 330px;
       gap: 50px;
       align-items: end;
       margin-bottom: 28px;
@@ -193,7 +234,7 @@
 
     .dive-destinations {
       display: grid;
-      grid-template-columns: repeat(2,minmax(0,1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       border-top: 1px solid var(--line);
       border-left: 1px solid var(--line);
     }
@@ -252,7 +293,7 @@
     .encounters-title {
       margin: 10px 0 0;
       font-family: var(--serif);
-      font-size: clamp(48px,6vw,82px);
+      font-size: clamp(48px, 6vw, 82px);
       line-height: .92;
       letter-spacing: -2px;
       color: white;
@@ -302,7 +343,7 @@
 
     .log-heading {
       display: grid;
-      grid-template-columns: minmax(0,1fr) 330px;
+      grid-template-columns: minmax(0, 1fr) 330px;
       gap: 50px;
       align-items: end;
       margin-bottom: 28px;
@@ -313,13 +354,18 @@
     }
 
     .dive-table {
-      border-top: 1px solid var(--line);
       width: 100%;
+      border-top: 1px solid var(--line);
     }
 
     .dive-row {
       display: grid;
-      grid-template-columns: 90px 1.5fr 1fr 100px 100px;
+      grid-template-columns:
+        65px
+        minmax(220px, 1.5fr)
+        minmax(150px, 1fr)
+        90px
+        90px;
       gap: 20px;
       align-items: center;
       padding: 15px 0;
@@ -334,20 +380,21 @@
       color: var(--soft);
     }
 
-    .dive-row > span {
-      min-width: 0;
-    }
-
     .dive-site {
       font-family: var(--serif);
       font-size: 19px;
     }
 
     .dive-country,
-    .dive-date,
     .dive-depth,
     .dive-time {
       font-size: 13px;
+      color: var(--soft);
+    }
+
+    .dive-number {
+      font-family: var(--mono);
+      font-size: 10px;
       color: var(--soft);
     }
 
@@ -372,7 +419,7 @@
 
     .certification-heading {
       display: grid;
-      grid-template-columns: minmax(0,1fr) 330px;
+      grid-template-columns: minmax(0, 1fr) 330px;
       gap: 50px;
       align-items: end;
       margin-bottom: 28px;
@@ -433,7 +480,7 @@
 
     .photo-heading {
       display: grid;
-      grid-template-columns: minmax(0,1fr) 330px;
+      grid-template-columns: minmax(0, 1fr) 330px;
       gap: 50px;
       align-items: end;
       margin-bottom: 28px;
@@ -501,10 +548,14 @@
       }
 
       .dive-row {
-        grid-template-columns: 70px 1.4fr .9fr 80px;
+        grid-template-columns:
+          55px
+          minmax(160px, 1fr)
+          minmax(110px, .8fr)
+          75px;
       }
 
-      .dive-row > span:nth-child(5) {
+      .dive-row > span:last-child {
         display: none;
       }
 
@@ -522,18 +573,22 @@
       }
 
       .dive-row {
-        grid-template-columns: 55px 1fr 75px;
+        grid-template-columns:
+          45px
+          minmax(0, 1fr)
+          70px;
+        gap: 12px;
       }
 
       .dive-row > span:nth-child(3) {
         display: none;
       }
 
-      .dive-row > span:nth-child(5) {
+      .dive-row.header > span:nth-child(3) {
         display: none;
       }
 
-      .dive-row.header > span:nth-child(3) {
+      .dive-row > span:last-child {
         display: none;
       }
 
@@ -620,7 +675,7 @@
     </div>
 
     <div class="stat">
-      <strong>16</strong>
+      <strong>15</strong>
       <span>Sites</span>
     </div>
 
@@ -656,8 +711,8 @@
     </div>
 
     <p class="section-note">
-      A growing map of dive sites, destinations and underwater encounters.
-      The exact SSI sites can be added to the data below as you build the log.
+      15 sites across four destinations and 19 recorded dives.
+      Repeated dives are shown as a count at each site.
     </p>
 
   </div>
@@ -671,7 +726,7 @@
 
 
   <p class="map-note">
-    Dive locations shown from the personal dive archive
+    15 unique dive sites · 19 dives logged
   </p>
 
 </section>
@@ -711,76 +766,7 @@
     <div class="dive-destination">
 
       <p class="micro">
-        REEF
-      </p>
-
-      <h3>
-        Great Barrier Reef
-      </h3>
-
-      <p class="country">
-        Australia
-      </p>
-
-      <div class="rule"></div>
-
-      <p class="species">
-        Turtles · Reef sharks · Tropical fish
-      </p>
-
-    </div>
-
-
-    <div class="dive-destination">
-
-      <p class="micro">
-        PELAGIC
-      </p>
-
-      <h3>
-        Baja California
-      </h3>
-
-      <p class="country">
-        Mexico
-      </p>
-
-      <div class="rule"></div>
-
-      <p class="species">
-        Bull sharks · Mobulas · Sea lions
-      </p>
-
-    </div>
-
-
-    <div class="dive-destination">
-
-      <p class="micro">
-        ISLAND
-      </p>
-
-      <h3>
-        Koh Tao
-      </h3>
-
-      <p class="country">
-        Thailand
-      </p>
-
-      <div class="rule"></div>
-
-      <p class="species">
-        Reef life · Rays · Sharks
-      </p>
-
-    </div>
-
-
-    <div class="dive-destination">
-
-      <p class="micro">
-        BIODIVERSITY HOTSPOT
+        07 DIVES · 05 SITES
       </p>
 
       <h3>
@@ -794,7 +780,76 @@
       <div class="rule"></div>
 
       <p class="species">
-        Reefs · Thresher sharks · Open water
+        Thresher sharks · Macro · Reef life
+      </p>
+
+    </div>
+
+
+    <div class="dive-destination">
+
+      <p class="micro">
+        04 DIVES · 04 SITES
+      </p>
+
+      <h3>
+        Koh Tao
+      </h3>
+
+      <p class="country">
+        Thailand
+      </p>
+
+      <div class="rule"></div>
+
+      <p class="species">
+        Reef life · Pinnacles · Tropical fish
+      </p>
+
+    </div>
+
+
+    <div class="dive-destination">
+
+      <p class="micro">
+        02 DIVES · 02 SITES
+      </p>
+
+      <h3>
+        Norman Reef
+      </h3>
+
+      <p class="country">
+        Australia · Great Barrier Reef
+      </p>
+
+      <div class="rule"></div>
+
+      <p class="species">
+        Turtles · Reef sharks · Coral reef
+      </p>
+
+    </div>
+
+
+    <div class="dive-destination">
+
+      <p class="micro">
+        06 DIVES · 04 SITES
+      </p>
+
+      <h3>
+        Cabo Pulmo
+      </h3>
+
+      <p class="country">
+        Mexico
+      </p>
+
+      <div class="rule"></div>
+
+      <p class="species">
+        Bull sharks · Jureles · Wreck · Reef
       </p>
 
     </div>
@@ -846,11 +901,11 @@
           <div>
 
             <h3>
-              Bull sharks
+              Thresher sharks
             </h3>
 
             <p>
-              Baja California · Mexico
+              Malapascua · Philippines
             </p>
 
           </div>
@@ -867,11 +922,11 @@
           <div>
 
             <h3>
-              Thresher sharks
+              Bull sharks
             </h3>
 
             <p>
-              Malapascua · Philippines
+              Cabo Pulmo · Mexico
             </p>
 
           </div>
@@ -954,8 +1009,8 @@
       </div>
 
       <p class="section-note">
-        The full log can eventually mirror your SSI records,
-        including site, depth, duration and conditions.
+        The 19 dives currently recorded in the personal archive.
+        Exact depth and duration data can be added from SSI later.
       </p>
 
     </div>
@@ -979,95 +1034,303 @@
         </span>
 
         <span>
-          Depth
+          Dives
         </span>
 
         <span>
-          Time
+          Data
         </span>
 
       </div>
 
 
-      <!--
-        EXAMPLE ROWS ONLY.
-
-        Replace these with your exact SSI dive data
-        once you have the site names and values.
-      -->
-
+      <!-- PHILIPPINES -->
 
       <div class="dive-row">
 
-        <span class="dive-date">
-          01
-        </span>
+        <span class="dive-number">01</span>
 
-        <span class="dive-site">
-          Dive site
-        </span>
+        <span class="dive-site">Bantigue</span>
 
         <span class="dive-country">
-          Australia
+          Malapascua · Philippines
         </span>
 
-        <span class="dive-depth">
-          —
-        </span>
+        <span class="dive-depth">1</span>
 
-        <span class="dive-time">
-          —
-        </span>
+        <span class="dive-time">SSI</span>
 
       </div>
 
 
       <div class="dive-row">
 
-        <span class="dive-date">
-          02
-        </span>
+        <span class="dive-number">02–03</span>
 
         <span class="dive-site">
-          Dive site
+          East Garden / Ka Osting
         </span>
 
         <span class="dive-country">
-          Mexico
+          Malapascua · Philippines
         </span>
 
-        <span class="dive-depth">
-          —
-        </span>
+        <span class="dive-depth">2</span>
 
-        <span class="dive-time">
-          —
-        </span>
+        <span class="dive-time">SSI</span>
 
       </div>
 
 
       <div class="dive-row">
 
-        <span class="dive-date">
-          03
-        </span>
+        <span class="dive-number">04</span>
 
         <span class="dive-site">
-          Dive site
+          North Point / Deep Slope
         </span>
 
         <span class="dive-country">
-          Thailand
+          Malapascua · Philippines
         </span>
 
-        <span class="dive-depth">
-          —
+        <span class="dive-depth">1</span>
+
+        <span class="dive-time">SSI</span>
+
+      </div>
+
+
+      <div class="dive-row">
+
+        <span class="dive-number">05</span>
+
+        <span class="dive-site">
+          Monad Shoal
         </span>
 
-        <span class="dive-time">
-          —
+        <span class="dive-country">
+          Malapascua · Philippines
         </span>
+
+        <span class="dive-depth">1</span>
+
+        <span class="dive-time">SSI</span>
+
+      </div>
+
+
+      <div class="dive-row">
+
+        <span class="dive-number">06–07</span>
+
+        <span class="dive-site">
+          Kimud Shoal
+        </span>
+
+        <span class="dive-country">
+          Malapascua · Philippines
+        </span>
+
+        <span class="dive-depth">2</span>
+
+        <span class="dive-time">SSI</span>
+
+      </div>
+
+
+      <!-- THAILAND -->
+
+      <div class="dive-row">
+
+        <span class="dive-number">08</span>
+
+        <span class="dive-site">
+          Japanese Gardens
+        </span>
+
+        <span class="dive-country">
+          Koh Tao · Thailand
+        </span>
+
+        <span class="dive-depth">1</span>
+
+        <span class="dive-time">SSI</span>
+
+      </div>
+
+
+      <div class="dive-row">
+
+        <span class="dive-number">09</span>
+
+        <span class="dive-site">
+          White Rock
+        </span>
+
+        <span class="dive-country">
+          Koh Tao · Thailand
+        </span>
+
+        <span class="dive-depth">1</span>
+
+        <span class="dive-time">SSI</span>
+
+      </div>
+
+
+      <div class="dive-row">
+
+        <span class="dive-number">10</span>
+
+        <span class="dive-site">
+          Chumphon Pinnacle
+        </span>
+
+        <span class="dive-country">
+          Koh Tao · Thailand
+        </span>
+
+        <span class="dive-depth">1</span>
+
+        <span class="dive-time">SSI</span>
+
+      </div>
+
+
+      <div class="dive-row">
+
+        <span class="dive-number">11</span>
+
+        <span class="dive-site">
+          Green Rock
+        </span>
+
+        <span class="dive-country">
+          Koh Tao · Thailand
+        </span>
+
+        <span class="dive-depth">1</span>
+
+        <span class="dive-time">SSI</span>
+
+      </div>
+
+
+      <!-- AUSTRALIA -->
+
+      <div class="dive-row">
+
+        <span class="dive-number">12</span>
+
+        <span class="dive-site">
+          Norman Reef — Playgrounds
+        </span>
+
+        <span class="dive-country">
+          Great Barrier Reef · Australia
+        </span>
+
+        <span class="dive-depth">1</span>
+
+        <span class="dive-time">SSI</span>
+
+      </div>
+
+
+      <div class="dive-row">
+
+        <span class="dive-number">13</span>
+
+        <span class="dive-site">
+          Troppos — Norman Reef
+        </span>
+
+        <span class="dive-country">
+          Great Barrier Reef · Australia
+        </span>
+
+        <span class="dive-depth">1</span>
+
+        <span class="dive-time">SSI</span>
+
+      </div>
+
+
+      <!-- MEXICO -->
+
+      <div class="dive-row">
+
+        <span class="dive-number">14–15</span>
+
+        <span class="dive-site">
+          El Bajo
+        </span>
+
+        <span class="dive-country">
+          Cabo Pulmo · Mexico
+        </span>
+
+        <span class="dive-depth">2</span>
+
+        <span class="dive-time">SSI</span>
+
+      </div>
+
+
+      <div class="dive-row">
+
+        <span class="dive-number">16–17</span>
+
+        <span class="dive-site">
+          Jureles
+        </span>
+
+        <span class="dive-country">
+          Cabo Pulmo · Mexico
+        </span>
+
+        <span class="dive-depth">2</span>
+
+        <span class="dive-time">SSI</span>
+
+      </div>
+
+
+      <div class="dive-row">
+
+        <span class="dive-number">18</span>
+
+        <span class="dive-site">
+          El Cantil
+        </span>
+
+        <span class="dive-country">
+          Cabo Pulmo · Mexico
+        </span>
+
+        <span class="dive-depth">1</span>
+
+        <span class="dive-time">SSI</span>
+
+      </div>
+
+
+      <div class="dive-row">
+
+        <span class="dive-number">19</span>
+
+        <span class="dive-site">
+          El Vencedor — Wreck
+        </span>
+
+        <span class="dive-country">
+          Cabo Pulmo · Mexico
+        </span>
+
+        <span class="dive-depth">1</span>
+
+        <span class="dive-time">SSI</span>
 
       </div>
 
@@ -1076,7 +1339,7 @@
 
 
     <p class="dive-placeholder">
-      19 dives logged · full site-by-site archive coming from the SSI records
+      19 total dives · 15 unique sites · site data can be expanded from SSI
     </p>
 
   </div>
@@ -1208,15 +1471,6 @@
         UNDERWATER PHOTO
       </div>
 
-      <!--
-      Replace the placeholder above with:
-
-      <img
-        src="/assets/diving/photo-01.jpg"
-        alt="Underwater wildlife"
-      >
-      -->
-
     </div>
 
 
@@ -1276,16 +1530,13 @@
       GET IN TOUCH
     </p>
 
-
     <h2>
       Let's build something <em>interesting.</em>
     </h2>
 
-
     <p>
       Data, AI, travel, wildlife — or some combination of all four.
     </p>
-
 
     <div
       class="buttons"
@@ -1335,9 +1586,7 @@
 </footer>
 
 
-<script
-  src="/js/site.js"
-></script>
+<script src="/js/site.js"></script>
 
 
 <!-- =====================================================
@@ -1354,75 +1603,238 @@
 <script>
 
 /* =====================================================
-   DIVE MAP DATA
+   DIVE SITE DATA
 
-   These are destination-level markers for now.
-   Once you have your exact SSI dive-site coordinates,
-   add them here and they will appear individually.
+   19 dives
+   15 unique sites
+
+   Repeated dives are represented by diveCount.
 ====================================================== */
 
 const diveSites = [
 
-  {
-    name: "Great Barrier Reef",
-    country: "Australia",
-    type: "Reef",
-    lat: -16.65,
-    lng: 146.85,
-    description: "Great Barrier Reef · Australia"
-  },
-
+  /* =====================================================
+     PHILIPPINES — MALAPASCUA
+  ====================================================== */
 
   {
-    name: "Baja California",
-    country: "Mexico",
-    type: "Pelagic",
-    lat: 24.15,
-    lng: -110.30,
-    description: "Baja California · Mexico"
-  },
-
-
-  {
-    name: "Koh Tao",
-    country: "Thailand",
-    type: "Island",
-    lat: 10.0956,
-    lng: 99.8406,
-    description: "Koh Tao · Thailand"
-  },
-
-
-  {
-    name: "Malapascua",
+    name: "Bantigue",
     country: "Philippines",
-    type: "Biodiversity hotspot",
-    lat: 11.3290,
-    lng: 124.1170,
-    description: "Malapascua · Philippines"
+    destination: "Malapascua",
+    type: "Muck / reef",
+    lat: 11.34568,
+    lng: 124.11935,
+    diveCount: 1
+  },
+
+
+  {
+    name: "East Garden / Ka Osting",
+    country: "Philippines",
+    destination: "Malapascua",
+    type: "Muck / coral garden",
+    lat: 11.34430,
+    lng: 124.12477,
+    diveCount: 2
+  },
+
+
+  {
+    name: "North Point / Deep Slope",
+    country: "Philippines",
+    destination: "Malapascua",
+    type: "Muck / macro",
+    lat: 11.35080,
+    lng: 124.11780,
+    diveCount: 1
+  },
+
+
+  {
+    name: "Monad Shoal",
+    country: "Philippines",
+    destination: "Malapascua",
+    type: "Seamount / pelagic",
+    lat: 11.318528,
+    lng: 124.192194,
+    diveCount: 1
+  },
+
+
+  {
+    name: "Kimud Shoal",
+    country: "Philippines",
+    destination: "Malapascua",
+    type: "Shoal / pelagic",
+    lat: 11.15464,
+    lng: 124.28879,
+    diveCount: 2
+  },
+
+
+  /* =====================================================
+     THAILAND — KOH TAO
+  ====================================================== */
+
+  {
+    name: "Japanese Gardens",
+    country: "Thailand",
+    destination: "Koh Tao",
+    type: "Reef",
+    lat: 10.11937,
+    lng: 99.81422,
+    diveCount: 1
+  },
+
+
+  {
+    name: "White Rock",
+    country: "Thailand",
+    destination: "Koh Tao",
+    type: "Reef",
+    lat: 10.10530,
+    lng: 99.81530,
+    diveCount: 1
+  },
+
+
+  {
+    name: "Chumphon Pinnacle",
+    country: "Thailand",
+    destination: "Koh Tao",
+    type: "Pinnacle / pelagic",
+    lat: 10.16120,
+    lng: 99.78779,
+    diveCount: 1
+  },
+
+
+  {
+    name: "Green Rock",
+    country: "Thailand",
+    destination: "Koh Tao",
+    type: "Pinnacle / reef",
+    lat: 10.12655,
+    lng: 99.81010,
+    diveCount: 1
+  },
+
+
+  /* =====================================================
+     AUSTRALIA — GREAT BARRIER REEF
+  ====================================================== */
+
+  {
+    name: "Norman Reef — Playgrounds",
+    country: "Australia",
+    destination: "Great Barrier Reef",
+    type: "Reef",
+    lat: -16.427778,
+    lng: 145.996667,
+    diveCount: 1,
+    coordinateNote: "Norman Reef position"
+  },
+
+
+  {
+    name: "Troppos — Norman Reef",
+    country: "Australia",
+    destination: "Great Barrier Reef",
+    type: "Reef",
+    lat: -16.427778,
+    lng: 145.996667,
+    diveCount: 1,
+    coordinateNote: "Norman Reef position"
+  },
+
+
+  /* =====================================================
+     MEXICO — CABO PULMO
+  ====================================================== */
+
+  {
+    name: "El Bajo",
+    country: "Mexico",
+    destination: "Cabo Pulmo",
+    type: "Reef",
+    lat: 23.43740,
+    lng: -109.41980,
+    diveCount: 2
+  },
+
+
+  {
+    name: "Jureles",
+    country: "Mexico",
+    destination: "Cabo Pulmo",
+    type: "Pelagic / reef",
+    lat: 23.44200,
+    lng: -109.42150,
+    diveCount: 2,
+    coordinateNote: "Approximate Cabo Pulmo reef position"
+  },
+
+
+  {
+    name: "El Cantil",
+    country: "Mexico",
+    destination: "Cabo Pulmo",
+    type: "Reef",
+    lat: 23.44320,
+    lng: -109.41800,
+    diveCount: 1
+  },
+
+
+  {
+    name: "El Vencedor — Wreck",
+    country: "Mexico",
+    destination: "Cabo Pulmo",
+    type: "Wreck",
+    lat: 23.44520,
+    lng: -109.41800,
+    diveCount: 1
   }
 
 ];
 
 
 /* =====================================================
-   MAP
+   CHECK
 ====================================================== */
 
-const diveMap =
-  L.map("dive-map", {
-    worldCopyJump: true,
-    minZoom: 2,
-    maxZoom: 15,
-    zoomControl: false
-  })
-  .setView(
-    [7, 80],
-    2
+const totalDives =
+  diveSites.reduce(
+    (sum, site) =>
+      sum + site.diveCount,
+    0
   );
 
 
-/* Zoom control */
+console.log(
+  `Dive archive: ${diveSites.length} sites / ${totalDives} dives`
+);
+
+
+/* =====================================================
+   MAP INITIALIZATION
+====================================================== */
+
+const diveMap =
+  L.map(
+    "dive-map",
+    {
+      worldCopyJump: true,
+      minZoom: 2,
+      maxZoom: 18,
+      zoomControl: false
+    }
+  );
+
+
+/* =====================================================
+   ZOOM CONTROL
+====================================================== */
 
 L.control
   .zoom({
@@ -1431,7 +1843,9 @@ L.control
   .addTo(diveMap);
 
 
-/* Base map */
+/* =====================================================
+   TILE LAYER
+====================================================== */
 
 L.tileLayer(
   "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -1445,57 +1859,157 @@ L.tileLayer(
 
 
 /* =====================================================
-   MARKERS
+   CUSTOM MARKER
+====================================================== */
+
+function createDiveMarker() {
+
+  return L.divIcon({
+
+    className: "",
+
+    html:
+      '<div class="dive-marker"></div>',
+
+    iconSize: [
+      18,
+      18
+    ],
+
+    iconAnchor: [
+      9,
+      9
+    ],
+
+    popupAnchor: [
+      0,
+      -10
+    ]
+
+  });
+
+}
+
+
+/* =====================================================
+   ADD MARKERS
 ====================================================== */
 
 diveSites.forEach(site => {
 
   const marker =
-    L.circleMarker(
+    L.marker(
       [
         site.lat,
         site.lng
       ],
       {
-        radius: 7,
-        weight: 2,
-        color: "#40573b",
-        fillColor: "#40573b",
-        fillOpacity: .92
+        icon:
+          createDiveMarker()
       }
     )
     .addTo(diveMap);
 
 
+  const plural =
+    site.diveCount === 1
+      ? "dive"
+      : "dives";
+
+
+  const coordinateNote =
+    site.coordinateNote
+      ? `
+        <div
+          style="
+            margin-top:7px;
+            font-size:10px;
+            color:#8a918a;
+          "
+        >
+          ${site.coordinateNote}
+        </div>
+      `
+      : "";
+
+
   marker.bindPopup(`
+
     <div class="dive-popup">
-      <strong>${site.name}</strong>
-      <span>${site.type} · ${site.country}</span>
-      <div style="margin-top:8px;font-size:12px">
-        ${site.description}
+
+      <strong>
+        ${site.name}
+      </strong>
+
+      <span class="popup-location">
+        ${site.destination} · ${site.country}
+      </span>
+
+      <div class="popup-count">
+        ${site.diveCount} ${plural}
       </div>
+
+      <div class="popup-type">
+        ${site.type}
+      </div>
+
+      ${coordinateNote}
+
     </div>
+
   `);
 
 });
 
 
 /* =====================================================
-   RESPONSIVE MAP
+   INITIAL VIEW
 ====================================================== */
 
-setTimeout(() => {
+diveMap.setView(
+  [
+    7,
+    110
+  ],
+  3
+);
 
-  diveMap.invalidateSize(true);
 
-}, 300);
+/* =====================================================
+   FIX MAP SIZE
+   Important when the map is inside the page layout.
+====================================================== */
+
+function refreshDiveMap() {
+
+  diveMap.invalidateSize(
+    true
+  );
+
+}
+
+
+setTimeout(
+  refreshDiveMap,
+  250
+);
+
+
+setTimeout(
+  refreshDiveMap,
+  800
+);
+
+
+window.addEventListener(
+  "load",
+  refreshDiveMap
+);
 
 
 window.addEventListener(
   "resize",
-  () => {
-    diveMap.invalidateSize(true);
-  }
+  refreshDiveMap
 );
 
 </script>
