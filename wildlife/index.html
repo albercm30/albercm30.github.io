@@ -2249,135 +2249,123 @@
         /* =====================================================
            FILTERS
         ====================================================== */
-
+        
         function populateFilters() {
-
+        
           const species =
             uniqueSorted(
               state.observations.map(
                 function (item) {
-                  return item.species;
+                  return item.name;
                 }
               )
             );
-
-
+        
+        
           const years =
             uniqueSorted(
               state.observations.map(
                 function (item) {
-
+        
                   return item.observed_on
                     ? String(
                         item.observed_on
                       ).slice(0, 4)
                     : null;
-
+        
                 }
               )
             ).reverse();
-
-
+        
+        
           species.forEach(
             function (name) {
-
+        
               const option =
                 document.createElement(
                   "option"
                 );
-
-
-              option.value =
-                name;
-
-
-              option.textContent =
-                name;
-
-
+        
+              option.value = name;
+        
+              option.textContent = name;
+        
               speciesFilter.appendChild(
                 option
               );
-
+        
             }
           );
-
-
+        
+        
           years.forEach(
             function (year) {
-
+        
               const option =
                 document.createElement(
                   "option"
                 );
-
-
-              option.value =
-                year;
-
-
-              option.textContent =
-                year;
-
-
+        
+              option.value = year;
+        
+              option.textContent = year;
+        
               yearFilter.appendChild(
                 option
               );
-
+        
             }
           );
-
+        
         }
-
-
+        
+        
         function applyFilters() {
-
+        
           const species =
             speciesFilter.value;
-
-
+        
+        
           const year =
             yearFilter.value;
-
-
+        
+        
           state.visible =
             state.observations.filter(
               function (observation) {
-
-
+        
                 const speciesMatch =
                   species === "all" ||
-                  observation.species === species;
-
-
+                  observation.name === species;
+        
+        
                 const observationYear =
                   observation.observed_on
                     ? String(
                         observation.observed_on
                       ).slice(0, 4)
                     : "";
-
-
+        
+        
                 const yearMatch =
                   year === "all" ||
                   observationYear === year;
-
-
+        
+        
                 return (
                   speciesMatch &&
                   yearMatch
                 );
-
+        
               }
             );
-
-
+        
+        
           updateStats();
-
+        
           renderMarkers();
-
+        
         }
-
 
         /* =====================================================
            COUNTRY LIST
