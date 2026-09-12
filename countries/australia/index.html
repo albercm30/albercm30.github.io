@@ -1,4 +1,350 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Australia · Alberto Castellano</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet"><link rel="stylesheet" href="/style.css"></head><body><div id="nav"></div><section class="country-hero" style="background-image:url('/assets/country-australia.svg')"><div class="shell country-content"><p class="kicker" style="color:#e4eee2">2025 · WILDLIFE · DIVING · ROAD TRIPS</p><h1>Australia</h1><p>Tropical forests, the Great Barrier Reef and unforgettable wildlife encounters.</p></div></section>
-<section class="section shell"><div class="section-head"><div><p class="eyebrow">TRIP JOURNAL</p><h2>The story of<br><em>Australia.</em></h2></div><p class="section-note">A full country page for your writing, route, photographs, wildlife encounters and dive logs.</p></div>
-<div class="route"><span>Gold Coast</span><b>→</b><span>Daintree</span><b>→</b><span>Great Barrier Reef</span><b>→</b></div><div class="grid2"><div class="card"><div class="card-body"><p class="micro">WHY I WENT</p><h3>The idea behind the trip</h3><p class="muted">Write the story here: what attracted you to Australia, what you expected and what actually happened.</p></div></div><div class="card"><div class="card-body"><p class="micro">HIGHLIGHTS</p><h3>The moments that stayed</h3><p class="muted">Add your favourite places, encounters, hikes, dives, landscapes and unexpected moments.</p></div></div></div>
-<div class="feature"><p class="eyebrow" style="color:#dce6d8">CONNECTED STORIES</p><h2>Travel → Diving → Wildlife → Photography</h2><p>A country can lead to a dive site, which leads to a species, which leads to a photograph and a story.</p><div class="buttons"><a class="btn" style="background:white;color:#40573b" href="/wildlife/">Wildlife →</a><a class="btn" style="border:1px solid #dce6d8;color:white" href="/diving/">Diving →</a><a class="btn" style="border:1px solid #dce6d8;color:white" href="/photography/">Photos →</a></div></div></section><div class="contact"><div class="shell"><p class="eyebrow" style="color:#dce6d8">GET IN TOUCH</p><h2>Let's build something <em>interesting.</em></h2><p>Data, AI, travel, wildlife — or some combination of all four.</p><div class="buttons" style="justify-content:center"><a class="btn" style="background:white;color:#40573b" href="mailto:your@email.com">Email me ↗</a><a class="btn" style="border:1px solid #dce6d8;color:white" href="https://github.com/" target="_blank">GitHub ↗</a></div></div></div><footer class="footer shell"><span>© 2026 Alberto Castellano</span><span>Data · AI · Travel · Wildlife · Photography</span></footer><script src="/js/site.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>Australia · Alberto Castellano</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="/style.css">
+
+  <style>
+
+    .country-hero {
+      padding: 120px 0 80px;
+    }
+
+    .country-title {
+      font-family: var(--serif);
+      font-size: clamp(60px, 10vw, 130px);
+      line-height: .9;
+      letter-spacing: -3px;
+      margin: 20px 0;
+    }
+
+    .country-meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--soft);
+    }
+
+    .country-intro {
+      max-width: 650px;
+      font-size: 20px;
+      line-height: 1.6;
+      margin-top: 35px;
+    }
+
+    .route {
+      border-top: 1px solid var(--line);
+      margin-top: 30px;
+    }
+
+    .route-item {
+      display: flex;
+      gap: 25px;
+      align-items: baseline;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .route-number {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--soft);
+    }
+
+    .route-place {
+      font-family: var(--serif);
+      font-size: 28px;
+    }
+
+    .country-gallery {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr .7fr;
+      grid-template-rows: 260px 260px;
+      gap: 12px;
+      margin-top: 35px;
+    }
+
+    .country-gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .country-gallery img:first-child {
+      grid-row: span 2;
+    }
+
+    @media (max-width: 700px) {
+
+      .country-gallery {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 220px 160px 160px;
+      }
+
+      .country-gallery img:first-child {
+        grid-column: span 2;
+        grid-row: auto;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+<div id="nav"></div>
+
+
+<!-- HERO -->
+
+<section class="country-hero">
+
+  <div class="shell">
+
+    <p class="eyebrow">
+      COUNTRY · 2025
+    </p>
+
+    <h1 class="country-title">
+      Australia
+    </h1>
+
+    <div class="country-meta">
+      Wildlife · Diving · Road trips
+    </div>
+
+    <p class="country-intro">
+      I came to Australia for the combination of
+      enormous landscapes, exceptional wildlife and
+      some of the world's best diving.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- PHOTOS -->
+
+<section class="section shell">
+
+  <p class="eyebrow">
+    THE TRIP
+  </p>
+
+  <div class="country-gallery">
+
+    <img
+      src="/assets/travel/australia-01.jpg"
+      alt="Australia"
+    >
+
+    <img
+      src="/assets/travel/australia-02.jpg"
+      alt="Australia"
+    >
+
+    <img
+      src="/assets/travel/australia-03.jpg"
+      alt="Australia"
+    >
+
+    <img
+      src="/assets/travel/australia-04.jpg"
+      alt="Australia"
+    >
+
+    <img
+      src="/assets/travel/australia-05.jpg"
+      alt="Australia"
+    >
+
+  </div>
+
+</section>
+
+
+<!-- ROUTE -->
+
+<section class="section shell">
+
+  <div class="section-head">
+
+    <div>
+
+      <p class="eyebrow">
+        THE ROUTE
+      </p>
+
+      <h2>
+        Where the<br>
+        <em>road went.</em>
+      </h2>
+
+    </div>
+
+    <p class="section-note">
+      A simplified route through the trip.
+    </p>
+
+  </div>
+
+
+  <div class="route">
+
+    <div class="route-item">
+      <span class="route-number">01</span>
+      <span class="route-place">Brisbane</span>
+    </div>
+
+    <div class="route-item">
+      <span class="route-number">02</span>
+      <span class="route-place">Gold Coast</span>
+    </div>
+
+    <div class="route-item">
+      <span class="route-number">03</span>
+      <span class="route-place">Cairns</span>
+    </div>
+
+    <div class="route-item">
+      <span class="route-number">04</span>
+      <span class="route-place">Daintree</span>
+    </div>
+
+    <div class="route-item">
+      <span class="route-number">05</span>
+      <span class="route-place">Cape Tribulation</span>
+    </div>
+
+    <div class="route-item">
+      <span class="route-number">06</span>
+      <span class="route-place">Julatten</span>
+    </div>
+
+    <div class="route-item">
+      <span class="route-number">07</span>
+      <span class="route-place">Great Barrier Reef</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- STORY -->
+
+<section class="section shell">
+
+  <p class="eyebrow">
+    WHY I WENT
+  </p>
+
+  <h2>
+    Australia was<br>
+    about <em>wildlife.</em>
+  </h2>
+
+  <p class="intro" style="max-width:700px">
+    I wanted to experience Australia's wildlife and
+    marine ecosystems first-hand — from rainforest
+    species and platypuses to the Great Barrier Reef.
+  </p>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<div class="contact">
+
+  <div class="shell">
+
+    <p
+      class="eyebrow"
+      style="color:#dce6d8"
+    >
+      GET IN TOUCH
+    </p>
+
+    <h2>
+      Let's build something <em>interesting.</em>
+    </h2>
+
+    <p>
+      Data, AI, travel, wildlife — or some combination of all four.
+    </p>
+
+    <div
+      class="buttons"
+      style="justify-content:center"
+    >
+
+      <a
+        class="btn"
+        style="background:white;color:#40573b"
+        href="mailto:albertocm30.2001@gmail.com"
+      >
+        Email me ↗
+      </a>
+
+      <a
+        class="btn"
+        style="border:1px solid #dce6d8;color:white"
+        href="https://github.com/albercm30"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub ↗
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<footer class="footer shell">
+
+  <span>
+    © 2026 Alberto Castellano Macías
+  </span>
+
+  <span>
+    Data · AI · Travel · Wildlife · Photography
+  </span>
+
+</footer>
+
+
+<script src="/js/site.js"></script>
+
+</body>
+</html>
