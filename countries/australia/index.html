@@ -4,6 +4,7 @@
 <head>
 
   <meta charset="utf-8">
+
   <meta
     name="viewport"
     content="width=device-width,initial-scale=1"
@@ -25,88 +26,424 @@
 
   <link rel="stylesheet" href="/style.css">
 
+
   <style>
 
+    /* =====================================================
+       AUSTRALIA PAGE
+    ====================================================== */
+
+    .australia-page {
+      background: #f7f7f3;
+    }
+
+
+    /* =====================================================
+       HERO
+    ====================================================== */
+
     .country-hero {
-      padding: 120px 0 80px;
+      padding: 60px 0 45px;
     }
 
-    .country-title {
-      font-family: var(--serif);
-      font-size: clamp(60px, 10vw, 130px);
-      line-height: .9;
-      letter-spacing: -3px;
-      margin: 20px 0;
+    .country-hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(360px, .98fr);
+      align-items: end;
+      gap: 55px;
     }
 
-    .country-meta {
+    .country-kicker {
+      display: flex;
+      align-items: center;
+      gap: 15px;
       font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 1px;
+      font-size: 10px;
+      letter-spacing: 1.1px;
       text-transform: uppercase;
       color: var(--soft);
     }
 
-    .country-intro {
-      max-width: 650px;
-      font-size: 20px;
-      line-height: 1.6;
-      margin-top: 35px;
+    .country-kicker::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: var(--green);
     }
 
-    .route {
+    .country-title {
+      margin: 18px 0 18px;
+      font-family: var(--serif);
+      font-size: clamp(72px, 10vw, 150px);
+      line-height: .78;
+      letter-spacing: -5px;
+      color: #20231f;
+    }
+
+    .country-title em {
+      color: var(--green);
+      font-style: normal;
+    }
+
+    .country-lead {
+      max-width: 530px;
+      margin: 0;
+      font-size: 19px;
+      line-height: 1.55;
+      color: #555c55;
+    }
+
+    .hero-facts {
+      align-self: end;
       border-top: 1px solid var(--line);
-      margin-top: 30px;
-    }
-
-    .route-item {
-      display: flex;
-      gap: 25px;
-      align-items: baseline;
-      padding: 18px 0;
       border-bottom: 1px solid var(--line);
     }
 
-    .route-number {
+    .hero-fact {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-fact:last-child {
+      border-bottom: 0;
+    }
+
+    .hero-fact span:first-child {
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 10px;
+      letter-spacing: .9px;
+      color: var(--soft);
+      text-transform: uppercase;
+    }
+
+    .hero-fact span:last-child {
+      text-align: right;
+      font-size: 14px;
+    }
+
+
+    /* =====================================================
+       PHOTO FIELD
+    ====================================================== */
+
+    .photo-field {
+      padding: 0 0 70px;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1.4fr .7fr .7fr;
+      grid-template-rows: 290px 290px;
+      gap: 10px;
+    }
+
+    .photo {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          145deg,
+          #dbe2d7,
+          #b9c4b7
+        );
+    }
+
+    .photo:first-child {
+      grid-row: span 2;
+    }
+
+    .photo:nth-child(4) {
+      grid-column: span 2;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition:
+        transform .6s ease;
+    }
+
+    .photo:hover img {
+      transform: scale(1.035);
+    }
+
+
+    /* =====================================================
+       STORY
+    ====================================================== */
+
+    .story-section {
+      background: #e9ede5;
+      padding: 75px 0;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: .7fr 1.3fr;
+      gap: 90px;
+      align-items: start;
+    }
+
+    .story-label {
+      position: sticky;
+      top: 100px;
+    }
+
+    .story-title {
+      margin: 0 0 25px;
+      font-family: var(--serif);
+      font-size: clamp(46px, 5vw, 74px);
+      line-height: .95;
+      letter-spacing: -2px;
+    }
+
+    .story-copy {
+      max-width: 740px;
+      font-size: 18px;
+      line-height: 1.7;
+      color: #4d554d;
+    }
+
+    .story-copy p {
+      margin: 0 0 20px;
+    }
+
+
+    /* =====================================================
+       ROUTE
+    ====================================================== */
+
+    .route-section {
+      padding: 75px 0 80px;
+    }
+
+    .route-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+      margin-bottom: 35px;
+    }
+
+    .route-header h2 {
+      margin: 0;
+    }
+
+    .route-sub {
+      max-width: 360px;
+      margin: 0;
+      color: var(--soft);
+    }
+
+    .route-line {
+      position: relative;
+      display: grid;
+      grid-template-columns:
+        repeat(7, minmax(100px, 1fr));
+      gap: 0;
+      overflow-x: auto;
+      padding: 18px 0 6px;
+    }
+
+    .route-line::before {
+      content: "";
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      top: 38px;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .route-stop {
+      position: relative;
+      min-width: 100px;
+      z-index: 1;
+    }
+
+    .route-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 3px solid #f7f7f3;
+      box-shadow: 0 0 0 1px var(--green);
+      margin-bottom: 17px;
+    }
+
+    .route-number {
+      display: block;
+      margin-bottom: 7px;
+      font-family: var(--mono);
+      font-size: 9px;
       color: var(--soft);
     }
 
     .route-place {
       font-family: var(--serif);
-      font-size: 28px;
+      font-size: 20px;
+      white-space: nowrap;
     }
 
-    .country-gallery {
+
+    /* =====================================================
+       HIGHLIGHTS
+    ====================================================== */
+
+    .highlights {
+      background: #253127;
+      color: white;
+      padding: 70px 0;
+    }
+
+    .highlights-grid {
       display: grid;
-      grid-template-columns: 1.3fr .7fr .7fr;
-      grid-template-rows: 260px 260px;
-      gap: 12px;
-      margin-top: 35px;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 80px;
     }
 
-    .country-gallery img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    .highlights-title {
+      margin: 12px 0 0;
+      font-family: var(--serif);
+      font-size: clamp(48px, 5vw, 76px);
+      line-height: .92;
+      letter-spacing: -2px;
     }
 
-    .country-gallery img:first-child {
-      grid-row: span 2;
+    .highlight-list {
+      border-top: 1px solid rgba(255,255,255,.18);
     }
+
+    .highlight-item {
+      display: grid;
+      grid-template-columns: 45px 1fr;
+      gap: 16px;
+      align-items: baseline;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,.18);
+    }
+
+    .highlight-number {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: #aeb8aa;
+    }
+
+    .highlight-text {
+      font-size: 18px;
+      line-height: 1.45;
+    }
+
+
+    /* =====================================================
+       FOOTER AREA
+    ====================================================== */
+
+    .next-country {
+      padding: 65px 0;
+    }
+
+    .next-country a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      text-decoration: none;
+    }
+
+    .next-country-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--soft);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .next-country-name {
+      font-family: var(--serif);
+      font-size: clamp(45px, 6vw, 82px);
+      line-height: 1;
+    }
+
+    .next-country-arrow {
+      font-size: 30px;
+      color: var(--green);
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ====================================================== */
+
+    @media (max-width: 900px) {
+
+      .country-hero-grid,
+      .story-grid,
+      .highlights-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .story-label {
+        position: static;
+      }
+
+    }
+
 
     @media (max-width: 700px) {
 
-      .country-gallery {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 220px 160px 160px;
+      .country-hero {
+        padding: 45px 0 40px;
       }
 
-      .country-gallery img:first-child {
+      .country-title {
+        font-size: 78px;
+        letter-spacing: -3px;
+      }
+
+      .photo-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 240px 170px 170px;
+      }
+
+      .photo:first-child {
         grid-column: span 2;
         grid-row: auto;
+      }
+
+      .photo:nth-child(4) {
+        grid-column: span 2;
+      }
+
+      .story-section,
+      .route-section,
+      .highlights {
+        padding: 55px 0;
+      }
+
+      .route-line {
+        display: flex;
+        gap: 45px;
+        padding-bottom: 15px;
+      }
+
+      .route-line::before {
+        left: 20px;
+        right: 20px;
+      }
+
+      .route-stop {
+        flex: 0 0 120px;
+      }
+
+      .next-country a {
+        align-items: flex-end;
       }
 
     }
@@ -116,141 +453,276 @@
 </head>
 
 
-<body>
+<body class="australia-page">
+
 
 <div id="nav"></div>
 
 
-<!-- HERO -->
+<!-- =====================================================
+     HERO
+====================================================== -->
 
 <section class="country-hero">
 
   <div class="shell">
 
-    <p class="eyebrow">
-      COUNTRY · 2025
-    </p>
+    <div class="country-hero-grid">
 
-    <h1 class="country-title">
-      Australia
-    </h1>
 
-    <div class="country-meta">
-      Wildlife · Diving · Road trips
+      <div>
+
+        <div class="country-kicker">
+          AUSTRALIA · 2025
+        </div>
+
+        <h1 class="country-title">
+          Australia<span>.</span>
+        </h1>
+
+        <p class="country-lead">
+          I came for the wildlife. I stayed for the reef,
+          rainforest, long roads and the feeling that almost
+          anything could be around the next corner.
+        </p>
+
+      </div>
+
+
+      <div class="hero-facts">
+
+        <div class="hero-fact">
+          <span>Focus</span>
+          <span>Wildlife · Diving · Road trip</span>
+        </div>
+
+        <div class="hero-fact">
+          <span>Region</span>
+          <span>Queensland</span>
+        </div>
+
+        <div class="hero-fact">
+          <span>Highlights</span>
+          <span>Daintree · GBR · Gold Coast</span>
+        </div>
+
+        <div class="hero-fact">
+          <span>Wildlife</span>
+          <span>Cassowary · Platypus · Kangaroo</span>
+        </div>
+
+      </div>
+
     </div>
 
-    <p class="country-intro">
-      I came to Australia for the combination of
-      enormous landscapes, exceptional wildlife and
-      some of the world's best diving.
-    </p>
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     PHOTOGRAPHS
+====================================================== -->
+
+<section class="photo-field">
+
+  <div class="shell">
+
+    <div class="photo-grid">
+
+      <div class="photo">
+
+        <img
+          src="/assets/travel/australia-01.jpg"
+          alt="Australia"
+        >
+
+      </div>
+
+
+      <div class="photo">
+
+        <img
+          src="/assets/travel/australia-02.jpg"
+          alt="Australia"
+        >
+
+      </div>
+
+
+      <div class="photo">
+
+        <img
+          src="/assets/travel/australia-03.jpg"
+          alt="Australia"
+        >
+
+      </div>
+
+
+      <div class="photo">
+
+        <img
+          src="/assets/travel/australia-04.jpg"
+          alt="Australia"
+        >
+
+      </div>
+
+
+      <div class="photo">
+
+        <img
+          src="/assets/travel/australia-05.jpg"
+          alt="Australia"
+        >
+
+      </div>
+
+    </div>
 
   </div>
 
 </section>
 
 
-<!-- PHOTOS -->
+<!-- =====================================================
+     STORY
+====================================================== -->
 
-<section class="section shell">
+<section class="story-section">
 
-  <p class="eyebrow">
-    THE TRIP
-  </p>
+  <div class="shell">
 
-  <div class="country-gallery">
+    <div class="story-grid">
 
-    <img
-      src="/assets/travel/australia-01.jpg"
-      alt="Australia"
-    >
 
-    <img
-      src="/assets/travel/australia-02.jpg"
-      alt="Australia"
-    >
+      <div class="story-label">
 
-    <img
-      src="/assets/travel/australia-03.jpg"
-      alt="Australia"
-    >
+        <p class="eyebrow">
+          WHY I WENT
+        </p>
 
-    <img
-      src="/assets/travel/australia-04.jpg"
-      alt="Australia"
-    >
+        <h2 class="story-title">
+          Wild at<br>
+          every scale.
+        </h2>
 
-    <img
-      src="/assets/travel/australia-05.jpg"
-      alt="Australia"
-    >
+      </div>
+
+
+      <div class="story-copy">
+
+        <p>
+          Australia was one of those trips where the reason
+          for going was simple: wildlife.
+        </p>
+
+        <p>
+          I wanted to see what the country looked like beyond
+          the cities — rainforest, reef, beaches, remote roads
+          and the animals that make Australia unlike anywhere
+          else.
+        </p>
+
+        <p>
+          The trip became a mix of diving on the Great Barrier
+          Reef, exploring the Daintree, searching for cassowaries
+          and platypuses, driving between places that looked
+          ridiculously far apart on a map, and stopping whenever
+          something interesting appeared.
+        </p>
+
+      </div>
+
+    </div>
 
   </div>
 
 </section>
 
 
-<!-- ROUTE -->
+<!-- =====================================================
+     ROUTE
+====================================================== -->
 
-<section class="section shell">
+<section class="route-section">
 
-  <div class="section-head">
+  <div class="shell">
 
-    <div>
+    <div class="route-header">
 
-      <p class="eyebrow">
-        THE ROUTE
+      <div>
+
+        <p class="eyebrow">
+          THE ROUTE
+        </p>
+
+        <h2>
+          Following the<br>
+          <em>coast north.</em>
+        </h2>
+
+      </div>
+
+      <p class="route-sub">
+        The trip was less about getting somewhere quickly
+        and more about seeing what was between the places.
       </p>
 
-      <h2>
-        Where the<br>
-        <em>road went.</em>
-      </h2>
-
     </div>
 
-    <p class="section-note">
-      A simplified route through the trip.
-    </p>
 
-  </div>
+    <div class="route-line">
+
+      <div class="route-stop">
+        <div class="route-dot"></div>
+        <span class="route-number">01</span>
+        <span class="route-place">Brisbane</span>
+      </div>
 
 
-  <div class="route">
+      <div class="route-stop">
+        <div class="route-dot"></div>
+        <span class="route-number">02</span>
+        <span class="route-place">Gold Coast</span>
+      </div>
 
-    <div class="route-item">
-      <span class="route-number">01</span>
-      <span class="route-place">Brisbane</span>
-    </div>
 
-    <div class="route-item">
-      <span class="route-number">02</span>
-      <span class="route-place">Gold Coast</span>
-    </div>
+      <div class="route-stop">
+        <div class="route-dot"></div>
+        <span class="route-number">03</span>
+        <span class="route-place">Cairns</span>
+      </div>
 
-    <div class="route-item">
-      <span class="route-number">03</span>
-      <span class="route-place">Cairns</span>
-    </div>
 
-    <div class="route-item">
-      <span class="route-number">04</span>
-      <span class="route-place">Daintree</span>
-    </div>
+      <div class="route-stop">
+        <div class="route-dot"></div>
+        <span class="route-number">04</span>
+        <span class="route-place">Daintree</span>
+      </div>
 
-    <div class="route-item">
-      <span class="route-number">05</span>
-      <span class="route-place">Cape Tribulation</span>
-    </div>
 
-    <div class="route-item">
-      <span class="route-number">06</span>
-      <span class="route-place">Julatten</span>
-    </div>
+      <div class="route-stop">
+        <div class="route-dot"></div>
+        <span class="route-number">05</span>
+        <span class="route-place">Cape Tribulation</span>
+      </div>
 
-    <div class="route-item">
-      <span class="route-number">07</span>
-      <span class="route-place">Great Barrier Reef</span>
+
+      <div class="route-stop">
+        <div class="route-dot"></div>
+        <span class="route-number">06</span>
+        <span class="route-place">Julatten</span>
+      </div>
+
+
+      <div class="route-stop">
+        <div class="route-dot"></div>
+        <span class="route-number">07</span>
+        <span class="route-place">Great Barrier Reef</span>
+      </div>
+
     </div>
 
   </div>
@@ -258,29 +730,145 @@
 </section>
 
 
-<!-- STORY -->
+<!-- =====================================================
+     HIGHLIGHTS
+====================================================== -->
 
-<section class="section shell">
+<section class="highlights">
 
-  <p class="eyebrow">
-    WHY I WENT
-  </p>
+  <div class="shell">
 
-  <h2>
-    Australia was<br>
-    about <em>wildlife.</em>
-  </h2>
+    <div class="highlights-grid">
 
-  <p class="intro" style="max-width:700px">
-    I wanted to experience Australia's wildlife and
-    marine ecosystems first-hand — from rainforest
-    species and platypuses to the Great Barrier Reef.
-  </p>
+
+      <div>
+
+        <p
+          class="eyebrow"
+          style="color:#aeb8aa"
+        >
+          FIELD NOTES
+        </p>
+
+        <h2 class="highlights-title">
+          The moments<br>
+          I remember.
+        </h2>
+
+      </div>
+
+
+      <div class="highlight-list">
+
+        <div class="highlight-item">
+
+          <span class="highlight-number">
+            01
+          </span>
+
+          <span class="highlight-text">
+            Diving the Great Barrier Reef.
+          </span>
+
+        </div>
+
+
+        <div class="highlight-item">
+
+          <span class="highlight-number">
+            02
+          </span>
+
+          <span class="highlight-text">
+            Exploring the Daintree rainforest and searching for cassowaries.
+          </span>
+
+        </div>
+
+
+        <div class="highlight-item">
+
+          <span class="highlight-number">
+            03
+          </span>
+
+          <span class="highlight-text">
+            Searching for platypuses around Julatten.
+          </span>
+
+        </div>
+
+
+        <div class="highlight-item">
+
+          <span class="highlight-number">
+            04
+          </span>
+
+          <span class="highlight-text">
+            Sleeping among Australia's wildlife rather than behind city walls.
+          </span>
+
+        </div>
+
+
+        <div class="highlight-item">
+
+          <span class="highlight-number">
+            05
+          </span>
+
+          <span class="highlight-text">
+            Realising that every road trip in Australia is considerably longer than it looks.
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- CONTACT -->
+<!-- =====================================================
+     NEXT COUNTRY
+====================================================== -->
+
+<section class="next-country">
+
+  <div class="shell">
+
+    <a href="/travel/">
+
+      <div>
+
+        <div class="next-country-label">
+          ← BACK TO TRAVEL
+        </div>
+
+        <div class="next-country-name">
+          Country archive
+        </div>
+
+      </div>
+
+      <div class="next-country-arrow">
+        ↗
+      </div>
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     GET IN TOUCH
+====================================================== -->
 
 <div class="contact">
 
@@ -331,6 +919,10 @@
 </div>
 
 
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
 <footer class="footer shell">
 
   <span>
@@ -347,4 +939,5 @@
 <script src="/js/site.js"></script>
 
 </body>
+
 </html>
