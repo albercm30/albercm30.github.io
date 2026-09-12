@@ -3,12 +3,17 @@ from __future__ import annotations
 import json
 import sys
 import time
+import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 import requests
 
+
+# ============================================================
+# CONFIGURATION
+# ============================================================
 
 USERNAME = "albercm30"
 
@@ -29,6 +34,332 @@ REQUEST_DELAY_SECONDS = 1.05
 MAX_PAGES = 100
 
 
+# ============================================================
+# COUNTRY NAMES
+# ============================================================
+
+COUNTRIES = [
+    "Afghanistan",
+    "Albania",
+    "Algeria",
+    "Andorra",
+    "Angola",
+    "Antigua and Barbuda",
+    "Argentina",
+    "Armenia",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Bahamas",
+    "Bahrain",
+    "Bangladesh",
+    "Barbados",
+    "Belarus",
+    "Belgium",
+    "Belize",
+    "Benin",
+    "Bhutan",
+    "Bolivia",
+    "Bosnia and Herzegovina",
+    "Botswana",
+    "Brazil",
+    "Brunei",
+    "Bulgaria",
+    "Burkina Faso",
+    "Burundi",
+    "Cambodia",
+    "Cameroon",
+    "Canada",
+    "Cape Verde",
+    "Central African Republic",
+    "Chad",
+    "Chile",
+    "China",
+    "Colombia",
+    "Comoros",
+    "Costa Rica",
+    "Croatia",
+    "Cuba",
+    "Cyprus",
+    "Czechia",
+    "Democratic Republic of the Congo",
+    "Denmark",
+    "Djibouti",
+    "Dominica",
+    "Dominican Republic",
+    "Ecuador",
+    "Egypt",
+    "El Salvador",
+    "Equatorial Guinea",
+    "Eritrea",
+    "Estonia",
+    "Eswatini",
+    "Ethiopia",
+    "Fiji",
+    "Finland",
+    "France",
+    "Gabon",
+    "Gambia",
+    "Georgia",
+    "Germany",
+    "Ghana",
+    "Greece",
+    "Grenada",
+    "Guatemala",
+    "Guinea",
+    "Guinea-Bissau",
+    "Guyana",
+    "Haiti",
+    "Honduras",
+    "Hungary",
+    "Iceland",
+    "India",
+    "Indonesia",
+    "Iran",
+    "Iraq",
+    "Ireland",
+    "Israel",
+    "Italy",
+    "Jamaica",
+    "Japan",
+    "Jordan",
+    "Kazakhstan",
+    "Kenya",
+    "Kiribati",
+    "Kuwait",
+    "Kyrgyzstan",
+    "Laos",
+    "Latvia",
+    "Lebanon",
+    "Lesotho",
+    "Liberia",
+    "Libya",
+    "Liechtenstein",
+    "Lithuania",
+    "Luxembourg",
+    "Madagascar",
+    "Malawi",
+    "Malaysia",
+    "Maldives",
+    "Mali",
+    "Malta",
+    "Marshall Islands",
+    "Mauritania",
+    "Mauritius",
+    "Mexico",
+    "Micronesia",
+    "Moldova",
+    "Monaco",
+    "Mongolia",
+    "Montenegro",
+    "Morocco",
+    "Mozambique",
+    "Myanmar",
+    "Namibia",
+    "Nauru",
+    "Nepal",
+    "Netherlands",
+    "New Zealand",
+    "Nicaragua",
+    "Niger",
+    "Nigeria",
+    "North Korea",
+    "North Macedonia",
+    "Norway",
+    "Oman",
+    "Pakistan",
+    "Palau",
+    "Palestine",
+    "Panama",
+    "Papua New Guinea",
+    "Paraguay",
+    "Peru",
+    "Philippines",
+    "Poland",
+    "Portugal",
+    "Qatar",
+    "Republic of the Congo",
+    "Romania",
+    "Russia",
+    "Rwanda",
+    "Saint Kitts and Nevis",
+    "Saint Lucia",
+    "Saint Vincent and the Grenadines",
+    "Samoa",
+    "San Marino",
+    "Sao Tome and Principe",
+    "Saudi Arabia",
+    "Senegal",
+    "Serbia",
+    "Seychelles",
+    "Sierra Leone",
+    "Singapore",
+    "Slovakia",
+    "Slovenia",
+    "Solomon Islands",
+    "Somalia",
+    "South Africa",
+    "South Korea",
+    "South Sudan",
+    "Spain",
+    "Sri Lanka",
+    "Sudan",
+    "Suriname",
+    "Sweden",
+    "Switzerland",
+    "Syria",
+    "Taiwan",
+    "Tajikistan",
+    "Tanzania",
+    "Thailand",
+    "Timor-Leste",
+    "Togo",
+    "Tonga",
+    "Trinidad and Tobago",
+    "Tunisia",
+    "Turkey",
+    "Turkmenistan",
+    "Tuvalu",
+    "Uganda",
+    "Ukraine",
+    "United Arab Emirates",
+    "United Kingdom",
+    "United States",
+    "Uruguay",
+    "Uzbekistan",
+    "Vanuatu",
+    "Vatican City",
+    "Venezuela",
+    "Vietnam",
+    "Yemen",
+    "Zambia",
+    "Zimbabwe",
+]
+
+
+# Common alternate names used by iNaturalist
+# or in place descriptions.
+
+COUNTRY_ALIASES = {
+
+    "españa": "Spain",
+
+    "spain": "Spain",
+
+    "italia": "Italy",
+
+    "italy": "Italy",
+
+    "francia": "France",
+
+    "france": "France",
+
+    "alemania": "Germany",
+
+    "germany": "Germany",
+
+    "australia": "Australia",
+
+    "nueva zelanda": "New Zealand",
+
+    "new zealand": "New Zealand",
+
+    "tailandia": "Thailand",
+
+    "thailand": "Thailand",
+
+    "méxico": "Mexico",
+
+    "mexico": "Mexico",
+
+    "indonesia": "Indonesia",
+
+    "vietnam": "Vietnam",
+
+    "guatemala": "Guatemala",
+
+    "papua nueva guinea":
+        "Papua New Guinea",
+
+    "papua new guinea":
+        "Papua New Guinea",
+
+    "corea del sur":
+        "South Korea",
+
+    "south korea":
+        "South Korea",
+
+    "japón":
+        "Japan",
+
+    "japan":
+        "Japan",
+
+    "china":
+        "China",
+
+    "portugal":
+        "Portugal",
+
+    "reino unido":
+        "United Kingdom",
+
+    "united kingdom":
+        "United Kingdom",
+
+    "estados unidos":
+        "United States",
+
+    "united states":
+        "United States",
+
+}
+
+
+# ============================================================
+# TEXT NORMALIZATION
+# ============================================================
+
+def normalize_text(
+    value: str
+) -> str:
+
+    value = (
+        unicodedata.normalize(
+            "NFKD",
+            value
+        )
+        .encode(
+            "ascii",
+            "ignore"
+        )
+        .decode("ascii")
+    )
+
+    return (
+        value
+        .lower()
+        .strip()
+    )
+
+
+NORMALIZED_COUNTRIES = {
+    normalize_text(country): country
+    for country in COUNTRIES
+}
+
+
+NORMALIZED_ALIASES = {
+    normalize_text(alias): country
+    for alias, country in COUNTRY_ALIASES.items()
+}
+
+
+# ============================================================
+# COORDINATES
+# ============================================================
+
 def extract_coordinates(
     observation: dict[str, Any]
 ) -> tuple[float | None, float | None]:
@@ -42,11 +373,14 @@ def extract_coordinates(
         geojson.get("coordinates")
     )
 
+
     if (
         isinstance(coordinates, list)
         and len(coordinates) >= 2
     ):
+
         try:
+
             longitude = float(
                 coordinates[0]
             )
@@ -64,16 +398,22 @@ def extract_coordinates(
             TypeError,
             ValueError
         ):
+
             pass
 
 
-    location = observation.get("location")
+    location = (
+        observation.get("location")
+    )
+
 
     if (
         isinstance(location, str)
         and "," in location
     ):
+
         try:
+
             latitude, longitude = [
                 float(value.strip())
                 for value in location.split(",")[:2]
@@ -88,15 +428,28 @@ def extract_coordinates(
             TypeError,
             ValueError
         ):
+
             pass
 
 
-    return None, None
+    return (
+        None,
+        None
+    )
 
+
+# ============================================================
+# COUNTRY EXTRACTION
+# ============================================================
 
 def extract_country(
     observation: dict[str, Any]
 ) -> str | None:
+
+    # --------------------------------------------------------
+    # 1. BEST OPTION:
+    #    iNaturalist's own country field.
+    # --------------------------------------------------------
 
     country = (
         observation.get(
@@ -104,31 +457,151 @@ def extract_country(
         )
     )
 
+
     if (
         isinstance(country, str)
         and country.strip()
     ):
+
+        normalized = normalize_text(
+            country
+        )
+
+
+        if normalized in NORMALIZED_COUNTRIES:
+
+            return NORMALIZED_COUNTRIES[
+                normalized
+            ]
+
+
+        if normalized in NORMALIZED_ALIASES:
+
+            return NORMALIZED_ALIASES[
+                normalized
+            ]
+
+
         return country.strip()
 
+
+    # --------------------------------------------------------
+    # 2. Try the nested place object.
+    # --------------------------------------------------------
 
     place = (
         observation.get("place")
         or {}
     )
 
-    display_name = (
-        place.get("display_name")
+
+    for key in (
+        "country_name",
+        "name",
+        "display_name",
+    ):
+
+        nested_country = (
+            place.get(key)
+        )
+
+
+        if (
+            isinstance(
+                nested_country,
+                str
+            )
+            and nested_country.strip()
+        ):
+
+            normalized = normalize_text(
+                nested_country
+            )
+
+
+            if (
+                normalized
+                in NORMALIZED_COUNTRIES
+            ):
+
+                return NORMALIZED_COUNTRIES[
+                    normalized
+                ]
+
+
+    # --------------------------------------------------------
+    # 3. Fallback:
+    #    Search place_guess.
+    #
+    #    Example:
+    #    "Da Nang, Vietnam"
+    #    "Chiang Mai, Thailand"
+    #    "Cabo Pulmo, Baja California Sur, Mexico"
+    # --------------------------------------------------------
+
+    place_guess = (
+        observation.get(
+            "place_guess"
+        )
     )
 
-    if (
-        isinstance(display_name, str)
-        and display_name.strip()
+
+    if not isinstance(
+        place_guess,
+        str
     ):
-        return display_name.strip()
+
+        return None
+
+
+    normalized_guess = normalize_text(
+        place_guess
+    )
+
+
+    # First check aliases.
+
+    for alias, country_name in (
+        NORMALIZED_ALIASES.items()
+    ):
+
+        if (
+            alias in normalized_guess
+        ):
+
+            return country_name
+
+
+    # Then check official country names.
+
+    # Sort longest first so, for example,
+    # "South Korea" is checked before "Korea".
+
+    country_names = sorted(
+        NORMALIZED_COUNTRIES.items(),
+        key=lambda item: len(item[0]),
+        reverse=True
+    )
+
+
+    for normalized_country, country_name in (
+        country_names
+    ):
+
+        if (
+            normalized_country
+            in normalized_guess
+        ):
+
+            return country_name
 
 
     return None
 
+
+# ============================================================
+# PHOTOS
+# ============================================================
 
 def extract_photo_url(
     observation: dict[str, Any]
@@ -138,6 +611,7 @@ def extract_photo_url(
         observation.get("photos")
         or []
     )
+
 
     if not photos:
         return None
@@ -160,15 +634,21 @@ def extract_photo_url(
             first_photo.get(key)
         )
 
+
         if (
             isinstance(candidate, str)
             and candidate.strip()
         ):
+
             return candidate
 
 
     return None
 
+
+# ============================================================
+# SPECIES
+# ============================================================
 
 def get_taxon_names(
     observation: dict[str, Any]
@@ -196,10 +676,19 @@ def get_taxon_names(
     )
 
 
-    if (
-        not isinstance(common_name, str)
-        or not common_name.strip()
+    if not isinstance(
+        common_name,
+        str
     ):
+
+        common_name = None
+
+
+    if (
+        common_name is not None
+        and not common_name.strip()
+    ):
+
         common_name = None
 
 
@@ -208,6 +697,10 @@ def get_taxon_names(
         common_name
     )
 
+
+# ============================================================
+# NORMALIZE OBSERVATION
+# ============================================================
 
 def normalize_observation(
     observation: dict[str, Any]
@@ -224,6 +717,7 @@ def normalize_observation(
         latitude is None
         or longitude is None
     ):
+
         return None
 
 
@@ -233,10 +727,6 @@ def normalize_observation(
         )
     )
 
-
-    # Use the common name as the main display name.
-    # Fall back to scientific name when iNaturalist
-    # has no common name.
 
     display_name = (
         common_name
@@ -253,6 +743,11 @@ def normalize_observation(
         observation.get(
             "place_guess"
         )
+    )
+
+
+    country = extract_country(
+        observation
     )
 
 
@@ -274,9 +769,7 @@ def normalize_observation(
             place_guess,
 
         "country":
-            extract_country(
-                observation
-            ),
+            country,
 
         "observed_on":
             observation.get(
@@ -304,6 +797,10 @@ def normalize_observation(
 
     }
 
+
+# ============================================================
+# FETCH PAGE
+# ============================================================
 
 def fetch_page(
     session: requests.Session,
@@ -349,12 +846,19 @@ def fetch_page(
 
     response.raise_for_status()
 
+
     return response.json()
 
 
+# ============================================================
+# MAIN
+# ============================================================
+
 def main() -> int:
 
-    session = requests.Session()
+    session = (
+        requests.Session()
+    )
 
 
     session.headers.update({
@@ -375,11 +879,13 @@ def main() -> int:
 
     total_observations_seen = 0
 
+
     page = 1
 
 
     print(
-        f"Loading iNaturalist observations for @{USERNAME}..."
+        f"Loading iNaturalist observations "
+        f"for @{USERNAME}..."
     )
 
 
@@ -403,6 +909,7 @@ def main() -> int:
 
 
         if not results:
+
             break
 
 
@@ -411,10 +918,18 @@ def main() -> int:
         )
 
 
+        # ----------------------------------------------------
+        # PROCESS OBSERVATIONS
+        # ----------------------------------------------------
+
         for raw in results:
 
             total_observations_seen += 1
 
+
+            # ----------------------------
+            # Species
+            # ----------------------------
 
             scientific_name, common_name = (
                 get_taxon_names(
@@ -423,14 +938,17 @@ def main() -> int:
             )
 
 
-            # Species archive uses scientific identity
-            # so two observations of the same species
-            # still count as one species.
+            # Scientific name is the stable
+            # species identity used for counting.
 
             all_species.add(
                 scientific_name
             )
 
+
+            # ----------------------------
+            # Country
+            # ----------------------------
 
             country = extract_country(
                 raw
@@ -448,6 +966,10 @@ def main() -> int:
                 )
 
 
+            # ----------------------------
+            # Map observation
+            # ----------------------------
+
             normalized = (
                 normalize_observation(
                     raw
@@ -462,6 +984,10 @@ def main() -> int:
                 )
 
 
+        # ----------------------------------------------------
+        # PAGINATION
+        # ----------------------------------------------------
+
         if len(results) < PER_PAGE:
 
             break
@@ -474,6 +1000,10 @@ def main() -> int:
             REQUEST_DELAY_SECONDS
         )
 
+
+    # ========================================================
+    # REMOVE DUPLICATES
+    # ========================================================
 
     unique_by_id = {}
 
@@ -507,15 +1037,24 @@ def main() -> int:
     )
 
 
-    sorted_country_counts = dict(
+    # ========================================================
+    # SORT COUNTRIES
+    # ========================================================
+
+    country_counts = dict(
         sorted(
             country_counts.items(),
             key=lambda item:
                 item[1],
+
             reverse=True
         )
     )
 
+
+    # ========================================================
+    # OUTPUT DATASET
+    # ========================================================
 
     payload = {
 
@@ -537,20 +1076,16 @@ def main() -> int:
             len(all_species),
 
         "total_countries":
-            len(
-                sorted_country_counts
-            ),
+            len(country_counts),
 
         "mapped_observations":
-            len(
-                mapped_observations
-            ),
+            len(mapped_observations),
 
         "country_counts":
-            sorted_country_counts,
+            country_counts,
 
         "observations":
-            mapped_observations
+            mapped_observations,
 
     }
 
@@ -574,23 +1109,69 @@ def main() -> int:
         )
 
 
+    # ========================================================
+    # LOG
+    # ========================================================
+
     print()
-    print("Dataset built successfully.")
+
     print(
-        "Total observations:",
-        total_observations_seen
+        "========================================"
     )
+
     print(
-        "Total species:",
-        len(all_species)
+        "WILDLIFE DATASET BUILT"
     )
+
     print(
-        "Total countries:",
-        len(sorted_country_counts)
+        "========================================"
     )
+
     print(
-        "Mapped observations:",
-        len(mapped_observations)
+        f"Total observations: "
+        f"{total_observations_seen}"
+    )
+
+    print(
+        f"Total species: "
+        f"{len(all_species)}"
+    )
+
+    print(
+        f"Total countries: "
+        f"{len(country_counts)}"
+    )
+
+    print(
+        f"Mapped observations: "
+        f"{len(mapped_observations)}"
+    )
+
+    print()
+
+    print(
+        "COUNTRY COUNTS"
+    )
+
+    print(
+        "----------------------------------------"
+    )
+
+
+    for country, count in (
+        country_counts.items()
+    ):
+
+        print(
+            f"{country}: {count}"
+        )
+
+
+    print()
+
+    print(
+        f"Dataset written to: "
+        f"{OUTPUT_FILE}"
     )
 
 
