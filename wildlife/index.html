@@ -38,7 +38,7 @@
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    integrity="sha256-p4NxAoJBhIINfQ2xH8vTxRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""
   >
 
@@ -56,180 +56,30 @@
   <style>
 
     /* =========================================================
-       PALETTE
-       Matches Travel + Diving pages
+       WILDLIFE PALETTE
+       Same visual language as Travel + Diving
     ========================================================== */
 
-    :root {
+    .wildlife-page {
 
       --wild-green: #40573b;
+      --wild-green-light: #e9eee5;
+
+      --wild-paper: #f7f7f3;
+      --wild-paper-soft: #eef2eb;
+
       --wild-ink: #20231f;
       --wild-soft: #6d746d;
+
       --wild-line: #d9ddd6;
-      --wild-paper: #f7f7f3;
-      --wild-white: #fbfaf7;
-
-    }
-
-
-    /* =========================================================
-       PAGE
-    ========================================================== */
-
-    html,
-    body {
-      overflow-x: hidden;
-    }
-
-    body.wildlife-page {
-      background: var(--wild-paper);
-      color: var(--wild-ink);
-    }
-
-
-    /* =========================================================
-       NAVIGATION
-    ========================================================== */
-
-    .wildlife-nav {
-      width: 100%;
-      height: 56px;
-
-      border-bottom:
-        1px solid
-        var(--wild-line);
 
       background:
-        rgba(247,247,243,.96);
-
-      display: flex;
-      align-items: center;
-
-      position: relative;
-      z-index: 1000;
-    }
-
-    .wildlife-nav-inner {
-      width: min(
-        100%,
-        1120px
-      );
-
-      margin: 0 auto;
-
-      padding:
-        0 24px;
-
-      display: grid;
-
-      grid-template-columns:
-        1fr auto 1fr;
-
-      align-items: center;
-    }
-
-    .wildlife-nav-brand {
-      justify-self: start;
+        var(--wild-paper);
 
       color:
         var(--wild-ink);
 
-      text-decoration: none;
-
-      font:
-        500
-        29px
-        / 1
-        var(--serif);
-
-      letter-spacing: -1px;
-    }
-
-    .wildlife-nav-links {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 28px;
-    }
-
-    .wildlife-nav-links a {
-      color:
-        #4e554e;
-
-      text-decoration: none;
-
-      font:
-        600
-        11px
-        var(--sans);
-
-      transition:
-        color .2s ease;
-    }
-
-    .wildlife-nav-links a:hover {
-      color:
-        var(--wild-green);
-    }
-
-    .wildlife-nav-contact {
-      justify-self: end;
-
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      min-width: 80px;
-      height: 38px;
-
-      padding:
-        0 16px;
-
-      border-radius: 9px;
-
-      background:
-        var(--wild-green);
-
-      color: white !important;
-
-      text-decoration: none;
-
-      font:
-        700
-        11px
-        var(--sans);
-    }
-
-    @media (max-width: 760px) {
-
-      .wildlife-nav-inner {
-        grid-template-columns: auto 1fr auto;
-        padding: 0 16px;
-      }
-
-      .wildlife-nav-links {
-        gap: 14px;
-      }
-
-      .wildlife-nav-links a {
-        display: none;
-      }
-
-      .wildlife-nav-links a:nth-child(2),
-      .wildlife-nav-links a:nth-child(4) {
-        display: inline;
-      }
-
-      .wildlife-nav-brand {
-        font-size: 26px;
-      }
-
-      .wildlife-nav-contact {
-        min-width: 70px;
-        height: 34px;
-        padding: 0 12px;
-      }
-
+      overflow-x: hidden;
     }
 
 
@@ -238,15 +88,21 @@
     ========================================================== */
 
     .wildlife-hero {
-      padding: 110px 0 65px;
+
+      background:
+        var(--wild-paper-soft);
 
       border-bottom:
         1px solid
         var(--wild-line);
+
+      padding:
+        110px 0 65px;
     }
 
 
     .wildlife-hero-inner {
+
       display: grid;
 
       grid-template-columns:
@@ -260,7 +116,9 @@
 
 
     .wildlife-hero h1 {
+
       max-width: 760px;
+
       margin: 0;
 
       font:
@@ -269,7 +127,8 @@
         / .94
         var(--serif);
 
-      letter-spacing: -2.5px;
+      letter-spacing:
+        -2.5px;
 
       color:
         var(--wild-ink);
@@ -282,35 +141,46 @@
 
 
     .wildlife-hero-copy {
+
       max-width: 480px;
-      margin: 22px 0 0;
+
+      margin:
+        22px 0 0;
 
       color:
         var(--wild-soft);
 
       font-size: 13px;
+
       line-height: 1.75;
     }
 
 
     .wildlife-hero-side {
+
       border-top:
         1px solid
         var(--wild-ink);
 
-      padding-top: 14px;
+      padding-top:
+        14px;
     }
 
 
     .wildlife-hero-side-label {
-      margin: 0 0 12px;
+
+      margin:
+        0 0 12px;
 
       font:
         9px
         var(--mono);
 
-      letter-spacing: .9px;
-      text-transform: uppercase;
+      letter-spacing:
+        .9px;
+
+      text-transform:
+        uppercase;
 
       color:
         var(--wild-soft);
@@ -318,6 +188,7 @@
 
 
     .wildlife-hero-side strong {
+
       display: block;
 
       font:
@@ -332,15 +203,20 @@
 
 
     .wildlife-hero-side span {
+
       display: block;
 
-      margin-top: 7px;
+      margin-top:
+        7px;
 
       color:
         var(--wild-soft);
 
-      font-size: 11px;
-      line-height: 1.55;
+      font-size:
+        11px;
+
+      line-height:
+        1.55;
     }
 
 
@@ -349,7 +225,12 @@
     ========================================================== */
 
     .wildlife-section {
-      padding: 52px 0 110px;
+
+      padding:
+        52px 0 110px;
+
+      background:
+        var(--wild-paper);
     }
 
 
@@ -358,20 +239,25 @@
     ========================================================== */
 
     .wildlife-dashboard {
+
       display: grid;
 
       grid-template-columns:
         minmax(0, 1fr)
         310px;
 
-      gap: 18px;
+      gap:
+        18px;
 
-      align-items: start;
+      align-items:
+        start;
     }
 
 
     .map-frame {
+
       min-width: 0;
+
       overflow: hidden;
 
       border:
@@ -388,22 +274,31 @@
 
 
     .map-wrap {
+
       position: relative;
+
       width: 100%;
     }
 
 
     #wildlife-map {
+
       width: 100%;
 
       height:
         min(72vh, 720px);
 
-      min-height: 520px;
+      min-height:
+        520px;
     }
 
 
+    /* =========================================================
+       LEAFLET
+    ========================================================== */
+
     .leaflet-container {
+
       font-family:
         var(--sans),
         "DM Sans",
@@ -415,23 +310,34 @@
 
 
     .leaflet-container img {
-      max-width: none !important;
+      max-width:
+        none !important;
     }
 
 
     .leaflet-container .leaflet-tile {
-      max-width: none !important;
+
+      max-width:
+        none !important;
+
+      max-height:
+        none !important;
     }
 
 
     .leaflet-container .leaflet-marker-icon,
     .leaflet-container .leaflet-marker-shadow {
-      max-width: none !important;
-      max-height: none !important;
+
+      max-width:
+        none !important;
+
+      max-height:
+        none !important;
     }
 
 
     .leaflet-control-zoom a {
+
       color:
         var(--wild-ink) !important;
 
@@ -448,51 +354,65 @@
     ========================================================== */
 
     .map-loading {
-      position: absolute;
 
-      z-index: 500;
+      position:
+        absolute;
 
-      inset: 0;
+      z-index:
+        500;
 
-      display: grid;
-      place-items: center;
+      inset:
+        0;
+
+      display:
+        grid;
+
+      place-items:
+        center;
 
       background:
         rgba(247,247,243,.82);
 
-      backdrop-filter: blur(2px);
+      backdrop-filter:
+        blur(2px);
 
       font:
         9px
         var(--mono);
 
-      letter-spacing: .7px;
+      letter-spacing:
+        .7px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
 
       color:
         var(--wild-ink);
 
-      pointer-events: none;
+      pointer-events:
+        none;
     }
 
 
     /* =========================================================
-       SIDE PANEL
+       MAP PANEL
     ========================================================== */
 
     .map-panel {
+
       border:
         1px solid
         var(--wild-line);
 
       background:
-        rgba(251,250,247,.88);
+        var(--wild-paper-soft);
     }
 
 
     .map-panel-block {
-      padding: 21px 20px;
+
+      padding:
+        21px 20px;
 
       border-bottom:
         1px solid
@@ -501,20 +421,25 @@
 
 
     .map-panel-block:last-child {
-      border-bottom: 0;
+      border-bottom:
+        0;
     }
 
 
     .map-panel-label {
-      margin: 0 0 13px;
+
+      margin:
+        0 0 13px;
 
       font:
         9px
         var(--mono);
 
-      letter-spacing: .9px;
+      letter-spacing:
+        .9px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
 
       color:
         var(--wild-soft);
@@ -522,10 +447,9 @@
 
 
     .map-status {
+
       margin:
-        0
-        0
-        18px;
+        0 0 18px;
 
       color:
         var(--wild-soft);
@@ -534,66 +458,86 @@
         9px
         var(--mono);
 
-      line-height: 1.65;
+      line-height:
+        1.65;
 
-      letter-spacing: .45px;
+      letter-spacing:
+        .45px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
     }
 
 
     .map-stat {
-      display: flex;
 
-      justify-content: space-between;
+      display:
+        flex;
 
-      gap: 16px;
+      justify-content:
+        space-between;
 
-      margin-bottom: 10px;
+      gap:
+        16px;
+
+      margin-bottom:
+        10px;
 
       color:
         var(--wild-soft);
 
-      font-size: 11px;
+      font-size:
+        11px;
     }
 
 
     .map-stat:last-child {
-      margin-bottom: 0;
+      margin-bottom:
+        0;
     }
 
 
     .map-stat strong {
+
       color:
         var(--wild-ink);
 
-      font-size: 12px;
+      font-size:
+        12px;
 
-      font-weight: 700;
+      font-weight:
+        700;
     }
 
 
     /* =========================================================
-       FILTERS
+       FILTER
     ========================================================== */
 
     .map-filter {
-      display: grid;
 
-      gap: 9px;
+      display:
+        grid;
+
+      gap:
+        9px;
     }
 
 
     .map-filter label {
-      margin-top: 3px;
+
+      margin-top:
+        3px;
 
       font:
         9px
         var(--mono);
 
-      letter-spacing: .8px;
+      letter-spacing:
+        .8px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
 
       color:
         var(--wild-soft);
@@ -601,22 +545,28 @@
 
 
     .map-filter select {
-      width: 100%;
 
-      box-sizing: border-box;
+      width:
+        100%;
 
-      padding: 11px;
+      box-sizing:
+        border-box;
+
+      padding:
+        11px;
 
       border:
         1px solid
         var(--wild-line);
 
-      border-radius: 0;
+      border-radius:
+        0;
 
-      outline: none;
+      outline:
+        none;
 
       background:
-        var(--wild-white);
+        var(--wild-paper);
 
       color:
         var(--wild-ink);
@@ -628,19 +578,25 @@
 
 
     .map-filter select:focus {
+
       border-color:
         var(--wild-green);
     }
 
 
     .map-reset {
-      appearance: none;
 
-      width: 100%;
+      appearance:
+        none;
 
-      margin-top: 6px;
+      width:
+        100%;
 
-      padding: 11px 12px;
+      margin-top:
+        6px;
+
+      padding:
+        11px 12px;
 
       border:
         1px solid
@@ -649,22 +605,27 @@
       background:
         var(--wild-green);
 
-      color: white;
+      color:
+        white;
 
       font:
         700
         9px
         var(--mono);
 
-      letter-spacing: .8px;
+      letter-spacing:
+        .8px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
 
-      cursor: pointer;
+      cursor:
+        pointer;
     }
 
 
     .map-reset:hover {
+
       background:
         #33482f;
 
@@ -674,24 +635,31 @@
 
 
     .map-note {
-      margin: 0;
+
+      margin:
+        0;
 
       color:
         var(--wild-soft);
 
-      font-size: 10px;
+      font-size:
+        10px;
 
-      line-height: 1.7;
+      line-height:
+        1.7;
     }
 
 
     .map-note a {
+
       color:
-        var(--wild-ink);
+        var(--wild-green);
 
-      text-decoration: underline;
+      text-decoration:
+        underline;
 
-      text-underline-offset: 3px;
+      text-underline-offset:
+        3px;
     }
 
 
@@ -701,29 +669,41 @@
 
     .leaflet-popup-content-wrapper,
     .leaflet-popup-tip {
+
       background:
-        var(--wild-white);
+        var(--wild-paper);
     }
 
 
     .leaflet-popup-content {
-      width: 270px !important;
-      margin: 0;
+
+      width:
+        270px !important;
+
+      margin:
+        0;
     }
 
 
     .obs-popup {
-      overflow: hidden;
+      overflow:
+        hidden;
     }
 
 
     .obs-popup-image {
-      display: block;
 
-      width: 100%;
-      height: 190px;
+      display:
+        block;
 
-      object-fit: cover;
+      width:
+        100%;
+
+      height:
+        190px;
+
+      object-fit:
+        cover;
 
       background:
         #e5e2db;
@@ -731,12 +711,15 @@
 
 
     .obs-popup-body {
-      padding: 14px;
+      padding:
+        14px;
     }
 
 
     .obs-popup-species {
-      margin: 0;
+
+      margin:
+        0;
 
       font:
         500
@@ -750,26 +733,31 @@
 
 
     .obs-popup-common {
+
       margin:
-        6px
-        0
-        0;
+        6px 0 0;
 
       color:
         var(--wild-soft);
 
-      font-size: 11px;
+      font-size:
+        11px;
     }
 
 
     .obs-popup-meta {
-      display: grid;
 
-      gap: 4px;
+      display:
+        grid;
 
-      margin-top: 13px;
+      gap:
+        4px;
 
-      padding-top: 12px;
+      margin-top:
+        13px;
+
+      padding-top:
+        12px;
 
       border-top:
         1px solid
@@ -778,6 +766,7 @@
 
 
     .obs-popup-meta span {
+
       color:
         var(--wild-soft);
 
@@ -786,30 +775,38 @@
         / 1.5
         var(--mono);
 
-      letter-spacing: .35px;
+      letter-spacing:
+        .35px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
     }
 
 
     .obs-popup-link {
-      display: inline-block;
 
-      margin-top: 13px;
+      display:
+        inline-block;
+
+      margin-top:
+        13px;
 
       color:
         var(--wild-green);
 
-      text-decoration: none;
+      text-decoration:
+        none;
 
       font:
         700
         9px
         var(--mono);
 
-      letter-spacing: .55px;
+      letter-spacing:
+        .55px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
     }
 
 
@@ -818,9 +815,12 @@
     ========================================================== */
 
     .wildlife-stats {
-      margin-top: 105px;
 
-      padding-top: 25px;
+      margin-top:
+        105px;
+
+      padding-top:
+        25px;
 
       border-top:
         1px solid
@@ -829,20 +829,28 @@
 
 
     .wildlife-stats-header {
-      display: flex;
 
-      align-items: baseline;
+      display:
+        flex;
 
-      justify-content: space-between;
+      align-items:
+        baseline;
 
-      gap: 30px;
+      justify-content:
+        space-between;
 
-      margin-bottom: 28px;
+      gap:
+        30px;
+
+      margin-bottom:
+        28px;
     }
 
 
     .wildlife-stats-title {
-      margin: 0;
+
+      margin:
+        0;
 
       font:
         500
@@ -850,7 +858,8 @@
         / 1
         var(--serif);
 
-      letter-spacing: -1px;
+      letter-spacing:
+        -1px;
 
       color:
         var(--wild-ink);
@@ -858,23 +867,31 @@
 
 
     .wildlife-stats-note {
-      max-width: 290px;
 
-      margin: 0;
+      max-width:
+        290px;
+
+      margin:
+        0;
 
       color:
         var(--wild-soft);
 
-      font-size: 10px;
+      font-size:
+        10px;
 
-      line-height: 1.6;
+      line-height:
+        1.6;
 
-      text-align: right;
+      text-align:
+        right;
     }
 
 
     .wildlife-stat-grid {
-      display: grid;
+
+      display:
+        grid;
 
       grid-template-columns:
         repeat(3, 1fr);
@@ -882,10 +899,9 @@
 
 
     .wildlife-stat-card {
+
       padding:
-        24px
-        28px
-        25px;
+        24px 28px 25px;
 
       border-right:
         1px solid
@@ -894,17 +910,21 @@
 
 
     .wildlife-stat-card:first-child {
-      padding-left: 0;
+      padding-left:
+        0;
     }
 
 
     .wildlife-stat-card:last-child {
-      border-right: 0;
+      border-right:
+        0;
     }
 
 
     .wildlife-stat-number {
-      display: block;
+
+      display:
+        block;
 
       color:
         var(--wild-ink);
@@ -915,14 +935,18 @@
         / .9
         var(--serif);
 
-      letter-spacing: -2px;
+      letter-spacing:
+        -2px;
     }
 
 
     .wildlife-stat-label {
-      display: block;
 
-      margin-top: 11px;
+      display:
+        block;
+
+      margin-top:
+        11px;
 
       color:
         var(--wild-soft);
@@ -931,9 +955,11 @@
         9px
         var(--mono);
 
-      letter-spacing: .8px;
+      letter-spacing:
+        .8px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
     }
 
 
@@ -942,9 +968,12 @@
     ========================================================== */
 
     .wildlife-countries {
-      margin-top: 95px;
 
-      padding-top: 25px;
+      margin-top:
+        95px;
+
+      padding-top:
+        25px;
 
       border-top:
         1px solid
@@ -953,20 +982,28 @@
 
 
     .wildlife-section-heading {
-      display: flex;
 
-      justify-content: space-between;
+      display:
+        flex;
 
-      align-items: baseline;
+      justify-content:
+        space-between;
 
-      gap: 30px;
+      align-items:
+        baseline;
 
-      margin-bottom: 28px;
+      gap:
+        30px;
+
+      margin-bottom:
+        28px;
     }
 
 
     .wildlife-section-heading h2 {
-      margin: 0;
+
+      margin:
+        0;
 
       font:
         500
@@ -974,7 +1011,8 @@
         / 1
         var(--serif);
 
-      letter-spacing: -1px;
+      letter-spacing:
+        -1px;
 
       color:
         var(--wild-ink);
@@ -982,21 +1020,28 @@
 
 
     .wildlife-section-heading p {
-      margin: 0;
+
+      margin:
+        0;
 
       color:
         var(--wild-soft);
 
-      font-size: 10px;
+      font-size:
+        10px;
 
-      line-height: 1.6;
+      line-height:
+        1.6;
 
-      text-align: right;
+      text-align:
+        right;
     }
 
 
     .country-list {
-      display: grid;
+
+      display:
+        grid;
 
       grid-template-columns:
         repeat(2, 1fr);
@@ -1008,15 +1053,19 @@
 
 
     .country-row {
-      display: grid;
+
+      display:
+        grid;
 
       grid-template-columns:
         minmax(0, 1fr)
         auto;
 
-      gap: 20px;
+      gap:
+        20px;
 
-      align-items: baseline;
+      align-items:
+        baseline;
 
       padding:
         15px 0;
@@ -1028,14 +1077,18 @@
 
 
     .country-row:nth-child(odd) {
-      margin-right: 30px;
+      margin-right:
+        30px;
     }
 
 
     .country-row:nth-child(even) {
-      margin-left: 30px;
 
-      padding-left: 30px;
+      margin-left:
+        30px;
+
+      padding-left:
+        30px;
 
       border-left:
         1px solid
@@ -1044,6 +1097,7 @@
 
 
     .country-name {
+
       color:
         var(--wild-ink);
 
@@ -1056,6 +1110,7 @@
 
 
     .country-count {
+
       color:
         var(--wild-soft);
 
@@ -1063,20 +1118,25 @@
         9px
         var(--mono);
 
-      letter-spacing: .5px;
+      letter-spacing:
+        .5px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
     }
 
 
     /* =========================================================
-       RECENT OBSERVATIONS
+       RECENT
     ========================================================== */
 
     .wildlife-recent {
-      margin-top: 95px;
 
-      padding-top: 25px;
+      margin-top:
+        95px;
+
+      padding-top:
+        25px;
 
       border-top:
         1px solid
@@ -1085,20 +1145,28 @@
 
 
     .recent-heading {
-      display: flex;
 
-      justify-content: space-between;
+      display:
+        flex;
 
-      align-items: baseline;
+      justify-content:
+        space-between;
 
-      gap: 30px;
+      align-items:
+        baseline;
 
-      margin-bottom: 28px;
+      gap:
+        30px;
+
+      margin-bottom:
+        28px;
     }
 
 
     .recent-heading h2 {
-      margin: 0;
+
+      margin:
+        0;
 
       font:
         500
@@ -1106,7 +1174,8 @@
         / 1
         var(--serif);
 
-      letter-spacing: -1px;
+      letter-spacing:
+        -1px;
 
       color:
         var(--wild-ink);
@@ -1114,43 +1183,55 @@
 
 
     .recent-heading a {
+
       color:
         var(--wild-green);
 
-      text-decoration: none;
+      text-decoration:
+        none;
 
       font:
         700
         9px
         var(--mono);
 
-      letter-spacing: .65px;
+      letter-spacing:
+        .65px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
     }
 
 
     .recent-grid {
-      display: grid;
+
+      display:
+        grid;
 
       grid-template-columns:
         repeat(4, 1fr);
 
-      gap: 14px;
+      gap:
+        14px;
     }
 
 
     .recent-card {
-      min-width: 0;
+      min-width:
+        0;
     }
 
 
     .recent-image-wrap {
-      position: relative;
 
-      aspect-ratio: 1 / 1.08;
+      position:
+        relative;
 
-      overflow: hidden;
+      aspect-ratio:
+        1 / 1.08;
+
+      overflow:
+        hidden;
 
       background:
         #dedbd3;
@@ -1158,12 +1239,18 @@
 
 
     .recent-image {
-      display: block;
 
-      width: 100%;
-      height: 100%;
+      display:
+        block;
 
-      object-fit: cover;
+      width:
+        100%;
+
+      height:
+        100%;
+
+      object-fit:
+        cover;
 
       transition:
         transform .45s ease;
@@ -1172,18 +1259,25 @@
 
     .recent-card:hover
     .recent-image {
+
       transform:
         scale(1.025);
     }
 
 
     .recent-placeholder {
-      display: grid;
 
-      place-items: center;
+      display:
+        grid;
 
-      width: 100%;
-      height: 100%;
+      place-items:
+        center;
+
+      width:
+        100%;
+
+      height:
+        100%;
 
       background:
         linear-gradient(
@@ -1193,25 +1287,33 @@
         );
 
       color:
-        rgba(29,36,31,.62);
+        rgba(32,35,31,.62);
 
       font:
         9px
         var(--mono);
 
-      letter-spacing: .65px;
+      letter-spacing:
+        .65px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
     }
 
 
     .recent-number {
-      position: absolute;
 
-      top: 12px;
-      right: 12px;
+      position:
+        absolute;
 
-      color: white;
+      top:
+        12px;
+
+      right:
+        12px;
+
+      color:
+        white;
 
       font:
         9px
@@ -1224,12 +1326,16 @@
 
 
     .recent-caption {
-      padding-top: 12px;
+
+      padding-top:
+        12px;
     }
 
 
     .recent-species {
-      display: block;
+
+      display:
+        block;
 
       color:
         var(--wild-ink);
@@ -1243,9 +1349,12 @@
 
 
     .recent-meta {
-      display: block;
 
-      margin-top: 6px;
+      display:
+        block;
+
+      margin-top:
+        6px;
 
       color:
         var(--wild-soft);
@@ -1255,52 +1364,66 @@
         / 1.5
         var(--mono);
 
-      letter-spacing: .35px;
+      letter-spacing:
+        .35px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
     }
 
 
     .recent-link {
-      display: inline-block;
 
-      margin-top: 10px;
+      display:
+        inline-block;
+
+      margin-top:
+        10px;
 
       color:
         var(--wild-green);
 
-      text-decoration: none;
+      text-decoration:
+        none;
 
       font:
         700
         8px
         var(--mono);
 
-      letter-spacing: .55px;
+      letter-spacing:
+        .55px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
     }
 
 
     /* =========================================================
-       MOBILE
+       RESPONSIVE
     ========================================================== */
 
     @media (max-width: 950px) {
 
       .wildlife-hero-inner {
-        grid-template-columns: 1fr;
-        gap: 45px;
+        grid-template-columns:
+          1fr;
+
+        gap:
+          45px;
       }
 
 
       .wildlife-dashboard {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
 
 
       .map-panel {
-        display: grid;
+
+        display:
+          grid;
 
         grid-template-columns:
           repeat(2, 1fr);
@@ -1308,35 +1431,44 @@
 
 
       .wildlife-stat-grid {
+
         grid-template-columns:
           1fr 1fr;
       }
 
 
       .wildlife-stat-card:nth-child(2) {
-        border-right: 0;
+        border-right:
+          0;
       }
 
 
       .wildlife-stat-card:last-child {
-        grid-column: 1 / -1;
 
-        padding-left: 0;
+        grid-column:
+          1 / -1;
+
+        padding-left:
+          0;
 
         border-top:
           1px solid
           var(--wild-line);
 
-        margin-top: 12px;
+        margin-top:
+          12px;
       }
 
 
       .country-list {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
       }
 
 
       .recent-grid {
+
         grid-template-columns:
           repeat(2, 1fr);
       }
@@ -1346,16 +1478,8 @@
 
     @media (max-width: 680px) {
 
-      .wildlife-nav-links {
-        display: none;
-      }
-
-      .wildlife-nav-inner {
-        grid-template-columns:
-          1fr auto;
-      }
-
       .wildlife-hero {
+
         padding:
           80px
           0
@@ -1364,11 +1488,13 @@
 
 
       .wildlife-hero h1 {
-        letter-spacing: -1.5px;
+        letter-spacing:
+          -1.5px;
       }
 
 
       .wildlife-section {
+
         padding:
           38px
           0
@@ -1377,69 +1503,92 @@
 
 
       #wildlife-map {
-        height: 68vh;
-        min-height: 460px;
+
+        height:
+          68vh;
+
+        min-height:
+          460px;
       }
 
 
       .map-panel {
-        display: block;
+        display:
+          block;
       }
 
 
       .wildlife-stats {
-        margin-top: 75px;
+
+        margin-top:
+          75px;
       }
 
 
       .wildlife-stats-header,
       .wildlife-section-heading,
       .recent-heading {
-        display: block;
+
+        display:
+          block;
       }
 
 
       .wildlife-stats-note,
       .wildlife-section-heading p {
-        margin-top: 10px;
-        text-align: left;
+
+        margin-top:
+          10px;
+
+        text-align:
+          left;
       }
 
 
       .wildlife-stat-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
       }
 
 
       .wildlife-stat-card,
       .wildlife-stat-card:nth-child(2),
       .wildlife-stat-card:last-child {
-        padding:
-          21px
-          0;
 
-        border-right: 0;
+        padding:
+          21px 0;
+
+        border-right:
+          0;
 
         border-top:
           1px solid
           var(--wild-line);
 
-        margin-top: 0;
+        margin-top:
+          0;
       }
 
 
       .wildlife-stat-card:first-child {
-        border-top: 0;
+
+        border-top:
+          0;
       }
 
 
       .country-list {
-        display: block;
+
+        display:
+          block;
       }
 
 
       .recent-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
       }
 
     }
@@ -1453,62 +1602,11 @@
 
 
   <!-- =====================================================
-       NAVIGATION
+       SITE NAV
+       Uses the exact same navigation as the other pages.
   ====================================================== -->
 
-  <header class="wildlife-nav">
-
-    <div class="wildlife-nav-inner">
-
-      <a
-        class="wildlife-nav-brand"
-        href="/"
-      >
-        ACM
-      </a>
-
-
-      <nav class="wildlife-nav-links">
-
-        <a href="/professional/">
-          Professional
-        </a>
-
-        <a href="/travel/">
-          Travel
-        </a>
-
-        <a href="/mountains/">
-          Mountains
-        </a>
-
-        <a href="/diving/">
-          Diving
-        </a>
-
-        <a href="/wildlife/">
-          Wildlife
-        </a>
-
-        <a href="/photography/">
-          Photography
-        </a>
-
-      </nav>
-
-
-      <a
-        class="wildlife-nav-contact"
-        href="https://mail.google.com/mail/?view=cm&fs=1&to=albertocm30.2001@gmail.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Contact
-      </a>
-
-    </div>
-
-  </header>
+  <div id="nav"></div>
 
 
   <main>
@@ -1556,7 +1654,9 @@
 
 
           <span>
+
             Public observations by
+
             <strong
               style="
                 display:inline;
@@ -1567,6 +1667,7 @@
             >
               albercm30
             </strong>
+
           </span>
 
         </div>
@@ -1577,7 +1678,7 @@
 
 
     <!-- =====================================================
-         MAP
+         MAP + PANEL
     ====================================================== -->
 
     <section class="section shell wildlife-section">
@@ -1721,9 +1822,11 @@
 
 
             <p class="map-note">
+
               Locations are plotted using the coordinates
               returned by iNaturalist. Sensitive observations
               may be generalized by the source.
+
             </p>
 
           </div>
@@ -1757,7 +1860,7 @@
 
 
       <!-- =====================================================
-           ARCHIVE NUMBERS
+           ARCHIVE
       ====================================================== -->
 
       <section class="wildlife-stats">
@@ -1769,6 +1872,7 @@
             <p class="eyebrow">
               THE ARCHIVE
             </p>
+
 
             <h2 class="wildlife-stats-title">
               A growing record of wild places.
@@ -1855,6 +1959,7 @@
               WHERE I'VE SEEN LIFE
             </p>
 
+
             <h2>
               The geography of the archive.
             </h2>
@@ -1878,7 +1983,7 @@
 
 
       <!-- =====================================================
-           RECENT OBSERVATIONS
+           RECENT
       ====================================================== -->
 
       <section class="wildlife-recent">
@@ -1890,6 +1995,7 @@
             <p class="eyebrow">
               RECENT OBSERVATIONS
             </p>
+
 
             <h2>
               The latest encounters.
@@ -1932,7 +2038,9 @@
 
       <p
         class="eyebrow"
-        style="color:#dce6d8"
+        style="
+          color:#dce6d8
+        "
       >
         GET IN TOUCH
       </p>
@@ -1950,7 +2058,9 @@
 
       <div
         class="buttons"
-        style="justify-content:center"
+        style="
+          justify-content:center
+        "
       >
 
         <a
@@ -1987,11 +2097,16 @@
   </section>
 
 
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
   <footer class="footer shell">
 
     <span>
       © 2026 Alberto Castellano Macías
     </span>
+
 
     <span>
       Data · AI · Travel · Wildlife · Photography
@@ -2029,36 +2144,53 @@
           L.map(
             "wildlife-map",
             {
-              worldCopyJump: true,
-              minZoom: 2,
-              maxZoom: 18,
-              zoomControl: false
+              worldCopyJump:
+                true,
+
+              minZoom:
+                2,
+
+              maxZoom:
+                18,
+
+              zoomControl:
+                false
             }
-          ).setView(
-            [18, 0],
+          )
+          .setView(
+            [18,0],
             2
           );
 
 
-        L.control.zoom({
-          position: "bottomright"
-        }).addTo(map);
+        L.control
+          .zoom({
+            position:
+              "bottomright"
+          })
+          .addTo(map);
 
 
         L.tileLayer(
           "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
           {
-            maxZoom: 19,
+            maxZoom:
+              19,
 
             attribution:
               "&copy; OpenStreetMap contributors"
           }
-        ).addTo(map);
+        )
+        .addTo(map);
 
 
         setTimeout(
           function () {
-            map.invalidateSize(true);
+
+            map.invalidateSize(
+              true
+            );
+
           },
           300
         );
@@ -2067,21 +2199,36 @@
         window.addEventListener(
           "resize",
           function () {
-            map.invalidateSize(true);
+
+            map.invalidateSize(
+              true
+            );
+
           }
         );
 
 
         const markers =
           L.markerClusterGroup({
-            showCoverageOnHover: false,
-            spiderfyOnMaxZoom: true,
-            maxClusterRadius: 42,
-            disableClusteringAtZoom: 9
+
+            showCoverageOnHover:
+              false,
+
+            spiderfyOnMaxZoom:
+              true,
+
+            maxClusterRadius:
+              42,
+
+            disableClusteringAtZoom:
+              9
+
           });
 
 
-        map.addLayer(markers);
+        map.addLayer(
+          markers
+        );
 
 
         /* =====================================================
@@ -2090,19 +2237,26 @@
 
         const state = {
 
-          observations: [],
+          observations:
+            [],
 
-          visible: [],
+          visible:
+            [],
 
-          totalObservations: 0,
+          totalObservations:
+            0,
 
-          totalSpecies: 0,
+          totalSpecies:
+            0,
 
-          totalCountries: 0,
+          totalCountries:
+            0,
 
-          mappedObservations: 0,
+          mappedObservations:
+            0,
 
-          countryCounts: {}
+          countryCounts:
+            {}
 
         };
 
@@ -2193,7 +2347,9 @@
            HELPERS
         ====================================================== */
 
-        function escapeHtml(value) {
+        function escapeHtml(
+          value
+        ) {
 
           return String(
             value ?? ""
@@ -2222,7 +2378,9 @@
         }
 
 
-        function uniqueSorted(values) {
+        function uniqueSorted(
+          values
+        ) {
 
           return [
             ...new Set(
@@ -2230,14 +2388,24 @@
                 Boolean
               )
             )
-          ].sort(
-            function (a, b) {
+          ]
+          .sort(
+            function (
+              a,
+              b
+            ) {
 
-              return String(a).localeCompare(
-                String(b),
+              return String(
+                a
+              )
+              .localeCompare(
+                String(
+                  b
+                ),
                 undefined,
                 {
-                  numeric: true
+                  numeric:
+                    true
                 }
               );
 
@@ -2247,7 +2415,9 @@
         }
 
 
-        function formatDate(value) {
+        function formatDate(
+          value
+        ) {
 
           if (!value) {
             return "Date not recorded";
@@ -2255,7 +2425,9 @@
 
 
           const date =
-            new Date(value);
+            new Date(
+              value
+            );
 
 
           if (
@@ -2272,9 +2444,14 @@
           return date.toLocaleDateString(
             "en-GB",
             {
-              day: "numeric",
-              month: "short",
-              year: "numeric"
+              day:
+                "numeric",
+
+              month:
+                "short",
+
+              year:
+                "numeric"
             }
           );
 
@@ -2294,16 +2471,18 @@
           }
 
 
-          url = url.replace(
-            /\/(square|small|medium)\.(jpg|jpeg|png|webp)$/i,
-            "/large.$2"
-          );
+          url =
+            url.replace(
+              /\/(square|small|medium)\.(jpg|jpeg|png|webp)$/i,
+              "/large.$2"
+            );
 
 
-          url = url.replace(
-            /\/(square|small|medium)\.(jpg|jpeg|png|webp)(\?.*)?$/i,
-            "/large.$2$3"
-          );
+          url =
+            url.replace(
+              /\/(square|small|medium)\.(jpg|jpeg|png|webp)(\?.*)?$/i,
+              "/large.$2$3"
+            );
 
 
           return url;
@@ -2445,8 +2624,9 @@
 
 
           state.visible.forEach(
-            function (observation) {
-
+            function (
+              observation
+            ) {
 
               if (
                 typeof observation.latitude !== "number" ||
@@ -2477,7 +2657,8 @@
                   observation
                 ),
                 {
-                  maxWidth: 300
+                  maxWidth:
+                    300
                 }
               );
 
@@ -2501,8 +2682,12 @@
           const locations =
             uniqueSorted(
               state.visible.map(
-                function (item) {
+                function (
+                  item
+                ) {
+
                   return item.place_guess;
+
                 }
               )
             );
@@ -2510,22 +2695,30 @@
 
           statObservations.textContent =
             state.totalObservations
-              .toLocaleString("en-GB");
+              .toLocaleString(
+                "en-GB"
+              );
 
 
           statSpecies.textContent =
             state.totalSpecies
-              .toLocaleString("en-GB");
+              .toLocaleString(
+                "en-GB"
+              );
 
 
           statLocations.textContent =
             locations.length
-              .toLocaleString("en-GB");
+              .toLocaleString(
+                "en-GB"
+              );
 
 
           status.textContent =
             state.visible.length
-              .toLocaleString("en-GB") +
+              .toLocaleString(
+                "en-GB"
+              ) +
             " mapped observations";
 
         }
@@ -2540,8 +2733,12 @@
           const species =
             uniqueSorted(
               state.observations.map(
-                function (item) {
+                function (
+                  item
+                ) {
+
                   return item.name;
+
                 }
               )
             );
@@ -2550,21 +2747,29 @@
           const years =
             uniqueSorted(
               state.observations.map(
-                function (item) {
+                function (
+                  item
+                ) {
 
                   return item.observed_on
                     ? String(
                         item.observed_on
-                      ).slice(0, 4)
+                      ).slice(
+                        0,
+                        4
+                      )
                     : null;
 
                 }
               )
-            ).reverse();
+            )
+            .reverse();
 
 
           species.forEach(
-            function (name) {
+            function (
+              name
+            ) {
 
               const option =
                 document.createElement(
@@ -2589,7 +2794,9 @@
 
 
           years.forEach(
-            function (year) {
+            function (
+              year
+            ) {
 
               const option =
                 document.createElement(
@@ -2627,7 +2834,9 @@
 
           state.visible =
             state.observations.filter(
-              function (observation) {
+              function (
+                observation
+              ) {
 
                 const speciesMatch =
                   species === "all" ||
@@ -2638,7 +2847,10 @@
                   observation.observed_on
                     ? String(
                         observation.observed_on
-                      ).slice(0, 4)
+                      ).slice(
+                        0,
+                        4
+                      )
                     : "";
 
 
@@ -2677,7 +2889,9 @@
 
           archiveCountries.textContent =
             state.totalCountries
-              .toLocaleString("en-GB");
+              .toLocaleString(
+                "en-GB"
+              );
 
 
           if (
@@ -2685,6 +2899,7 @@
           ) {
 
             countryList.innerHTML = `
+
               <div
                 style="
                   grid-column:1/-1;
@@ -2695,6 +2910,7 @@
               >
                 No country data available.
               </div>
+
             `;
 
             return;
@@ -2704,9 +2920,14 @@
 
           countryList.innerHTML =
             countryEntries
-              .slice(0, 12)
+              .slice(
+                0,
+                12
+              )
               .map(
-                function (entry) {
+                function (
+                  entry
+                ) {
 
                   const country =
                     entry[0];
@@ -2723,13 +2944,19 @@
                     <div class="country-row">
 
                       <span class="country-name">
-                        ${escapeHtml(country)}
+
+                        ${escapeHtml(
+                          country
+                        )}
+
                       </span>
 
 
                       <span class="country-count">
 
-                        ${count.toLocaleString("en-GB")}
+                        ${count.toLocaleString(
+                          "en-GB"
+                        )}
 
                         ${
                           count === 1
@@ -2760,11 +2987,15 @@
             state.observations
               .slice()
               .sort(
-                function (a, b) {
+                function (
+                  a,
+                  b
+                ) {
 
                   return String(
                     b.observed_on || ""
-                  ).localeCompare(
+                  )
+                  .localeCompare(
                     String(
                       a.observed_on || ""
                     )
@@ -2772,7 +3003,10 @@
 
                 }
               )
-              .slice(0, 4);
+              .slice(
+                0,
+                4
+              );
 
 
           recentGrid.innerHTML =
@@ -2805,6 +3039,7 @@
                   const image =
                     photo
                       ? `
+
                         <img
                           class="recent-image"
                           src="${escapeHtml(photo)}"
@@ -2816,17 +3051,21 @@
                           "
                         >
 
+
                         <div
                           class="recent-placeholder"
                           style="display:none"
                         >
                           IMAGE UNAVAILABLE
                         </div>
+
                       `
                       : `
+
                         <div class="recent-placeholder">
                           NO PHOTOGRAPH
                         </div>
+
                       `;
 
 
@@ -2947,180 +3186,202 @@
         fetch(
           DATA_URL,
           {
-            cache: "no-store"
+            cache:
+              "no-store"
           }
         )
 
-          .then(
-            function (response) {
+        .then(
+          function (
+            response
+          ) {
 
-              if (!response.ok) {
+            if (
+              !response.ok
+            ) {
 
-                throw new Error(
-                  "Could not load wildlife.json"
-                );
-
-              }
-
-
-              return response.json();
+              throw new Error(
+                "Could not load wildlife.json"
+              );
 
             }
-          )
-
-          .then(
-            function (payload) {
 
 
-              state.observations =
-                Array.isArray(
-                  payload.observations
-                )
-                  ? payload.observations
-                  : [];
+            return response.json();
+
+          }
+        )
+
+        .then(
+          function (
+            payload
+          ) {
 
 
-              state.visible =
-                state.observations.slice();
+            state.observations =
+              Array.isArray(
+                payload.observations
+              )
+                ? payload.observations
+                : [];
 
 
-              state.totalObservations =
-                Number(
-                  payload.total_observations ??
-                  payload.observation_count ??
-                  state.observations.length
-                );
+            state.visible =
+              state.observations.slice();
 
 
-              state.totalSpecies =
-                Number(
-                  payload.total_species ??
-                  payload.species_count ??
-                  0
-                );
-
-
-              state.totalCountries =
-                Number(
-                  payload.total_countries ??
-                  0
-                );
-
-
-              state.mappedObservations =
-                Number(
-                  payload.mapped_observations ??
-                  state.observations.length
-                );
-
-
-              state.countryCounts =
-                (
-                  payload.country_counts &&
-                  typeof payload.country_counts === "object"
-                )
-                  ? payload.country_counts
-                  : {};
-
-
-              archiveObservations.textContent =
-                state.totalObservations
-                  .toLocaleString("en-GB");
-
-
-              archiveSpecies.textContent =
-                state.totalSpecies
-                  .toLocaleString("en-GB");
-
-
-              archiveCountries.textContent =
-                state.totalCountries
-                  .toLocaleString("en-GB");
-
-
-              populateFilters();
-
-              updateStats();
-
-              renderMarkers();
-
-              renderCountries();
-
-              renderRecentObservations();
-
-
-              loading.style.display =
-                "none";
-
-
-              setTimeout(
-                function () {
-
-                  map.invalidateSize(
-                    true
-                  );
-
-                },
-                100
+            state.totalObservations =
+              Number(
+                payload.total_observations ??
+                payload.observation_count ??
+                state.observations.length
               );
+
+
+            state.totalSpecies =
+              Number(
+                payload.total_species ??
+                payload.species_count ??
+                0
+              );
+
+
+            state.totalCountries =
+              Number(
+                payload.total_countries ??
+                0
+              );
+
+
+            state.mappedObservations =
+              Number(
+                payload.mapped_observations ??
+                state.observations.length
+              );
+
+
+            state.countryCounts =
+              (
+                payload.country_counts &&
+                typeof payload.country_counts === "object"
+              )
+                ? payload.country_counts
+                : {};
+
+
+            archiveObservations.textContent =
+              state.totalObservations
+                .toLocaleString(
+                  "en-GB"
+                );
+
+
+            archiveSpecies.textContent =
+              state.totalSpecies
+                .toLocaleString(
+                  "en-GB"
+                );
+
+
+            archiveCountries.textContent =
+              state.totalCountries
+                .toLocaleString(
+                  "en-GB"
+                );
+
+
+            populateFilters();
+
+            updateStats();
+
+            renderMarkers();
+
+            renderCountries();
+
+            renderRecentObservations();
+
+
+            loading.style.display =
+              "none";
+
+
+            setTimeout(
+              function () {
+
+                map.invalidateSize(
+                  true
+                );
+
+              },
+              100
+            );
+
+
+            if (
+              payload.generated_at
+            ) {
+
+              const generated =
+                new Date(
+                  payload.generated_at
+                );
 
 
               if (
-                payload.generated_at
+                !Number.isNaN(
+                  generated.getTime()
+                )
               ) {
 
-                const generated =
-                  new Date(
-                    payload.generated_at
-                  );
+                status.textContent =
+                  "Updated " +
+                  generated.toLocaleDateString(
+                    "en-GB",
+                    {
+                      day:
+                        "numeric",
 
+                      month:
+                        "short",
 
-                if (
-                  !Number.isNaN(
-                    generated.getTime()
-                  )
-                ) {
-
-                  status.textContent =
-                    "Updated " +
-                    generated.toLocaleDateString(
-                      "en-GB",
-                      {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric"
-                      }
+                      year:
+                        "numeric"
+                    }
+                  ) +
+                  " · " +
+                  state.mappedObservations
+                    .toLocaleString(
+                      "en-GB"
                     ) +
-                    " · " +
-                    state.mappedObservations
-                      .toLocaleString("en-GB") +
-                    " mapped";
-
-                }
+                  " mapped";
 
               }
 
             }
-          )
 
-          .catch(
-            function (error) {
+          }
+        )
 
-              console.error(
-                "Wildlife data error:",
-                error
-              );
+        .catch(
+          function (
+            error
+          ) {
+
+            console.error(
+              "Wildlife data error:",
+              error
+            );
 
 
-              loading.textContent =
-                "Could not load wildlife data";
+            loading.textContent =
+              "Could not load wildlife data";
 
 
-              status.textContent =
-                "Data unavailable";
+            status.textContent =
+              "Data unavailable";
 
-            }
-          );
+          }
+        );
 
       }
 
