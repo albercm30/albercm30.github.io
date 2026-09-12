@@ -66,7 +66,7 @@ def extract_coordinates(
         ):
             pass
 
-    # Fallback for responses that don't include geojson
+
     location = observation.get("location")
 
     if (
@@ -76,8 +76,7 @@ def extract_coordinates(
         try:
             latitude, longitude = [
                 float(value.strip())
-                for value
-                in location.split(",")[:2]
+                for value in location.split(",")[:2]
             ]
 
             return (
@@ -91,16 +90,13 @@ def extract_coordinates(
         ):
             pass
 
+
     return None, None
 
 
 def extract_country(
     observation: dict[str, Any]
 ) -> str | None:
-
-    # This is the important fix.
-    # iNaturalist provides the country containing
-    # the observation coordinates directly.
 
     country = (
         observation.get(
@@ -115,22 +111,20 @@ def extract_country(
         return country.strip()
 
 
-    # Fallback using the place object if available.
-
     place = (
         observation.get("place")
         or {}
     )
 
-    country = (
+    display_name = (
         place.get("display_name")
     )
 
     if (
-        isinstance(country, str)
-        and country.strip()
+        isinstance(display_name, str)
+        and display_name.strip()
     ):
-        return country.strip()
+        return display_name.strip()
 
 
     return None
@@ -148,13 +142,12 @@ def extract_photo_url(
     if not photos:
         return None
 
+
     first_photo = (
         photos[0]
         or {}
     )
 
-
-    # Prefer the highest quality URL.
 
     for key in (
         "original_url",
@@ -177,21 +170,42 @@ def extract_photo_url(
     return None
 
 
-def get_species_name(
+def get_taxon_names(
     observation: dict[str, Any]
-) -> str:
+) -> tuple[str, str | None]:
 
     taxon = (
         observation.get("taxon")
         or {}
     )
 
-    return (
+
+    scientific_name = (
         taxon.get("name")
         or observation.get(
             "species_guess"
         )
         or "Unidentified organism"
+    )
+
+
+    common_name = (
+        taxon.get(
+            "preferred_common_name"
+        )
+    )
+
+
+    if (
+        not isinstance(common_name, str)
+        or not common_name.strip()
+    ):
+        common_name = None
+
+
+    return (
+        scientific_name,
+        common_name
     )
 
 
@@ -213,21 +227,20 @@ def normalize_observation(
         return None
 
 
-    taxon = (
-        observation.get("taxon")
-        or {}
-    )
-
-
-    species = get_species_name(
-        observation
-    )
-
-
-    common_name = (
-        taxon.get(
-            "preferred_common_name"
+    scientific_name, common_name = (
+        get_taxon_names(
+            observation
         )
+    )
+
+
+    # Use the common name as the main display name.
+    # Fall back to scientific name when iNaturalist
+    # has no common name.
+
+    display_name = (
+        common_name
+        or scientific_name
     )
 
 
@@ -243,27 +256,27 @@ def normalize_observation(
     )
 
 
-    country = extract_country(
-        observation
-    )
-
-
     return {
 
         "id":
             observation_id,
 
-        "species":
-            species,
+        "name":
+            display_name,
 
         "common_name":
             common_name,
+
+        "scientific_name":
+            scientific_name,
 
         "place_guess":
             place_guess,
 
         "country":
-            country,
+            extract_country(
+                observation
+            ),
 
         "observed_on":
             observation.get(
@@ -362,7 +375,6 @@ def main() -> int:
 
     total_observations_seen = 0
 
-
     page = 1
 
 
@@ -404,19 +416,21 @@ def main() -> int:
             total_observations_seen += 1
 
 
-            # Count species across ALL observations,
-            # including observations without coordinates.
-
-            species = get_species_name(
-                raw
+            scientific_name, common_name = (
+                get_taxon_names(
+                    raw
+                )
             )
+
+
+            # Species archive uses scientific identity
+            # so two observations of the same species
+            # still count as one species.
 
             all_species.add(
-                species
+                scientific_name
             )
 
-
-            # Count countries across ALL observations.
 
             country = extract_country(
                 raw
@@ -434,9 +448,6 @@ def main() -> int:
                 )
 
 
-            # Only observations with public coordinates
-            # are put on the map.
-
             normalized = (
                 normalize_observation(
                     raw
@@ -451,15 +462,6 @@ def main() -> int:
                 )
 
 
-        # IMPORTANT:
-        #
-        # The API response can contain up to 200 results.
-        # We continue until a page returns fewer than
-        # PER_PAGE results.
-        #
-        # This guarantees that page 2 is fetched when
-        # you have 255 observations.
-
         if len(results) < PER_PAGE:
 
             break
@@ -472,8 +474,6 @@ def main() -> int:
             REQUEST_DELAY_SECONDS
         )
 
-
-    # Remove possible duplicate observations.
 
     unique_by_id = {}
 
@@ -506,8 +506,6 @@ def main() -> int:
 
     )
 
-
-    # Sort countries by number of observations.
 
     sorted_country_counts = dict(
         sorted(
@@ -552,7 +550,7 @@ def main() -> int:
             sorted_country_counts,
 
         "observations":
-            mapped_observations,
+            mapped_observations
 
     }
 
@@ -577,60 +575,22 @@ def main() -> int:
 
 
     print()
-
-    print(
-        "================================"
-    )
-
-    print(
-        "Dataset built successfully."
-    )
-
-    print(
-        "================================"
-    )
-
+    print("Dataset built successfully.")
     print(
         "Total observations:",
         total_observations_seen
     )
-
     print(
         "Total species:",
         len(all_species)
     )
-
     print(
         "Total countries:",
         len(sorted_country_counts)
     )
-
     print(
         "Mapped observations:",
         len(mapped_observations)
-    )
-
-    print()
-
-    print(
-        "Countries:"
-    )
-
-
-    for country, count in (
-        sorted_country_counts.items()
-    ):
-
-        print(
-            f"  {country}: {count}"
-        )
-
-
-    print()
-
-    print(
-        "Output:",
-        OUTPUT_FILE
     )
 
 
