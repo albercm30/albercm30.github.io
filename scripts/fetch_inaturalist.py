@@ -29,142 +29,6 @@ REQUEST_DELAY_SECONDS = 1.05
 MAX_PAGES = 100
 
 
-# Common country names likely to appear in
-# iNaturalist place_guess strings.
-COUNTRIES = {
-    "Afghanistan",
-    "Albania",
-    "Algeria",
-    "Andorra",
-    "Angola",
-    "Argentina",
-    "Armenia",
-    "Australia",
-    "Austria",
-    "Bahamas",
-    "Bangladesh",
-    "Belgium",
-    "Belize",
-    "Bolivia",
-    "Bosnia and Herzegovina",
-    "Botswana",
-    "Brazil",
-    "Bulgaria",
-    "Cambodia",
-    "Cameroon",
-    "Canada",
-    "Cape Verde",
-    "Chile",
-    "China",
-    "Colombia",
-    "Costa Rica",
-    "Croatia",
-    "Cuba",
-    "Cyprus",
-    "Czechia",
-    "Denmark",
-    "Dominican Republic",
-    "Ecuador",
-    "Egypt",
-    "Estonia",
-    "Eswatini",
-    "Ethiopia",
-    "Fiji",
-    "Finland",
-    "France",
-    "Gabon",
-    "Georgia",
-    "Germany",
-    "Ghana",
-    "Greece",
-    "Guatemala",
-    "Guyana",
-    "Honduras",
-    "Hungary",
-    "Iceland",
-    "India",
-    "Indonesia",
-    "Ireland",
-    "Israel",
-    "Italy",
-    "Jamaica",
-    "Japan",
-    "Jordan",
-    "Kenya",
-    "Laos",
-    "Latvia",
-    "Lebanon",
-    "Lithuania",
-    "Luxembourg",
-    "Madagascar",
-    "Malaysia",
-    "Maldives",
-    "Malta",
-    "Mauritius",
-    "Mexico",
-    "Moldova",
-    "Monaco",
-    "Mongolia",
-    "Montenegro",
-    "Morocco",
-    "Mozambique",
-    "Myanmar",
-    "Namibia",
-    "Nepal",
-    "Netherlands",
-    "New Zealand",
-    "Nicaragua",
-    "Nigeria",
-    "North Macedonia",
-    "Norway",
-    "Oman",
-    "Pakistan",
-    "Panama",
-    "Papua New Guinea",
-    "Paraguay",
-    "Peru",
-    "Philippines",
-    "Poland",
-    "Portugal",
-    "Romania",
-    "Rwanda",
-    "Senegal",
-    "Serbia",
-    "Seychelles",
-    "Singapore",
-    "Slovakia",
-    "Slovenia",
-    "South Africa",
-    "South Korea",
-    "South Sudan",
-    "Spain",
-    "Sri Lanka",
-    "Sudan",
-    "Suriname",
-    "Sweden",
-    "Switzerland",
-    "Taiwan",
-    "Tanzania",
-    "Thailand",
-    "Togo",
-    "Trinidad and Tobago",
-    "Tunisia",
-    "Turkey",
-    "Uganda",
-    "Ukraine",
-    "United Arab Emirates",
-    "United Kingdom",
-    "United States",
-    "Uruguay",
-    "Uzbekistan",
-    "Vanuatu",
-    "Venezuela",
-    "Vietnam",
-    "Zambia",
-    "Zimbabwe",
-}
-
-
 def extract_coordinates(
     observation: dict[str, Any]
 ) -> tuple[float | None, float | None]:
@@ -202,9 +66,8 @@ def extract_coordinates(
         ):
             pass
 
-    location = (
-        observation.get("location")
-    )
+    # Fallback for responses that don't include geojson
+    location = observation.get("location")
 
     if (
         isinstance(location, str)
@@ -212,8 +75,9 @@ def extract_coordinates(
     ):
         try:
             latitude, longitude = [
-                float(value)
-                for value in location.split(",")[:2]
+                float(value.strip())
+                for value
+                in location.split(",")[:2]
             ]
 
             return (
@@ -231,49 +95,43 @@ def extract_coordinates(
 
 
 def extract_country(
-    place_guess: str | None
+    observation: dict[str, Any]
 ) -> str | None:
 
-    if not place_guess:
-        return None
+    # This is the important fix.
+    # iNaturalist provides the country containing
+    # the observation coordinates directly.
 
-    parts = [
-        part.strip()
-        for part in place_guess.split(",")
-    ]
+    country = (
+        observation.get(
+            "place_country_name"
+        )
+    )
 
-    # Search from right to left because country
-    # is normally the final element.
-    for part in reversed(parts):
+    if (
+        isinstance(country, str)
+        and country.strip()
+    ):
+        return country.strip()
 
-        for country in COUNTRIES:
 
-            if part.lower() == country.lower():
+    # Fallback using the place object if available.
 
-                return country
+    place = (
+        observation.get("place")
+        or {}
+    )
 
-    # Handle common English / Spanish variants.
-    normalized = place_guess.lower()
+    country = (
+        place.get("display_name")
+    )
 
-    aliases = {
-        "españa": "Spain",
-        "italia": "Italy",
-        "francia": "France",
-        "alemania": "Germany",
-        "australia": "Australia",
-        "vietnam": "Vietnam",
-        "tailandia": "Thailand",
-        "méxico": "Mexico",
-        "mexico": "Mexico",
-        "indonesia": "Indonesia",
-        "nueva zelanda": "New Zealand",
-    }
+    if (
+        isinstance(country, str)
+        and country.strip()
+    ):
+        return country.strip()
 
-    for alias, country in aliases.items():
-
-        if alias in normalized:
-
-            return country
 
     return None
 
@@ -295,7 +153,9 @@ def extract_photo_url(
         or {}
     )
 
-    # Prefer the highest quality image available.
+
+    # Prefer the highest quality URL.
+
     for key in (
         "original_url",
         "large_url",
@@ -311,8 +171,8 @@ def extract_photo_url(
             isinstance(candidate, str)
             and candidate.strip()
         ):
-
             return candidate
+
 
     return None
 
@@ -345,20 +205,24 @@ def normalize_observation(
         )
     )
 
+
     if (
         latitude is None
         or longitude is None
     ):
         return None
 
+
     taxon = (
         observation.get("taxon")
         or {}
     )
 
+
     species = get_species_name(
         observation
     )
+
 
     common_name = (
         taxon.get(
@@ -366,15 +230,23 @@ def normalize_observation(
         )
     )
 
+
     observation_id = (
         observation.get("id")
     )
+
 
     place_guess = (
         observation.get(
             "place_guess"
         )
     )
+
+
+    country = extract_country(
+        observation
+    )
+
 
     return {
 
@@ -391,9 +263,7 @@ def normalize_observation(
             place_guess,
 
         "country":
-            extract_country(
-                place_guess
-            ),
+            country,
 
         "observed_on":
             observation.get(
@@ -446,19 +316,23 @@ def fetch_page(
 
         "verifiable":
             "any",
+
     }
+
 
     response = session.get(
         API_URL,
         params=params,
-        timeout=30,
+        timeout=30
     )
+
 
     if response.status_code == 429:
 
         raise RuntimeError(
             "iNaturalist returned HTTP 429."
         )
+
 
     response.raise_for_status()
 
@@ -467,9 +341,8 @@ def fetch_page(
 
 def main() -> int:
 
-    session = (
-        requests.Session()
-    )
+    session = requests.Session()
+
 
     session.headers.update({
 
@@ -485,9 +358,10 @@ def main() -> int:
 
     all_species = set()
 
-    all_countries = set()
+    country_counts = {}
 
     total_observations_seen = 0
+
 
     page = 1
 
@@ -510,46 +384,58 @@ def main() -> int:
         )
 
 
-        raw_results = (
+        results = (
             payload.get("results")
             or []
         )
 
 
-        if not raw_results:
+        if not results:
             break
 
 
-        for raw in raw_results:
+        print(
+            f"  Received {len(results)} observations."
+        )
+
+
+        for raw in results:
 
             total_observations_seen += 1
 
 
+            # Count species across ALL observations,
+            # including observations without coordinates.
+
+            species = get_species_name(
+                raw
+            )
+
             all_species.add(
-                get_species_name(
-                    raw
-                )
+                species
             )
 
 
-            place_guess = (
-                raw.get(
-                    "place_guess"
-                )
-            )
-
+            # Count countries across ALL observations.
 
             country = extract_country(
-                place_guess
+                raw
             )
 
 
             if country:
 
-                all_countries.add(
-                    country
+                country_counts[country] = (
+                    country_counts.get(
+                        country,
+                        0
+                    )
+                    + 1
                 )
 
+
+            # Only observations with public coordinates
+            # are put on the map.
 
             normalized = (
                 normalize_observation(
@@ -565,15 +451,17 @@ def main() -> int:
                 )
 
 
-        total_pages = int(
-            payload.get(
-                "total_pages"
-            )
-            or page
-        )
+        # IMPORTANT:
+        #
+        # The API response can contain up to 200 results.
+        # We continue until a page returns fewer than
+        # PER_PAGE results.
+        #
+        # This guarantees that page 2 is fetched when
+        # you have 255 observations.
 
+        if len(results) < PER_PAGE:
 
-        if page >= total_pages:
             break
 
 
@@ -585,14 +473,23 @@ def main() -> int:
         )
 
 
+    # Remove possible duplicate observations.
+
     unique_by_id = {}
 
 
     for observation in mapped_observations:
 
-        unique_by_id[
-            observation["id"]
-        ] = observation
+        observation_id = (
+            observation.get("id")
+        )
+
+
+        if observation_id is not None:
+
+            unique_by_id[
+                observation_id
+            ] = observation
 
 
     mapped_observations = sorted(
@@ -607,6 +504,18 @@ def main() -> int:
 
         reverse=True
 
+    )
+
+
+    # Sort countries by number of observations.
+
+    sorted_country_counts = dict(
+        sorted(
+            country_counts.items(),
+            key=lambda item:
+                item[1],
+            reverse=True
+        )
     )
 
 
@@ -630,13 +539,21 @@ def main() -> int:
             len(all_species),
 
         "total_countries":
-            len(all_countries),
+            len(
+                sorted_country_counts
+            ),
 
         "mapped_observations":
-            len(mapped_observations),
+            len(
+                mapped_observations
+            ),
+
+        "country_counts":
+            sorted_country_counts,
 
         "observations":
             mapped_observations,
+
     }
 
 
@@ -662,7 +579,15 @@ def main() -> int:
     print()
 
     print(
+        "================================"
+    )
+
+    print(
         "Dataset built successfully."
+    )
+
+    print(
+        "================================"
     )
 
     print(
@@ -677,13 +602,31 @@ def main() -> int:
 
     print(
         "Total countries:",
-        len(all_countries)
+        len(sorted_country_counts)
     )
 
     print(
         "Mapped observations:",
         len(mapped_observations)
     )
+
+    print()
+
+    print(
+        "Countries:"
+    )
+
+
+    for country, count in (
+        sorted_country_counts.items()
+    ):
+
+        print(
+            f"  {country}: {count}"
+        )
+
+
+    print()
 
     print(
         "Output:",
