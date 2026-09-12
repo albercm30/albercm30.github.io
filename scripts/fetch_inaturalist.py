@@ -42,14 +42,11 @@ def extract_coordinates(
         geojson.get("coordinates")
     )
 
-
     if (
         isinstance(coordinates, list)
         and len(coordinates) >= 2
     ):
-
         try:
-
             longitude = float(
                 coordinates[0]
             )
@@ -67,7 +64,6 @@ def extract_coordinates(
             TypeError,
             ValueError
         ):
-
             pass
 
 
@@ -75,14 +71,11 @@ def extract_coordinates(
         observation.get("location")
     )
 
-
     if (
         isinstance(location, str)
         and "," in location
     ):
-
         try:
-
             latitude, longitude = [
                 float(value)
                 for value in location.split(",")[:2]
@@ -97,7 +90,6 @@ def extract_coordinates(
             TypeError,
             ValueError
         ):
-
             pass
 
 
@@ -113,7 +105,6 @@ def extract_photo_url(
         or []
     )
 
-
     if not photos:
         return None
 
@@ -124,17 +115,24 @@ def extract_photo_url(
     )
 
 
-    url = (
-        first_photo.get("url")
-    )
-
-
-    if (
-        isinstance(url, str)
-        and url
+    # Prefer the highest quality URL supplied by iNaturalist.
+    for key in (
+        "original_url",
+        "large_url",
+        "medium_url",
+        "url"
     ):
 
-        return url
+        candidate = (
+            first_photo.get(key)
+        )
+
+        if (
+            isinstance(candidate, str)
+            and candidate.strip()
+        ):
+
+            return candidate
 
 
     return None
@@ -150,12 +148,10 @@ def normalize_observation(
         )
     )
 
-
     if (
         latitude is None
         or longitude is None
     ):
-
         return None
 
 
@@ -448,12 +444,6 @@ def main() -> int:
     print(
         "Species:",
         payload["species_count"]
-    )
-
-
-    print(
-        "Output:",
-        OUTPUT_FILE
     )
 
 
