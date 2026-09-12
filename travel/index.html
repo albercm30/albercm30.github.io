@@ -64,19 +64,44 @@
 
 
     /* =====================================================
-       COUNTRY ARCHIVE
-       Keep the original card system.
+       COUNTRY ARCHIVE — COMPLETE GRID BORDERS
     ====================================================== */
-
+    
     .destinations {
-      min-width: 0;
-      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0 !important;
+    
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    
+      overflow: hidden;
     }
-
+    
     .destination {
       min-width: 0;
       width: 100%;
       box-sizing: border-box;
+    
+      border-right: 1px solid var(--line) !important;
+      border-bottom: 1px solid var(--line) !important;
+    
+      border-top: 0 !important;
+      border-left: 0 !important;
+    
+      padding: 28px 24px !important;
+    
+      text-decoration: none;
+    }
+    
+    .destination:hover {
+      background: rgba(64, 87, 59, 0.025);
+    }
+    
+    .destination:hover h3 {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
     }
 
 
