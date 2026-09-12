@@ -2015,7 +2015,17 @@
         function createPopup(
           observation
         ) {
+          
+          const name =
+            observation.name ||
+            "Unidentified organism";
 
+          
+          const scientific =
+            observation.scientific_name ||
+            "";
+
+          
           const species =
             observation.species ||
             "Unidentified organism";
@@ -2083,14 +2093,20 @@
               <div class="obs-popup-body">
 
                 <h3 class="obs-popup-species">
-                  ${escapeHtml(species)}
+                  ${escapeHtml(name)}
                 </h3>
 
                 ${
-                  common
+                  scientific && scientific !== name
                     ? `
-                      <p class="obs-popup-common">
-                        ${escapeHtml(common)}
+                      <p
+                        class="obs-popup-common"
+                        style="
+                          font-style:italic;
+                          margin-top:6px;
+                        "
+                      >
+                        ${escapeHtml(scientific)}
                       </p>
                     `
                     : ""
