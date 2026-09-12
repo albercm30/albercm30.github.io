@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from __future__ import annotations
 
 import json
@@ -87,8 +85,7 @@ def extract_coordinates(
 
             latitude, longitude = [
                 float(value)
-                for value
-                in location.split(",")[:2]
+                for value in location.split(",")[:2]
             ]
 
             return (
@@ -140,25 +137,6 @@ def extract_photo_url(
         return url
 
 
-    for key in (
-        "medium_url",
-        "large_url",
-        "original_url"
-    ):
-
-        candidate = (
-            first_photo.get(key)
-        )
-
-
-        if (
-            isinstance(candidate, str)
-            and candidate
-        ):
-
-            return candidate
-
-
     return None
 
 
@@ -189,31 +167,18 @@ def normalize_observation(
 
     species = (
         taxon.get("name")
-        or observation.get("species_guess")
+        or observation.get(
+            "species_guess"
+        )
         or "Unidentified organism"
     )
 
 
-    common_name = None
-
-    preferred_common_name = (
+    common_name = (
         taxon.get(
             "preferred_common_name"
         )
     )
-
-
-    if (
-        isinstance(
-            preferred_common_name,
-            str
-        )
-        and preferred_common_name
-    ):
-
-        common_name = (
-            preferred_common_name
-        )
 
 
     observation_id = (
@@ -223,11 +188,14 @@ def normalize_observation(
 
     return {
 
-        "id": observation_id,
+        "id":
+            observation_id,
 
-        "species": species,
+        "species":
+            species,
 
-        "common_name": common_name,
+        "common_name":
+            common_name,
 
         "place_guess":
             observation.get(
@@ -257,6 +225,7 @@ def normalize_observation(
                 else
                 "https://www.inaturalist.org/"
             )
+
     }
 
 
@@ -283,7 +252,7 @@ def fetch_page(
             "desc",
 
         "verifiable":
-            "any",
+            "any"
 
     }
 
@@ -298,8 +267,7 @@ def fetch_page(
     if response.status_code == 429:
 
         raise RuntimeError(
-            "iNaturalist returned HTTP 429. "
-            "Wait and rerun the script."
+            "iNaturalist returned HTTP 429."
         )
 
 
@@ -338,7 +306,7 @@ def main() -> int:
     while page <= MAX_PAGES:
 
         print(
-            f"  Fetching page {page}..."
+            f"Fetching page {page}..."
         )
 
 
@@ -388,12 +356,14 @@ def main() -> int:
 
         page += 1
 
+
         time.sleep(
             REQUEST_DELAY_SECONDS
         )
 
 
     unique_by_id = {}
+
 
     for observation in observations:
 
@@ -407,7 +377,9 @@ def main() -> int:
         unique_by_id.values(),
 
         key=lambda item:
-            item.get("observed_on")
+            item.get(
+                "observed_on"
+            )
             or "",
 
         reverse=True
@@ -438,7 +410,7 @@ def main() -> int:
             }),
 
         "observations":
-            observations,
+            observations
 
     }
 
@@ -462,24 +434,25 @@ def main() -> int:
         )
 
 
-    print()
-
     print(
         "Dataset built successfully."
     )
 
+
     print(
-        "  Observations with coordinates:",
+        "Observations with coordinates:",
         len(observations)
     )
 
+
     print(
-        "  Species:",
+        "Species:",
         payload["species_count"]
     )
 
+
     print(
-        "  Output:",
+        "Output:",
         OUTPUT_FILE
     )
 
