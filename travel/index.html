@@ -4,6 +4,7 @@
 <head>
 
   <meta charset="utf-8">
+
   <meta
     name="viewport"
     content="width=device-width,initial-scale=1"
@@ -28,21 +29,122 @@
   <style>
 
     /* =====================================================
-       TRAVEL MAP
+       TRAVEL PAGE
     ====================================================== */
 
+    .travel-page .page-hero {
+      padding-bottom: 55px;
+    }
+
+    .travel-page .intro {
+      max-width: 650px;
+    }
+
+
+    /* =====================================================
+       STATS
+    ====================================================== */
+
+    .travel-stats {
+      margin-top: 0;
+      margin-bottom: 55px;
+    }
+
+
+    /* =====================================================
+       MAP
+    ====================================================== */
+
+    .map-section {
+      padding-top: 25px !important;
+      padding-bottom: 55px !important;
+    }
+
+    .map-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      align-items: end;
+      gap: 50px;
+      margin-bottom: 22px;
+    }
+
+    .map-heading h2 {
+      margin-bottom: 0;
+    }
+
+    .map-heading .section-note {
+      margin-bottom: 4px;
+    }
+
     .travel-map {
-      margin-top: 20px;
       border: 1px solid var(--line);
-      background: #eee;
       overflow: hidden;
+      background: #e6ebe3;
+      height: 510px;
     }
 
     .travel-map iframe {
       width: 100%;
-      height: 520px;
+      height: 100%;
       border: 0;
       display: block;
+    }
+
+
+    /* =====================================================
+       COUNTRY ARCHIVE
+    ====================================================== */
+
+    .country-section {
+      padding-top: 55px !important;
+      padding-bottom: 65px !important;
+    }
+
+    .country-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      align-items: end;
+      gap: 50px;
+      margin-bottom: 28px;
+    }
+
+    .country-heading h2 {
+      margin-bottom: 0;
+    }
+
+    .destinations {
+      gap: 0 !important;
+      border-top: 1px solid var(--line);
+    }
+
+    .destination {
+      padding: 25px 0 27px !important;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 100px minmax(180px, 1fr) minmax(220px, 1.1fr);
+      column-gap: 25px;
+      align-items: baseline;
+    }
+
+    .destination .micro {
+      grid-column: 1;
+    }
+
+    .destination h3 {
+      grid-column: 2;
+      margin: 0;
+    }
+
+    .destination > p:first-of-type {
+      grid-column: 3;
+      margin: 0 !important;
+    }
+
+    .destination > p:last-of-type {
+      grid-column: 2 / 4;
+      margin: 8px 0 0 !important;
+      color: var(--soft);
+      max-width: 700px;
     }
 
 
@@ -50,38 +152,57 @@
        BUCKET LIST
     ====================================================== */
 
+    .bucket-section {
+      padding-top: 70px !important;
+      padding-bottom: 90px !important;
+      background: #edf0e9;
+    }
+
+    .bucket-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      align-items: end;
+      gap: 50px;
+      margin-bottom: 35px;
+    }
+
+    .bucket-heading h2 {
+      margin-bottom: 0;
+    }
+
     .bucket-summary {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      gap: 30px;
-      margin-bottom: 45px;
+      gap: 40px;
+      padding: 24px 0 28px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
 
     .bucket-number {
       font-family: var(--serif);
-      font-size: clamp(54px, 8vw, 100px);
-      line-height: .9;
+      font-size: clamp(54px, 8vw, 92px);
+      line-height: .85;
       letter-spacing: -3px;
     }
 
     .bucket-number small {
       font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: 1.5px;
+      font-size: 11px;
+      letter-spacing: 1px;
       color: var(--soft);
     }
 
     .bucket-progress {
-      width: 280px;
-      max-width: 100%;
+      width: 270px;
     }
 
     .bucket-progress-bar {
       height: 5px;
-      background: #d8ddd5;
+      background: #d5dbd1;
       overflow: hidden;
-      margin-top: 12px;
+      margin-top: 11px;
     }
 
     .bucket-progress-fill {
@@ -92,9 +213,7 @@
     }
 
     .bucket-category {
-      border-top: 1px solid var(--line);
-      margin-top: 40px;
-      padding-top: 30px;
+      margin-top: 45px;
     }
 
     .bucket-category-title {
@@ -102,21 +221,22 @@
       align-items: baseline;
       justify-content: space-between;
       gap: 20px;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
 
     .bucket-category-title h3 {
       margin: 0;
       font-family: var(--serif);
-      font-size: 34px;
+      font-size: 32px;
       font-weight: 400;
+      letter-spacing: -.7px;
     }
 
     .bucket-category-title span {
       font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 1px;
+      font-size: 10px;
       color: var(--soft);
+      letter-spacing: 1px;
       text-transform: uppercase;
     }
 
@@ -126,59 +246,52 @@
 
     .bucket-item {
       display: grid;
-      grid-template-columns: 52px 28px 1fr;
-      gap: 18px;
+      grid-template-columns: 55px 28px minmax(0, 1fr);
       align-items: center;
+      gap: 17px;
+      padding: 14px 0;
       border-bottom: 1px solid var(--line);
-      padding: 16px 4px;
-    }
-
-    .bucket-check {
-      width: 22px;
-      height: 22px;
-      border: 1px solid var(--soft);
-      display: grid;
-      place-items: center;
-      color: transparent;
-      flex-shrink: 0;
-    }
-
-    .bucket-check.is-complete {
-      background: var(--green);
-      border-color: var(--green);
-      color: white;
-      font-size: 13px;
-    }
-
-    .bucket-item.done .bucket-title {
-      text-decoration: line-through;
-      opacity: .55;
     }
 
     .bucket-index {
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 10px;
       color: var(--soft);
     }
 
+    .bucket-check {
+      width: 20px;
+      height: 20px;
+      border: 1px solid var(--soft);
+      display: grid;
+      place-items: center;
+      color: transparent;
+      font-size: 12px;
+    }
+
+    .bucket-check.is-complete {
+      color: white;
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .bucket-item.done .bucket-title {
+      opacity: .5;
+      text-decoration: line-through;
+      text-decoration-thickness: 1px;
+    }
+
     .bucket-title {
-      font-size: 16px;
-      transition: opacity .2s ease;
+      font-size: 15px;
     }
 
 
     /* =====================================================
-       COUNTRY CARDS
+       CONTACT
     ====================================================== */
 
-    .destination {
-      text-decoration: none;
-    }
-
-    .destination:hover h3 {
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 4px;
+    .travel-contact {
+      margin-top: 0;
     }
 
 
@@ -186,23 +299,58 @@
        RESPONSIVE
     ====================================================== */
 
-    @media (max-width: 700px) {
+    @media (max-width: 850px) {
+
+      .map-heading,
+      .country-heading,
+      .bucket-heading {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .destination {
+        grid-template-columns: 70px 1fr;
+        gap: 8px 20px;
+      }
+
+      .destination .micro {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .destination h3 {
+        grid-column: 2;
+      }
+
+      .destination > p:first-of-type {
+        grid-column: 2;
+      }
+
+      .destination > p:last-of-type {
+        grid-column: 2;
+      }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+      .travel-map {
+        height: 400px;
+      }
 
       .bucket-summary {
         display: block;
       }
 
       .bucket-progress {
-        margin-top: 25px;
         width: 100%;
+        margin-top: 25px;
       }
 
       .bucket-item {
-        grid-template-columns: 30px 28px 1fr;
-      }
-
-      .travel-map iframe {
-        height: 420px;
+        grid-template-columns: 38px 25px 1fr;
+        gap: 12px;
       }
 
     }
@@ -212,7 +360,7 @@
 </head>
 
 
-<body>
+<body class="travel-page">
 
 <div id="nav"></div>
 
@@ -230,13 +378,13 @@
     </p>
 
     <h1 class="page-title">
-      Places that became<br>
-      <em>memories.</em>
+      I don't collect countries.<br>
+      <em>I collect encounters.</em>
     </h1>
 
     <p class="intro">
-      A growing archive of trips, countries, routes and experiences —
-      from jungle trails and volcanoes to some of the world's richest oceans.
+      A growing archive of wildlife, oceans, mountains, long roads
+      and the places that became memories.
     </p>
 
   </div>
@@ -248,7 +396,7 @@
      STATS
 ====================================================== -->
 
-<section class="section shell" style="padding-top:20px">
+<section class="section shell travel-stats">
 
   <div class="stats reveal">
 
@@ -286,12 +434,9 @@
      MAP
 ====================================================== -->
 
-<section
-  class="section shell"
-  style="padding-top:35px;padding-bottom:35px"
->
+<section class="section shell map-section">
 
-  <div class="section-head">
+  <div class="map-heading">
 
     <div>
 
@@ -331,9 +476,9 @@
      COUNTRY ARCHIVE
 ====================================================== -->
 
-<section class="section shell">
+<section class="section shell country-section">
 
-  <div class="section-head">
+  <div class="country-heading">
 
     <div>
 
@@ -349,13 +494,14 @@
     </div>
 
     <p class="section-note">
-      Click into a country for the route, story, highlights and photographs.
+      Routes, reasons for going, wildlife, diving and photographs.
     </p>
 
   </div>
 
 
   <div class="destinations">
+
 
     <a
       class="destination reveal"
@@ -374,7 +520,7 @@
         Wildlife · Diving · Road trips
       </p>
 
-      <p style="margin-top:8px">
+      <p>
         Tropical forests, the Great Barrier Reef and unforgettable wildlife encounters.
       </p>
 
@@ -398,7 +544,7 @@
         Borneo · Rainforest · Orangutans
       </p>
 
-      <p style="margin-top:8px">
+      <p>
         Rainforest, islands and some of Southeast Asia's richest wildlife.
       </p>
 
@@ -422,7 +568,7 @@
         Acatenango · Volcanoes · Adventure
       </p>
 
-      <p style="margin-top:8px">
+      <p>
         Volcanoes, highland landscapes and an unforgettable ascent of Acatenango.
       </p>
 
@@ -446,7 +592,7 @@
         Sharks · Mobulas · Sea lions
       </p>
 
-      <p style="margin-top:8px">
+      <p>
         Baja California, marine megafauna and the Yucatán.
       </p>
 
@@ -470,7 +616,7 @@
         Diving · Jungle · Elephants
       </p>
 
-      <p style="margin-top:8px">
+      <p>
         A mix of terrestrial and underwater wildlife exploration.
       </p>
 
@@ -494,7 +640,7 @@
         Mountains · Road trip · Wildlife
       </p>
 
-      <p style="margin-top:8px">
+      <p>
         Northern mountains, countryside, caves and the south.
       </p>
 
@@ -518,7 +664,7 @@
         Mountains · Road trip · Alpine
       </p>
 
-      <p style="margin-top:8px">
+      <p>
         A South Island road trip built around alpine landscapes and long hikes.
       </p>
 
@@ -542,11 +688,12 @@
         Dolomites · Hiking · Lakes
       </p>
 
-      <p style="margin-top:8px">
+      <p>
         A hiking-focused journey through the Dolomites.
       </p>
 
     </a>
+
 
   </div>
 
@@ -557,98 +704,102 @@
      BUCKET LIST
 ====================================================== -->
 
-<section class="section shell">
+<section class="bucket-section">
 
-  <div class="section-head">
+  <div class="shell">
 
-    <div>
+    <div class="bucket-heading">
 
-      <p class="eyebrow">
-        THE BUCKET LIST
+      <div>
+
+        <p class="eyebrow">
+          THE BUCKET LIST
+        </p>
+
+        <h2>
+          Things worth<br>
+          <em>crossing an ocean for.</em>
+        </h2>
+
+      </div>
+
+      <p class="section-note">
+        Wildlife encounters, adventures, places, milestones
+        and slightly unreasonable plans.
       </p>
-
-      <h2>
-        Things worth<br>
-        <em>crossing an ocean for.</em>
-      </h2>
 
     </div>
 
-    <p class="section-note">
-      A personal list of places, wildlife encounters, adventures,
-      milestones and slightly unreasonable plans.
-    </p>
 
-  </div>
+    <div class="bucket-summary">
 
+      <div>
 
-  <div class="bucket-summary">
+        <div class="bucket-number">
 
-    <div>
-
-      <div class="bucket-number">
-
-        <span id="bucket-completed">
-          0
-        </span>
-
-        <small>
-          /
-          <span id="bucket-total">
+          <span id="bucket-completed">
             0
           </span>
-          completed
-        </small>
 
-      </div>
+          <small>
+            /
+            <span id="bucket-total">
+              0
+            </span>
+            completed
+          </small>
 
-      <p
-        class="micro"
-        style="margin-top:15px"
-      >
-        PERSONAL TRAVEL ARCHIVE · UPDATED BY ME
-      </p>
+        </div>
 
-    </div>
-
-
-    <div class="bucket-progress">
-
-      <div
-        style="
-          display:flex;
-          justify-content:space-between
-        "
-      >
-
-        <span class="micro">
-          OVERALL PROGRESS
-        </span>
-
-        <span
+        <p
           class="micro"
-          id="bucket-percent"
+          style="margin-top:14px"
         >
-          0%
-        </span>
+          PERSONAL TRAVEL ARCHIVE · UPDATED BY ME
+        </p>
 
       </div>
 
-      <div class="bucket-progress-bar">
+
+      <div class="bucket-progress">
 
         <div
-          class="bucket-progress-fill"
-          id="bucket-progress-fill"
-        ></div>
+          style="
+            display:flex;
+            justify-content:space-between
+          "
+        >
+
+          <span class="micro">
+            OVERALL PROGRESS
+          </span>
+
+          <span
+            class="micro"
+            id="bucket-percent"
+          >
+            0%
+          </span>
+
+        </div>
+
+        <div class="bucket-progress-bar">
+
+          <div
+            class="bucket-progress-fill"
+            id="bucket-progress-fill"
+          ></div>
+
+        </div>
 
       </div>
 
     </div>
 
+
+    <div id="bucket-container"></div>
+
   </div>
-
-
-  <div id="bucket-container"></div>
 
 </section>
 
@@ -657,7 +808,7 @@
      GET IN TOUCH
 ====================================================== -->
 
-<div class="contact">
+<div class="contact travel-contact">
 
   <div class="shell">
 
@@ -683,22 +834,15 @@
 
       <a
         class="btn"
-        style="
-          background:white;
-          color:#40573b
-        "
+        style="background:white;color:#40573b"
         href="mailto:albertocm30.2001@gmail.com"
       >
         Email me ↗
       </a>
 
-
       <a
         class="btn"
-        style="
-          border:1px solid #dce6d8;
-          color:white
-        "
+        style="border:1px solid #dce6d8;color:white"
         href="https://github.com/albercm30"
         target="_blank"
         rel="noopener noreferrer"
@@ -736,783 +880,176 @@
 <script>
 
 /* =====================================================
-   BUCKET LIST DATA
-   Read-only for visitors.
-   Change completed: false → true when you complete an item.
+   BUCKET LIST
 ====================================================== */
 
 const bucketList = [
-
-  /* ==================== DIVING ==================== */
 
   {
     category: "Diving",
 
     items: [
 
-      {
-        id: 1,
-        title: "Dive with a school of manta rays",
-        completed: true
-      },
-
-      {
-        id: 2,
-        title: "Dive with a school of hammerhead sharks",
-        completed: false
-      },
-
-      {
-        id: 3,
-        title: "Dive with tiger sharks",
-        completed: false
-      },
-
-      {
-        id: 4,
-        title: "Dive with bull sharks",
-        completed: true
-      },
-
-      {
-        id: 5,
-        title: "Dive in the Galápagos",
-        completed: false
-      },
-
-      {
-        id: 6,
-        title: "Dive in Baja California",
-        completed: true
-      },
-
-      {
-        id: 7,
-        title: "Dive in Australia — Great Barrier Reef",
-        completed: true
-      },
-
-      {
-        id: 8,
-        title: "Dive with sharks",
-        completed: true
-      },
-
-      {
-        id: 9,
-        title: "Dive an iconic shipwreck",
-        completed: false
-      },
-
-      {
-        id: 10,
-        title: "Dive in Raja Ampat",
-        completed: false
-      },
-
-      {
-        id: 11,
-        title: "Experience the Sardine Run in South Africa",
-        completed: false
-      },
-
-      {
-        id: 12,
-        title: "Swim or dive with whale sharks",
-        completed: true
-      },
-
-      {
-        id: 13,
-        title: "Swim or dive with sea lions",
-        completed: true
-      },
-
-      {
-        id: 14,
-        title: "Swim or dive with dolphins",
-        completed: false
-      },
-
-      {
-        id: 15,
-        title: "Swim or dive with whales",
-        completed: false
-      },
-
-      {
-        id: 16,
-        title: "Swim or dive with orcas",
-        completed: false
-      },
-
-      {
-        id: 17,
-        title: "Snorkel or dive in the Maldives",
-        completed: false
-      },
-
-      {
-        id: 18,
-        title: "See a blue whale",
-        completed: false
-      },
-
-      {
-        id: 19,
-        title: "Visit a Pacific island and dive",
-        completed: false
-      },
-
-      {
-        id: 20,
-        title: "Obtain the Advanced Open Water certification",
-        completed: true
-      },
-
-      {
-        id: 21,
-        title: "Swim in water below zero degrees",
-        completed: false
-      },
-
-      {
-        id: 22,
-        title: "Do a liveaboard in Revillagigedo",
-        completed: false
-      },
-
-      {
-        id: 23,
-        title: "Do a liveaboard in Norway",
-        completed: false
-      },
-
-      {
-        id: 24,
-        title: "Dive in a great white shark cage",
-        completed: false
-      }
+      { id: 1, title: "Dive with a school of manta rays", completed: true },
+      { id: 2, title: "Dive with a school of hammerhead sharks", completed: false },
+      { id: 3, title: "Dive with tiger sharks", completed: false },
+      { id: 4, title: "Dive with bull sharks", completed: true },
+      { id: 5, title: "Dive in the Galápagos", completed: false },
+      { id: 6, title: "Dive in Baja California", completed: true },
+      { id: 7, title: "Dive in Australia — Great Barrier Reef", completed: true },
+      { id: 8, title: "Dive with sharks", completed: true },
+      { id: 9, title: "Dive an iconic shipwreck", completed: false },
+      { id: 10, title: "Dive in Raja Ampat", completed: false },
+      { id: 11, title: "Experience the Sardine Run in South Africa", completed: false },
+      { id: 12, title: "Swim or dive with whale sharks", completed: true },
+      { id: 13, title: "Swim or dive with sea lions", completed: true },
+      { id: 14, title: "Swim or dive with dolphins", completed: false },
+      { id: 15, title: "Swim or dive with whales", completed: false },
+      { id: 16, title: "Swim or dive with orcas", completed: false },
+      { id: 17, title: "Snorkel or dive in the Maldives", completed: false },
+      { id: 18, title: "See a blue whale", completed: false },
+      { id: 19, title: "Visit a Pacific island and dive", completed: false },
+      { id: 20, title: "Obtain the Advanced Open Water certification", completed: true },
+      { id: 21, title: "Swim in water below zero degrees", completed: false },
+      { id: 22, title: "Do a liveaboard in Revillagigedo", completed: false },
+      { id: 23, title: "Do a liveaboard in Norway", completed: false },
+      { id: 24, title: "Dive in a great white shark cage", completed: false }
 
     ]
   },
 
-
-  /* ==================== SPORT ==================== */
 
   {
     category: "Sport",
 
     items: [
 
-      {
-        id: 25,
-        title: "Surf in Gold Coast, Australia",
-        completed: true
-      },
-
-      {
-        id: 26,
-        title: "Climb a 5,000 m+ mountain",
-        completed: false
-      },
-
-      {
-        id: 27,
-        title: "Climb and see an active volcano",
-        completed: true
-      },
-
-      {
-        id: 28,
-        title: "Reach Everest Base Camp",
-        completed: false
-      },
-
-      {
-        id: 29,
-        title: "Run a marathon somewhere exotic",
-        completed: false
-      },
-
-      {
-        id: 30,
-        title: "Horse riding in Kyrgyzstan",
-        completed: false
-      },
-
-      {
-        id: 31,
-        title: "Learn to ski in Japan",
-        completed: false
-      },
-
-      {
-        id: 32,
-        title: "Attend a FIFA World Cup",
-        completed: false
-      },
-
-      {
-        id: 33,
-        title: "Attend a tennis Grand Slam",
-        completed: false
-      },
-
-      {
-        id: 34,
-        title: "Attend the Olympic Games",
-        completed: false
-      },
-
-      {
-        id: 35,
-        title: "Attend an American football game",
-        completed: true
-      },
-
-      {
-        id: 36,
-        title: "Attend an NBA game",
-        completed: false
-      },
-
-      {
-        id: 37,
-        title: "Hike in the Dolomites",
-        completed: true
-      },
-
-      {
-        id: 38,
-        title: "Go rafting",
-        completed: true
-      },
-
-      {
-        id: 39,
-        title: "Hike and eat fondue in Switzerland",
-        completed: false
-      },
-
-      {
-        id: 40,
-        title: "Kayak around icebergs",
-        completed: false
-      },
-
-      {
-        id: 41,
-        title: "Climb Mount Bromo or Ijen",
-        completed: false
-      },
-
-      {
-        id: 42,
-        title: "Climb Teide from sea level",
-        completed: false
-      },
-
-      {
-        id: 43,
-        title: "Go fishing or spearfishing somewhere exotic",
-        completed: false
-      },
-
-      {
-        id: 44,
-        title: "Ride a snowmobile and a jet ski",
-        completed: false
-      },
-
-      {
-        id: 45,
-        title: "Hike in the Azores",
-        completed: false
-      },
-
-      {
-        id: 46,
-        title: "Hike on glaciers",
-        completed: false
-      }
+      { id: 25, title: "Surf in Gold Coast, Australia", completed: true },
+      { id: 26, title: "Climb a 5,000 m+ mountain", completed: false },
+      { id: 27, title: "Climb and see an active volcano", completed: true },
+      { id: 28, title: "Reach Everest Base Camp", completed: false },
+      { id: 29, title: "Run a marathon somewhere exotic", completed: false },
+      { id: 30, title: "Horse riding in Kyrgyzstan", completed: false },
+      { id: 31, title: "Learn to ski in Japan", completed: false },
+      { id: 32, title: "Attend a FIFA World Cup", completed: false },
+      { id: 33, title: "Attend a tennis Grand Slam", completed: false },
+      { id: 34, title: "Attend the Olympic Games", completed: false },
+      { id: 35, title: "Attend an American football game", completed: true },
+      { id: 36, title: "Attend an NBA game", completed: false },
+      { id: 37, title: "Hike in the Dolomites", completed: true },
+      { id: 38, title: "Go rafting", completed: true },
+      { id: 39, title: "Hike and eat fondue in Switzerland", completed: false },
+      { id: 40, title: "Kayak around icebergs", completed: false },
+      { id: 41, title: "Climb Mount Bromo or Ijen", completed: false },
+      { id: 42, title: "Climb Teide from sea level", completed: false },
+      { id: 43, title: "Go fishing or spearfishing somewhere exotic", completed: false },
+      { id: 44, title: "Ride a snowmobile and a jet ski", completed: false },
+      { id: 45, title: "Hike in the Azores", completed: false },
+      { id: 46, title: "Hike on glaciers", completed: false }
 
     ]
   },
 
-
-  /* ==================== ACTIVITIES ==================== */
 
   {
     category: "Activities",
 
     items: [
 
-      {
-        id: 47,
-        title: "Visit Antarctica",
-        completed: false
-      },
-
-      {
-        id: 48,
-        title: "Ride in a hot-air balloon",
-        completed: true
-      },
-
-      {
-        id: 49,
-        title: "Sleep in a desert Berber or Bedouin camp",
-        completed: true
-      },
-
-      {
-        id: 50,
-        title: "Do a campervan trip in New Zealand",
-        completed: true
-      },
-
-      {
-        id: 51,
-        title: "Do a campervan trip in Iceland",
-        completed: false
-      },
-
-      {
-        id: 52,
-        title: "See the Northern Lights",
-        completed: false
-      },
-
-      {
-        id: 53,
-        title: "See the Southern Lights",
-        completed: false
-      },
-
-      {
-        id: 54,
-        title: "Travel through Argentine Patagonia",
-        completed: false
-      },
-
-      {
-        id: 55,
-        title: "Backpack through South America",
-        completed: false
-      },
-
-      {
-        id: 56,
-        title: "Expedition into the Amazon",
-        completed: false
-      },
-
-      {
-        id: 57,
-        title: "See Iguazú Falls",
-        completed: false
-      },
-
-      {
-        id: 58,
-        title: "Take a friends trip through Asia",
-        completed: true
-      },
-
-      {
-        id: 59,
-        title: "Camp in Yellowstone",
-        completed: false
-      },
-
-      {
-        id: 60,
-        title: "Explore China and see giant pandas",
-        completed: true
-      },
-
-      {
-        id: 61,
-        title: "See the waves at Nazaré",
-        completed: false
-      },
-
-      {
-        id: 62,
-        title: "Do a night safari and sleep in a national park",
-        completed: true
-      },
-
-      {
-        id: 63,
-        title: "Eat ramen and wagyu in Japan",
-        completed: true
-      },
-
-      {
-        id: 64,
-        title: "Bathe in a Japanese onsen",
-        completed: false
-      },
-
-      {
-        id: 65,
-        title: "Bathe in volcanic hot springs in Iceland",
-        completed: false
-      },
-
-      {
-        id: 66,
-        title: "Travel across Europe by train",
-        completed: true
-      },
-
-      {
-        id: 67,
-        title: "See bioluminescence",
-        completed: true
-      },
-
-      {
-        id: 68,
-        title: "Visit the Lofoten Islands",
-        completed: false
-      },
-
-      {
-        id: 69,
-        title: "Take a dangerous-animal handling course",
-        completed: false
-      },
-
-      {
-        id: 70,
-        title: "Do an astronomical travel experience in Chile",
-        completed: false
-      },
-
-      {
-        id: 71,
-        title: "Take a wildlife photography trip",
-        completed: true
-      },
-
-      {
-        id: 72,
-        title: "Ride the Ha Giang Loop in Vietnam",
-        completed: true
-      },
-
-      {
-        id: 73,
-        title: "Do a road trip through Asia",
-        completed: true
-      },
-
-      {
-        id: 74,
-        title: "Experience local culture in the Middle East",
-        completed: true
-      },
-
-      {
-        id: 75,
-        title: "Visit Moscow and travel through Russia",
-        completed: false
-      },
-
-      {
-        id: 76,
-        title: "Visit Madagascar",
-        completed: false
-      },
-
-      {
-        id: 77,
-        title: "Camp in Mongolia",
-        completed: false
-      },
-
-      {
-        id: 78,
-        title: "Travel the Nile and see the pyramids",
-        completed: false
-      },
-
-      {
-        id: 79,
-        title: "Visit Tibet",
-        completed: false
-      },
-
-      {
-        id: 80,
-        title: "Experience an iconic festival",
-        completed: false
-      },
-
-      {
-        id: 81,
-        title: "Carnival and favelas in Rio",
-        completed: false
-      },
-
-      {
-        id: 82,
-        title: "Visit Varanasi and the ghats",
-        completed: true
-      },
-
-      {
-        id: 83,
-        title: "Visit Costa Rica and its rainforest",
-        completed: false
-      },
-
-      {
-        id: 84,
-        title: "Experience Día de los Muertos in Mexico",
-        completed: false
-      },
-
-      {
-        id: 85,
-        title: "Do a road trip in Namibia",
-        completed: false
-      },
-
-      {
-        id: 86,
-        title: "See Victoria Falls",
-        completed: false
-      },
-
-      {
-        id: 87,
-        title: "Visit Socotra and discover its species",
-        completed: false
-      },
-
-      {
-        id: 88,
-        title: "Ride the Ella train in Sri Lanka",
-        completed: true
-      },
-
-      {
-        id: 89,
-        title: "Explore the villages of Tuscany",
-        completed: false
-      },
-
-      {
-        id: 90,
-        title: "Explore the wildlife of Papua New Guinea",
-        completed: false
-      },
-
-      {
-        id: 91,
-        title: "See a total solar eclipse",
-        completed: false
-      }
+      { id: 47, title: "Visit Antarctica", completed: false },
+      { id: 48, title: "Ride in a hot-air balloon", completed: true },
+      { id: 49, title: "Sleep in a desert Berber or Bedouin camp", completed: true },
+      { id: 50, title: "Do a campervan trip in New Zealand", completed: true },
+      { id: 51, title: "Do a campervan trip in Iceland", completed: false },
+      { id: 52, title: "See the Northern Lights", completed: false },
+      { id: 53, title: "See the Southern Lights", completed: false },
+      { id: 54, title: "Travel through Argentine Patagonia", completed: false },
+      { id: 55, title: "Backpack through South America", completed: false },
+      { id: 56, title: "Expedition into the Amazon", completed: false },
+      { id: 57, title: "See Iguazú Falls", completed: false },
+      { id: 58, title: "Take a friends trip through Asia", completed: true },
+      { id: 59, title: "Camp in Yellowstone", completed: false },
+      { id: 60, title: "Explore China and see giant pandas", completed: true },
+      { id: 61, title: "See the waves at Nazaré", completed: false },
+      { id: 62, title: "Do a night safari and sleep in a national park", completed: true },
+      { id: 63, title: "Eat ramen and wagyu in Japan", completed: true },
+      { id: 64, title: "Bathe in a Japanese onsen", completed: false },
+      { id: 65, title: "Bathe in volcanic hot springs in Iceland", completed: false },
+      { id: 66, title: "Travel across Europe by train", completed: true },
+      { id: 67, title: "See bioluminescence", completed: true },
+      { id: 68, title: "Visit the Lofoten Islands", completed: false },
+      { id: 69, title: "Take a dangerous-animal handling course", completed: false },
+      { id: 70, title: "Do an astronomical travel experience in Chile", completed: false },
+      { id: 71, title: "Take a wildlife photography trip", completed: true },
+      { id: 72, title: "Ride the Ha Giang Loop in Vietnam", completed: true },
+      { id: 73, title: "Do a road trip through Asia", completed: true },
+      { id: 74, title: "Experience local culture in the Middle East", completed: true },
+      { id: 75, title: "Visit Moscow and travel through Russia", completed: false },
+      { id: 76, title: "Visit Madagascar", completed: false },
+      { id: 77, title: "Camp in Mongolia", completed: false },
+      { id: 78, title: "Travel the Nile and see the pyramids", completed: false },
+      { id: 79, title: "Visit Tibet", completed: false },
+      { id: 80, title: "Experience an iconic festival", completed: false },
+      { id: 81, title: "Carnival and favelas in Rio", completed: false },
+      { id: 82, title: "Visit Varanasi and the ghats", completed: true },
+      { id: 83, title: "Visit Costa Rica and its rainforest", completed: false },
+      { id: 84, title: "Experience Día de los Muertos in Mexico", completed: false },
+      { id: 85, title: "Do a road trip in Namibia", completed: false },
+      { id: 86, title: "See Victoria Falls", completed: false },
+      { id: 87, title: "Visit Socotra and discover its species", completed: false },
+      { id: 88, title: "Ride the Ella train in Sri Lanka", completed: true },
+      { id: 89, title: "Explore the villages of Tuscany", completed: false },
+      { id: 90, title: "Explore the wildlife of Papua New Guinea", completed: false },
+      { id: 91, title: "See a total solar eclipse", completed: false }
 
     ]
   },
 
-
-  /* ==================== MILESTONES ==================== */
 
   {
     category: "Milestones",
 
     items: [
 
-      {
-        id: 92,
-        title: "Visit 100 countries",
-        completed: false
-      },
-
-      {
-        id: 93,
-        title: "See the New 7 Wonders of the World",
-        completed: false
-      },
-
-      {
-        id: 94,
-        title: "Swim in all five oceans",
-        completed: false
-      },
-
-      {
-        id: 95,
-        title: "Live outside Europe for one year",
-        completed: true
-      },
-
-      {
-        id: 96,
-        title: "Visit all seven continents",
-        completed: false
-      },
-
-      {
-        id: 97,
-        title: "Try many exotic fruits in Asia",
-        completed: true
-      },
-
-      {
-        id: 98,
-        title: "Dive on all seven continents",
-        completed: false
-      },
-
-      {
-        id: 99,
-        title: "Complete 30 summits",
-        completed: false
-      }
+      { id: 92, title: "Visit 100 countries", completed: false },
+      { id: 93, title: "See the New 7 Wonders of the World", completed: false },
+      { id: 94, title: "Swim in all five oceans", completed: false },
+      { id: 95, title: "Live outside Europe for one year", completed: true },
+      { id: 96, title: "Visit all seven continents", completed: false },
+      { id: 97, title: "Try many exotic fruits in Asia", completed: true },
+      { id: 98, title: "Dive on all seven continents", completed: false },
+      { id: 99, title: "Complete 30 summits", completed: false }
 
     ]
   },
 
-
-  /* ==================== TERRESTRIAL WILDLIFE ==================== */
 
   {
     category: "Terrestrial Wildlife",
 
     items: [
 
-      {
-        id: 100,
-        title: "See gorillas in the wild",
-        completed: false
-      },
-
-      {
-        id: 101,
-        title: "See bears catching salmon in Alaska",
-        completed: false
-      },
-
-      {
-        id: 102,
-        title: "See polar bears in Svalbard",
-        completed: false
-      },
-
-      {
-        id: 103,
-        title: "See the wildebeest migration in the Serengeti",
-        completed: false
-      },
-
-      {
-        id: 104,
-        title: "See wild animals in the Borneo rainforest",
-        completed: true
-      },
-
-      {
-        id: 105,
-        title: "Camp in Australia with wild kangaroos",
-        completed: true
-      },
-
-      {
-        id: 106,
-        title: "See dangerous snakes and spiders in the wild",
-        completed: true
-      },
-
-      {
-        id: 107,
-        title: "See wild elephants",
-        completed: true
-      },
-
-      {
-        id: 108,
-        title: "See wild rhinoceroses",
-        completed: false
-      },
-
-      {
-        id: 109,
-        title: "See wild crocodiles",
-        completed: true
-      },
-
-      {
-        id: 110,
-        title: "See wild lions",
-        completed: false
-      },
-
-      {
-        id: 111,
-        title: "See wild tigers",
-        completed: false
-      },
-
-      {
-        id: 112,
-        title: "See the elusive leopard",
-        completed: false
-      },
-
-      {
-        id: 113,
-        title: "See wild cheetahs",
-        completed: false
-      },
-
-      {
-        id: 114,
-        title: "See snow leopards in the wild",
-        completed: false
-      },
-
-      {
-        id: 115,
-        title: "See jaguars in the Pantanal",
-        completed: false
-      },
-
-      {
-        id: 116,
-        title: "See wild pumas",
-        completed: false
-      },
-
-      {
-        id: 117,
-        title: "See a black panther in the wild",
-        completed: false
-      },
-
-      {
-        id: 118,
-        title: "See 15 species of snakes in the wild",
-        completed: false
-      },
-
-      {
-        id: 119,
-        title: "Camp in the Daintree and see cassowaries",
-        completed: true
-      },
-
-      {
-        id: 120,
-        title: "See 20 rare species in the wild",
-        completed: false
-      }
+      { id: 100, title: "See gorillas in the wild", completed: false },
+      { id: 101, title: "See bears catching salmon in Alaska", completed: false },
+      { id: 102, title: "See polar bears in Svalbard", completed: false },
+      { id: 103, title: "See the wildebeest migration in the Serengeti", completed: false },
+      { id: 104, title: "See wild animals in the Borneo rainforest", completed: true },
+      { id: 105, title: "Camp in Australia with wild kangaroos", completed: true },
+      { id: 106, title: "See dangerous snakes and spiders in the wild", completed: true },
+      { id: 107, title: "See wild elephants", completed: true },
+      { id: 108, title: "See wild rhinoceroses", completed: false },
+      { id: 109, title: "See wild crocodiles", completed: true },
+      { id: 110, title: "See wild lions", completed: false },
+      { id: 111, title: "See wild tigers", completed: false },
+      { id: 112, title: "See the elusive leopard", completed: false },
+      { id: 113, title: "See wild cheetahs", completed: false },
+      { id: 114, title: "See snow leopards in the wild", completed: false },
+      { id: 115, title: "See jaguars in the Pantanal", completed: false },
+      { id: 116, title: "See wild pumas", completed: false },
+      { id: 117, title: "See a black panther in the wild", completed: false },
+      { id: 118, title: "See 15 species of snakes in the wild", completed: false },
+      { id: 119, title: "Camp in the Daintree and see cassowaries", completed: true },
+      { id: 120, title: "See 20 rare species in the wild", completed: false }
 
     ]
   }
@@ -1520,21 +1057,13 @@ const bucketList = [
 ];
 
 
-/* =====================================================
-   RENDER BUCKET LIST
-   Read-only for visitors.
-====================================================== */
-
 const bucketContainer =
-  document.getElementById(
-    "bucket-container"
-  );
+  document.getElementById("bucket-container");
 
 
 function renderBucketList() {
 
   bucketContainer.innerHTML = "";
-
 
   bucketList.forEach(group => {
 
@@ -1544,13 +1073,11 @@ function renderBucketList() {
     section.className =
       "bucket-category";
 
-
-    const categoryHeader =
+    const header =
       document.createElement("div");
 
-    categoryHeader.className =
+    header.className =
       "bucket-category-title";
-
 
     const heading =
       document.createElement("h3");
@@ -1558,12 +1085,10 @@ function renderBucketList() {
     heading.textContent =
       group.category;
 
-
     const finished =
       group.items.filter(
         item => item.completed
       ).length;
-
 
     const count =
       document.createElement("span");
@@ -1571,22 +1096,14 @@ function renderBucketList() {
     count.textContent =
       `${finished} / ${group.items.length}`;
 
-
-    categoryHeader.appendChild(
-      heading
-    );
-
-    categoryHeader.appendChild(
-      count
-    );
-
+    header.appendChild(heading);
+    header.appendChild(count);
 
     const list =
       document.createElement("div");
 
     list.className =
       "bucket-list";
-
 
     group.items.forEach(item => {
 
@@ -1601,7 +1118,6 @@ function renderBucketList() {
             : ""
         );
 
-
       const number =
         document.createElement("span");
 
@@ -1609,28 +1125,24 @@ function renderBucketList() {
         "bucket-index";
 
       number.textContent =
-        String(item.id)
-          .padStart(3, "0");
+        String(item.id).padStart(3, "0");
 
-
-      const checkbox =
+      const check =
         document.createElement("span");
 
-      checkbox.className =
+      check.className =
         "bucket-check";
-
 
       if (item.completed) {
 
-        checkbox.classList.add(
+        check.classList.add(
           "is-complete"
         );
 
-        checkbox.textContent =
+        check.textContent =
           "✓";
 
       }
-
 
       const title =
         document.createElement("span");
@@ -1641,35 +1153,23 @@ function renderBucketList() {
       title.textContent =
         item.title;
 
-
       row.appendChild(number);
-      row.appendChild(checkbox);
+      row.appendChild(check);
       row.appendChild(title);
-
 
       list.appendChild(row);
 
     });
 
-
-    section.appendChild(
-      categoryHeader
-    );
-
+    section.appendChild(header);
     section.appendChild(list);
 
-    bucketContainer.appendChild(
-      section
-    );
+    bucketContainer.appendChild(section);
 
   });
 
 }
 
-
-/* =====================================================
-   PROGRESS
-====================================================== */
 
 function updateProgress() {
 
@@ -1679,7 +1179,6 @@ function updateProgress() {
         sum + group.items.length,
       0
     );
-
 
   const completed =
     bucketList.reduce(
@@ -1691,32 +1190,27 @@ function updateProgress() {
       0
     );
 
-
   const percentage =
-    total === 0
-      ? 0
-      : Math.round(
+    total
+      ? Math.round(
           (completed / total) * 100
-        );
-
+        )
+      : 0;
 
   document.getElementById(
     "bucket-completed"
   ).textContent =
     completed;
 
-
   document.getElementById(
     "bucket-total"
   ).textContent =
     total;
 
-
   document.getElementById(
     "bucket-percent"
   ).textContent =
     `${percentage}%`;
-
 
   document.getElementById(
     "bucket-progress-fill"
@@ -1726,15 +1220,10 @@ function updateProgress() {
 }
 
 
-/* =====================================================
-   START
-====================================================== */
-
 renderBucketList();
 updateProgress();
 
 </script>
-
 
 </body>
 </html>
