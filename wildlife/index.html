@@ -1,16 +1,29 @@
 <!doctype html>
 <html lang="en">
+
 <head>
+
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
 
   <title>Wildlife Field Map · Alberto Castellano</title>
-  <meta name="description" content="An interactive map of wildlife observations recorded by Alberto Castellano on iNaturalist.">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <meta
+    name="description"
+    content="An interactive map of wildlife observations recorded by Alberto Castellano on iNaturalist."
+  >
 
+  <!-- Site stylesheet first -->
+  <link
+    rel="stylesheet"
+    href="/style.css"
+  >
+
+  <!-- Leaflet -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -18,18 +31,19 @@
     crossorigin=""
   >
 
+  <!-- Marker clustering -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
   >
+
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"
   >
 
-  <link rel="stylesheet" href="/style.css">
-
   <style>
+
     :root {
       --wild-green: #40573b;
       --wild-ink: #1d241f;
@@ -39,475 +53,956 @@
       --wild-white: #fbfaf7;
     }
 
+
     body.wildlife-page {
       background: var(--wild-paper);
     }
 
+
+    /* --------------------------------
+       HERO
+    -------------------------------- */
+
     .wildlife-hero {
-      padding: 112px 0 65px;
+      padding: 110px 0 65px;
       border-bottom: 1px solid var(--wild-line);
     }
 
+
     .wildlife-hero-inner {
       display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+      grid-template-columns:
+        minmax(0, 1.25fr)
+        minmax(280px, .75fr);
       gap: 70px;
       align-items: end;
     }
 
+
     .wildlife-hero h1 {
       max-width: 760px;
       margin: 0;
-      font: 500 clamp(48px, 7vw, 92px)/.94 var(--serif);
+
+      font:
+        500
+        clamp(48px, 7vw, 92px)
+        / .94
+        var(--serif);
+
       letter-spacing: -2.5px;
       color: var(--wild-ink);
     }
+
 
     .wildlife-hero h1 em {
       font-style: italic;
     }
 
+
     .wildlife-hero-copy {
       max-width: 480px;
       margin: 22px 0 0;
+
       color: var(--wild-soft);
+
       font-size: 13px;
       line-height: 1.75;
     }
+
 
     .wildlife-hero-side {
       border-top: 1px solid var(--wild-ink);
       padding-top: 14px;
     }
 
+
     .wildlife-hero-side-label {
       margin: 0 0 12px;
-      font: 9px var(--mono);
+
+      font:
+        9px
+        var(--mono);
+
       letter-spacing: .9px;
       text-transform: uppercase;
+
       color: var(--wild-soft);
     }
 
+
     .wildlife-hero-side strong {
       display: block;
-      font: 500 27px/1.15 var(--serif);
+
+      font:
+        500
+        27px
+        / 1.15
+        var(--serif);
+
       color: var(--wild-ink);
     }
+
 
     .wildlife-hero-side span {
       display: block;
       margin-top: 7px;
+
       color: var(--wild-soft);
+
       font-size: 11px;
       line-height: 1.55;
     }
+
+
+    /* --------------------------------
+       MAIN
+    -------------------------------- */
 
     .wildlife-section {
       padding: 52px 0 108px;
     }
 
+
     .wildlife-dashboard {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 310px;
+
+      grid-template-columns:
+        minmax(0, 1fr)
+        310px;
+
       gap: 18px;
+
       align-items: start;
     }
 
+
+    /* --------------------------------
+       MAP
+    -------------------------------- */
+
     .map-frame {
       min-width: 0;
+
       overflow: hidden;
-      border: 1px solid var(--wild-line);
+
+      border:
+        1px solid
+        var(--wild-line);
+
       background: #dde2d9;
-      box-shadow: 0 15px 35px rgba(28, 34, 29, .05);
+
+      box-shadow:
+        0 15px 35px
+        rgba(28, 34, 29, .05);
     }
+
+
+    .map-wrap {
+      position: relative;
+      width: 100%;
+    }
+
 
     #wildlife-map {
       width: 100%;
-      height: min(72vh, 720px);
+
+      height:
+        min(72vh, 720px);
+
       min-height: 520px;
     }
 
-    .map-panel {
-      border: 1px solid var(--wild-line);
-      background: rgba(251, 250, 247, .88);
+
+    /*
+      IMPORTANT.
+
+      Your global site stylesheet contains generic image rules.
+      Leaflet tiles must NOT inherit those rules.
+    */
+
+    .leaflet-container {
+      position: relative;
+
+      overflow: hidden;
+
+      width: 100%;
+      height: 100%;
+
+      font-family:
+        var(--sans),
+        "DM Sans",
+        sans-serif;
+
+      background: #dde2d9;
     }
+
+
+    .leaflet-container img,
+    .leaflet-container .leaflet-tile,
+    .leaflet-container .leaflet-marker-icon,
+    .leaflet-container .leaflet-marker-shadow,
+    .leaflet-container .leaflet-image-layer,
+    .leaflet-container .leaflet-pane > img {
+      max-width: none !important;
+      max-height: none !important;
+    }
+
+
+    .leaflet-container .leaflet-tile {
+      width: 256px !important;
+      height: 256px !important;
+    }
+
+
+    .leaflet-control-zoom a {
+      color: var(--wild-ink) !important;
+
+      border-color:
+        var(--wild-line) !important;
+
+      background:
+        rgba(251, 250, 247, .95) !important;
+    }
+
+
+    /* --------------------------------
+       MAP LOADING
+    -------------------------------- */
+
+    .map-loading {
+      position: absolute;
+
+      z-index: 500;
+
+      inset: 0;
+
+      display: grid;
+      place-items: center;
+
+      background:
+        rgba(244, 241, 234, .82);
+
+      backdrop-filter: blur(2px);
+
+      font:
+        9px
+        var(--mono);
+
+      letter-spacing: .7px;
+      text-transform: uppercase;
+
+      color: var(--wild-ink);
+
+      pointer-events: none;
+    }
+
+
+    /* --------------------------------
+       SIDE PANEL
+    -------------------------------- */
+
+    .map-panel {
+      border:
+        1px solid
+        var(--wild-line);
+
+      background:
+        rgba(251, 250, 247, .88);
+    }
+
 
     .map-panel-block {
       padding: 21px 20px;
-      border-bottom: 1px solid var(--wild-line);
+
+      border-bottom:
+        1px solid
+        var(--wild-line);
     }
+
 
     .map-panel-block:last-child {
       border-bottom: 0;
     }
 
+
     .map-panel-label {
       margin: 0 0 13px;
-      font: 9px var(--mono);
+
+      font:
+        9px
+        var(--mono);
+
       letter-spacing: .9px;
       text-transform: uppercase;
+
       color: var(--wild-soft);
     }
 
+
+    .map-status {
+      margin:
+        0
+        0
+        18px;
+
+      color: var(--wild-soft);
+
+      font:
+        9px
+        var(--mono);
+
+      line-height: 1.65;
+
+      letter-spacing: .45px;
+
+      text-transform: uppercase;
+    }
+
+
     .map-stat {
       display: flex;
+
       justify-content: space-between;
+
       gap: 16px;
+
       margin-bottom: 10px;
+
       color: var(--wild-soft);
+
       font-size: 11px;
     }
+
 
     .map-stat:last-child {
       margin-bottom: 0;
     }
 
+
     .map-stat strong {
       color: var(--wild-ink);
+
       font-size: 12px;
+
       font-weight: 700;
     }
 
+
+    /* --------------------------------
+       FILTERS
+    -------------------------------- */
+
     .map-filter {
       display: grid;
-      gap: 8px;
+      gap: 9px;
     }
 
+
     .map-filter label {
-      font: 9px var(--mono);
+      margin-top: 3px;
+
+      font:
+        9px
+        var(--mono);
+
       letter-spacing: .8px;
+
       text-transform: uppercase;
+
       color: var(--wild-soft);
     }
 
-    .map-filter select,
-    .map-filter input {
+
+    .map-filter select {
       width: 100%;
+
       box-sizing: border-box;
-      border: 1px solid var(--wild-line);
-      background: var(--wild-white);
-      color: var(--wild-ink);
+
+      border:
+        1px solid
+        var(--wild-line);
+
       border-radius: 0;
-      padding: 10px 11px;
-      font: 11px var(--sans, Arial, sans-serif);
+
+      background:
+        var(--wild-white);
+
+      color: var(--wild-ink);
+
+      padding:
+        11px;
+
+      font:
+        11px
+        var(--sans);
+
       outline: none;
     }
 
-    .map-filter select:focus,
-    .map-filter input:focus {
-      border-color: var(--wild-green);
+
+    .map-filter select:focus {
+      border-color:
+        var(--wild-green);
     }
+
 
     .map-reset {
       appearance: none;
-      border: 1px solid var(--wild-green);
-      background: var(--wild-green);
-      color: #fff;
+
       width: 100%;
-      padding: 10px 12px;
-      font: 700 9px var(--mono);
+
+      margin-top: 6px;
+
+      padding: 11px 12px;
+
+      border:
+        1px solid
+        var(--wild-green);
+
+      background:
+        var(--wild-green);
+
+      color: #fff;
+
+      font:
+        700
+        9px
+        var(--mono);
+
       letter-spacing: .8px;
+
       text-transform: uppercase;
+
       cursor: pointer;
+
+      transition:
+        background .2s ease,
+        border-color .2s ease;
     }
+
+
+    .map-reset:hover {
+      background: #33482f;
+      border-color: #33482f;
+    }
+
+
+    /* --------------------------------
+       ABOUT
+    -------------------------------- */
 
     .map-note {
       margin: 0;
+
       color: var(--wild-soft);
+
       font-size: 10px;
-      line-height: 1.65;
+
+      line-height: 1.7;
     }
+
 
     .map-note a {
       color: var(--wild-ink);
-      text-decoration: underline;
-      text-underline-offset: 2px;
+
+      text-decoration:
+        underline;
+
+      text-underline-offset:
+        3px;
     }
 
-    .map-status {
-      margin: 0 0 14px;
-      color: var(--wild-soft);
-      font: 9px var(--mono);
-      letter-spacing: .4px;
-      text-transform: uppercase;
-    }
 
-    .leaflet-container {
-      font-family: var(--sans, "DM Sans", sans-serif);
-      background: #dde2d9;
-    }
-
-    .leaflet-control-zoom a {
-      color: var(--wild-ink) !important;
-      border-color: var(--wild-line) !important;
-      background: rgba(251, 250, 247, .94) !important;
-    }
+    /* --------------------------------
+       POPUPS
+    -------------------------------- */
 
     .leaflet-popup-content-wrapper,
     .leaflet-popup-tip {
-      background: #fbfaf7;
+      background:
+        var(--wild-white);
     }
+
 
     .leaflet-popup-content {
       width: 270px !important;
+
       margin: 0;
     }
 
+
     .obs-popup {
       overflow: hidden;
-      border-radius: 1px;
     }
 
+
     .obs-popup-image {
+      display: block;
+
       width: 100%;
       height: 155px;
+
       object-fit: cover;
-      display: block;
-      background: #e5e2db;
+
+      background:
+        #e5e2db;
     }
+
 
     .obs-popup-body {
       padding: 14px;
     }
 
+
     .obs-popup-species {
       margin: 0;
-      font: 500 22px/1.05 var(--serif);
+
+      font:
+        500
+        22px
+        / 1.05
+        var(--serif);
+
       color: var(--wild-ink);
     }
 
+
     .obs-popup-common {
-      margin: 5px 0 0;
+      margin:
+        5px
+        0
+        0;
+
       color: var(--wild-soft);
+
       font-size: 11px;
     }
+
 
     .obs-popup-meta {
       display: grid;
       gap: 4px;
+
       margin-top: 13px;
+
       padding-top: 12px;
-      border-top: 1px solid var(--wild-line);
+
+      border-top:
+        1px solid
+        var(--wild-line);
     }
+
 
     .obs-popup-meta span {
       color: var(--wild-soft);
-      font: 9px/1.45 var(--mono);
-      text-transform: uppercase;
+
+      font:
+        9px
+        / 1.5
+        var(--mono);
+
       letter-spacing: .35px;
+
+      text-transform: uppercase;
     }
+
 
     .obs-popup-link {
       display: inline-block;
+
       margin-top: 13px;
+
       color: var(--wild-green);
-      font: 700 9px var(--mono);
-      text-transform: uppercase;
+
+      font:
+        700
+        9px
+        var(--mono);
+
       letter-spacing: .55px;
+
+      text-transform: uppercase;
+
       text-decoration: none;
     }
 
+
+    /* --------------------------------
+       BOTTOM NOTE
+    -------------------------------- */
+
     .wildlife-bottom {
       display: grid;
-      grid-template-columns: 1.15fr .85fr;
+
+      grid-template-columns:
+        1.15fr
+        .85fr;
+
       gap: 65px;
+
       margin-top: 78px;
+
       padding-top: 25px;
-      border-top: 1px solid var(--wild-line);
+
+      border-top:
+        1px solid
+        var(--wild-line);
     }
+
 
     .wildlife-bottom h2 {
       max-width: 680px;
+
       margin: 0;
-      font: 500 clamp(32px, 4.3vw, 53px)/1.03 var(--serif);
+
+      font:
+        500
+        clamp(32px, 4.3vw, 53px)
+        / 1.03
+        var(--serif);
+
       letter-spacing: -1.2px;
+
       color: var(--wild-ink);
     }
+
 
     .wildlife-bottom h2 em {
       font-style: italic;
     }
 
+
     .wildlife-bottom p {
       max-width: 460px;
+
       margin: 0;
+
       color: var(--wild-soft);
+
       font-size: 12px;
+
       line-height: 1.75;
     }
 
-    .map-loading {
-      position: absolute;
-      z-index: 500;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      background: rgba(244, 241, 234, .78);
-      backdrop-filter: blur(2px);
-      font: 9px var(--mono);
-      letter-spacing: .7px;
-      text-transform: uppercase;
-      color: var(--wild-ink);
-    }
 
-    .map-wrap {
-      position: relative;
-    }
+    /* --------------------------------
+       MOBILE
+    -------------------------------- */
 
     @media (max-width: 950px) {
-      .wildlife-hero-inner,
-      .wildlife-dashboard,
-      .wildlife-bottom {
+
+      .wildlife-hero-inner {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+
+      .wildlife-dashboard {
         grid-template-columns: 1fr;
       }
 
-      .wildlife-dashboard {
-        gap: 15px;
-      }
 
       .map-panel {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+
+        grid-template-columns:
+          repeat(2, 1fr);
       }
+
 
       .map-panel-block {
-        border-bottom: 1px solid var(--wild-line);
+        border-bottom:
+          1px solid
+          var(--wild-line);
       }
+
+
+      .wildlife-bottom {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
     }
 
+
     @media (max-width: 680px) {
+
       .wildlife-hero {
-        padding: 80px 0 48px;
+        padding:
+          80px
+          0
+          48px;
       }
+
 
       .wildlife-hero h1 {
         letter-spacing: -1.5px;
       }
 
+
       .wildlife-section {
-        padding: 38px 0 75px;
+        padding:
+          38px
+          0
+          75px;
       }
 
+
       #wildlife-map {
-        min-height: 460px;
         height: 68vh;
+        min-height: 460px;
       }
+
 
       .map-panel {
         display: block;
       }
 
+
       .wildlife-bottom {
-        gap: 26px;
         margin-top: 52px;
+        gap: 26px;
       }
+
     }
+
   </style>
+
 </head>
 
+
 <body class="wildlife-page">
+
   <div id="nav"></div>
 
+
   <main>
+
+    <!-- HERO -->
+
     <section class="wildlife-hero">
+
       <div class="shell wildlife-hero-inner">
+
         <div>
-          <p class="eyebrow">WILDLIFE / FIELD MAP</p>
-          <h1>Places I've<br><em>looked for life.</em></h1>
+
+          <p class="eyebrow">
+            WILDLIFE / FIELD MAP
+          </p>
+
+
+          <h1>
+            Places I've<br>
+            <em>looked for life.</em>
+          </h1>
+
 
           <p class="wildlife-hero-copy">
-            A living map of my iNaturalist observations — species, encounters and the
-            places where they happened. The dataset is generated from my public profile
-            and rebuilt automatically.
+            A living map of my iNaturalist observations —
+            species, encounters and the places where they happened.
+            The dataset is generated from my public profile and
+            updated automatically.
           </p>
+
         </div>
 
+
         <div class="wildlife-hero-side">
-          <p class="wildlife-hero-side-label">SOURCE</p>
-          <strong>iNaturalist</strong>
+
+          <p class="wildlife-hero-side-label">
+            SOURCE
+          </p>
+
+
+          <strong>
+            iNaturalist
+          </strong>
+
+
           <span>
             Public observations by
-            <strong style="font-size: inherit; display: inline; font-family: var(--sans, Arial, sans-serif); font-weight: 700;">
+            <strong
+              style="
+                display:inline;
+                font-family:var(--sans);
+                font-size:inherit;
+                font-weight:700;
+              "
+            >
               albercm30
             </strong>.
           </span>
+
         </div>
+
       </div>
+
     </section>
 
+
+    <!-- MAP -->
+
     <section class="section shell wildlife-section">
+
       <div class="wildlife-dashboard">
 
+
         <div class="map-frame">
+
           <div class="map-wrap">
+
             <div id="wildlife-map"></div>
-            <div id="map-loading" class="map-loading">
+
+            <div
+              id="map-loading"
+              class="map-loading"
+            >
               Loading field notes…
             </div>
+
           </div>
+
         </div>
+
+
+        <!-- SIDE PANEL -->
 
         <aside class="map-panel">
 
-          <div class="map-panel-block">
-            <p class="map-panel-label">ARCHIVE</p>
 
-            <p id="map-status" class="map-status">
-              Loading data
+          <div class="map-panel-block">
+
+            <p class="map-panel-label">
+              ARCHIVE
             </p>
 
-            <div class="map-stat">
-              <span>Observations</span>
-              <strong id="stat-observations">—</strong>
-            </div>
+
+            <p
+              id="map-status"
+              class="map-status"
+            >
+              Loading data…
+            </p>
+
 
             <div class="map-stat">
-              <span>Species</span>
-              <strong id="stat-species">—</strong>
+              <span>
+                Observations
+              </span>
+
+              <strong id="stat-observations">
+                —
+              </strong>
             </div>
 
+
             <div class="map-stat">
-              <span>Locations</span>
-              <strong id="stat-locations">—</strong>
+              <span>
+                Species
+              </span>
+
+              <strong id="stat-species">
+                —
+              </strong>
             </div>
+
+
+            <div class="map-stat">
+              <span>
+                Locations
+              </span>
+
+              <strong id="stat-locations">
+                —
+              </strong>
+            </div>
+
           </div>
 
+
+          <!-- FILTER -->
+
           <div class="map-panel-block">
-            <p class="map-panel-label">FILTER</p>
+
+            <p class="map-panel-label">
+              FILTER
+            </p>
+
 
             <div class="map-filter">
-              <label for="species-filter">Species</label>
+
+              <label for="species-filter">
+                Species
+              </label>
+
 
               <select id="species-filter">
-                <option value="all">All species</option>
+
+                <option value="all">
+                  All species
+                </option>
+
               </select>
 
-              <label for="year-filter">Year</label>
+
+              <label for="year-filter">
+                Year
+              </label>
+
 
               <select id="year-filter">
-                <option value="all">All years</option>
+
+                <option value="all">
+                  All years
+                </option>
+
               </select>
 
-              <button id="reset-filters" class="map-reset" type="button">
+
+              <button
+                id="reset-filters"
+                class="map-reset"
+                type="button"
+              >
                 Reset filters
               </button>
+
             </div>
+
           </div>
 
-          <div class="map-panel-block">
-            <p class="map-panel-label">ABOUT THE DATA</p>
 
-            <p class="map-note">
-              Locations are plotted using the coordinates returned by iNaturalist.
-              iNaturalist can generalize or obscure sensitive locations, so the map
-              respects the precision supplied by the source.
+          <!-- ABOUT -->
+
+          <div class="map-panel-block">
+
+            <p class="map-panel-label">
+              ABOUT THE DATA
             </p>
-          </div>
 
-          <div class="map-panel-block">
-            <p class="map-panel-label">SOURCE</p>
 
             <p class="map-note">
+
+              Locations are plotted using the coordinates
+              returned by iNaturalist. Sensitive observations
+              may be generalized by the source.
+
+            </p>
+
+          </div>
+
+
+          <!-- SOURCE -->
+
+          <div class="map-panel-block">
+
+            <p class="map-panel-label">
+              SOURCE
+            </p>
+
+
+            <p class="map-note">
+
               <a
                 href="https://www.inaturalist.org/observations?place_id=any&user_id=albercm30&verifiable=any"
                 target="_blank"
@@ -515,40 +1010,74 @@
               >
                 View the full iNaturalist profile ↗
               </a>
+
             </p>
+
           </div>
 
         </aside>
+
       </div>
 
+
+      <!-- CLOSING SECTION -->
+
       <section class="wildlife-bottom">
+
         <div>
-          <p class="eyebrow">FIELD NOTES</p>
+
+          <p class="eyebrow">
+            FIELD NOTES
+          </p>
+
 
           <h2>
-            The map turns scattered observations into a record of
+            The map turns scattered observations
+            into a record of
             <em>where curiosity has taken me.</em>
           </h2>
+
         </div>
 
+
         <div>
+
           <p>
-            This is deliberately more than a map widget. It is a small data pipeline:
-            iNaturalist observations are fetched with Python, normalized into a compact
-            JSON dataset, published to GitHub Pages and then rendered here with Leaflet.
-            The same dataset can later power species pages, country pages, travel logs
-            and photography stories across the site.
+
+            This is more than a map widget.
+            iNaturalist observations are collected
+            into a structured dataset and rendered
+            here as an interactive wildlife archive.
+
+            The same data can later connect to
+            species pages, country pages, travel logs
+            and photography.
+
           </p>
+
         </div>
+
       </section>
 
     </section>
+
   </main>
 
+
   <footer class="footer shell">
-    <span>© 2026 Alberto Castellano</span>
-    <span>Data · AI · Travel · Wildlife · Photography</span>
+
+    <span>
+      © 2026 Alberto Castellano
+    </span>
+
+    <span>
+      Data · AI · Travel · Wildlife · Photography
+    </span>
+
   </footer>
+
+
+  <!-- Leaflet JS -->
 
   <script
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -556,534 +1085,776 @@
     crossorigin=""
   ></script>
 
+
+  <!-- Marker cluster -->
+
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
+
   <script>
-    (function () {
 
-      const DATA_URL = "/data/wildlife.json";
-
-      const map = L.map("wildlife-map", {
-        worldCopyJump: true,
-        minZoom: 2,
-        maxZoom: 18,
-        zoomControl: false
-      }).setView([18, 0], 2);
-
-      L.control.zoom({
-        position: "bottomright"
-      }).addTo(map);
-
-      L.tileLayer(
-        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        {
-          maxZoom: 19,
-          attribution: "&copy; OpenStreetMap contributors"
-        }
-      ).addTo(map);
-
-      const markers = L.markerClusterGroup({
-        showCoverageOnHover: false,
-        spiderfyOnMaxZoom: true,
-        maxClusterRadius: 42,
-        disableClusteringAtZoom: 9
-      });
-
-      markers.addTo(map);
-
-      const state = {
-        observations: [],
-        visible: []
-      };
-
-      const speciesFilter =
-        document.getElementById("species-filter");
-
-      const yearFilter =
-        document.getElementById("year-filter");
-
-      const resetButton =
-        document.getElementById("reset-filters");
-
-      const loading =
-        document.getElementById("map-loading");
-
-      const statObservations =
-        document.getElementById("stat-observations");
-
-      const statSpecies =
-        document.getElementById("stat-species");
-
-      const statLocations =
-        document.getElementById("stat-locations");
-
-      const status =
-        document.getElementById("map-status");
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
 
 
-      function escapeHtml(value) {
+        /* --------------------------------
+           MAP
+        -------------------------------- */
 
-        return String(value ?? "")
-          .replaceAll("&", "&amp;")
-          .replaceAll("<", "&lt;")
-          .replaceAll(">", "&gt;")
-          .replaceAll('"', "&quot;")
-          .replaceAll("'", "&#039;");
-
-      }
-
-
-      function uniqueSorted(values) {
-
-        return [...new Set(values.filter(Boolean))]
-          .sort(
-            (a, b) =>
-              String(a).localeCompare(
-                String(b),
-                undefined,
-                { numeric: true }
-              )
-          );
-
-      }
-
-
-      function formatDate(value) {
-
-        if (!value) {
-          return "Date not recorded";
-        }
-
-        const date = new Date(value);
-
-        if (Number.isNaN(date.getTime())) {
-          return value;
-        }
-
-        return date.toLocaleDateString(
-          "en-GB",
-          {
-            day: "numeric",
-            month: "short",
-            year: "numeric"
-          }
-        );
-
-      }
-
-
-      function createPopup(observation) {
-
-        const species =
-          observation.species ||
-          "Unidentified organism";
-
-        const common =
-          observation.common_name ||
-          "";
-
-        const place =
-          observation.place_guess ||
-          "Location not recorded";
-
-        const date =
-          formatDate(observation.observed_on);
-
-        const photo =
-          observation.photo_url;
-
-        const url =
-          observation.inaturalist_url ||
-          "#";
-
-        const imageHtml = photo
-          ? '<img class="obs-popup-image" src="' +
-            escapeHtml(photo) +
-            '" alt="' +
-            escapeHtml(species) +
-            '" loading="lazy">'
-          : "";
-
-        return (
-          '<article class="obs-popup">' +
-
-            imageHtml +
-
-            '<div class="obs-popup-body">' +
-
-              '<h3 class="obs-popup-species">' +
-                escapeHtml(species) +
-              "</h3>" +
-
-              (
-                common
-                  ? '<p class="obs-popup-common">' +
-                    escapeHtml(common) +
-                    "</p>"
-                  : ""
-              ) +
-
-              '<div class="obs-popup-meta">' +
-
-                "<span>" +
-                  escapeHtml(place) +
-                "</span>" +
-
-                "<span>" +
-                  escapeHtml(date) +
-                "</span>" +
-
-              "</div>" +
-
-              '<a class="obs-popup-link" href="' +
-                escapeHtml(url) +
-                '" target="_blank" rel="noopener noreferrer">' +
-                "Open on iNaturalist ↗" +
-              "</a>" +
-
-            "</div>" +
-
-          "</article>"
-        );
-
-      }
-
-
-      function renderMarkers() {
-
-        markers.clearLayers();
-
-        state.visible.forEach(function (observation) {
-
-          if (
-            typeof observation.latitude !== "number" ||
-            typeof observation.longitude !== "number"
-          ) {
-            return;
-          }
-
-          const marker = L.marker(
-            [
-              observation.latitude,
-              observation.longitude
-            ],
+        const map =
+          L.map(
+            "wildlife-map",
             {
-              title:
-                observation.species ||
-                "Wildlife observation"
+              worldCopyJump: true,
+              minZoom: 2,
+              maxZoom: 18,
+              zoomControl: false
             }
-          );
-
-          marker.bindPopup(
-            createPopup(observation),
-            {
-              maxWidth: 300,
-              closeButton: true
-            }
-          );
-
-          markers.addLayer(marker);
-
-        });
-
-
-        if (state.visible.length > 0) {
-
-          const validPoints =
-            state.visible.filter(function (item) {
-
-              return (
-                typeof item.latitude === "number" &&
-                typeof item.longitude === "number"
-              );
-
-            });
-
-
-          if (validPoints.length > 0) {
-
-            const bounds =
-              L.latLngBounds(
-                validPoints.map(function (item) {
-                  return [
-                    item.latitude,
-                    item.longitude
-                  ];
-                })
-              );
-
-
-            if (validPoints.length === 1) {
-
-              map.setView(
-                bounds.getCenter(),
-                7
-              );
-
-            } else {
-
-              map.fitBounds(
-                bounds.pad(0.12),
-                { maxZoom: 7 }
-              );
-
-            }
-
-          }
-
-        } else {
-
-          map.setView(
+          ).setView(
             [18, 0],
             2
           );
 
-        }
 
-      }
-
-
-      function updateStats() {
-
-        const species =
-          uniqueSorted(
-            state.visible.map(
-              item => item.species
-            )
-          );
-
-        const locations =
-          uniqueSorted(
-            state.visible.map(
-              item => item.place_guess
-            )
-          );
+        L.control.zoom({
+          position: "bottomright"
+        }).addTo(map);
 
 
-        statObservations.textContent =
-          state.visible.length.toLocaleString("en-GB");
+        L.tileLayer(
+          "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+          {
+            maxZoom: 19,
 
-        statSpecies.textContent =
-          species.length.toLocaleString("en-GB");
-
-        statLocations.textContent =
-          locations.length.toLocaleString("en-GB");
-
-
-        if (
-          state.visible.length ===
-          state.observations.length
-        ) {
-
-          status.textContent =
-            "Showing all mapped observations";
-
-        } else {
-
-          status.textContent =
-            "Showing " +
-            state.visible.length.toLocaleString("en-GB") +
-            " filtered observations";
-
-        }
-
-      }
+            attribution:
+              "&copy; OpenStreetMap contributors"
+          }
+        ).addTo(map);
 
 
-      function populateFilters() {
+        /*
+          Fix sizing after all page CSS has loaded.
+        */
 
-        const species =
-          uniqueSorted(
-            state.observations.map(
-              item => item.species
-            )
-          );
-
-        const years =
-          uniqueSorted(
-            state.observations
-              .map(
-                item =>
-                  item.observed_on
-                    ? String(item.observed_on).slice(0, 4)
-                    : null
-              )
-          ).reverse();
+        setTimeout(
+          function () {
+            map.invalidateSize(true);
+          },
+          300
+        );
 
 
-        species.forEach(function (name) {
-
-          const option =
-            document.createElement("option");
-
-          option.value = name;
-          option.textContent = name;
-
-          speciesFilter.appendChild(option);
-
-        });
+        window.addEventListener(
+          "resize",
+          function () {
+            map.invalidateSize(true);
+          }
+        );
 
 
-        years.forEach(function (year) {
+        /* --------------------------------
+           MARKERS
+        -------------------------------- */
 
-          const option =
-            document.createElement("option");
-
-          option.value = year;
-          option.textContent = year;
-
-          yearFilter.appendChild(option);
-
-        });
-
-      }
-
-
-      function applyFilters() {
-
-        const species =
-          speciesFilter.value;
-
-        const year =
-          yearFilter.value;
-
-
-        state.visible =
-          state.observations.filter(function (observation) {
-
-            const speciesMatch =
-              species === "all" ||
-              observation.species === species;
-
-            const observationYear =
-              observation.observed_on
-                ? String(
-                    observation.observed_on
-                  ).slice(0, 4)
-                : "";
-
-            const yearMatch =
-              year === "all" ||
-              observationYear === year;
-
-            return (
-              speciesMatch &&
-              yearMatch
-            );
-
+        const markers =
+          L.markerClusterGroup({
+            showCoverageOnHover: false,
+            spiderfyOnMaxZoom: true,
+            maxClusterRadius: 42,
+            disableClusteringAtZoom: 9
           });
 
 
-        updateStats();
-        renderMarkers();
-
-      }
+        map.addLayer(markers);
 
 
-      resetButton.addEventListener(
-        "click",
-        function () {
+        /* --------------------------------
+           STATE
+        -------------------------------- */
 
-          speciesFilter.value = "all";
-          yearFilter.value = "all";
+        const state = {
 
-          applyFilters();
+          observations: [],
 
-        }
-      );
+          visible: []
 
-
-      speciesFilter.addEventListener(
-        "change",
-        applyFilters
-      );
-
-      yearFilter.addEventListener(
-        "change",
-        applyFilters
-      );
+        };
 
 
-      fetch(
-        DATA_URL,
-        {
-          cache: "no-store"
-        }
-      )
+        /* --------------------------------
+           ELEMENTS
+        -------------------------------- */
 
-        .then(function (response) {
+        const speciesFilter =
+          document.getElementById(
+            "species-filter"
+          );
 
-          if (!response.ok) {
-            throw new Error(
-              "Could not load wildlife.json"
+
+        const yearFilter =
+          document.getElementById(
+            "year-filter"
+          );
+
+
+        const resetButton =
+          document.getElementById(
+            "reset-filters"
+          );
+
+
+        const loading =
+          document.getElementById(
+            "map-loading"
+          );
+
+
+        const status =
+          document.getElementById(
+            "map-status"
+          );
+
+
+        const statObservations =
+          document.getElementById(
+            "stat-observations"
+          );
+
+
+        const statSpecies =
+          document.getElementById(
+            "stat-species"
+          );
+
+
+        const statLocations =
+          document.getElementById(
+            "stat-locations"
+          );
+
+
+        /* --------------------------------
+           HELPERS
+        -------------------------------- */
+
+        function escapeHtml(
+          value
+        ) {
+
+          return String(
+            value ?? ""
+          )
+            .replaceAll(
+              "&",
+              "&amp;"
+            )
+            .replaceAll(
+              "<",
+              "&lt;"
+            )
+            .replaceAll(
+              ">",
+              "&gt;"
+            )
+            .replaceAll(
+              '"',
+              "&quot;"
+            )
+            .replaceAll(
+              "'",
+              "&#039;"
             );
-          }
 
-          return response.json();
-
-        })
-
-        .then(function (payload) {
-
-          state.observations =
-            Array.isArray(payload.observations)
-              ? payload.observations
-              : [];
-
-          state.visible =
-            state.observations.slice();
+        }
 
 
-          populateFilters();
-          updateStats();
-          renderMarkers();
+        function uniqueSorted(
+          values
+        ) {
 
+          return [
+            ...new Set(
+              values.filter(
+                Boolean
+              )
+            )
+          ].sort(
+            function (a, b) {
 
-          loading.style.display =
-            "none";
-
-          map.invalidateSize();
-
-
-          if (payload.generated_at) {
-
-            status.textContent =
-              "Updated " +
-              new Date(
-                payload.generated_at
-              ).toLocaleDateString(
-                "en-GB",
+              return String(a).localeCompare(
+                String(b),
+                undefined,
                 {
-                  day: "numeric",
-                  month: "short",
-                  year: "numeric"
+                  numeric: true
                 }
               );
 
+            }
+          );
+
+        }
+
+
+        function formatDate(
+          value
+        ) {
+
+          if (!value) {
+            return "Date not recorded";
           }
 
-        })
 
-        .catch(function (error) {
+          const date =
+            new Date(value);
 
-          console.error(error);
 
-          loading.textContent =
-            "Could not load the wildlife dataset";
+          if (
+            Number.isNaN(
+              date.getTime()
+            )
+          ) {
 
-          status.textContent =
-            "Data unavailable";
+            return value;
 
-          statObservations.textContent = "—";
-          statSpecies.textContent = "—";
-          statLocations.textContent = "—";
+          }
 
-        });
 
-    })();
+          return date.toLocaleDateString(
+            "en-GB",
+            {
+              day: "numeric",
+              month: "short",
+              year: "numeric"
+            }
+          );
+
+        }
+
+
+        /* --------------------------------
+           POPUP
+        -------------------------------- */
+
+        function createPopup(
+          observation
+        ) {
+
+          const species =
+            observation.species ||
+            "Unidentified organism";
+
+
+          const common =
+            observation.common_name ||
+            "";
+
+
+          const place =
+            observation.place_guess ||
+            "Location not recorded";
+
+
+          const date =
+            formatDate(
+              observation.observed_on
+            );
+
+
+          const photo =
+            observation.photo_url;
+
+
+          const url =
+            observation.inaturalist_url ||
+            "#";
+
+
+          const imageHtml =
+            photo
+              ? `
+                <img
+                  class="obs-popup-image"
+                  src="${escapeHtml(photo)}"
+                  alt="${escapeHtml(species)}"
+                  loading="lazy"
+                >
+              `
+              : "";
+
+
+          return `
+
+            <article class="obs-popup">
+
+              ${imageHtml}
+
+              <div class="obs-popup-body">
+
+                <h3 class="obs-popup-species">
+                  ${escapeHtml(species)}
+                </h3>
+
+                ${
+                  common
+                    ? `
+                      <p class="obs-popup-common">
+                        ${escapeHtml(common)}
+                      </p>
+                    `
+                    : ""
+                }
+
+                <div class="obs-popup-meta">
+
+                  <span>
+                    ${escapeHtml(place)}
+                  </span>
+
+                  <span>
+                    ${escapeHtml(date)}
+                  </span>
+
+                </div>
+
+                <a
+                  class="obs-popup-link"
+                  href="${escapeHtml(url)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open on iNaturalist ↗
+                </a>
+
+              </div>
+
+            </article>
+
+          `;
+
+        }
+
+
+        /* --------------------------------
+           RENDER MARKERS
+        -------------------------------- */
+
+        function renderMarkers() {
+
+          markers.clearLayers();
+
+
+          state.visible.forEach(
+            function (observation) {
+
+
+              if (
+                typeof observation.latitude !== "number" ||
+                typeof observation.longitude !== "number"
+              ) {
+
+                return;
+
+              }
+
+
+              const marker =
+                L.marker(
+                  [
+                    observation.latitude,
+                    observation.longitude
+                  ]
+                );
+
+
+              marker.bindPopup(
+                createPopup(
+                  observation
+                ),
+                {
+                  maxWidth: 300
+                }
+              );
+
+
+              markers.addLayer(
+                marker
+              );
+
+            }
+          );
+
+
+          /*
+            Do not automatically zoom to data.
+
+            Keeping the global world view makes the page
+            feel like a world field map and avoids jumping
+            around when filters are changed.
+          */
+
+        }
+
+
+        /* --------------------------------
+           STATS
+        -------------------------------- */
+
+        function updateStats() {
+
+          const species =
+            uniqueSorted(
+              state.visible.map(
+                function (item) {
+                  return item.species;
+                }
+              )
+            );
+
+
+          const locations =
+            uniqueSorted(
+              state.visible.map(
+                function (item) {
+                  return item.place_guess;
+                }
+              )
+            );
+
+
+          statObservations.textContent =
+            state.visible.length
+              .toLocaleString("en-GB");
+
+
+          statSpecies.textContent =
+            species.length
+              .toLocaleString("en-GB");
+
+
+          statLocations.textContent =
+            locations.length
+              .toLocaleString("en-GB");
+
+
+          if (
+            state.visible.length ===
+            state.observations.length
+          ) {
+
+            status.textContent =
+              "Showing all mapped observations";
+
+          } else {
+
+            status.textContent =
+              "Showing " +
+              state.visible.length
+                .toLocaleString("en-GB") +
+              " filtered observations";
+
+          }
+
+        }
+
+
+        /* --------------------------------
+           FILTER OPTIONS
+        -------------------------------- */
+
+        function populateFilters() {
+
+          const species =
+            uniqueSorted(
+              state.observations.map(
+                function (item) {
+                  return item.species;
+                }
+              )
+            );
+
+
+          const years =
+            uniqueSorted(
+              state.observations.map(
+                function (item) {
+
+                  return item.observed_on
+                    ? String(
+                        item.observed_on
+                      ).slice(0, 4)
+                    : null;
+
+                }
+              )
+            ).reverse();
+
+
+          species.forEach(
+            function (name) {
+
+              const option =
+                document.createElement(
+                  "option"
+                );
+
+              option.value =
+                name;
+
+              option.textContent =
+                name;
+
+              speciesFilter.appendChild(
+                option
+              );
+
+            }
+          );
+
+
+          years.forEach(
+            function (year) {
+
+              const option =
+                document.createElement(
+                  "option"
+                );
+
+              option.value =
+                year;
+
+              option.textContent =
+                year;
+
+              yearFilter.appendChild(
+                option
+              );
+
+            }
+          );
+
+        }
+
+
+        /* --------------------------------
+           FILTER
+        -------------------------------- */
+
+        function applyFilters() {
+
+          const species =
+            speciesFilter.value;
+
+
+          const year =
+            yearFilter.value;
+
+
+          state.visible =
+            state.observations.filter(
+              function (observation) {
+
+
+                const speciesMatch =
+                  species === "all" ||
+                  observation.species === species;
+
+
+                const observationYear =
+                  observation.observed_on
+                    ? String(
+                        observation.observed_on
+                      ).slice(0, 4)
+                    : "";
+
+
+                const yearMatch =
+                  year === "all" ||
+                  observationYear === year;
+
+
+                return (
+                  speciesMatch &&
+                  yearMatch
+                );
+
+              }
+            );
+
+
+          updateStats();
+
+          renderMarkers();
+
+        }
+
+
+        /* --------------------------------
+           EVENTS
+        -------------------------------- */
+
+        speciesFilter.addEventListener(
+          "change",
+          applyFilters
+        );
+
+
+        yearFilter.addEventListener(
+          "change",
+          applyFilters
+        );
+
+
+        resetButton.addEventListener(
+          "click",
+          function () {
+
+            speciesFilter.value =
+              "all";
+
+            yearFilter.value =
+              "all";
+
+            applyFilters();
+
+          }
+        );
+
+
+        /* --------------------------------
+           LOAD DATA
+        -------------------------------- */
+
+        fetch(
+          "/data/wildlife.json",
+          {
+            cache: "no-store"
+          }
+        )
+
+          .then(
+            function (response) {
+
+              if (!response.ok) {
+
+                throw new Error(
+                  "Could not load wildlife.json"
+                );
+
+              }
+
+              return response.json();
+
+            }
+          )
+
+          .then(
+            function (payload) {
+
+              state.observations =
+                Array.isArray(
+                  payload.observations
+                )
+                  ? payload.observations
+                  : [];
+
+
+              state.visible =
+                state.observations.slice();
+
+
+              populateFilters();
+
+              updateStats();
+
+              renderMarkers();
+
+
+              loading.style.display =
+                "none";
+
+
+              setTimeout(
+                function () {
+                  map.invalidateSize(true);
+                },
+                100
+              );
+
+
+              if (
+                payload.generated_at
+              ) {
+
+                const date =
+                  new Date(
+                    payload.generated_at
+                  );
+
+
+                if (
+                  !Number.isNaN(
+                    date.getTime()
+                  )
+                ) {
+
+                  status.textContent =
+                    "Updated " +
+                    date.toLocaleDateString(
+                      "en-GB",
+                      {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric"
+                      }
+                    );
+
+                }
+
+              }
+
+            }
+          )
+
+          .catch(
+            function (error) {
+
+              console.error(
+                error
+              );
+
+
+              loading.textContent =
+                "Could not load wildlife data";
+
+
+              status.textContent =
+                "Data unavailable";
+
+
+              statObservations.textContent =
+                "—";
+
+
+              statSpecies.textContent =
+                "—";
+
+
+              statLocations.textContent =
+                "—";
+
+            }
+          );
+
+      }
+
+    );
+
   </script>
+
 
   <script src="/js/site.js"></script>
 
 </body>
+
 </html>
