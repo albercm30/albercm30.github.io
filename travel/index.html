@@ -507,7 +507,7 @@
       </div>
 
       <p class="micro" style="margin-top:15px">
-        PROGRESS IS SAVED IN THIS BROWSER
+        PERSONAL TRAVEL ARCHIVE
       </p>
 
     </div>
@@ -533,15 +533,6 @@
           id="bucket-progress-fill"
         ></div>
       </div>
-
-      <button
-        class="bucket-reset"
-        id="bucket-reset"
-        type="button"
-        style="margin-top:14px"
-      >
-        Reset progress
-      </button>
 
     </div>
 
@@ -639,30 +630,30 @@ const bucketList = [
   {
     category: "Diving",
     items: [
-      [1, "Dive with a school of manta rays"],
-      [2, "Dive with a school of hammerhead sharks"],
-      [3, "Dive with tiger sharks"],
-      [4, "Dive with bull sharks"],
-      [5, "Dive in the Galápagos"],
-      [6, "Dive in Baja California"],
-      [7, "Dive in Australia — Great Barrier Reef"],
-      [8, "Dive with sharks"],
-      [9, "Dive an iconic shipwreck"],
-      [10, "Dive in Raja Ampat"],
-      [11, "Experience the Sardine Run in South Africa"],
-      [12, "Swim or dive with whale sharks"],
-      [13, "Swim or dive with sea lions"],
-      [14, "Swim or dive with dolphins"],
-      [15, "Swim or dive with whales"],
-      [16, "Swim or dive with orcas"],
-      [17, "Snorkel or dive in the Maldives"],
-      [18, "See a blue whale"],
-      [19, "Visit a Pacific island and dive"],
-      [20, "Obtain the Advanced Open Water certification"],
-      [21, "Swim in water below zero degrees"],
-      [22, "Do a liveaboard in Revillagigedo"],
-      [23, "Do a liveaboard in Norway"],
-      [24, "Dive in a great white shark cage"]
+      { id: 1, title: "Dive with a school of manta rays", completed: true },
+      { id: 2, title: "Dive with a school of hammerhead sharks", completed: false },
+      { id: 3, title: "Dive with tiger sharks", completed: false },
+      { id: 4, title: "Dive with bull sharks", completed: true },
+      { id: 5, title: "Dive in the Galápagos", completed: false },
+      { id: 6, title: "Dive in Baja California", completed: true },
+      { id: 7, title: "Dive in Australia — Great Barrier Reef", completed: true },
+      { id: 8, title: "Dive with sharks", completed: true },
+      { id: 9, title: "Dive an iconic shipwreck", completed: false },
+      { id: 10, title: "Dive in Raja Ampat", completed: false },
+      { id: 11, title: "Experience the Sardine Run in South Africa", completed: false },
+      { id: 12, title: "Swim or dive with whale sharks", completed: true },
+      { id: 13, title: "Swim or dive with sea lions", completed: true },
+      { id: 14, title: "Swim or dive with dolphins", completed: false },
+      { id: 15, title: "Swim or dive with whales", completed: false },
+      { id: 16, title: "Swim or dive with orcas", completed: false },
+      { id: 17, title: "Snorkel or dive in the Maldives", completed: false },
+      { id: 18, title: "See a blue whale", completed: false },
+      { id: 19, title: "Visit a Pacific island and dive", completed: false },
+      { id: 20, title: "Obtain the Advanced Open Water certification", completed: true },
+      { id: 21, title: "Swim in water below zero degrees", completed: false },
+      { id: 22, title: "Do a liveaboard in Revillagigedo", completed: false },
+      { id: 23, title: "Do a liveaboard in Norway", completed: false },
+      { id: 24, title: "Dive in a great white shark cage", completed: false }
     ]
   },
 
@@ -672,28 +663,28 @@ const bucketList = [
   {
     category: "Sport",
     items: [
-      [25, "Surf in Gold Coast, Australia"],
-      [26, "Climb a 5,000 m+ mountain"],
-      [27, "Climb and see an active volcano"],
-      [28, "Reach Everest Base Camp"],
-      [29, "Run a marathon somewhere exotic"],
-      [30, "Horse riding in Kyrgyzstan"],
-      [31, "Learn to ski in Japan"],
-      [32, "Attend a FIFA World Cup"],
-      [33, "Attend a tennis Grand Slam"],
-      [34, "Attend the Olympic Games"],
-      [35, "Attend an American football game"],
-      [36, "Attend an NBA game"],
-      [37, "Hike in the Dolomites"],
-      [38, "Go rafting"],
-      [39, "Hike and eat fondue in Switzerland"],
-      [40, "Kayak around icebergs"],
-      [41, "Climb Mount Bromo or Ijen"],
-      [42, "Climb Teide from sea level"],
-      [43, "Go fishing or spearfishing somewhere exotic"],
-      [44, "Ride a snowmobile and a jet ski"],
-      [45, "Hike in the Azores"],
-      [46, "Hike on glaciers"]
+      { id: 25, title: "Surf in Gold Coast, Australia", completed: true },
+      { id: 26, title: "Climb a 5,000 m+ mountain", completed: false },
+      { id: 27, title: "Climb and see an active volcano", completed: true },
+      { id: 28, title: "Reach Everest Base Camp", completed: false },
+      { id: 29, title: "Run a marathon somewhere exotic", completed: false },
+      { id: 30, title: "Horse riding in Kyrgyzstan", completed: false },
+      { id: 31, title: "Learn to ski in Japan", completed: false },
+      { id: 32, title: "Attend a FIFA World Cup", completed: false },
+      { id: 33, title: "Attend a tennis Grand Slam", completed: false },
+      { id: 34, title: "Attend the Olympic Games", completed: false },
+      { id: 35, title: "Attend an American football game", completed: true },
+      { id: 36, title: "Attend an NBA game", completed: false },
+      { id: 37, title: "Hike in the Dolomites", completed: true },
+      { id: 38, title: "Go rafting", completed: true },
+      { id: 39, title: "Hike and eat fondue in Switzerland", completed: false },
+      { id: 40, title: "Kayak around icebergs", completed: false },
+      { id: 41, title: "Climb Mount Bromo or Ijen", completed: false },
+      { id: 42, title: "Climb Teide from sea level", completed: false },
+      { id: 43, title: "Go fishing or spearfishing somewhere exotic", completed: false },
+      { id: 44, title: "Ride a snowmobile and a jet ski", completed: false },
+      { id: 45, title: "Hike in the Azores", completed: false },
+      { id: 46, title: "Hike on glaciers", completed: false }
     ]
   },
 
@@ -703,51 +694,51 @@ const bucketList = [
   {
     category: "Activities",
     items: [
-      [47, "Visit Antarctica"],
-      [48, "Ride in a hot-air balloon"],
-      [49, "Sleep in a desert Berber or Bedouin camp"],
-      [50, "Do a campervan trip in New Zealand"],
-      [51, "Do a campervan trip in Iceland"],
-      [52, "See the Northern Lights"],
-      [53, "See the Southern Lights"],
-      [54, "Travel through Argentine Patagonia"],
-      [55, "Backpack through South America"],
-      [56, "Expedition into the Amazon"],
-      [57, "See Iguazú Falls"],
-      [58, "Take a friends trip through Asia"],
-      [59, "Camp in Yellowstone"],
-      [60, "Explore China and see giant pandas"],
-      [61, "See the waves at Nazaré"],
-      [62, "Do a night safari and sleep in a national park"],
-      [63, "Eat ramen and wagyu in Japan"],
-      [64, "Bathe in a Japanese onsen"],
-      [65, "Bathe in volcanic hot springs in Iceland"],
-      [66, "Travel across Europe by train"],
-      [67, "See bioluminescence"],
-      [68, "Visit the Lofoten Islands"],
-      [69, "Take a dangerous-animal handling course"],
-      [70, "Do an astronomical travel experience in Chile"],
-      [71, "Take a wildlife photography trip"],
-      [72, "Ride the Ha Giang Loop in Vietnam"],
-      [73, "Do a road trip through Asia"],
-      [74, "Experience local culture in the Middle East"],
-      [75, "Visit Moscow and travel through Russia"],
-      [76, "Visit Madagascar"],
-      [77, "Camp in Mongolia"],
-      [78, "Travel the Nile and see the pyramids"],
-      [79, "Visit Tibet"],
-      [80, "Experience an iconic festival"],
-      [81, "Carnival and favelas in Rio"],
-      [82, "Visit Varanasi and the ghats"],
-      [83, "Visit Costa Rica and its rainforest"],
-      [84, "Experience Día de los Muertos in Mexico"],
-      [85, "Do a road trip in Namibia"],
-      [86, "See Victoria Falls"],
-      [87, "Visit Socotra and discover its species"],
-      [88, "Ride the Ella train in Sri Lanka"],
-      [89, "Explore the villages of Tuscany"],
-      [90, "Explore the wildlife of Papua New Guinea"],
-      [91, "See a total solar eclipse"]
+      { id: 47, title: "Visit Antarctica", completed: false },
+      { id: 48, title: "Ride in a hot-air balloon", completed: true },
+      { id: 49, title: "Sleep in a desert Berber or Bedouin camp", completed: true },
+      { id: 50, title: "Do a campervan trip in New Zealand", completed: true },
+      { id: 51, title: "Do a campervan trip in Iceland", completed: false },
+      { id: 52, title: "See the Northern Lights", completed: false },
+      { id: 53, title: "See the Southern Lights", completed: false },
+      { id: 54, title: "Travel through Argentine Patagonia", completed: false },
+      { id: 55, title: "Backpack through South America", completed: false },
+      { id: 56, title: "Expedition into the Amazon", completed: false },
+      { id: 57, title: "See Iguazú Falls", completed: false },
+      { id: 58, title: "Take a friends trip through Asia", completed: true },
+      { id: 59, title: "Camp in Yellowstone", completed: false },
+      { id: 60, title: "Explore China and see giant pandas", completed: true },
+      { id: 61, title: "See the waves at Nazaré", completed: false },
+      { id: 62, title: "Do a night safari and sleep in a national park", completed: true },
+      { id: 63, title: "Eat ramen and wagyu in Japan", completed: true },
+      { id: 64, title: "Bathe in a Japanese onsen", completed: false },
+      { id: 65, title: "Bathe in volcanic hot springs in Iceland", completed: false },
+      { id: 66, title: "Travel across Europe by train", completed: true },
+      { id: 67, title: "See bioluminescence", completed: true },
+      { id: 68, title: "Visit the Lofoten Islands", completed: false },
+      { id: 69, title: "Take a dangerous-animal handling course", completed: false },
+      { id: 70, title: "Do an astronomical travel experience in Chile", completed: false },
+      { id: 71, title: "Take a wildlife photography trip", completed: true },
+      { id: 72, title: "Ride the Ha Giang Loop in Vietnam", completed: true },
+      { id: 73, title: "Do a road trip through Asia", completed: true },
+      { id: 74, title: "Experience local culture in the Middle East", completed: true },
+      { id: 75, title: "Visit Moscow and travel through Russia", completed: false },
+      { id: 76, title: "Visit Madagascar", completed: false },
+      { id: 77, title: "Camp in Mongolia", completed: false },
+      { id: 78, title: "Travel the Nile and see the pyramids", completed: false },
+      { id: 79, title: "Visit Tibet", completed: false },
+      { id: 80, title: "Experience an iconic festival", completed: false },
+      { id: 81, title: "Carnival and favelas in Rio", completed: false },
+      { id: 82, title: "Visit Varanasi and the ghats", completed: true },
+      { id: 83, title: "Visit Costa Rica and its rainforest", completed: false },
+      { id: 84, title: "Experience Día de los Muertos in Mexico", completed: false },
+      { id: 85, title: "Do a road trip in Namibia", completed: false },
+      { id: 86, title: "See Victoria Falls", completed: false },
+      { id: 87, title: "Visit Socotra and discover its species", completed: false },
+      { id: 88, title: "Ride the Ella train in Sri Lanka", completed: true },
+      { id: 89, title: "Explore the villages of Tuscany", completed: false },
+      { id: 90, title: "Explore the wildlife of Papua New Guinea", completed: false },
+      { id: 91, title: "See a total solar eclipse", completed: false }
     ]
   },
 
@@ -757,14 +748,14 @@ const bucketList = [
   {
     category: "Milestones",
     items: [
-      [92, "Visit 100 countries"],
-      [93, "See the New 7 Wonders of the World"],
-      [94, "Swim in all five oceans"],
-      [95, "Live outside Europe for one year"],
-      [96, "Visit all seven continents"],
-      [97, "Try many exotic fruits in Asia"],
-      [98, "Dive on all seven continents"],
-      [99, "Complete 30 summits"]
+      { id: 92, title: "Visit 100 countries", completed: false },
+      { id: 93, title: "See the New 7 Wonders of the World", completed: false },
+      { id: 94, title: "Swim in all five oceans", completed: false },
+      { id: 95, title: "Live outside Europe for one year", completed: true },
+      { id: 96, title: "Visit all seven continents", completed: false },
+      { id: 97, title: "Try many exotic fruits in Asia", completed: true },
+      { id: 98, title: "Dive on all seven continents", completed: false },
+      { id: 99, title: "Complete 30 summits", completed: false }
     ]
   },
 
@@ -774,27 +765,27 @@ const bucketList = [
   {
     category: "Terrestrial Wildlife",
     items: [
-      [100, "See gorillas in the wild"],
-      [101, "See bears catching salmon in Alaska"],
-      [102, "See polar bears in Svalbard"],
-      [103, "See the wildebeest migration in the Serengeti"],
-      [104, "See wild animals in the Borneo rainforest"],
-      [105, "Camp in Australia with wild kangaroos"],
-      [106, "See dangerous snakes and spiders in the wild"],
-      [107, "See wild elephants"],
-      [108, "See wild rhinoceroses"],
-      [109, "See wild crocodiles"],
-      [110, "See wild lions"],
-      [111, "See wild tigers"],
-      [112, "See the elusive leopard"],
-      [113, "See wild cheetahs"],
-      [114, "See snow leopards in the wild"],
-      [115, "See jaguars in the Pantanal"],
-      [116, "See wild pumas"],
-      [117, "See a black panther in the wild"],
-      [118, "See 15 species of snakes in the wild"],
-      [119, "Camp in the Daintree and see cassowaries"],
-      [120, "See 20 rare species in the wild"]
+      { id: 100, title: "See gorillas in the wild", completed: false },
+      { id: 101, title: "See bears catching salmon in Alaska", completed: false },
+      { id: 102, title: "See polar bears in Svalbard", completed: false },
+      { id: 103, title: "See the wildebeest migration in the Serengeti", completed: false },
+      { id: 104, title: "See wild animals in the Borneo rainforest", completed: true },
+      { id: 105, title: "Camp in Australia with wild kangaroos", completed: true },
+      { id: 106, title: "See dangerous snakes and spiders in the wild", completed: true },
+      { id: 107, title: "See wild elephants", completed: true },
+      { id: 108, title: "See wild rhinoceroses", completed: false },
+      { id: 109, title: "See wild crocodiles", completed: true },
+      { id: 110, title: "See wild lions", completed: false },
+      { id: 111, title: "See wild tigers", completed: false },
+      { id: 112, title: "See the elusive leopard", completed: false },
+      { id: 113, title: "See wild cheetahs", completed: false },
+      { id: 114, title: "See snow leopards in the wild", completed: false },
+      { id: 115, title: "See jaguars in the Pantanal", completed: false },
+      { id: 116, title: "See wild pumas", completed: false },
+      { id: 117, title: "See a black panther in the wild", completed: false },
+      { id: 118, title: "See 15 species of snakes in the wild", completed: false },
+      { id: 119, title: "Camp in the Daintree and see cassowaries", completed: true },
+      { id: 120, title: "See 20 rare species in the wild", completed: false }
     ]
   }
 
@@ -802,48 +793,8 @@ const bucketList = [
 
 
 /* =====================================================
-   LOCAL STORAGE
-====================================================== */
-
-const STORAGE_KEY = "alberto-travel-bucket-list-v1";
-
-
-function loadCompleted() {
-
-  try {
-
-    const saved = JSON.parse(
-      localStorage.getItem(STORAGE_KEY)
-    );
-
-    if (Array.isArray(saved)) {
-      return new Set(saved.map(Number));
-    }
-
-  } catch (error) {
-    console.warn("Could not load bucket list:", error);
-  }
-
-  return new Set();
-
-}
-
-
-let completed = loadCompleted();
-
-
-function saveCompleted() {
-
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify([...completed])
-  );
-
-}
-
-
-/* =====================================================
-   RENDER
+   RENDER BUCKET LIST
+   Visitors can view the list but cannot edit it.
 ====================================================== */
 
 const container =
@@ -859,7 +810,8 @@ function renderBucketList() {
     const section =
       document.createElement("div");
 
-    section.className = "bucket-category";
+    section.className =
+      "bucket-category";
 
 
     const title =
@@ -876,14 +828,14 @@ function renderBucketList() {
       group.category;
 
 
-    const count =
-      document.createElement("span");
-
     const finishedInCategory =
       group.items.filter(
-        item => completed.has(item[0])
+        item => item.completed
       ).length;
 
+
+    const count =
+      document.createElement("span");
 
     count.textContent =
       `${finishedInCategory} / ${group.items.length}`;
@@ -902,28 +854,12 @@ function renderBucketList() {
 
     group.items.forEach(item => {
 
-      const [number, text] = item;
-
       const row =
-        document.createElement("label");
+        document.createElement("div");
 
       row.className =
         "bucket-item" +
-        (completed.has(number) ? " done" : "");
-
-
-      const input =
-        document.createElement("input");
-
-      input.type = "checkbox";
-      input.checked = completed.has(number);
-
-
-      const check =
-        document.createElement("span");
-
-      check.className =
-        "bucket-check";
+        (item.completed ? " done" : "");
 
 
       const index =
@@ -933,7 +869,24 @@ function renderBucketList() {
         "bucket-index";
 
       index.textContent =
-        String(number).padStart(3, "0");
+        String(item.id).padStart(3, "0");
+
+
+      const check =
+        document.createElement("span");
+
+      check.className =
+        "bucket-check";
+
+
+      if (item.completed) {
+        check.classList.add("is-complete");
+        check.innerHTML = "✓";
+      }
+
+
+      const content =
+        document.createElement("span");
 
 
       const titleText =
@@ -943,40 +896,15 @@ function renderBucketList() {
         "bucket-title";
 
       titleText.textContent =
-        text;
+        item.title;
 
-
-      row.appendChild(index);
-
-      row.appendChild(input);
-
-      row.appendChild(check);
-
-
-      const content =
-        document.createElement("span");
 
       content.appendChild(titleText);
 
+
+      row.appendChild(index);
+      row.appendChild(check);
       row.appendChild(content);
-
-
-      input.addEventListener(
-        "change",
-        () => {
-
-          if (input.checked) {
-            completed.add(number);
-          } else {
-            completed.delete(number);
-          }
-
-          saveCompleted();
-          renderBucketList();
-          updateProgress();
-
-        }
-      );
 
 
       list.appendChild(row);
@@ -1002,34 +930,47 @@ function updateProgress() {
 
   const total =
     bucketList.reduce(
-      (sum, group) => sum + group.items.length,
+      (sum, group) =>
+        sum + group.items.length,
       0
     );
 
 
-  const finished =
-    completed.size;
+  const completed =
+    bucketList.reduce(
+      (sum, group) =>
+        sum +
+        group.items.filter(
+          item => item.completed
+        ).length,
+      0
+    );
 
 
   const percentage =
     total === 0
       ? 0
-      : Math.round((finished / total) * 100);
+      : Math.round(
+          (completed / total) * 100
+        );
 
 
   document.getElementById(
     "bucket-completed"
-  ).textContent = finished;
+  ).textContent =
+    completed;
 
 
   document.getElementById(
     "bucket-total"
-  ).textContent = total;
+  ).textContent =
+    total;
 
 
   document.getElementById(
     "bucket-percent"
-  ).textContent = `${percentage}%`;
+  ).textContent =
+    `${percentage}%`;
 
 
   document.getElementById(
@@ -1038,34 +979,6 @@ function updateProgress() {
     `${percentage}%`;
 
 }
-
-
-/* =====================================================
-   RESET
-====================================================== */
-
-document
-  .getElementById("bucket-reset")
-  .addEventListener(
-    "click",
-    () => {
-
-      if (
-        !confirm(
-          "Reset your bucket-list progress?"
-        )
-      ) {
-        return;
-      }
-
-      completed = new Set();
-
-      saveCompleted();
-      renderBucketList();
-      updateProgress();
-
-    }
-  );
 
 
 /* =====================================================
