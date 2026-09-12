@@ -2384,53 +2384,24 @@
         ====================================================== */
 
         function renderCountries() {
-
-          const counts = {};
-
-
-          state.observations.forEach(
-            function (observation) {
-
-              const country =
-                observation.country;
-
-
-              if (!country) {
-                return;
-              }
-
-
-              counts[country] =
-                (counts[country] || 0) + 1;
-
-            }
-          );
-
-
+        
+          const countryCounts =
+            window.wildlifeCountryCounts || {};
+        
+        
           const countries =
             Object.entries(
-              counts
-            )
-              .sort(
-                function (a, b) {
-
-                  return b[1] - a[1];
-
-                }
-              );
-
-
-          state.totalCountries =
-            countries.length;
-
-
+              countryCounts
+            );
+        
+        
           archiveCountries.textContent =
             countries.length
               .toLocaleString("en-GB");
-
-
+        
+        
           if (!countries.length) {
-
+        
             countryList.innerHTML = `
               <div
                 style="
@@ -2439,56 +2410,48 @@
                   font-size:11px;
                 "
               >
-                Country data will appear after
-                the next wildlife dataset update.
+                Country data unavailable.
               </div>
             `;
-
+        
             return;
-
           }
-
-
+        
+        
           countryList.innerHTML =
             countries
               .slice(0, 12)
               .map(
-                function (
-                  item
-                ) {
-
+                function (item) {
+        
                   return `
-
+        
                     <div class="country-row">
-
+        
                       <span class="country-name">
                         ${escapeHtml(item[0])}
                       </span>
-
+        
                       <span class="country-count">
-                        ${
-                          item[1]
-                            .toLocaleString(
-                              "en-GB"
-                            )
-                        }
+        
+                        ${item[1].toLocaleString("en-GB")}
+        
                         ${
                           item[1] === 1
                             ? "observation"
                             : "observations"
                         }
+        
                       </span>
-
+        
                     </div>
-
+        
                   `;
-
+        
                 }
               )
               .join("");
-
         }
-
 
         /* =====================================================
            RECENT OBSERVATIONS
@@ -2732,6 +2695,16 @@
                   ).length
                 );
 
+              window.wildlifeCountryCounts =
+                payload.country_counts || {};
+              
+              state.totalCountries =
+                Number(
+                  payload.total_countries ||
+                  Object.keys(
+                    window.wildlifeCountryCounts
+                  ).length
+                );
 
               state.mappedObservations =
                 Number(
