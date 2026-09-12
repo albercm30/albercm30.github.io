@@ -27,7 +27,7 @@
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIINfQ3fyf7V0Y2m8I5J+uLQ0Xqj2S0F0h8="
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""
   >
 
@@ -220,50 +220,34 @@
       Leaflet tiles must NOT inherit those rules.
     */
 
+    /* --------------------------------
+   LEAFLET OVERRIDES
+-------------------------------- */
+
     .leaflet-container {
-      position: relative;
-
-      overflow: hidden;
-
-      width: 100%;
-      height: 100%;
-
-      font-family:
-        var(--sans),
-        "DM Sans",
-        sans-serif;
-
+      font-family: var(--sans, "DM Sans", sans-serif);
       background: #dde2d9;
     }
-
-
-    .leaflet-container img,
-    .leaflet-container .leaflet-tile,
+    
+    .leaflet-container img {
+      max-width: none !important;
+    }
+    
+    .leaflet-container .leaflet-tile {
+      max-width: none !important;
+    }
+    
     .leaflet-container .leaflet-marker-icon,
-    .leaflet-container .leaflet-marker-shadow,
-    .leaflet-container .leaflet-image-layer,
-    .leaflet-container .leaflet-pane > img {
+    .leaflet-container .leaflet-marker-shadow {
       max-width: none !important;
       max-height: none !important;
     }
-
-
-    .leaflet-container .leaflet-tile {
-      width: 256px !important;
-      height: 256px !important;
-    }
-
-
+    
     .leaflet-control-zoom a {
       color: var(--wild-ink) !important;
-
-      border-color:
-        var(--wild-line) !important;
-
-      background:
-        rgba(251, 250, 247, .95) !important;
+      border-color: var(--wild-line) !important;
+      background: rgba(251, 250, 247, .95) !important;
     }
-
 
     /* --------------------------------
        MAP LOADING
