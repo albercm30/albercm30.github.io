@@ -1321,40 +1321,81 @@
            POPUP
         -------------------------------- */
 
+        function getBestPhotoUrl(observation) {
+        
+          let url = observation.photo_url;
+        
+          if (!url) {
+            return null;
+          }
+        
+          /*
+            iNaturalist image URLs normally contain one of:
+        
+              /square.
+              /small.
+              /medium.
+              /large.
+              /original.
+        
+            Upgrade lower-resolution URLs to /large.
+          */
+        
+          url = url.replace(
+            /\/(square|small|medium)\.(jpg|jpeg|png|webp)$/i,
+            "/large.$2"
+          );
+        
+          /*
+            Some URLs may contain a query string.
+            Handle those too.
+          */
+        
+          url = url.replace(
+            /\/(square|small|medium)\.(jpg|jpeg|png|webp)(\?.*)?$/i,
+            "/large.$2$3"
+          );
+        
+          return url;
+        }
+        
+        
         function createPopup(
           observation
         ) {
-
+        
           const species =
             observation.species ||
             "Unidentified organism";
-
-
+        
+        
           const common =
             observation.common_name ||
             "";
-
-
+        
+        
           const place =
             observation.place_guess ||
             "Location not recorded";
-
-
+        
+        
           const date =
             formatDate(
               observation.observed_on
             );
-
-
+        
+        
           const photo =
-            observation.photo_url;
-
-
+            getBestPhotoUrl(
+              observation
+            );
+        
+        
           const url =
             observation.inaturalist_url ||
             "#";
-
-
+        
+        
           const imageHtml =
             photo
               ? `
@@ -1363,23 +1404,28 @@
                   src="${escapeHtml(photo)}"
                   alt="${escapeHtml(species)}"
                   loading="lazy"
+                  onerror="
+                    if (this.src !== '${escapeHtml(observation.photo_url || "")}') {
+                      this.src = '${escapeHtml(observation.photo_url || "")}';
+                    }
+                  "
                 >
               `
               : "";
-
-
+        
+        
           return `
-
+        
             <article class="obs-popup">
-
+        
               ${imageHtml}
-
+        
               <div class="obs-popup-body">
-
+        
                 <h3 class="obs-popup-species">
                   ${escapeHtml(species)}
                 </h3>
-
+        
                 ${
                   common
                     ? `
@@ -1389,19 +1435,19 @@
                     `
                     : ""
                 }
-
+        
                 <div class="obs-popup-meta">
-
+        
                   <span>
                     ${escapeHtml(place)}
                   </span>
-
+        
                   <span>
                     ${escapeHtml(date)}
                   </span>
-
+        
                 </div>
-
+        
                 <a
                   class="obs-popup-link"
                   href="${escapeHtml(url)}"
@@ -1410,13 +1456,12 @@
                 >
                   Open on iNaturalist ↗
                 </a>
-
+        
               </div>
-
+        
             </article>
-
+        
           `;
-
         }
 
 
