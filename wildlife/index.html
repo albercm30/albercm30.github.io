@@ -14,16 +14,14 @@
 
   <meta
     name="description"
-    content="An interactive map of wildlife observations recorded by Alberto Castellano on iNaturalist."
+    content="An interactive map and archive of Alberto Castellano's wildlife observations."
   >
 
-  <!-- Site stylesheet first -->
   <link
     rel="stylesheet"
     href="/style.css"
   >
 
-  <!-- Leaflet -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -31,7 +29,6 @@
     crossorigin=""
   >
 
-  <!-- Marker clustering -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
@@ -41,6 +38,7 @@
     rel="stylesheet"
     href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"
   >
+
 
   <style>
 
@@ -59,9 +57,9 @@
     }
 
 
-    /* --------------------------------
+    /* =========================================================
        HERO
-    -------------------------------- */
+    ========================================================= */
 
     .wildlife-hero {
       padding: 110px 0 65px;
@@ -71,9 +69,11 @@
 
     .wildlife-hero-inner {
       display: grid;
+
       grid-template-columns:
         minmax(0, 1.25fr)
         minmax(280px, .75fr);
+
       gap: 70px;
       align-items: end;
     }
@@ -90,6 +90,7 @@
         var(--serif);
 
       letter-spacing: -2.5px;
+
       color: var(--wild-ink);
     }
 
@@ -101,6 +102,7 @@
 
     .wildlife-hero-copy {
       max-width: 480px;
+
       margin: 22px 0 0;
 
       color: var(--wild-soft);
@@ -112,6 +114,7 @@
 
     .wildlife-hero-side {
       border-top: 1px solid var(--wild-ink);
+
       padding-top: 14px;
     }
 
@@ -119,32 +122,33 @@
     .wildlife-hero-side-label {
       margin: 0 0 12px;
 
+      color: var(--wild-soft);
+
       font:
         9px
         var(--mono);
 
       letter-spacing: .9px;
       text-transform: uppercase;
-
-      color: var(--wild-soft);
     }
 
 
     .wildlife-hero-side strong {
       display: block;
 
+      color: var(--wild-ink);
+
       font:
         500
         27px
         / 1.15
         var(--serif);
-
-      color: var(--wild-ink);
     }
 
 
     .wildlife-hero-side span {
       display: block;
+
       margin-top: 7px;
 
       color: var(--wild-soft);
@@ -154,14 +158,18 @@
     }
 
 
-    /* --------------------------------
+    /* =========================================================
        MAIN
-    -------------------------------- */
+    ========================================================= */
 
     .wildlife-section {
-      padding: 52px 0 108px;
+      padding: 52px 0 110px;
     }
 
+
+    /* =========================================================
+       MAP DASHBOARD
+    ========================================================= */
 
     .wildlife-dashboard {
       display: grid;
@@ -175,10 +183,6 @@
       align-items: start;
     }
 
-
-    /* --------------------------------
-       MAP
-    -------------------------------- */
 
     .map-frame {
       min-width: 0;
@@ -199,6 +203,7 @@
 
     .map-wrap {
       position: relative;
+
       width: 100%;
     }
 
@@ -213,45 +218,49 @@
     }
 
 
-    /*
-      IMPORTANT.
-
-      Your global site stylesheet contains generic image rules.
-      Leaflet tiles must NOT inherit those rules.
-    */
-
-    /* --------------------------------
-   LEAFLET OVERRIDES
--------------------------------- */
+    /* Leaflet must not inherit global image sizing */
 
     .leaflet-container {
-      font-family: var(--sans, "DM Sans", sans-serif);
+      font-family:
+        var(--sans),
+        "DM Sans",
+        sans-serif;
+
       background: #dde2d9;
     }
-    
+
+
     .leaflet-container img {
       max-width: none !important;
     }
-    
+
+
     .leaflet-container .leaflet-tile {
       max-width: none !important;
     }
-    
+
+
     .leaflet-container .leaflet-marker-icon,
     .leaflet-container .leaflet-marker-shadow {
       max-width: none !important;
       max-height: none !important;
     }
-    
+
+
     .leaflet-control-zoom a {
       color: var(--wild-ink) !important;
-      border-color: var(--wild-line) !important;
-      background: rgba(251, 250, 247, .95) !important;
+
+      border-color:
+        var(--wild-line) !important;
+
+      background:
+        rgba(251, 250, 247, .95) !important;
     }
 
-    /* --------------------------------
-       MAP LOADING
-    -------------------------------- */
+
+    /* =========================================================
+       LOADING
+    ========================================================= */
 
     .map-loading {
       position: absolute;
@@ -261,6 +270,7 @@
       inset: 0;
 
       display: grid;
+
       place-items: center;
 
       background:
@@ -268,22 +278,23 @@
 
       backdrop-filter: blur(2px);
 
+      color: var(--wild-ink);
+
       font:
         9px
         var(--mono);
 
       letter-spacing: .7px;
-      text-transform: uppercase;
 
-      color: var(--wild-ink);
+      text-transform: uppercase;
 
       pointer-events: none;
     }
 
 
-    /* --------------------------------
+    /* =========================================================
        SIDE PANEL
-    -------------------------------- */
+    ========================================================= */
 
     .map-panel {
       border:
@@ -312,14 +323,15 @@
     .map-panel-label {
       margin: 0 0 13px;
 
+      color: var(--wild-soft);
+
       font:
         9px
         var(--mono);
 
       letter-spacing: .9px;
-      text-transform: uppercase;
 
-      color: var(--wild-soft);
+      text-transform: uppercase;
     }
 
 
@@ -372,18 +384,21 @@
     }
 
 
-    /* --------------------------------
+    /* =========================================================
        FILTERS
-    -------------------------------- */
+    ========================================================= */
 
     .map-filter {
       display: grid;
+
       gap: 9px;
     }
 
 
     .map-filter label {
       margin-top: 3px;
+
+      color: var(--wild-soft);
 
       font:
         9px
@@ -392,8 +407,6 @@
       letter-spacing: .8px;
 
       text-transform: uppercase;
-
-      color: var(--wild-soft);
     }
 
 
@@ -402,25 +415,24 @@
 
       box-sizing: border-box;
 
+      padding: 11px;
+
       border:
         1px solid
         var(--wild-line);
 
       border-radius: 0;
 
+      outline: none;
+
       background:
         var(--wild-white);
 
       color: var(--wild-ink);
 
-      padding:
-        11px;
-
       font:
         11px
         var(--sans);
-
-      outline: none;
     }
 
 
@@ -448,6 +460,8 @@
 
       color: #fff;
 
+      cursor: pointer;
+
       font:
         700
         9px
@@ -456,24 +470,15 @@
       letter-spacing: .8px;
 
       text-transform: uppercase;
-
-      cursor: pointer;
-
-      transition:
-        background .2s ease,
-        border-color .2s ease;
     }
 
 
     .map-reset:hover {
       background: #33482f;
+
       border-color: #33482f;
     }
 
-
-    /* --------------------------------
-       ABOUT
-    -------------------------------- */
 
     .map-note {
       margin: 0;
@@ -489,17 +494,15 @@
     .map-note a {
       color: var(--wild-ink);
 
-      text-decoration:
-        underline;
+      text-decoration: underline;
 
-      text-underline-offset:
-        3px;
+      text-underline-offset: 3px;
     }
 
 
-    /* --------------------------------
-       POPUPS
-    -------------------------------- */
+    /* =========================================================
+       POPUP
+    ========================================================= */
 
     .leaflet-popup-content-wrapper,
     .leaflet-popup-tip {
@@ -524,13 +527,13 @@
       display: block;
 
       width: 100%;
+
       height: 190px;
 
       object-fit: cover;
 
       background:
         #e5e2db;
-      image-rendering: auto;
     }
 
 
@@ -542,13 +545,13 @@
     .obs-popup-species {
       margin: 0;
 
+      color: var(--wild-ink);
+
       font:
         500
         22px
         / 1.05
         var(--serif);
-
-      color: var(--wild-ink);
     }
 
 
@@ -566,6 +569,7 @@
 
     .obs-popup-meta {
       display: grid;
+
       gap: 4px;
 
       margin-top: 13px;
@@ -599,6 +603,8 @@
 
       color: var(--wild-green);
 
+      text-decoration: none;
+
       font:
         700
         9px
@@ -607,25 +613,135 @@
       letter-spacing: .55px;
 
       text-transform: uppercase;
-
-      text-decoration: none;
     }
 
 
-    /* --------------------------------
-       BOTTOM NOTE
-    -------------------------------- */
+    /* =========================================================
+       ARCHIVE STATISTICS
+    ========================================================= */
 
-    .wildlife-bottom {
+    .wildlife-stats {
+      margin-top: 105px;
+
+      padding-top: 25px;
+
+      border-top:
+        1px solid
+        var(--wild-ink);
+    }
+
+
+    .wildlife-stats-header {
+      display: flex;
+
+      align-items: baseline;
+
+      justify-content: space-between;
+
+      gap: 30px;
+
+      margin-bottom: 28px;
+    }
+
+
+    .wildlife-stats-title {
+      margin: 0;
+
+      color: var(--wild-ink);
+
+      font:
+        500
+        clamp(34px, 4vw, 50px)
+        / 1
+        var(--serif);
+
+      letter-spacing: -1px;
+    }
+
+
+    .wildlife-stats-note {
+      max-width: 290px;
+
+      margin: 0;
+
+      color: var(--wild-soft);
+
+      font-size: 10px;
+
+      line-height: 1.6;
+
+      text-align: right;
+    }
+
+
+    .wildlife-stat-grid {
       display: grid;
 
       grid-template-columns:
-        1.15fr
-        .85fr;
+        repeat(3, 1fr);
+    }
 
-      gap: 65px;
 
-      margin-top: 78px;
+    .wildlife-stat-card {
+      padding:
+        24px
+        28px
+        25px;
+
+      border-right:
+        1px solid
+        var(--wild-line);
+    }
+
+
+    .wildlife-stat-card:first-child {
+      padding-left: 0;
+    }
+
+
+    .wildlife-stat-card:last-child {
+      border-right: 0;
+    }
+
+
+    .wildlife-stat-number {
+      display: block;
+
+      color: var(--wild-ink);
+
+      font:
+        500
+        clamp(55px, 7vw, 90px)
+        / .9
+        var(--serif);
+
+      letter-spacing: -2px;
+    }
+
+
+    .wildlife-stat-label {
+      display: block;
+
+      margin-top: 11px;
+
+      color: var(--wild-soft);
+
+      font:
+        9px
+        var(--mono);
+
+      letter-spacing: .8px;
+
+      text-transform: uppercase;
+    }
+
+
+    /* =========================================================
+       COUNTRY SECTION
+    ========================================================= */
+
+    .wildlife-countries {
+      margin-top: 95px;
 
       padding-top: 25px;
 
@@ -635,49 +751,337 @@
     }
 
 
-    .wildlife-bottom h2 {
-      max-width: 680px;
+    .wildlife-section-heading {
+      display: flex;
 
+      justify-content: space-between;
+
+      align-items: baseline;
+
+      gap: 30px;
+
+      margin-bottom: 28px;
+    }
+
+
+    .wildlife-section-heading h2 {
       margin: 0;
+
+      color: var(--wild-ink);
 
       font:
         500
-        clamp(32px, 4.3vw, 53px)
-        / 1.03
+        clamp(34px, 4vw, 50px)
+        / 1
         var(--serif);
 
-      letter-spacing: -1.2px;
-
-      color: var(--wild-ink);
+      letter-spacing: -1px;
     }
 
 
-    .wildlife-bottom h2 em {
-      font-style: italic;
-    }
-
-
-    .wildlife-bottom p {
-      max-width: 460px;
-
+    .wildlife-section-heading p {
       margin: 0;
 
       color: var(--wild-soft);
 
-      font-size: 12px;
+      font-size: 10px;
 
-      line-height: 1.75;
+      line-height: 1.6;
+
+      text-align: right;
     }
 
 
-    /* --------------------------------
+    .country-list {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      border-top:
+        1px solid
+        var(--wild-line);
+    }
+
+
+    .country-row {
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 1fr)
+        auto;
+
+      gap: 20px;
+
+      align-items: baseline;
+
+      padding:
+        15px
+        0;
+
+      border-bottom:
+        1px solid
+        var(--wild-line);
+    }
+
+
+    .country-row:nth-child(odd) {
+      margin-right: 30px;
+    }
+
+
+    .country-row:nth-child(even) {
+      margin-left: 30px;
+
+      padding-left: 30px;
+
+      border-left:
+        1px solid
+        var(--wild-line);
+    }
+
+
+    .country-name {
+      color: var(--wild-ink);
+
+      font:
+        500
+        24px
+        / 1.05
+        var(--serif);
+    }
+
+
+    .country-count {
+      color: var(--wild-soft);
+
+      font:
+        9px
+        var(--mono);
+
+      letter-spacing: .5px;
+
+      text-transform: uppercase;
+    }
+
+
+    /* =========================================================
+       RECENT OBSERVATIONS
+    ========================================================= */
+
+    .wildlife-recent {
+      margin-top: 95px;
+
+      padding-top: 25px;
+
+      border-top:
+        1px solid
+        var(--wild-line);
+    }
+
+
+    .recent-heading {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: baseline;
+
+      gap: 30px;
+
+      margin-bottom: 28px;
+    }
+
+
+    .recent-heading h2 {
+      margin: 0;
+
+      color: var(--wild-ink);
+
+      font:
+        500
+        clamp(34px, 4vw, 50px)
+        / 1
+        var(--serif);
+
+      letter-spacing: -1px;
+    }
+
+
+    .recent-heading a {
+      color: var(--wild-green);
+
+      text-decoration: none;
+
+      font:
+        700
+        9px
+        var(--mono);
+
+      letter-spacing: .65px;
+
+      text-transform: uppercase;
+    }
+
+
+    .recent-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 14px;
+    }
+
+
+    .recent-card {
+      min-width: 0;
+    }
+
+
+    .recent-image-wrap {
+      position: relative;
+
+      aspect-ratio: 1 / 1.08;
+
+      overflow: hidden;
+
+      background:
+        #dedbd3;
+    }
+
+
+    .recent-image {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      transition:
+        transform .45s ease;
+    }
+
+
+    .recent-card:hover
+    .recent-image {
+      transform:
+        scale(1.025);
+    }
+
+
+    .recent-placeholder {
+      display: grid;
+
+      place-items: center;
+
+      width: 100%;
+      height: 100%;
+
+      background:
+        linear-gradient(
+          135deg,
+          #d8ddd5,
+          #c7cec3
+        );
+
+      color:
+        rgba(29, 36, 31, .62);
+
+      font:
+        9px
+        var(--mono);
+
+      letter-spacing: .65px;
+
+      text-transform: uppercase;
+    }
+
+
+    .recent-number {
+      position: absolute;
+
+      top: 12px;
+      right: 12px;
+
+      color: #fff;
+
+      font:
+        9px
+        var(--mono);
+
+      text-shadow:
+        0 1px 5px
+        rgba(0,0,0,.35);
+    }
+
+
+    .recent-caption {
+      padding-top: 12px;
+    }
+
+
+    .recent-species {
+      display: block;
+
+      color: var(--wild-ink);
+
+      font:
+        500
+        24px
+        / 1.04
+        var(--serif);
+    }
+
+
+    .recent-meta {
+      display: block;
+
+      margin-top: 6px;
+
+      color: var(--wild-soft);
+
+      font:
+        9px
+        / 1.5
+        var(--mono);
+
+      letter-spacing: .35px;
+
+      text-transform: uppercase;
+    }
+
+
+    .recent-link {
+      display: inline-block;
+
+      margin-top: 10px;
+
+      color: var(--wild-green);
+
+      text-decoration: none;
+
+      font:
+        700
+        8px
+        var(--mono);
+
+      letter-spacing: .55px;
+
+      text-transform: uppercase;
+    }
+
+
+    /* =========================================================
        MOBILE
-    -------------------------------- */
+    ========================================================= */
 
     @media (max-width: 950px) {
 
       .wildlife-hero-inner {
         grid-template-columns: 1fr;
+
         gap: 45px;
       }
 
@@ -695,16 +1099,51 @@
       }
 
 
-      .map-panel-block {
-        border-bottom:
-          1px solid
-          var(--wild-line);
+      .wildlife-stat-grid {
+        grid-template-columns: 1fr 1fr;
       }
 
 
-      .wildlife-bottom {
+      .wildlife-stat-card:nth-child(2) {
+        border-right: 0;
+      }
+
+
+      .wildlife-stat-card:last-child {
+        grid-column: 1 / -1;
+
+        padding-left: 0;
+
+        border-top:
+          1px solid
+          var(--wild-line);
+
+        margin-top: 12px;
+      }
+
+
+      .country-list {
         grid-template-columns: 1fr;
-        gap: 30px;
+      }
+
+
+      .country-row:nth-child(odd) {
+        margin-right: 0;
+      }
+
+
+      .country-row:nth-child(even) {
+        margin-left: 0;
+
+        padding-left: 0;
+
+        border-left: 0;
+      }
+
+
+      .recent-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
       }
 
     }
@@ -735,6 +1174,7 @@
 
       #wildlife-map {
         height: 68vh;
+
         min-height: 460px;
       }
 
@@ -744,9 +1184,60 @@
       }
 
 
-      .wildlife-bottom {
-        margin-top: 52px;
-        gap: 26px;
+      .wildlife-stats {
+        margin-top: 75px;
+      }
+
+
+      .wildlife-stats-header,
+      .wildlife-section-heading,
+      .recent-heading {
+        display: block;
+      }
+
+
+      .wildlife-stats-note,
+      .wildlife-section-heading p {
+        margin-top: 10px;
+
+        text-align: left;
+      }
+
+
+      .wildlife-stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .wildlife-stat-card,
+      .wildlife-stat-card:nth-child(2),
+      .wildlife-stat-card:last-child {
+        padding:
+          21px
+          0;
+
+        border-right: 0;
+
+        border-top:
+          1px solid
+          var(--wild-line);
+
+        margin-top: 0;
+      }
+
+
+      .wildlife-stat-card:first-child {
+        border-top: 0;
+      }
+
+
+      .country-list {
+        display: block;
+      }
+
+
+      .recent-grid {
+        grid-template-columns: 1fr;
       }
 
     }
@@ -758,12 +1249,16 @@
 
 <body class="wildlife-page">
 
+
   <div id="nav"></div>
 
 
   <main>
 
-    <!-- HERO -->
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
     <section class="wildlife-hero">
 
@@ -783,10 +1278,10 @@
 
 
           <p class="wildlife-hero-copy">
+
             A living map of my iNaturalist observations —
             species, encounters and the places where they happened.
-            The dataset is generated from my public profile and
-            updated automatically.
+
           </p>
 
         </div>
@@ -805,6 +1300,7 @@
 
 
           <span>
+
             Public observations by
             <strong
               style="
@@ -815,7 +1311,8 @@
               "
             >
               albercm30
-            </strong>.
+            </strong>
+
           </span>
 
         </div>
@@ -825,7 +1322,9 @@
     </section>
 
 
-    <!-- MAP -->
+    <!-- =====================================================
+         MAP
+    ====================================================== -->
 
     <section class="section shell wildlife-section">
 
@@ -837,6 +1336,7 @@
           <div class="map-wrap">
 
             <div id="wildlife-map"></div>
+
 
             <div
               id="map-loading"
@@ -871,6 +1371,7 @@
 
 
             <div class="map-stat">
+
               <span>
                 Observations
               </span>
@@ -878,10 +1379,12 @@
               <strong id="stat-observations">
                 —
               </strong>
+
             </div>
 
 
             <div class="map-stat">
+
               <span>
                 Species
               </span>
@@ -889,10 +1392,12 @@
               <strong id="stat-species">
                 —
               </strong>
+
             </div>
 
 
             <div class="map-stat">
+
               <span>
                 Locations
               </span>
@@ -900,12 +1405,11 @@
               <strong id="stat-locations">
                 —
               </strong>
+
             </div>
 
           </div>
 
-
-          <!-- FILTER -->
 
           <div class="map-panel-block">
 
@@ -957,8 +1461,6 @@
           </div>
 
 
-          <!-- ABOUT -->
-
           <div class="map-panel-block">
 
             <p class="map-panel-label">
@@ -976,8 +1478,6 @@
 
           </div>
 
-
-          <!-- SOURCE -->
 
           <div class="map-panel-block">
 
@@ -1005,44 +1505,167 @@
       </div>
 
 
-      <!-- CLOSING SECTION -->
+      <!-- =====================================================
+           1. ARCHIVE NUMBERS
+      ====================================================== -->
 
-      <section class="wildlife-bottom">
+      <section class="wildlife-stats">
 
-        <div>
+        <div class="wildlife-stats-header">
 
-          <p class="eyebrow">
-            FIELD NOTES
+          <div>
+
+            <p class="eyebrow">
+              THE ARCHIVE
+            </p>
+
+            <h2 class="wildlife-stats-title">
+              A growing record of wild places.
+            </h2>
+
+          </div>
+
+
+          <p class="wildlife-stats-note">
+            Automatically generated from my public
+            iNaturalist observations.
           </p>
-
-
-          <h2>
-            The map turns scattered observations
-            into a record of
-            <em>where curiosity has taken me.</em>
-          </h2>
 
         </div>
 
 
-        <div>
+        <div class="wildlife-stat-grid">
 
-          <p>
 
-            This is more than a map widget.
-            iNaturalist observations are collected
-            into a structured dataset and rendered
-            here as an interactive wildlife archive.
+          <div class="wildlife-stat-card">
 
-            The same data can later connect to
-            species pages, country pages, travel logs
-            and photography.
+            <span
+              id="archive-observations"
+              class="wildlife-stat-number"
+            >
+              —
+            </span>
 
-          </p>
+            <span class="wildlife-stat-label">
+              Observations
+            </span>
+
+          </div>
+
+
+          <div class="wildlife-stat-card">
+
+            <span
+              id="archive-species"
+              class="wildlife-stat-number"
+            >
+              —
+            </span>
+
+            <span class="wildlife-stat-label">
+              Species
+            </span>
+
+          </div>
+
+
+          <div class="wildlife-stat-card">
+
+            <span
+              id="archive-countries"
+              class="wildlife-stat-number"
+            >
+              —
+            </span>
+
+            <span class="wildlife-stat-label">
+              Countries recorded
+            </span>
+
+          </div>
+
 
         </div>
 
       </section>
+
+
+      <!-- =====================================================
+           2. WHERE I'VE SEEN LIFE
+      ====================================================== -->
+
+      <section class="wildlife-countries">
+
+        <div class="wildlife-section-heading">
+
+          <div>
+
+            <p class="eyebrow">
+              WHERE I'VE SEEN LIFE
+            </p>
+
+            <h2>
+              The geography of the archive.
+            </h2>
+
+          </div>
+
+
+          <p>
+            Countries with mapped observations,
+            ranked by number of encounters.
+          </p>
+
+        </div>
+
+
+        <div
+          id="country-list"
+          class="country-list"
+        ></div>
+
+      </section>
+
+
+      <!-- =====================================================
+           3. RECENT OBSERVATIONS
+      ====================================================== -->
+
+      <section class="wildlife-recent">
+
+        <div class="recent-heading">
+
+          <div>
+
+            <p class="eyebrow">
+              RECENT OBSERVATIONS
+            </p>
+
+            <h2>
+              The latest encounters.
+            </h2>
+
+          </div>
+
+
+          <a
+            href="https://www.inaturalist.org/observations?place_id=any&user_id=albercm30&verifiable=any"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View full archive ↗
+          </a>
+
+        </div>
+
+
+        <div
+          id="recent-grid"
+          class="recent-grid"
+        ></div>
+
+      </section>
+
 
     </section>
 
@@ -1062,7 +1685,9 @@
   </footer>
 
 
-  <!-- Leaflet JS -->
+  <!-- =====================================================
+       LEAFLET
+  ====================================================== -->
 
   <script
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -1070,8 +1695,6 @@
     crossorigin=""
   ></script>
 
-
-  <!-- Marker cluster -->
 
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
@@ -1083,17 +1706,20 @@
       function () {
 
 
-        /* --------------------------------
+        /* =====================================================
            MAP
-        -------------------------------- */
+        ====================================================== */
 
         const map =
           L.map(
             "wildlife-map",
             {
               worldCopyJump: true,
+
               minZoom: 2,
+
               maxZoom: 18,
+
               zoomControl: false
             }
           ).setView(
@@ -1118,10 +1744,6 @@
         ).addTo(map);
 
 
-        /*
-          Fix sizing after all page CSS has loaded.
-        */
-
         setTimeout(
           function () {
             map.invalidateSize(true);
@@ -1138,15 +1760,14 @@
         );
 
 
-        /* --------------------------------
-           MARKERS
-        -------------------------------- */
-
         const markers =
           L.markerClusterGroup({
             showCoverageOnHover: false,
+
             spiderfyOnMaxZoom: true,
+
             maxClusterRadius: 42,
+
             disableClusteringAtZoom: 9
           });
 
@@ -1154,22 +1775,30 @@
         map.addLayer(markers);
 
 
-        /* --------------------------------
+        /* =====================================================
            STATE
-        -------------------------------- */
+        ====================================================== */
 
         const state = {
 
           observations: [],
 
-          visible: []
+          visible: [],
+
+          totalObservations: 0,
+
+          totalSpecies: 0,
+
+          totalCountries: 0,
+
+          mappedObservations: 0
 
         };
 
 
-        /* --------------------------------
-           ELEMENTS
-        -------------------------------- */
+        /* =====================================================
+           DOM
+        ====================================================== */
 
         const speciesFilter =
           document.getElementById(
@@ -1219,9 +1848,39 @@
           );
 
 
-        /* --------------------------------
+        const archiveObservations =
+          document.getElementById(
+            "archive-observations"
+          );
+
+
+        const archiveSpecies =
+          document.getElementById(
+            "archive-species"
+          );
+
+
+        const archiveCountries =
+          document.getElementById(
+            "archive-countries"
+          );
+
+
+        const countryList =
+          document.getElementById(
+            "country-list"
+          );
+
+
+        const recentGrid =
+          document.getElementById(
+            "recent-grid"
+          );
+
+
+        /* =====================================================
            HELPERS
-        -------------------------------- */
+        ====================================================== */
 
         function escapeHtml(
           value
@@ -1309,7 +1968,9 @@
             "en-GB",
             {
               day: "numeric",
+
               month: "short",
+
               year: "numeric"
             }
           );
@@ -1317,85 +1978,81 @@
         }
 
 
-        /* --------------------------------
-           POPUP
-        -------------------------------- */
+        function getBestPhotoUrl(
+          observation
+        ) {
 
-        function getBestPhotoUrl(observation) {
-        
-          let url = observation.photo_url;
-        
+          let url =
+            observation.photo_url;
+
+
           if (!url) {
             return null;
           }
-        
-          /*
-            iNaturalist image URLs normally contain one of:
-        
-              /square.
-              /small.
-              /medium.
-              /large.
-              /original.
-        
-            Upgrade lower-resolution URLs to /large.
-          */
-        
+
+
           url = url.replace(
             /\/(square|small|medium)\.(jpg|jpeg|png|webp)$/i,
             "/large.$2"
           );
-        
-          /*
-            Some URLs may contain a query string.
-            Handle those too.
-          */
-        
+
+
           url = url.replace(
             /\/(square|small|medium)\.(jpg|jpeg|png|webp)(\?.*)?$/i,
             "/large.$2$3"
           );
-        
+
+
           return url;
+
         }
-        
-        
+
+
+        /* =====================================================
+           POPUP
+        ====================================================== */
+
         function createPopup(
           observation
         ) {
-        
+
           const species =
             observation.species ||
             "Unidentified organism";
-        
-        
+
+
           const common =
             observation.common_name ||
             "";
-        
-        
+
+
           const place =
             observation.place_guess ||
             "Location not recorded";
-        
-        
+
+
           const date =
             formatDate(
               observation.observed_on
             );
-        
-        
+
+
           const photo =
             getBestPhotoUrl(
               observation
             );
-        
-        
+
+
+          const fallbackPhoto =
+            observation.photo_url ||
+            "";
+
+
           const url =
             observation.inaturalist_url ||
             "#";
-        
-        
+
+
           const imageHtml =
             photo
               ? `
@@ -1405,27 +2062,30 @@
                   alt="${escapeHtml(species)}"
                   loading="lazy"
                   onerror="
-                    if (this.src !== '${escapeHtml(observation.photo_url || "")}') {
-                      this.src = '${escapeHtml(observation.photo_url || "")}';
+                    if (
+                      this.src !== '${escapeHtml(fallbackPhoto)}'
+                    ) {
+                      this.src =
+                        '${escapeHtml(fallbackPhoto)}';
                     }
                   "
                 >
               `
               : "";
-        
-        
+
+
           return `
-        
+
             <article class="obs-popup">
-        
+
               ${imageHtml}
-        
+
               <div class="obs-popup-body">
-        
+
                 <h3 class="obs-popup-species">
                   ${escapeHtml(species)}
                 </h3>
-        
+
                 ${
                   common
                     ? `
@@ -1435,19 +2095,19 @@
                     `
                     : ""
                 }
-        
+
                 <div class="obs-popup-meta">
-        
+
                   <span>
                     ${escapeHtml(place)}
                   </span>
-        
+
                   <span>
                     ${escapeHtml(date)}
                   </span>
-        
+
                 </div>
-        
+
                 <a
                   class="obs-popup-link"
                   href="${escapeHtml(url)}"
@@ -1456,18 +2116,19 @@
                 >
                   Open on iNaturalist ↗
                 </a>
-        
+
               </div>
-        
+
             </article>
-        
+
           `;
+
         }
 
 
-        /* --------------------------------
-           RENDER MARKERS
-        -------------------------------- */
+        /* =====================================================
+           MAP MARKERS
+        ====================================================== */
 
         function renderMarkers() {
 
@@ -1476,7 +2137,6 @@
 
           state.visible.forEach(
             function (observation) {
-
 
               if (
                 typeof observation.latitude !== "number" ||
@@ -1492,8 +2152,14 @@
                 L.marker(
                   [
                     observation.latitude,
+
                     observation.longitude
-                  ]
+                  ],
+                  {
+                    title:
+                      observation.species ||
+                      "Wildlife observation"
+                  }
                 );
 
 
@@ -1514,21 +2180,12 @@
             }
           );
 
-
-          /*
-            Do not automatically zoom to data.
-
-            Keeping the global world view makes the page
-            feel like a world field map and avoids jumping
-            around when filters are changed.
-          */
-
         }
 
 
-        /* --------------------------------
-           STATS
-        -------------------------------- */
+        /* =====================================================
+           MAP STATS
+        ====================================================== */
 
         function updateStats() {
 
@@ -1553,12 +2210,12 @@
 
 
           statObservations.textContent =
-            state.visible.length
+            state.totalObservations
               .toLocaleString("en-GB");
 
 
           statSpecies.textContent =
-            species.length
+            state.totalSpecies
               .toLocaleString("en-GB");
 
 
@@ -1569,28 +2226,29 @@
 
           if (
             state.visible.length ===
-            state.observations.length
+            state.mappedObservations
           ) {
 
             status.textContent =
-              "Showing all mapped observations";
+              state.mappedObservations
+                .toLocaleString("en-GB") +
+              " mapped observations";
 
           } else {
 
             status.textContent =
-              "Showing " +
               state.visible.length
                 .toLocaleString("en-GB") +
-              " filtered observations";
+              " filtered mapped observations";
 
           }
 
         }
 
 
-        /* --------------------------------
-           FILTER OPTIONS
-        -------------------------------- */
+        /* =====================================================
+           FILTERS
+        ====================================================== */
 
         function populateFilters() {
 
@@ -1628,11 +2286,14 @@
                   "option"
                 );
 
+
               option.value =
                 name;
 
+
               option.textContent =
                 name;
+
 
               speciesFilter.appendChild(
                 option
@@ -1650,11 +2311,14 @@
                   "option"
                 );
 
+
               option.value =
                 year;
 
+
               option.textContent =
                 year;
+
 
               yearFilter.appendChild(
                 option
@@ -1665,10 +2329,6 @@
 
         }
 
-
-        /* --------------------------------
-           FILTER
-        -------------------------------- */
 
         function applyFilters() {
 
@@ -1719,9 +2379,265 @@
         }
 
 
-        /* --------------------------------
+        /* =====================================================
+           COUNTRY LIST
+        ====================================================== */
+
+        function renderCountries() {
+
+          const counts = {};
+
+
+          state.observations.forEach(
+            function (observation) {
+
+              const country =
+                observation.country;
+
+
+              if (!country) {
+                return;
+              }
+
+
+              counts[country] =
+                (counts[country] || 0) + 1;
+
+            }
+          );
+
+
+          const countries =
+            Object.entries(
+              counts
+            )
+              .sort(
+                function (a, b) {
+
+                  return b[1] - a[1];
+
+                }
+              );
+
+
+          state.totalCountries =
+            countries.length;
+
+
+          archiveCountries.textContent =
+            countries.length
+              .toLocaleString("en-GB");
+
+
+          if (!countries.length) {
+
+            countryList.innerHTML = `
+              <div
+                style="
+                  padding:18px 0;
+                  color:var(--wild-soft);
+                  font-size:11px;
+                "
+              >
+                Country data will appear after
+                the next wildlife dataset update.
+              </div>
+            `;
+
+            return;
+
+          }
+
+
+          countryList.innerHTML =
+            countries
+              .slice(0, 12)
+              .map(
+                function (
+                  item
+                ) {
+
+                  return `
+
+                    <div class="country-row">
+
+                      <span class="country-name">
+                        ${escapeHtml(item[0])}
+                      </span>
+
+                      <span class="country-count">
+                        ${
+                          item[1]
+                            .toLocaleString(
+                              "en-GB"
+                            )
+                        }
+                        ${
+                          item[1] === 1
+                            ? "observation"
+                            : "observations"
+                        }
+                      </span>
+
+                    </div>
+
+                  `;
+
+                }
+              )
+              .join("");
+
+        }
+
+
+        /* =====================================================
+           RECENT OBSERVATIONS
+        ====================================================== */
+
+        function renderRecentObservations() {
+
+          const recent =
+            state.observations
+              .slice()
+              .sort(
+                function (a, b) {
+
+                  return String(
+                    b.observed_on || ""
+                  ).localeCompare(
+                    String(
+                      a.observed_on || ""
+                    )
+                  );
+
+                }
+              )
+              .slice(0, 4);
+
+
+          recentGrid.innerHTML =
+            recent
+              .map(
+                function (
+                  observation,
+                  index
+                ) {
+
+                  const photo =
+                    getBestPhotoUrl(
+                      observation
+                    );
+
+
+                  const species =
+                    observation.species ||
+                    "Unidentified organism";
+
+
+                  const country =
+                    observation.country ||
+                    observation.place_guess ||
+                    "Unknown location";
+
+
+                  const image =
+                    photo
+                      ? `
+                        <img
+                          class="recent-image"
+                          src="${escapeHtml(photo)}"
+                          alt="${escapeHtml(species)}"
+                          loading="lazy"
+                          onerror="
+                            this.style.display='none';
+                            this.nextElementSibling.style.display='grid';
+                          "
+                        >
+
+                        <div
+                          class="recent-placeholder"
+                          style="display:none"
+                        >
+                          IMAGE UNAVAILABLE
+                        </div>
+                      `
+                      : `
+                        <div class="recent-placeholder">
+                          NO PHOTOGRAPH
+                        </div>
+                      `;
+
+
+                  return `
+
+                    <article class="recent-card">
+
+                      <a
+                        href="${escapeHtml(
+                          observation.inaturalist_url || "#"
+                        )}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+
+                        <div class="recent-image-wrap">
+
+                          ${image}
+
+                          <span class="recent-number">
+                            0${index + 1}
+                          </span>
+
+                        </div>
+
+                      </a>
+
+
+                      <div class="recent-caption">
+
+                        <strong class="recent-species">
+                          ${escapeHtml(species)}
+                        </strong>
+
+
+                        <span class="recent-meta">
+                          ${escapeHtml(country)}
+                          ·
+                          ${escapeHtml(
+                            formatDate(
+                              observation.observed_on
+                            )
+                          )}
+                        </span>
+
+
+                        <a
+                          class="recent-link"
+                          href="${escapeHtml(
+                            observation.inaturalist_url || "#"
+                          )}"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View observation ↗
+                        </a>
+
+                      </div>
+
+                    </article>
+
+                  `;
+
+                }
+              )
+              .join("");
+
+        }
+
+
+        /* =====================================================
            EVENTS
-        -------------------------------- */
+        ====================================================== */
 
         speciesFilter.addEventListener(
           "change",
@@ -1751,9 +2667,9 @@
         );
 
 
-        /* --------------------------------
+        /* =====================================================
            LOAD DATA
-        -------------------------------- */
+        ====================================================== */
 
         fetch(
           "/data/wildlife.json",
@@ -1773,6 +2689,7 @@
 
               }
 
+
               return response.json();
 
             }
@@ -1780,6 +2697,7 @@
 
           .then(
             function (payload) {
+
 
               state.observations =
                 Array.isArray(
@@ -1793,11 +2711,54 @@
                 state.observations.slice();
 
 
+              state.totalObservations =
+                Number(
+                  payload.total_observations ||
+                  payload.observation_count ||
+                  state.observations.length
+                );
+
+
+              state.totalSpecies =
+                Number(
+                  payload.total_species ||
+                  payload.species_count ||
+                  uniqueSorted(
+                    state.observations.map(
+                      function (item) {
+                        return item.species;
+                      }
+                    )
+                  ).length
+                );
+
+
+              state.mappedObservations =
+                Number(
+                  payload.mapped_observations ||
+                  state.observations.length
+                );
+
+
+              archiveObservations.textContent =
+                state.totalObservations
+                  .toLocaleString("en-GB");
+
+
+              archiveSpecies.textContent =
+                state.totalSpecies
+                  .toLocaleString("en-GB");
+
+
               populateFilters();
 
               updateStats();
 
               renderMarkers();
+
+              renderCountries();
+
+              renderRecentObservations();
 
 
               loading.style.display =
@@ -1806,7 +2767,11 @@
 
               setTimeout(
                 function () {
-                  map.invalidateSize(true);
+
+                  map.invalidateSize(
+                    true
+                  );
+
                 },
                 100
               );
@@ -1816,7 +2781,7 @@
                 payload.generated_at
               ) {
 
-                const date =
+                const generated =
                   new Date(
                     payload.generated_at
                   );
@@ -1824,17 +2789,19 @@
 
                 if (
                   !Number.isNaN(
-                    date.getTime()
+                    generated.getTime()
                   )
                 ) {
 
                   status.textContent =
                     "Updated " +
-                    date.toLocaleDateString(
+                    generated.toLocaleDateString(
                       "en-GB",
                       {
                         day: "numeric",
+
                         month: "short",
+
                         year: "numeric"
                       }
                     );
@@ -1860,18 +2827,6 @@
 
               status.textContent =
                 "Data unavailable";
-
-
-              statObservations.textContent =
-                "—";
-
-
-              statSpecies.textContent =
-                "—";
-
-
-              statLocations.textContent =
-                "—";
 
             }
           );
