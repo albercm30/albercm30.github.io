@@ -1,5 +1,1092 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Travel · Alberto Castellano</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet"><link rel="stylesheet" href="/style.css"></head><body><div id="nav"></div>
-<section class="page-hero"><div class="shell"><p class="eyebrow">THE WORLD</p><h1 class="page-title">Places that became<br><em>memories.</em></h1><p class="intro">A growing archive of trips, countries, routes and experiences — from jungle trails and volcanoes to some of the world's richest oceans.</p></div></section>
-<section class="section shell"><div class="stats reveal"><div class="stat"><strong>38</strong><span>Countries<br>explored</span></div><div class="stat"><strong>5</strong><span>Continents<br>visited</span></div><div class="stat"><strong>19</strong><span>Dives<br>completed</span></div><div class="stat"><strong>5</strong><span>Mountains<br>climbed</span></div><div class="stat"><strong>200+</strong><span>Species<br>encountered</span></div></div></section>
-<section class="section shell" style="padding-top:20px"><div class="section-head"><div><p class="eyebrow">COUNTRY ARCHIVE</p><h2>Every place has<br>a <em>story.</em></h2></div><p class="section-note">Click into a country for a trip journal, route, highlights, wildlife, diving and photography.</p></div><div class="destinations"><a class="destination reveal" href="/countries/australia/"><span class="micro">01 · 2025</span><h3>Australia</h3><p>Wildlife · Diving · Road trips</p><p style="margin-top:8px">Tropical forests, the Great Barrier Reef and unforgettable wildlife encounters.</p></a><a class="destination reveal" href="/countries/malaysia/"><span class="micro">07 · 2025</span><h3>Malaysia</h3><p>Borneo · Rainforest · Orangutans</p><p style="margin-top:8px">Islands, volcanoes, jungles and some of the world's richest marine ecosystems.</p></a><a class="destination reveal" href="/countries/guatemala/"><span class="micro">03 · 2026</span><h3>Guatemala</h3><p>Acatenango · Volcanoes · Adventure</p><p style="margin-top:8px">Volcanoes, highland landscapes and an unforgettable ascent of Acatenango.</p></a><a class="destination reveal" href="/countries/mexico/"><span class="micro">05-06 · 2026</span><h3>Mexico</h3><p>Sharks · Mobulas · Sea lions</p><p style="margin-top:8px">Baja California, marine megafauna and the Yucatán.</p></a><a class="destination reveal" href="/countries/thailand/"><span class="micro">05 · 2026</span><h3>Thailand</h3><p>Diving · Jungle · Elephants</p><p style="margin-top:8px">A mix of terrestrial and underwater wildlife exploration.</p></a><a class="destination reveal" href="/countries/vietnam/"><span class="micro">06 · 2026</span><h3>Vietnam</h3><p>Mountains · Road trip · Wildlife</p><p style="margin-top:8px">Northern mountains, countryside, caves and the south.</p></a><a class="destination reveal" href="/countries/new-zealand/"><span class="micro">07 · 2026</span><h3>New Zealand</h3><p>Mountains · Road trip · Alpine</p><p style="margin-top:8px">A South Island road trip built around alpine landscapes and long hikes.</p></a><a class="destination reveal" href="/countries/italy/"><span class="micro">08 · 2026</span><h3>Italy</h3><p>Dolomites · Hiking · Lakes</p><p style="margin-top:8px">A hiking-focused journey through the Dolomites.</p></a></div></section>
-<div class="contact"><div class="shell"><p class="eyebrow" style="color:#dce6d8">GET IN TOUCH</p><h2>Let's build something <em>interesting.</em></h2><p>Data, AI, travel, wildlife — or some combination of all four.</p><div class="buttons" style="justify-content:center"><a class="btn" style="background:white;color:#40573b" href="albertocm30.2001@gmail.com">Email me ↗</a><a class="btn" style="border:1px solid #dce6d8;color:white" href="https://github.com/albercm30" target="_blank">GitHub ↗</a></div></div></div><footer class="footer shell"><span>© 2026 Alberto Castellano Macías</span><span>Data · AI · Travel · Wildlife · Photography</span></footer><script src="/js/site.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>Travel · Alberto Castellano</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="/style.css">
+
+  <style>
+
+    /* =====================================================
+       TRAVEL MAP
+    ====================================================== */
+
+    .travel-map {
+      margin-top: 30px;
+      border: 1px solid var(--line);
+      background: #eee;
+      overflow: hidden;
+    }
+
+    .travel-map iframe {
+      width: 100%;
+      height: 520px;
+      border: 0;
+      display: block;
+    }
+
+    /* =====================================================
+       BUCKET LIST
+    ====================================================== */
+
+    .bucket-summary {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 45px;
+    }
+
+    .bucket-number {
+      font-family: var(--serif);
+      font-size: clamp(54px, 8vw, 100px);
+      line-height: .9;
+      letter-spacing: -3px;
+    }
+
+    .bucket-number small {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      color: var(--soft);
+    }
+
+    .bucket-progress {
+      width: 280px;
+      max-width: 100%;
+    }
+
+    .bucket-progress-bar {
+      height: 5px;
+      background: #d8ddd5;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+
+    .bucket-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--green);
+      transition: width .35s ease;
+    }
+
+    .bucket-category {
+      border-top: 1px solid var(--line);
+      margin-top: 40px;
+      padding-top: 30px;
+    }
+
+    .bucket-category-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .bucket-category-title h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 34px;
+      font-weight: 400;
+    }
+
+    .bucket-category-title span {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--soft);
+      text-transform: uppercase;
+    }
+
+    .bucket-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .bucket-item {
+      display: grid;
+      grid-template-columns: 52px 1fr auto;
+      gap: 18px;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding: 16px 4px;
+    }
+
+    .bucket-item input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .bucket-check {
+      width: 22px;
+      height: 22px;
+      border: 1px solid var(--soft);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+
+    .bucket-check::after {
+      content: "✓";
+      opacity: 0;
+      font-size: 13px;
+      transform: translateY(-1px);
+    }
+
+    .bucket-item input:checked + .bucket-check {
+      background: var(--green);
+      border-color: var(--green);
+      color: white;
+    }
+
+    .bucket-item input:checked + .bucket-check::after {
+      opacity: 1;
+    }
+
+    .bucket-item.done .bucket-title {
+      text-decoration: line-through;
+      opacity: .55;
+    }
+
+    .bucket-index {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--soft);
+    }
+
+    .bucket-title {
+      font-size: 16px;
+      transition: opacity .2s ease;
+    }
+
+    .bucket-meta {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--soft);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+
+    .bucket-reset {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: transparent;
+      padding: 10px 14px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .bucket-reset:hover {
+      background: #f0f2ed;
+    }
+
+    /* =====================================================
+       COUNTRY CARDS
+    ====================================================== */
+
+    .destination {
+      text-decoration: none;
+    }
+
+    .destination:hover h3 {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+
+    /* =====================================================
+       RESPONSIVE
+    ====================================================== */
+
+    @media (max-width: 700px) {
+
+      .bucket-summary {
+        display: block;
+      }
+
+      .bucket-progress {
+        margin-top: 25px;
+        width: 100%;
+      }
+
+      .bucket-item {
+        grid-template-columns: 30px 1fr;
+      }
+
+      .bucket-meta {
+        grid-column: 2;
+      }
+
+      .travel-map iframe {
+        height: 420px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div id="nav"></div>
+
+<!-- =====================================================
+     HERO
+====================================================== -->
+
+<section class="page-hero">
+
+  <div class="shell">
+
+    <p class="eyebrow">
+      THE WORLD
+    </p>
+
+    <h1 class="page-title">
+      Places that became<br>
+      <em>memories.</em>
+    </h1>
+
+    <p class="intro">
+      A growing archive of trips, countries, routes and experiences —
+      from jungle trails and volcanoes to some of the world's richest oceans.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     STATS
+====================================================== -->
+
+<section class="section shell" style="padding-top:20px">
+
+  <div class="stats reveal">
+
+    <div class="stat">
+      <strong>38</strong>
+      <span>Countries<br>explored</span>
+    </div>
+
+    <div class="stat">
+      <strong>5</strong>
+      <span>Continents<br>visited</span>
+    </div>
+
+    <div class="stat">
+      <strong>19</strong>
+      <span>Dives<br>completed</span>
+    </div>
+
+    <div class="stat">
+      <strong>5</strong>
+      <span>Mountains<br>climbed</span>
+    </div>
+
+    <div class="stat">
+      <strong>200+</strong>
+      <span>Species<br>encountered</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     MAP
+====================================================== -->
+
+<section class="section shell">
+
+  <div class="section-head">
+
+    <div>
+
+      <p class="eyebrow">
+        WHERE I'VE BEEN
+      </p>
+
+      <h2>
+        A map of the<br>
+        <em>journey.</em>
+      </h2>
+
+    </div>
+
+    <p class="section-note">
+      Countries, cities, mountains, dive sites and other places
+      that have become part of the journey.
+    </p>
+
+  </div>
+
+
+  <div class="travel-map">
+
+    <!--
+      REPLACE THE SRC BELOW WITH YOUR GOOGLE MY MAPS EMBED URL.
+
+      Google My Maps:
+      1. Create a new map.
+      2. Add your countries / cities / routes.
+      3. Click Share.
+      4. Make it visible to anyone with the link.
+      5. Choose "Embed on my site".
+      6. Copy the iframe URL into the src below.
+    -->
+
+    <iframe
+      src="YOUR_GOOGLE_MY_MAPS_EMBED_URL"
+      loading="lazy"
+      title="Alberto's travel map"
+    ></iframe>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     COUNTRY ARCHIVE
+====================================================== -->
+
+<section class="section shell">
+
+  <div class="section-head">
+
+    <div>
+
+      <p class="eyebrow">
+        COUNTRY ARCHIVE
+      </p>
+
+      <h2>
+        Every place has<br>
+        a <em>story.</em>
+      </h2>
+
+    </div>
+
+    <p class="section-note">
+      Click into a country for the route, story, highlights and photographs.
+    </p>
+
+  </div>
+
+
+  <div class="destinations">
+
+    <a class="destination reveal" href="/countries/australia/">
+      <span class="micro">01 · 2025</span>
+      <h3>Australia</h3>
+      <p>Wildlife · Diving · Road trips</p>
+      <p style="margin-top:8px">
+        Tropical forests, the Great Barrier Reef and unforgettable wildlife encounters.
+      </p>
+    </a>
+
+
+    <a class="destination reveal" href="/countries/malaysia/">
+      <span class="micro">07 · 2025</span>
+      <h3>Malaysia</h3>
+      <p>Borneo · Rainforest · Orangutans</p>
+      <p style="margin-top:8px">
+        Rainforest, islands and some of Southeast Asia's richest wildlife.
+      </p>
+    </a>
+
+
+    <a class="destination reveal" href="/countries/guatemala/">
+      <span class="micro">03 · 2026</span>
+      <h3>Guatemala</h3>
+      <p>Acatenango · Volcanoes · Adventure</p>
+      <p style="margin-top:8px">
+        Volcanoes, highland landscapes and an unforgettable ascent of Acatenango.
+      </p>
+    </a>
+
+
+    <a class="destination reveal" href="/countries/mexico/">
+      <span class="micro">05–06 · 2026</span>
+      <h3>Mexico</h3>
+      <p>Sharks · Mobulas · Sea lions</p>
+      <p style="margin-top:8px">
+        Baja California, marine megafauna and the Yucatán.
+      </p>
+    </a>
+
+
+    <a class="destination reveal" href="/countries/thailand/">
+      <span class="micro">05 · 2026</span>
+      <h3>Thailand</h3>
+      <p>Diving · Jungle · Elephants</p>
+      <p style="margin-top:8px">
+        A mix of terrestrial and underwater wildlife exploration.
+      </p>
+    </a>
+
+
+    <a class="destination reveal" href="/countries/vietnam/">
+      <span class="micro">06 · 2026</span>
+      <h3>Vietnam</h3>
+      <p>Mountains · Road trip · Wildlife</p>
+      <p style="margin-top:8px">
+        Northern mountains, countryside, caves and the south.
+      </p>
+    </a>
+
+
+    <a class="destination reveal" href="/countries/new-zealand/">
+      <span class="micro">07 · 2026</span>
+      <h3>New Zealand</h3>
+      <p>Mountains · Road trip · Alpine</p>
+      <p style="margin-top:8px">
+        A South Island road trip built around alpine landscapes and long hikes.
+      </p>
+    </a>
+
+
+    <a class="destination reveal" href="/countries/italy/">
+      <span class="micro">08 · 2026</span>
+      <h3>Italy</h3>
+      <p>Dolomites · Hiking · Lakes</p>
+      <p style="margin-top:8px">
+        A hiking-focused journey through the Dolomites.
+      </p>
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     BUCKET LIST
+====================================================== -->
+
+<section class="section shell">
+
+  <div class="section-head">
+
+    <div>
+
+      <p class="eyebrow">
+        THE BUCKET LIST
+      </p>
+
+      <h2>
+        Things worth<br>
+        <em>crossing an ocean for.</em>
+      </h2>
+
+    </div>
+
+    <p class="section-note">
+      A personal list of places, wildlife encounters, adventures,
+      milestones and slightly unreasonable plans.
+    </p>
+
+  </div>
+
+
+  <div class="bucket-summary">
+
+    <div>
+
+      <div class="bucket-number">
+        <span id="bucket-completed">0</span>
+        <small>/ <span id="bucket-total">0</span> completed</small>
+      </div>
+
+      <p class="micro" style="margin-top:15px">
+        PROGRESS IS SAVED IN THIS BROWSER
+      </p>
+
+    </div>
+
+
+    <div class="bucket-progress">
+
+      <div style="display:flex;justify-content:space-between">
+
+        <span class="micro">
+          OVERALL PROGRESS
+        </span>
+
+        <span class="micro" id="bucket-percent">
+          0%
+        </span>
+
+      </div>
+
+      <div class="bucket-progress-bar">
+        <div
+          class="bucket-progress-fill"
+          id="bucket-progress-fill"
+        ></div>
+      </div>
+
+      <button
+        class="bucket-reset"
+        id="bucket-reset"
+        type="button"
+        style="margin-top:14px"
+      >
+        Reset progress
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div id="bucket-container"></div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTACT
+====================================================== -->
+
+<div class="contact">
+
+  <div class="shell">
+
+    <p
+      class="eyebrow"
+      style="color:#dce6d8"
+    >
+      GET IN TOUCH
+    </p>
+
+    <h2>
+      Let's build something <em>interesting.</em>
+    </h2>
+
+    <p>
+      Data, AI, travel, wildlife — or some combination of all four.
+    </p>
+
+    <div
+      class="buttons"
+      style="justify-content:center"
+    >
+
+      <a
+        class="btn"
+        style="background:white;color:#40573b"
+        href="mailto:albertocm30.2001@gmail.com"
+      >
+        Email me ↗
+      </a>
+
+      <a
+        class="btn"
+        style="border:1px solid #dce6d8;color:white"
+        href="https://github.com/albercm30"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub ↗
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer class="footer shell">
+
+  <span>
+    © 2026 Alberto Castellano Macías
+  </span>
+
+  <span>
+    Data · AI · Travel · Wildlife · Photography
+  </span>
+
+</footer>
+
+
+<script src="/js/site.js"></script>
+
+
+<script>
+
+/* =====================================================
+   BUCKET LIST DATA
+====================================================== */
+
+const bucketList = [
+
+  /* ==================== DIVING ==================== */
+
+  {
+    category: "Diving",
+    items: [
+      [1, "Dive with a school of manta rays"],
+      [2, "Dive with a school of hammerhead sharks"],
+      [3, "Dive with tiger sharks"],
+      [4, "Dive with bull sharks"],
+      [5, "Dive in the Galápagos"],
+      [6, "Dive in Baja California"],
+      [7, "Dive in Australia — Great Barrier Reef"],
+      [8, "Dive with sharks"],
+      [9, "Dive an iconic shipwreck"],
+      [10, "Dive in Raja Ampat"],
+      [11, "Experience the Sardine Run in South Africa"],
+      [12, "Swim or dive with whale sharks"],
+      [13, "Swim or dive with sea lions"],
+      [14, "Swim or dive with dolphins"],
+      [15, "Swim or dive with whales"],
+      [16, "Swim or dive with orcas"],
+      [17, "Snorkel or dive in the Maldives"],
+      [18, "See a blue whale"],
+      [19, "Visit a Pacific island and dive"],
+      [20, "Obtain the Advanced Open Water certification"],
+      [21, "Swim in water below zero degrees"],
+      [22, "Do a liveaboard in Revillagigedo"],
+      [23, "Do a liveaboard in Norway"],
+      [24, "Dive in a great white shark cage"]
+    ]
+  },
+
+
+  /* ==================== SPORT ==================== */
+
+  {
+    category: "Sport",
+    items: [
+      [25, "Surf in Gold Coast, Australia"],
+      [26, "Climb a 5,000 m+ mountain"],
+      [27, "Climb and see an active volcano"],
+      [28, "Reach Everest Base Camp"],
+      [29, "Run a marathon somewhere exotic"],
+      [30, "Horse riding in Kyrgyzstan"],
+      [31, "Learn to ski in Japan"],
+      [32, "Attend a FIFA World Cup"],
+      [33, "Attend a tennis Grand Slam"],
+      [34, "Attend the Olympic Games"],
+      [35, "Attend an American football game"],
+      [36, "Attend an NBA game"],
+      [37, "Hike in the Dolomites"],
+      [38, "Go rafting"],
+      [39, "Hike and eat fondue in Switzerland"],
+      [40, "Kayak around icebergs"],
+      [41, "Climb Mount Bromo or Ijen"],
+      [42, "Climb Teide from sea level"],
+      [43, "Go fishing or spearfishing somewhere exotic"],
+      [44, "Ride a snowmobile and a jet ski"],
+      [45, "Hike in the Azores"],
+      [46, "Hike on glaciers"]
+    ]
+  },
+
+
+  /* ==================== ACTIVITIES ==================== */
+
+  {
+    category: "Activities",
+    items: [
+      [47, "Visit Antarctica"],
+      [48, "Ride in a hot-air balloon"],
+      [49, "Sleep in a desert Berber or Bedouin camp"],
+      [50, "Do a campervan trip in New Zealand"],
+      [51, "Do a campervan trip in Iceland"],
+      [52, "See the Northern Lights"],
+      [53, "See the Southern Lights"],
+      [54, "Travel through Argentine Patagonia"],
+      [55, "Backpack through South America"],
+      [56, "Expedition into the Amazon"],
+      [57, "See Iguazú Falls"],
+      [58, "Take a friends trip through Asia"],
+      [59, "Camp in Yellowstone"],
+      [60, "Explore China and see giant pandas"],
+      [61, "See the waves at Nazaré"],
+      [62, "Do a night safari and sleep in a national park"],
+      [63, "Eat ramen and wagyu in Japan"],
+      [64, "Bathe in a Japanese onsen"],
+      [65, "Bathe in volcanic hot springs in Iceland"],
+      [66, "Travel across Europe by train"],
+      [67, "See bioluminescence"],
+      [68, "Visit the Lofoten Islands"],
+      [69, "Take a dangerous-animal handling course"],
+      [70, "Do an astronomical travel experience in Chile"],
+      [71, "Take a wildlife photography trip"],
+      [72, "Ride the Ha Giang Loop in Vietnam"],
+      [73, "Do a road trip through Asia"],
+      [74, "Experience local culture in the Middle East"],
+      [75, "Visit Moscow and travel through Russia"],
+      [76, "Visit Madagascar"],
+      [77, "Camp in Mongolia"],
+      [78, "Travel the Nile and see the pyramids"],
+      [79, "Visit Tibet"],
+      [80, "Experience an iconic festival"],
+      [81, "Carnival and favelas in Rio"],
+      [82, "Visit Varanasi and the ghats"],
+      [83, "Visit Costa Rica and its rainforest"],
+      [84, "Experience Día de los Muertos in Mexico"],
+      [85, "Do a road trip in Namibia"],
+      [86, "See Victoria Falls"],
+      [87, "Visit Socotra and discover its species"],
+      [88, "Ride the Ella train in Sri Lanka"],
+      [89, "Explore the villages of Tuscany"],
+      [90, "Explore the wildlife of Papua New Guinea"],
+      [91, "See a total solar eclipse"]
+    ]
+  },
+
+
+  /* ==================== MILESTONES ==================== */
+
+  {
+    category: "Milestones",
+    items: [
+      [92, "Visit 100 countries"],
+      [93, "See the New 7 Wonders of the World"],
+      [94, "Swim in all five oceans"],
+      [95, "Live outside Europe for one year"],
+      [96, "Visit all seven continents"],
+      [97, "Try many exotic fruits in Asia"],
+      [98, "Dive on all seven continents"],
+      [99, "Complete 30 summits"]
+    ]
+  },
+
+
+  /* ==================== TERRESTRIAL WILDLIFE ==================== */
+
+  {
+    category: "Terrestrial Wildlife",
+    items: [
+      [100, "See gorillas in the wild"],
+      [101, "See bears catching salmon in Alaska"],
+      [102, "See polar bears in Svalbard"],
+      [103, "See the wildebeest migration in the Serengeti"],
+      [104, "See wild animals in the Borneo rainforest"],
+      [105, "Camp in Australia with wild kangaroos"],
+      [106, "See dangerous snakes and spiders in the wild"],
+      [107, "See wild elephants"],
+      [108, "See wild rhinoceroses"],
+      [109, "See wild crocodiles"],
+      [110, "See wild lions"],
+      [111, "See wild tigers"],
+      [112, "See the elusive leopard"],
+      [113, "See wild cheetahs"],
+      [114, "See snow leopards in the wild"],
+      [115, "See jaguars in the Pantanal"],
+      [116, "See wild pumas"],
+      [117, "See a black panther in the wild"],
+      [118, "See 15 species of snakes in the wild"],
+      [119, "Camp in the Daintree and see cassowaries"],
+      [120, "See 20 rare species in the wild"]
+    ]
+  }
+
+];
+
+
+/* =====================================================
+   LOCAL STORAGE
+====================================================== */
+
+const STORAGE_KEY = "alberto-travel-bucket-list-v1";
+
+
+function loadCompleted() {
+
+  try {
+
+    const saved = JSON.parse(
+      localStorage.getItem(STORAGE_KEY)
+    );
+
+    if (Array.isArray(saved)) {
+      return new Set(saved.map(Number));
+    }
+
+  } catch (error) {
+    console.warn("Could not load bucket list:", error);
+  }
+
+  return new Set();
+
+}
+
+
+let completed = loadCompleted();
+
+
+function saveCompleted() {
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify([...completed])
+  );
+
+}
+
+
+/* =====================================================
+   RENDER
+====================================================== */
+
+const container =
+  document.getElementById("bucket-container");
+
+
+function renderBucketList() {
+
+  container.innerHTML = "";
+
+  bucketList.forEach(group => {
+
+    const section =
+      document.createElement("div");
+
+    section.className = "bucket-category";
+
+
+    const title =
+      document.createElement("div");
+
+    title.className =
+      "bucket-category-title";
+
+
+    const heading =
+      document.createElement("h3");
+
+    heading.textContent =
+      group.category;
+
+
+    const count =
+      document.createElement("span");
+
+    const finishedInCategory =
+      group.items.filter(
+        item => completed.has(item[0])
+      ).length;
+
+
+    count.textContent =
+      `${finishedInCategory} / ${group.items.length}`;
+
+
+    title.appendChild(heading);
+    title.appendChild(count);
+
+
+    const list =
+      document.createElement("div");
+
+    list.className =
+      "bucket-list";
+
+
+    group.items.forEach(item => {
+
+      const [number, text] = item;
+
+      const row =
+        document.createElement("label");
+
+      row.className =
+        "bucket-item" +
+        (completed.has(number) ? " done" : "");
+
+
+      const input =
+        document.createElement("input");
+
+      input.type = "checkbox";
+      input.checked = completed.has(number);
+
+
+      const check =
+        document.createElement("span");
+
+      check.className =
+        "bucket-check";
+
+
+      const index =
+        document.createElement("span");
+
+      index.className =
+        "bucket-index";
+
+      index.textContent =
+        String(number).padStart(3, "0");
+
+
+      const titleText =
+        document.createElement("span");
+
+      titleText.className =
+        "bucket-title";
+
+      titleText.textContent =
+        text;
+
+
+      row.appendChild(index);
+
+      row.appendChild(input);
+
+      row.appendChild(check);
+
+
+      const content =
+        document.createElement("span");
+
+      content.appendChild(titleText);
+
+      row.appendChild(content);
+
+
+      input.addEventListener(
+        "change",
+        () => {
+
+          if (input.checked) {
+            completed.add(number);
+          } else {
+            completed.delete(number);
+          }
+
+          saveCompleted();
+          renderBucketList();
+          updateProgress();
+
+        }
+      );
+
+
+      list.appendChild(row);
+
+    });
+
+
+    section.appendChild(title);
+    section.appendChild(list);
+
+    container.appendChild(section);
+
+  });
+
+}
+
+
+/* =====================================================
+   PROGRESS
+====================================================== */
+
+function updateProgress() {
+
+  const total =
+    bucketList.reduce(
+      (sum, group) => sum + group.items.length,
+      0
+    );
+
+
+  const finished =
+    completed.size;
+
+
+  const percentage =
+    total === 0
+      ? 0
+      : Math.round((finished / total) * 100);
+
+
+  document.getElementById(
+    "bucket-completed"
+  ).textContent = finished;
+
+
+  document.getElementById(
+    "bucket-total"
+  ).textContent = total;
+
+
+  document.getElementById(
+    "bucket-percent"
+  ).textContent = `${percentage}%`;
+
+
+  document.getElementById(
+    "bucket-progress-fill"
+  ).style.width =
+    `${percentage}%`;
+
+}
+
+
+/* =====================================================
+   RESET
+====================================================== */
+
+document
+  .getElementById("bucket-reset")
+  .addEventListener(
+    "click",
+    () => {
+
+      if (
+        !confirm(
+          "Reset your bucket-list progress?"
+        )
+      ) {
+        return;
+      }
+
+      completed = new Set();
+
+      saveCompleted();
+      renderBucketList();
+      updateProgress();
+
+    }
+  );
+
+
+/* =====================================================
+   START
+====================================================== */
+
+renderBucketList();
+updateProgress();
+
+</script>
+
+</body>
+</html>
