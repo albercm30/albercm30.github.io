@@ -1,0 +1,1480 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width,initial-scale=1"
+    >
+
+    <title>
+        Photography · Alberto Castellano Macías
+    </title>
+
+    <meta name="description" content="A photo archive from the road, the reef and the trail.">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Photography · Alberto Castellano Macías">
+    <meta property="og:description" content="A photo archive from the road, the reef and the trail.">
+    <meta property="og:image" content="/assets/nature/volcanfuego.JPEG">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Fonts -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Global website CSS -->
+
+    <link
+        rel="stylesheet"
+        href="/style.css"
+    >
+
+
+    <!-- Photography page CSS -->
+
+    <style>
+
+        .photography-gallery-section {
+            padding-top: 70px;
+            padding-bottom: 110px;
+        }
+
+
+        /* ==============================
+           CATEGORY BUTTONS
+        ============================== */
+
+        .photo-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+
+        .photo-tab {
+            appearance: none;
+            -webkit-appearance: none;
+
+            border: 1px solid var(--line);
+
+            background: transparent;
+
+            color: var(--soft);
+
+            border-radius: 8px;
+
+            padding: 9px 14px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .2s ease;
+        }
+
+
+        .photo-tab:hover {
+            border-color: var(--ink);
+            color: var(--ink);
+        }
+
+
+        .photo-tab.is-active {
+            background: var(--green);
+            border-color: var(--green);
+            color: #ffffff;
+        }
+
+
+        /* ==============================
+           CATEGORY PANELS
+        ============================== */
+
+        .gallery-panel {
+            display: none;
+        }
+
+
+        .gallery-panel.is-visible {
+            display: block;
+        }
+
+
+        .photo-category-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: baseline;
+
+            gap: 20px;
+
+            border-bottom: 1px solid var(--ink);
+
+            padding-bottom: 12px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .photo-category-title {
+            margin: 0;
+
+            font-family: var(--serif);
+
+            font-size: 34px;
+
+            line-height: 1;
+
+            font-weight: 500;
+        }
+
+
+        .photo-category-meta {
+            font-family: var(--mono);
+
+            font-size: 9px;
+
+            color: var(--soft);
+
+            text-transform: uppercase;
+        }
+
+
+        /* ==============================
+           HORIZONTAL PHOTO RAIL
+        ============================== */
+
+        .photo-rail-wrap {
+            position: relative;
+        }
+
+
+        .photo-rail {
+            display: flex;
+
+            gap: 14px;
+
+            overflow-x: auto;
+
+            overflow-y: hidden;
+
+            scroll-behavior: smooth;
+
+            padding: 2px 2px 12px;
+
+            scrollbar-width: thin;
+
+            scrollbar-color:
+                var(--line)
+                transparent;
+        }
+
+
+        .photo-rail::-webkit-scrollbar {
+            height: 7px;
+        }
+
+
+        .photo-rail::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+
+        .photo-rail::-webkit-scrollbar-thumb {
+            background: var(--line);
+
+            border-radius: 999px;
+        }
+
+
+        /* ==============================
+           PHOTO CARD
+        ============================== */
+
+        .photo-card {
+            flex: 0 0 430px;
+
+            height: 500px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background: #dedbd3;
+
+            border-radius: 3px;
+        }
+
+
+        .photo-card img {
+            width: 100%;
+
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            transition:
+                transform .5s ease;
+        }
+
+
+        .photo-card:hover img {
+            transform: scale(1.025);
+        }
+
+
+        .photo-card::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 45% 0 0;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    transparent,
+                    rgba(0,0,0,.62)
+                );
+
+            pointer-events: none;
+        }
+
+
+        .photo-card-info {
+            position: absolute;
+
+            z-index: 2;
+
+            left: 18px;
+
+            right: 18px;
+
+            bottom: 17px;
+
+            color: white;
+        }
+
+
+        .photo-card-info strong {
+            display: block;
+
+            font-family: var(--serif);
+
+            font-size: 27px;
+
+            line-height: 1.05;
+
+            font-weight: 500;
+        }
+
+
+        .photo-card-info span {
+            display: block;
+
+            margin-top: 6px;
+
+            font-family: var(--mono);
+
+            font-size: 9px;
+
+            letter-spacing: .7px;
+
+            text-transform: uppercase;
+
+            color: rgba(255,255,255,.86);
+        }
+
+
+        /* ==============================
+           PLACEHOLDERS
+        ============================== */
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            position: relative;
+
+            color: rgba(255,255,255,.9);
+
+            overflow: hidden;
+        }
+
+
+        .photo-placeholder::before {
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+            height: 220px;
+
+            border: 1px solid
+                rgba(255,255,255,.2);
+
+            transform: rotate(45deg);
+        }
+
+
+        .photo-placeholder span {
+            position: relative;
+
+            z-index: 2;
+
+            font-family: var(--mono);
+
+            font-size: 10px;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
+        }
+
+
+        .nature-placeholder {
+            background:
+                linear-gradient(
+                    135deg,
+                    #dce6dc,
+                    #66806f
+                );
+        }
+
+
+        .city-placeholder {
+            background:
+                linear-gradient(
+                    135deg,
+                    #dedbd4,
+                    #71756f
+                );
+        }
+
+
+        .people-placeholder {
+            background:
+                linear-gradient(
+                    135deg,
+                    #e3d7cc,
+                    #8d7868
+                );
+        }
+
+
+        /* ==============================
+           SCROLL CONTROLS
+        ============================== */
+
+        .rail-controls {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 7px;
+
+            margin-top: 12px;
+        }
+
+
+        .rail-control {
+            width: 36px;
+
+            height: 36px;
+
+            border: 1px solid var(--line);
+
+            background: var(--paper);
+
+            color: var(--ink);
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 16px;
+
+            transition: .2s ease;
+        }
+
+
+        .rail-control:hover {
+            background: var(--ink);
+
+            border-color: var(--ink);
+
+            color: white;
+        }
+
+
+        /* ==============================
+           FEATURE SECTION
+        ============================== */
+
+        .photo-feature {
+            margin-top: 70px;
+
+            background: var(--dark);
+
+            color: white;
+
+            border-radius: 16px;
+
+            padding: 44px;
+        }
+
+
+        .photo-feature h2 {
+            max-width: 720px;
+
+            margin: 7px 0 15px;
+
+            font-size: 42px;
+        }
+
+
+        .photo-feature p:last-child {
+            max-width: 680px;
+
+            color: #b4beb5;
+
+            font-size: 13px;
+
+            margin: 0;
+        }
+
+
+        /* ==============================
+           TABLET
+        ============================== */
+
+        @media (max-width: 700px) {
+
+            .photography-gallery-section {
+                padding-top: 55px;
+
+                padding-bottom: 75px;
+            }
+
+
+            .photo-category-header {
+                display: block;
+            }
+
+
+            .photo-category-meta {
+                display: block;
+
+                margin-top: 8px;
+            }
+
+
+            .photo-card {
+                flex-basis: 78vw;
+
+                height: 470px;
+            }
+
+
+            .photo-feature {
+                padding: 30px;
+            }
+
+
+            .photo-feature h2 {
+                font-size: 34px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==============================
+         NAVIGATION
+    ============================== -->
+
+    <div id="nav"></div>
+
+
+
+    <!-- ==============================
+         HERO
+    ============================== -->
+
+    <section class="page-hero">
+
+        <div class="shell">
+
+            <p class="eyebrow">
+                PHOTOGRAPHY
+            </p>
+
+
+            <h1 class="page-title">
+
+                Collecting moments<br>
+
+                from the <em>wild.</em>
+
+            </h1>
+
+
+            <p class="intro">
+
+                Wildlife, nature, cities and people —
+                a visual archive built around the places,
+                journeys and encounters that matter to me.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==============================
+         PHOTOGRAPHY
+    ============================== -->
+
+    <section class="section shell photography-gallery-section">
+
+
+        <!-- CATEGORY BUTTONS -->
+
+        <div
+            class="photo-tabs"
+            role="tablist"
+            aria-label="Photography categories"
+        >
+
+            <button
+                class="photo-tab is-active"
+                type="button"
+                data-category="wildlife"
+                role="tab"
+                aria-selected="true"
+            >
+                Wildlife
+            </button>
+
+
+            <button
+                class="photo-tab"
+                type="button"
+                data-category="nature"
+                role="tab"
+                aria-selected="false"
+            >
+                Nature
+            </button>
+
+
+            <button
+                class="photo-tab"
+                type="button"
+                data-category="cities"
+                role="tab"
+                aria-selected="false"
+            >
+                Cities
+            </button>
+
+
+            <button
+                class="photo-tab"
+                type="button"
+                data-category="people"
+                role="tab"
+                aria-selected="false"
+            >
+                People
+            </button>
+
+        </div>
+
+
+
+        <!-- ==============================
+             WILDLIFE
+        ============================== -->
+
+        <section
+            class="gallery-panel is-visible"
+            data-panel="wildlife"
+        >
+
+            <div class="photo-category-header">
+
+                <h2 class="photo-category-title">
+                    Wildlife
+                </h2>
+
+
+                <span class="photo-category-meta">
+                    Field encounters · 2025 — present
+                </span>
+
+            </div>
+
+
+            <div class="photo-rail-wrap">
+
+                <div
+                    class="photo-rail"
+                    data-rail="wildlife"
+                >
+
+                    <article class="photo-card">
+
+                        <img
+                            src="/assets/wildlife/goldentreesnake.JPEG"
+                            alt="Wildlife photograph"
+                        >
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                Wild encounter
+                            </strong>
+
+                            <span>
+                                Wildlife · Featured
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="photo-card">
+
+                        <img
+                            src="/assets/wildlife/viper.JPEG"
+                            alt="Wildlife photograph"
+                        >
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                In the wild
+                            </strong>
+
+                            <span>
+                                Wildlife · Field notes
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="photo-card">
+
+                        <div class="photo-placeholder">
+
+                            <span>
+                                Next wildlife photo
+                            </span>
+
+                        </div>
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                More to come
+                            </strong>
+
+                            <span>
+                                Wildlife · Placeholder
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+
+                <div class="rail-controls">
+
+                    <button
+                        class="rail-control"
+                        type="button"
+                        data-rail="wildlife"
+                        data-direction="left"
+                    >
+                        ←
+                    </button>
+
+
+                    <button
+                        class="rail-control"
+                        type="button"
+                        data-rail="wildlife"
+                        data-direction="right"
+                    >
+                        →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==============================
+             NATURE
+        ============================== -->
+
+        <section
+            class="gallery-panel"
+            data-panel="nature"
+        >
+
+            <div class="photo-category-header">
+
+                <h2 class="photo-category-title">
+                    Nature
+                </h2>
+
+
+                <span class="photo-category-meta">
+                    Landscapes · Mountains · Oceans
+                </span>
+
+            </div>
+
+
+            <div class="photo-rail-wrap">
+
+                <div
+                    class="photo-rail"
+                    data-rail="nature"
+                >
+
+                    <article class="photo-card">
+
+                        <div class="photo-placeholder nature-placeholder">
+
+                            <span>
+                                Nature placeholder
+                            </span>
+
+                        </div>
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                Mountains
+                            </strong>
+
+                            <span>
+                                Nature · Alpine
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="photo-card">
+
+                        <div class="photo-placeholder nature-placeholder">
+
+                            <span>
+                                Nature placeholder
+                            </span>
+
+                        </div>
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                Open landscapes
+                            </strong>
+
+                            <span>
+                                Nature · Landscape
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="photo-card">
+
+                        <div class="photo-placeholder nature-placeholder">
+
+                            <span>
+                                Nature placeholder
+                            </span>
+
+                        </div>
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                Ocean
+                            </strong>
+
+                            <span>
+                                Nature · Marine
+                            </span>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <div class="rail-controls">
+
+                    <button
+                        class="rail-control"
+                        type="button"
+                        data-rail="nature"
+                        data-direction="left"
+                    >
+                        ←
+                    </button>
+
+
+                    <button
+                        class="rail-control"
+                        type="button"
+                        data-rail="nature"
+                        data-direction="right"
+                    >
+                        →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==============================
+             CITIES
+        ============================== -->
+
+        <section
+            class="gallery-panel"
+            data-panel="cities"
+        >
+
+            <div class="photo-category-header">
+
+                <h2 class="photo-category-title">
+                    Cities
+                </h2>
+
+
+                <span class="photo-category-meta">
+                    Streets · Architecture · Everyday life
+                </span>
+
+            </div>
+
+
+            <div class="photo-rail-wrap">
+
+                <div
+                    class="photo-rail"
+                    data-rail="cities"
+                >
+
+                    <article class="photo-card">
+
+                        <div class="photo-placeholder city-placeholder">
+
+                            <span>
+                                City placeholder
+                            </span>
+
+                        </div>
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                Street life
+                            </strong>
+
+                            <span>
+                                Cities · Travel
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="photo-card">
+
+                        <div class="photo-placeholder city-placeholder">
+
+                            <span>
+                                City placeholder
+                            </span>
+
+                        </div>
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                Architecture
+                            </strong>
+
+                            <span>
+                                Cities · Details
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="photo-card">
+
+                        <div class="photo-placeholder city-placeholder">
+
+                            <span>
+                                City placeholder
+                            </span>
+
+                        </div>
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                After dark
+                            </strong>
+
+                            <span>
+                                Cities · Night
+                            </span>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <div class="rail-controls">
+
+                    <button
+                        class="rail-control"
+                        type="button"
+                        data-rail="cities"
+                        data-direction="left"
+                    >
+                        ←
+                    </button>
+
+
+                    <button
+                        class="rail-control"
+                        type="button"
+                        data-rail="cities"
+                        data-direction="right"
+                    >
+                        →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==============================
+             PEOPLE
+        ============================== -->
+
+        <section
+            class="gallery-panel"
+            data-panel="people"
+        >
+
+            <div class="photo-category-header">
+
+                <h2 class="photo-category-title">
+                    People
+                </h2>
+
+
+                <span class="photo-category-meta">
+                    Portraits · Moments · Journeys
+                </span>
+
+            </div>
+
+
+            <div class="photo-rail-wrap">
+
+                <div
+                    class="photo-rail"
+                    data-rail="people"
+                >
+
+                    <article class="photo-card">
+
+                        <div class="photo-placeholder people-placeholder">
+
+                            <span>
+                                People placeholder
+                            </span>
+
+                        </div>
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                On the road
+                            </strong>
+
+                            <span>
+                                People · Travel
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="photo-card">
+
+                        <div class="photo-placeholder people-placeholder">
+
+                            <span>
+                                People placeholder
+                            </span>
+
+                        </div>
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                Portrait
+                            </strong>
+
+                            <span>
+                                People · Portrait
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="photo-card">
+
+                        <div class="photo-placeholder people-placeholder">
+
+                            <span>
+                                People placeholder
+                            </span>
+
+                        </div>
+
+                        <div class="photo-card-info">
+
+                            <strong>
+                                A moment
+                            </strong>
+
+                            <span>
+                                People · Documentary
+                            </span>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <div class="rail-controls">
+
+                    <button
+                        class="rail-control"
+                        type="button"
+                        data-rail="people"
+                        data-direction="left"
+                    >
+                        ←
+                    </button>
+
+
+                    <button
+                        class="rail-control"
+                        type="button"
+                        data-rail="people"
+                        data-direction="right"
+                    >
+                        →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==============================
+             FEATURE
+        ============================== -->
+
+        <div class="photo-feature">
+
+            <p
+                class="eyebrow"
+                style="color:#dce6d8"
+            >
+                YOUR PHOTOS
+            </p>
+
+
+            <h2>
+                The archive grows as the trips do.
+            </h2>
+
+
+            <p>
+                Replace the placeholders as you add photographs.
+                Each image can later be connected to its country,
+                trip, wildlife encounter or dive.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==============================
+         CONTACT
+    ============================== -->
+
+    <div class="contact">
+
+        <div class="shell">
+
+            <p
+                class="eyebrow"
+                style="color:#dce6d8"
+            >
+                GET IN TOUCH
+            </p>
+
+
+            <h2>
+                Let's build something
+                <em>interesting.</em>
+            </h2>
+
+
+            <p>
+                Data, AI, travel, wildlife —
+                or some combination of all four.
+            </p>
+
+
+            <div
+                class="buttons"
+                style="justify-content:center"
+            >
+
+                <a
+                    class="btn"
+                    style="background:white;color:#40573b"
+                    href="mailto:albertocm30.2001@gmail.com"
+                >
+                    Email me ↗
+                </a>
+
+
+                <a
+                    class="btn"
+                    style="border:1px solid #dce6d8;color:white"
+                    href="https://github.com/albercm30"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    GitHub ↗
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==============================
+         FOOTER
+    ============================== -->
+
+    <footer class="footer shell">
+
+        <span>
+            © 2026 Alberto Castellano
+        </span>
+
+
+        <span>
+            Data · AI · Travel · Wildlife · Photography
+        </span>
+
+    </footer>
+
+
+
+    <!-- ==============================
+         GLOBAL JS
+    ============================== -->
+
+    <script src="/js/site.js"></script>
+
+
+    <!-- ==============================
+         PHOTOGRAPHY JS
+    ============================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                /*
+                ===============================
+                CATEGORY TABS
+                ===============================
+                */
+
+                const tabs =
+                    document.querySelectorAll(
+                        ".photo-tab"
+                    );
+
+
+                const panels =
+                    document.querySelectorAll(
+                        ".gallery-panel"
+                    );
+
+
+                tabs.forEach(
+                    function (tab) {
+
+                        tab.addEventListener(
+                            "click",
+                            function () {
+
+                                const selectedCategory =
+                                    tab.getAttribute(
+                                        "data-category"
+                                    );
+
+
+                                /*
+                                Update tabs
+                                */
+
+                                tabs.forEach(
+                                    function (item) {
+
+                                        if (
+                                            item === tab
+                                        ) {
+
+                                            item.classList.add(
+                                                "is-active"
+                                            );
+
+                                            item.setAttribute(
+                                                "aria-selected",
+                                                "true"
+                                            );
+
+                                        } else {
+
+                                            item.classList.remove(
+                                                "is-active"
+                                            );
+
+                                            item.setAttribute(
+                                                "aria-selected",
+                                                "false"
+                                            );
+
+                                        }
+
+                                    }
+                                );
+
+
+                                /*
+                                Update panels
+                                */
+
+                                panels.forEach(
+                                    function (panel) {
+
+                                        const panelCategory =
+                                            panel.getAttribute(
+                                                "data-panel"
+                                            );
+
+
+                                        if (
+                                            panelCategory ===
+                                            selectedCategory
+                                        ) {
+
+                                            panel.classList.add(
+                                                "is-visible"
+                                            );
+
+                                        } else {
+
+                                            panel.classList.remove(
+                                                "is-visible"
+                                            );
+
+                                        }
+
+                                    }
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+
+
+                /*
+                ===============================
+                HORIZONTAL SCROLL
+                ===============================
+                */
+
+                const controls =
+                    document.querySelectorAll(
+                        ".rail-control"
+                    );
+
+
+                controls.forEach(
+                    function (button) {
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+                                const railName =
+                                    button.getAttribute(
+                                        "data-rail"
+                                    );
+
+
+                                const direction =
+                                    button.getAttribute(
+                                        "data-direction"
+                                    );
+
+
+                                const rail =
+                                    document.querySelector(
+                                        '.photo-rail[data-rail="' +
+                                        railName +
+                                        '"]'
+                                    );
+
+
+                                if (!rail) {
+
+                                    return;
+
+                                }
+
+
+                                rail.scrollBy({
+
+                                    left:
+                                        direction ===
+                                        "right"
+                                            ? 445
+                                            : -445,
+
+                                    behavior:
+                                        "smooth"
+
+                                });
+
+                            }
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
