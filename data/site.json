@@ -1,0 +1,10 @@
+{
+  "stats": {
+    "countries": 38,
+    "dives": 19,
+    "mountains": 5,
+    "species": 200,
+    "continents": 5
+  },
+  "note": "Central content database. Expand this as the site grows. See data/countries.json for the full country archive that powers /travel/ and /countries/*/."
+}
