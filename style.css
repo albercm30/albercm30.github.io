@@ -97,3 +97,15 @@
 .contact{padding:110px 0;background:var(--green);color:#fff;text-align:center}.contact h2{font:400 clamp(52px,7vw,78px)/1 var(--serif)}.contact h2 em{color:#dfe9da}.contact p{max-width:500px;margin:20px auto;color:#d8e0d7;font-size:13px}.footer{min-height:75px;display:flex;justify-content:space-between;align-items:center;color:#898f86;font-size:10px}
 @media(max-width:900px){.shell{width:min(var(--shell),calc(100% - 42px))}.navlinks,.nav-cta{display:none}.menu{display:block}.grid3{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.timeline-item{grid-template-columns:1fr;gap:8px}.case-grid{grid-template-columns:1fr}.process{grid-template-columns:1fr 1fr}.process div:nth-child(even){border-right:0}.wildlife-grid{grid-template-columns:1fr 1fr}.gallery{grid-template-columns:1fr 1fr}.country-hero-grid,.story-grid,.highlights-grid{grid-template-columns:1fr;gap:32px}.story-label{position:static}.atlas-row{grid-template-columns:26px 1fr 70px 16px}.atlas-tags{display:none}}
 @media(max-width:620px){.shell{width:calc(100% - 34px)}.hero{min-height:680px}.hero-bg{background:linear-gradient(90deg,rgba(247,247,243,.97),rgba(247,247,243,.75)),url("/assets/hero.svg") center/cover}.hero h1{font-size:55px}.section{padding:80px 0}.section-head{display:block}.section-note{margin-top:15px}.stats,.wildlife-grid,.gallery{grid-template-columns:1fr}.stat{border-right:0!important;border-bottom:1px solid #d6ddd0}.stat:last-child{border-bottom:0}.process{grid-template-columns:1fr}.process div{border-right:0;border-bottom:1px solid var(--line)}.process div:last-child{border-bottom:0}.photo,.photo:nth-child(2),.photo:nth-child(5){height:290px}.footer{flex-direction:column;align-items:flex-start;gap:6px;padding:20px 0}.country-title{font-size:58px;letter-spacing:-2px}.photo-grid{grid-template-columns:1fr 1fr;grid-auto-rows:150px}.photo:first-child{grid-row:span 1;grid-column:span 2;height:220px}.route-header{display:block}.route-sub{margin-top:10px}.atlas-row{grid-template-columns:22px 1fr 60px 14px;gap:10px}.atlas-name{font-size:17px}}
+
+/* ===== MOUNTAINS ===== */
+.peak-card{border-top:1px solid var(--ink);padding:36px 0}
+.peak-card:last-child{border-bottom:1px solid var(--ink)}
+.peak-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:50px;align-items:center}
+.peak-name{font-family:var(--serif);font-weight:400;font-size:clamp(36px,4.5vw,52px);line-height:1}
+.peak-region{font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--soft);text-transform:uppercase;margin-top:10px}
+.elevation-chart{width:100%;height:auto;display:block}
+.elevation-chart .peak-fill{fill:var(--sage)}
+.elevation-chart .peak-line{fill:none;stroke:var(--green2);stroke-width:2}
+.elevation-chart text{font-family:var(--mono);font-size:10px;fill:var(--soft)}
+@media(max-width:760px){.peak-grid{grid-template-columns:1fr;gap:24px}}
