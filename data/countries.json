@@ -1,40 +1,1019 @@
 [
-{"slug":"china","name":"China","continent":"Asia","coords":"39.9°N, 116.4°E","year":null,"focus":["Great Wall","Pandas","Street food"],"blurb":"Giant pandas, ancient dynasties and cities that never really sleep.","story":["Getting to see giant pandas up close was the whole reason this trip existed — everything else was a bonus built around it.","From the scale of the Great Wall to the density of its megacities, China was a constant lesson in extremes: ancient and ultramodern, rural and hyper-urban, often within the same afternoon."],"highlights":["Seeing giant pandas in Chengdu.","Walking a quiet, unrestored section of the Great Wall.","Getting lost in the pace of a first-tier Chinese city."],"route":["Beijing","Xi'an","Chengdu"]},
-{"slug":"india","name":"India","continent":"Asia","coords":"25.3°N, 83.0°E","year":null,"focus":["Varanasi","Ghats","Culture"],"blurb":"The ghats of Varanasi and a country that overwhelms every sense at once.","story":["India doesn't ease you in. Between the colour, the noise, the food and the sheer number of people, it's the kind of place that reorders how you think a city can work.","Varanasi was the centre of gravity for this trip — watching life, ritual and the Ganges move together on the ghats at dawn is not something that leaves you."],"highlights":["Sunrise on the ghats of Varanasi.","Sharing meals that were nothing like the India I expected.","Train journeys that turned into the best part of the day."],"route":["Delhi","Varanasi","Agra"]},
-{"slug":"japan","name":"Japan","continent":"Asia","coords":"35.7°N, 139.7°E","year":null,"focus":["Ramen","Wagyu","Cities"],"blurb":"Ramen, wagyu and the strange comfort of a country that runs on precision.","story":["Japan is a country built for people who like details to be right — the trains, the food, the way a whole city can be quiet and considerate at once.","Most of the trip revolved around eating: proper ramen, wagyu that justified the hype, and enough convenience-store snacks to embarrass myself slightly."],"highlights":["Eating ramen that reset my expectations of the dish.","Wagyu beef that was worth every yen.","The quiet efficiency of getting anywhere by train."],"route":["Tokyo","Kyoto","Osaka"]},
-{"slug":"jordan","name":"Jordan","continent":"Asia","coords":"31.9°N, 35.9°E","year":null,"focus":["Petra","Desert","Wadi Rum"],"blurb":"Petra carved into rock, and a night under the stars in the desert.","story":["Jordan packs an outsized amount of history and landscape into a small country — Petra alone is worth the trip, but the desert is what stays with you.","A night camping in the desert, away from any real light pollution, was one of those simple experiences that's hard to explain properly to people who weren't there."],"highlights":["Walking the Siq into Petra for the first time.","Sleeping in a desert camp under a sky full of stars.","Floating in the Dead Sea."],"route":["Amman","Petra","Wadi Rum"]},
-{"slug":"kazakhstan","name":"Kazakhstan","continent":"Asia","coords":"51.2°N, 71.4°E","year":null,"focus":["Steppe","Almaty","Central Asia"],"blurb":"Vast steppe, Soviet-era cities and a first real taste of Central Asia.","story":["Kazakhstan was an introduction to a part of the world that rarely gets talked about — huge, empty landscapes and cities that mix Soviet architecture with something newer.","The scale of the country is hard to describe until you've tried to cross even a small part of it by road."],"highlights":["The sheer emptiness of the steppe.","Almaty's mountain backdrop.","A part of Central Asia that felt genuinely unfamiliar."],"route":["Almaty"]},
-{"slug":"kuwait","name":"Kuwait","continent":"Asia","coords":"29.4°N, 47.9°E","year":null,"focus":["Gulf","Culture","Cities"],"blurb":"A stop through the Gulf and a glimpse of Kuwaiti city life.","story":["Kuwait was a shorter stop, but a useful one for understanding how the Gulf states differ from each other beyond the skyline photos.","Local food, the corniche and the contrast between old town and new development made for an easy few days."],"highlights":["Walking the waterfront corniche.","Trying Kuwaiti and wider Gulf cuisine.","A different side of Gulf city life."],"route":["Kuwait City"]},
-{"slug":"malaysia","name":"Malaysia","continent":"Asia","coords":"3.1°N, 101.7°E","year":"2025","focus":["Borneo","Rainforest","Orangutans"],"blurb":"Rainforest, islands and some of Southeast Asia's richest wildlife.","story":["Borneo was the highlight here — rainforest thick enough to feel genuinely remote, and wildlife encounters that made every early wake-up worth it.","Orangutans in the wild, alongside islands and reef further south, made Malaysia one of the strongest wildlife trips on the list."],"highlights":["Seeing wild orangutans in Borneo's rainforest.","Diving and snorkelling off Malaysia's islands.","Kuala Lumpur's mix of skyline and street food."],"route":["Kuala Lumpur","Sandakan","Kota Kinabalu"]},
-{"slug":"oman","name":"Oman","continent":"Asia","coords":"23.6°N, 58.5°E","year":null,"focus":["Desert","Wadis","Coastline"],"blurb":"Dramatic wadis, desert dunes and a quieter side of the Gulf.","story":["Oman is one of the most underrated countries for landscape — canyons, wadis and mountains that don't get nearly enough attention compared to its neighbours.","Between the desert and the coastline, it felt like several very different trips packed into one country."],"highlights":["Swimming in a wadi carved through the mountains.","Watching the desert change colour at sunset.","The dramatic drive through Oman's canyon roads."],"route":["Muscat","Nizwa","Wahiba Sands"]},
-{"slug":"morocco","name":"Morocco","continent":"Africa","coords":"31.6°N, 8.0°W","year":null,"focus":["Sahara","Souks","Berber camp"],"blurb":"A Berber desert camp, the souks of Marrakech and the edge of the Sahara.","story":["Morocco was a trip of contrasts — dense, chaotic medinas one day and total desert silence the next.","Sleeping in a Berber camp on the edge of the Sahara, away from any city noise, was the moment the trip really clicked."],"highlights":["A night in a Berber camp under the desert sky.","Navigating the souks of Marrakech.","Crossing the Atlas Mountains by road."],"route":["Marrakech","Atlas Mountains","Merzouga"]},
-{"slug":"philippines","name":"Philippines","continent":"Asia","coords":"14.6°N, 121.0°E","year":null,"focus":["Islands","Diving","Beaches"],"blurb":"Island-hopping, clear water and some of Southeast Asia's best diving.","story":["The Philippines is built for exactly the kind of trip I like — islands, boats and time spent mostly in or near the water.","Between diving, beach-hopping and the sheer number of islands to choose from, this was a trip that could easily have been twice as long."],"highlights":["Diving in some of the country's clearest water.","Hopping between islands with barely any plan.","Local seafood eaten within sight of the boat that caught it."],"route":["Manila","Palawan","Cebu"]},
-{"slug":"singapore","name":"Singapore","continent":"Asia","coords":"1.35°N, 103.8°E","year":null,"focus":["Cityscape","Food","Stopover"],"blurb":"A hyper-efficient city-state and one of the best food stopovers in Asia.","story":["Singapore usually ended up as a stopover on the way to somewhere else, but it earned a trip in its own right — the food alone justifies a few extra days.","The contrast between its skyline and its green spaces made it feel far less concrete-heavy than expected."],"highlights":["Hawker-centre food that outclassed most restaurants.","Gardens by the Bay at night.","A city that somehow runs on time, every time."],"route":["Singapore"]},
-{"slug":"sri-lanka","name":"Sri Lanka","continent":"Asia","coords":"7.9°N, 80.7°E","year":null,"focus":["Ella train","Tea country","Coast"],"blurb":"The Ella train through tea country, beaches and a laid-back south coast.","story":["The train from Kandy to Ella is one of those routes people talk about for good reason — hours of tea plantations and mountains rolling past an open door.","Between the hill country and the south coast, Sri Lanka packed a surprising range of landscape into a small island."],"highlights":["Riding the Ella train through the tea plantations.","Watching the sunrise from Adam's Peak.","Relaxed days on the south coast."],"route":["Kandy","Ella","Mirissa"]},
-{"slug":"thailand","name":"Thailand","continent":"Asia","coords":"13.75°N, 100.5°E","year":"2026","focus":["Diving","Jungle","Elephants"],"blurb":"A mix of terrestrial and underwater wildlife exploration.","story":["Thailand mixed jungle and ocean in a way few other countries manage — elephants and forest trails in the north, reefs and dive sites further south.","It became a trip about wildlife more than temples, though there was plenty of both."],"highlights":["Time with elephants at an ethical sanctuary.","Diving Thailand's southern reefs.","Jungle trekking away from the main tourist routes."],"route":["Bangkok","Chiang Mai","Koh Tao"]},
-{"slug":"turkey","name":"Turkey","continent":"Asia","coords":"38.6°N, 34.8°E","year":null,"focus":["Cappadocia","Balloon","History"],"blurb":"Sunrise over Cappadocia from a hot-air balloon, and history at every turn.","story":["Turkey bridges two continents in more than just geography — the history, food and landscape all feel like a meeting point.","Rising over Cappadocia's valleys in a hot-air balloon at dawn is one of those experiences that photos genuinely undersell."],"highlights":["A hot-air balloon ride over Cappadocia at sunrise.","Exploring Istanbul's layered history in a single afternoon.","Cave hotels carved straight into the rock."],"route":["Istanbul","Cappadocia","Pamukkale"]},
-{"slug":"united-arab-emirates","name":"United Arab Emirates","continent":"Asia","coords":"25.2°N, 55.3°E","year":null,"focus":["Desert safari","Skyline","Culture"],"blurb":"Desert safaris, a skyline built at speed, and a hub for exploring the wider Gulf.","story":["The UAE is an easy place to underestimate — beyond the skyline, the desert on its doorstep is genuinely worth the detour.","It doubled as a stopover for several other Middle East and Asia trips, so it's tied to more journeys than most countries on this list."],"highlights":["A desert safari and dune bashing outside Dubai.","The view from the top of a record-breaking skyline.","Old Dubai's souks versus the new city, side by side."],"route":["Dubai","Abu Dhabi"]},
-{"slug":"uzbekistan","name":"Uzbekistan","continent":"Asia","coords":"39.65°N, 66.96°E","year":null,"focus":["Silk Road","Samarkand","Architecture"],"blurb":"Turquoise-tiled Silk Road cities and some of Central Asia's finest architecture.","story":["Uzbekistan doesn't get nearly enough credit for what it holds — Samarkand and Bukhara are two of the most striking city centres I've walked through anywhere.","Following the old Silk Road route made the history feel tangible rather than just read about."],"highlights":["Registan Square in Samarkand at golden hour.","Wandering the old town of Bukhara.","Tracing a small stretch of the historic Silk Road."],"route":["Tashkent","Samarkand","Bukhara"]},
-{"slug":"vietnam","name":"Vietnam","continent":"Asia","coords":"21.0°N, 105.8°E","year":"2026","focus":["Mountains","Road trip","Wildlife"],"blurb":"Northern mountains, countryside, caves and the south.","story":["The Ha Giang Loop was the centrepiece of this trip — days on a motorbike through northern mountains that kept getting more dramatic around every bend.","From caves in the north to the pace of the south, Vietnam turned into one of the best road trips on this list."],"highlights":["Riding the Ha Giang Loop through the northern mountains.","Exploring the cave systems near Phong Nha.","The contrast between rural north and buzzing south."],"route":["Hanoi","Ha Giang","Ho Chi Minh City"]},
-{"slug":"austria","name":"Austria","continent":"Europe","coords":"47.5°N, 14.6°E","year":null,"focus":["Alps","Vienna","Hiking"],"blurb":"Alpine lakes, imperial Vienna and easy access to the mountains.","story":["Austria made a strong case for the Alps outside the more obvious Swiss and Italian routes — the lake districts alone are worth the trip.","Vienna's architecture and coffee-house culture made a good contrast to the hiking further west."],"highlights":["Hiking above an alpine lake in the Salzkammergut.","Vienna's imperial architecture and coffee houses.","Mountain views that rival anywhere else in the Alps."],"route":["Vienna","Salzburg","Hallstatt"]},
-{"slug":"belgium","name":"Belgium","continent":"Europe","coords":"50.85°N, 4.35°E","year":null,"focus":["Bruges","Beer","Chocolate"],"blurb":"Canals, medieval streets and more beer and chocolate than strictly necessary.","story":["Belgium is an easy country to underrate — Bruges alone is worth a dedicated trip, canals and all.","Between the food, the beer and the compact old towns, it made for a relaxed, low-effort few days."],"highlights":["Walking Bruges' canals at dusk.","A proper Belgian beer tasting.","Brussels' mix of grand architecture and comic-book murals."],"route":["Brussels","Bruges","Ghent"]},
-{"slug":"bulgaria","name":"Bulgaria","continent":"Europe","coords":"42.7°N, 23.3°E","year":null,"focus":["Mountains","History","Value"],"blurb":"Underrated mountains, monasteries and one of Europe's best-value trips.","story":["Bulgaria surprised me more than almost anywhere else in Europe — mountains, monasteries and old towns with barely any crowds.","It's the kind of country that quietly outperforms its reputation once you actually spend time there."],"highlights":["Rila Monastery tucked into the mountains.","Hiking trails with almost no other tourists.","Sofia's mix of Roman, Ottoman and Soviet layers."],"route":["Sofia","Plovdiv","Rila"]},
-{"slug":"croatia","name":"Croatia","continent":"Europe","coords":"45.8°N, 15.9°E","year":null,"focus":["Coastline","Islands","Old towns"],"blurb":"Adriatic islands, walled old towns and some of Europe's clearest water.","story":["Croatia's coastline does a lot of the talking, but it was the old towns — Dubrovnik especially — that stuck with me just as much.","Island-hopping down the Dalmatian coast made for one of the more relaxed European trips on this list."],"highlights":["Walking Dubrovnik's city walls at sunset.","Swimming in the Adriatic's clear water.","Island-hopping the Dalmatian coast."],"route":["Split","Hvar","Dubrovnik"]},
-{"slug":"france","name":"France","continent":"Europe","coords":"48.85°N, 2.35°E","year":null,"focus":["Paris","Alps","Countryside"],"blurb":"Paris, the French Alps and enough countryside in between to slow down.","story":["France covered a lot of ground — Paris for the obvious reasons, but the Alps and countryside further out were just as memorable.","It's a country that rewards slowing down: long lunches, quiet villages and mountains within a few hours of the capital."],"highlights":["Paris from a rooftop rather than a queue.","Hiking a stretch of the French Alps.","Villages that felt untouched by the tourist routes."],"route":["Paris","Chamonix","Lyon"]},
-{"slug":"germany","name":"Germany","continent":"Europe","coords":"52.5°N, 13.4°E","year":null,"focus":["Cities","Beer gardens","History"],"blurb":"History-dense cities, Bavarian beer gardens and efficient everything.","story":["Germany's cities each felt distinctly different — Berlin's history, Munich's beer-garden culture, and everything in between.","It became a trip built around contrasts: heavy 20th-century history one day, easy beer-garden afternoons the next."],"highlights":["Walking Berlin's layered Cold War history.","A proper Bavarian beer garden in Munich.","Neuschwanstein Castle on a clear day."],"route":["Berlin","Munich","Füssen"]},
-{"slug":"hungary","name":"Hungary","continent":"Europe","coords":"47.5°N, 19.05°E","year":null,"focus":["Budapest","Thermal baths","Danube"],"blurb":"Budapest's thermal baths and one of the Danube's finest city skylines.","story":["Budapest alone made this trip worthwhile — the Danube skyline at night is one of the best city views in Europe.","Soaking in a centuries-old thermal bath after a day of walking became the daily routine, and it's hard to argue with that."],"highlights":["Soaking in Budapest's thermal baths.","The Danube skyline lit up at night.","Ruin bars in the old Jewish quarter."],"route":["Budapest"]},
-{"slug":"italy","name":"Italy","continent":"Europe","coords":"46.4°N, 11.9°E","year":"2026","focus":["Dolomites","Hiking","Lakes"],"blurb":"A hiking-focused journey through the Dolomites.","story":["The Dolomites were the whole point of this trip — jagged limestone peaks that look almost unreal in the right light.","Multiple days of hut-to-hut hiking, with lakes and small alpine towns along the way, made it one of the best mountain trips on the list."],"highlights":["Hut-to-hut hiking through the Dolomites.","Lake Braies at first light, before the crowds.","Small alpine towns that felt frozen in time."],"route":["Bassano del Grappa","Cortina d'Ampezzo","Lago di Braies"]},
-{"slug":"monaco","name":"Monaco","continent":"Europe","coords":"43.73°N, 7.42°E","year":null,"focus":["Riviera","Day trip","Coastline"],"blurb":"A quick, glamorous detour along the French Riviera.","story":["Monaco was a short, easy detour along the Riviera — more a walk around than a full trip, but worth the stop.","The contrast between the harbour's superyachts and the old town on the hill above made it an interesting hour or two."],"highlights":["Walking the harbour lined with superyachts.","The old town of Monaco-Ville above the coast.","A short stretch of the legendary Grand Prix circuit."],"route":["Monaco"]},
-{"slug":"netherlands","name":"Netherlands","continent":"Europe","coords":"52.37°N, 4.9°E","year":null,"focus":["Canals","Cycling","Cities"],"blurb":"Canal-lined cities, flat roads made for cycling, and easy trains between them.","story":["The Netherlands is one of the easiest countries to travel around — flat, well-connected and built for cycling everywhere.","Amsterdam's canals got most of the attention, but the smaller cities further out were just as worth the trip."],"highlights":["Cycling between canal-lined towns.","Amsterdam's museums and canal architecture.","Tulip fields in full bloom outside the city."],"route":["Amsterdam","Utrecht","Rotterdam"]},
-{"slug":"poland","name":"Poland","continent":"Europe","coords":"52.23°N, 21.0°E","year":null,"focus":["History","Old towns","Value"],"blurb":"Rebuilt old towns, heavy history and some of Europe's best-value cities.","story":["Poland's history is impossible to separate from a visit — Warsaw's rebuilt old town and Kraków's preserved one tell very different stories from the same century.","It's a country that rewards taking the history seriously rather than rushing between photo spots."],"highlights":["Walking Kraków's preserved medieval old town.","Warsaw's old town, rebuilt brick by brick after the war.","Salt mines carved deep beneath Wieliczka."],"route":["Warsaw","Kraków"]},
-{"slug":"slovakia","name":"Slovakia","continent":"Europe","coords":"48.15°N, 17.1°E","year":null,"focus":["Tatras","Castles","Old towns"],"blurb":"The High Tatras, hilltop castles and a quieter corner of Central Europe.","story":["Slovakia mostly got overshadowed by its neighbours in planning, but the High Tatras earned it a spot on its own merits.","Between the mountains and a handful of well-preserved old towns, it turned into a quiet, underrated stop."],"highlights":["Hiking in the High Tatras.","Bratislava's compact, walkable old town.","Castles perched above small river towns."],"route":["Bratislava","High Tatras"]},
-{"slug":"spain","name":"Spain","continent":"Europe","coords":"40.4°N, 3.7°W","year":null,"focus":["Home turf","Regions","Food"],"blurb":"Home ground — and still a country worth exploring region by region.","story":["Being home turf, Spain gets explored differently — less like a single trip and more like an ongoing project, region by region.","Between the regional food differences, the coastline and the mountains, it rarely gets old, even close to home."],"highlights":["Regional food that changes completely every few hundred kilometres.","Mountain routes within easy reach of home.","Coastline that still surprises after years of visits."],"route":["Madrid"]},
-{"slug":"uk","name":"United Kingdom","continent":"Europe","coords":"51.5°N, 0.13°W","year":null,"focus":["London","Countryside","History"],"blurb":"London's density, and a countryside that rewards getting out of it.","story":["London anchored most of the time here, but the countryside further out — coastline, hills, small towns — was where the trip really opened up.","It's a country that looks small on a map and somehow keeps producing new places worth a detour."],"highlights":["London's museums, most of them free.","Coastal walks well outside the city.","Small towns that felt lifted straight from a period drama."],"route":["London","Edinburgh"]},
-{"slug":"vatican","name":"Vatican City","continent":"Europe","coords":"41.9°N, 12.45°E","year":null,"focus":["St Peter's","Museums","Rome day trip"],"blurb":"The smallest country in the world, and one of its densest concentrations of art.","story":["Vatican City is easy to fold into a Rome trip, but it deserves its own mention — the scale of St Peter's Basilica alone is disorienting.","The Sistine Chapel gets the attention, but the sheer density of art through the Vatican Museums is the real experience."],"highlights":["Standing beneath the dome of St Peter's Basilica.","The Sistine Chapel ceiling, in person rather than in photos.","Walking through the Vatican Museums' endless corridors."],"route":["Vatican City"]},
-{"slug":"canada","name":"Canada","continent":"North America","coords":"45.4°N, 75.7°W","year":null,"focus":["Nature","Cities","Wildlife"],"blurb":"Big landscapes, wildlife-rich national parks and cities that feel easy to like.","story":["Canada is a country where the scale of the landscape does most of the work — national parks that make you feel genuinely small.","Between the cities and the wilderness on their doorstep, it struck a good balance between comfort and being properly outdoors."],"highlights":["Wildlife-spotting in a national park.","Cities that mix easily with nature nearby.","Landscapes that put distance into perspective."],"route":["Toronto","Banff","Vancouver"]},
-{"slug":"guatemala","name":"Guatemala","continent":"North America","coords":"14.6°N, 90.5°W","year":"2026","focus":["Acatenango","Volcanoes","Adventure"],"blurb":"Volcanoes, highland landscapes and an unforgettable ascent of Acatenango.","story":["Climbing Acatenango overnight to watch neighbouring Volcán de Fuego erupt in the dark was one of the most striking things I've seen on any trip.","Beyond the volcano, the highlands and colonial towns gave the trip a completely different rhythm — slower, quieter, older."],"highlights":["Watching Volcán de Fuego erupt from Acatenango's summit camp.","Colonial streets of Antigua at golden hour.","Highland markets that felt untouched by tourism."],"route":["Guatemala City","Antigua","Acatenango"]},
-{"slug":"mexico","name":"Mexico","continent":"North America","coords":"23.6°N, 102.5°W","year":"2026","focus":["Sharks","Mantas","Marine life"],"blurb":"Baja California, marine megafauna and the Yucatán.","story":["Mexico turned into one of the best diving trips on this list — Baja California's marine life is hard to overstate.","From sea lions and mobula rays in the Pacific to the cenotes and reefs of the Yucatán, the country delivered on both coasts."],"highlights":["Diving with sea lions and mobula rays in Baja California.","Snorkelling a cenote in the Yucatán.","Street food that outclassed every restaurant nearby."],"route":["La Paz","Cabo Pulmo","Tulum"]},
-{"slug":"usa","name":"United States","continent":"North America","coords":"38.9°N, 77.0°W","year":null,"focus":["Road trips","National parks","Cities"],"blurb":"National parks, long drives and cities that couldn't be more different from each other.","story":["The US rewards distance — some of the best stretches were the long drives between national parks rather than the cities themselves.","Every region felt like visiting a slightly different country, which is most of the appeal of covering it piece by piece."],"highlights":["A road trip strung between national parks.","Skylines that look exactly like the films, and still impress.","Diners and small towns well off the interstate."],"route":["New York","Grand Canyon","San Francisco"]},
-{"slug":"australia","name":"Australia","continent":"Oceania","coords":"-16.9°S, 145.7°E","year":"2025","focus":["Wildlife","Diving","Road trips"],"blurb":"Tropical forests, the Great Barrier Reef and unforgettable wildlife encounters.","story":["Australia was one of those trips where the reason for going was simple: wildlife.","I wanted to see what the country looked like beyond the cities — rainforest, reef, beaches, remote roads and the animals that make Australia unlike anywhere else. The trip became a mix of diving on the Great Barrier Reef, exploring the Daintree, searching for cassowaries and platypuses, driving between places that looked ridiculously far apart on a map, and stopping whenever something interesting appeared."],"highlights":["Diving the Great Barrier Reef.","Exploring the Daintree rainforest and searching for cassowaries.","Searching for platypuses around Julatten.","Sleeping among Australia's wildlife rather than behind city walls.","Realising that every road trip in Australia is considerably longer than it looks."],"route":["Brisbane","Gold Coast","Cairns","Daintree","Cape Tribulation","Julatten","Great Barrier Reef"]},
-{"slug":"new-zealand","name":"New Zealand","continent":"Oceania","coords":"-43.6°S, 170.1°E","year":"2026","focus":["Mountains","Road trip","Alpine"],"blurb":"A South Island road trip built around alpine landscapes and long hikes.","story":["A campervan and the South Island turned out to be a near-perfect combination — every day ended somewhere different, usually with a mountain in view.","The hiking did most of the work here: long alpine trails, glacier valleys and lakes so clear they barely looked real."],"highlights":["Hiking the Roy's Peak track at sunrise.","Campervanning down the South Island with no fixed plan.","Glacial lakes that looked almost artificially blue."],"route":["Christchurch","Mount Cook","Wanaka","Queenstown"]}
+  {
+    "slug": "china",
+    "name": "China",
+    "continent": "Asia",
+    "coords": "39.9°N, 116.4°E",
+    "year": null,
+    "focus": [
+      "Great Wall",
+      "Pandas",
+      "Street food"
+    ],
+    "blurb": "Giant pandas, ancient dynasties and cities that never really sleep.",
+    "story": [
+      "Getting to see giant pandas up close was the whole reason this trip existed — everything else was a bonus built around it.",
+      "From the scale of the Great Wall to the density of its megacities, China was a constant lesson in extremes: ancient and ultramodern, rural and hyper-urban, often within the same afternoon."
+    ],
+    "highlights": [
+      "Seeing giant pandas in Chengdu.",
+      "Walking a quiet, unrestored section of the Great Wall.",
+      "Getting lost in the pace of a first-tier Chinese city."
+    ],
+    "route": [
+      "Beijing",
+      "Xi'an",
+      "Chengdu"
+    ]
+  },
+  {
+    "slug": "india",
+    "name": "India",
+    "continent": "Asia",
+    "coords": "25.3°N, 83.0°E",
+    "year": null,
+    "focus": [
+      "Varanasi",
+      "Ghats",
+      "Culture"
+    ],
+    "blurb": "The ghats of Varanasi and a country that overwhelms every sense at once.",
+    "story": [
+      "India doesn't ease you in. Between the colour, the noise, the food and the sheer number of people, it's the kind of place that reorders how you think a city can work.",
+      "Varanasi was the centre of gravity for this trip — watching life, ritual and the Ganges move together on the ghats at dawn is not something that leaves you."
+    ],
+    "highlights": [
+      "Sunrise on the ghats of Varanasi.",
+      "Sharing meals that were nothing like the India I expected.",
+      "Train journeys that turned into the best part of the day."
+    ],
+    "route": [
+      "Delhi",
+      "Varanasi",
+      "Agra"
+    ]
+  },
+  {
+    "slug": "japan",
+    "name": "Japan",
+    "continent": "Asia",
+    "coords": "35.7°N, 139.7°E",
+    "year": null,
+    "focus": [
+      "Ramen",
+      "Wagyu",
+      "Cities"
+    ],
+    "blurb": "Ramen, wagyu and the strange comfort of a country that runs on precision.",
+    "story": [
+      "Japan is a country built for people who like details to be right — the trains, the food, the way a whole city can be quiet and considerate at once.",
+      "Most of the trip revolved around eating: proper ramen, wagyu that justified the hype, and enough convenience-store snacks to embarrass myself slightly."
+    ],
+    "highlights": [
+      "Eating ramen that reset my expectations of the dish.",
+      "Wagyu beef that was worth every yen.",
+      "The quiet efficiency of getting anywhere by train."
+    ],
+    "route": [
+      "Tokyo",
+      "Kyoto",
+      "Osaka"
+    ]
+  },
+  {
+    "slug": "jordan",
+    "name": "Jordan",
+    "continent": "Asia",
+    "coords": "31.9°N, 35.9°E",
+    "year": null,
+    "focus": [
+      "Petra",
+      "Desert",
+      "Wadi Rum"
+    ],
+    "blurb": "Petra carved into rock, and a night under the stars in the desert.",
+    "story": [
+      "Jordan packs an outsized amount of history and landscape into a small country — Petra alone is worth the trip, but the desert is what stays with you.",
+      "A night camping in the desert, away from any real light pollution, was one of those simple experiences that's hard to explain properly to people who weren't there."
+    ],
+    "highlights": [
+      "Walking the Siq into Petra for the first time.",
+      "Sleeping in a desert camp under a sky full of stars.",
+      "Floating in the Dead Sea."
+    ],
+    "route": [
+      "Amman",
+      "Petra",
+      "Wadi Rum"
+    ]
+  },
+  {
+    "slug": "kazakhstan",
+    "name": "Kazakhstan",
+    "continent": "Asia",
+    "coords": "51.2°N, 71.4°E",
+    "year": null,
+    "focus": [
+      "Steppe",
+      "Almaty",
+      "Central Asia"
+    ],
+    "blurb": "Vast steppe, Soviet-era cities and a first real taste of Central Asia.",
+    "story": [
+      "Kazakhstan was an introduction to a part of the world that rarely gets talked about — huge, empty landscapes and cities that mix Soviet architecture with something newer.",
+      "The scale of the country is hard to describe until you've tried to cross even a small part of it by road."
+    ],
+    "highlights": [
+      "The sheer emptiness of the steppe.",
+      "Almaty's mountain backdrop.",
+      "A part of Central Asia that felt genuinely unfamiliar."
+    ],
+    "route": [
+      "Almaty"
+    ]
+  },
+  {
+    "slug": "kuwait",
+    "name": "Kuwait",
+    "continent": "Asia",
+    "coords": "29.4°N, 47.9°E",
+    "year": null,
+    "focus": [
+      "Gulf",
+      "Culture",
+      "Cities"
+    ],
+    "blurb": "A stop through the Gulf and a glimpse of Kuwaiti city life.",
+    "story": [
+      "Kuwait was a shorter stop, but a useful one for understanding how the Gulf states differ from each other beyond the skyline photos.",
+      "Local food, the corniche and the contrast between old town and new development made for an easy few days."
+    ],
+    "highlights": [
+      "Walking the waterfront corniche.",
+      "Trying Kuwaiti and wider Gulf cuisine.",
+      "A different side of Gulf city life."
+    ],
+    "route": [
+      "Kuwait City"
+    ]
+  },
+  {
+    "slug": "malaysia",
+    "name": "Malaysia",
+    "continent": "Asia",
+    "coords": "3.1°N, 101.7°E",
+    "year": "2025",
+    "focus": [
+      "Borneo",
+      "Rainforest",
+      "Orangutans"
+    ],
+    "blurb": "Rainforest, islands and some of Southeast Asia's richest wildlife.",
+    "story": [
+      "Borneo was the highlight here — rainforest thick enough to feel genuinely remote, and wildlife encounters that made every early wake-up worth it.",
+      "Orangutans in the wild, alongside islands and reef further south, made Malaysia one of the strongest wildlife trips on the list."
+    ],
+    "highlights": [
+      "Seeing wild orangutans in Borneo's rainforest.",
+      "Diving and snorkelling off Malaysia's islands.",
+      "Kuala Lumpur's mix of skyline and street food."
+    ],
+    "route": [
+      "Kuala Lumpur",
+      "Sandakan",
+      "Kota Kinabalu"
+    ]
+  },
+  {
+    "slug": "oman",
+    "name": "Oman",
+    "continent": "Asia",
+    "coords": "23.6°N, 58.5°E",
+    "year": null,
+    "focus": [
+      "Desert",
+      "Wadis",
+      "Coastline"
+    ],
+    "blurb": "Dramatic wadis, desert dunes and a quieter side of the Gulf.",
+    "story": [
+      "Oman is one of the most underrated countries for landscape — canyons, wadis and mountains that don't get nearly enough attention compared to its neighbours.",
+      "Between the desert and the coastline, it felt like several very different trips packed into one country."
+    ],
+    "highlights": [
+      "Swimming in a wadi carved through the mountains.",
+      "Watching the desert change colour at sunset.",
+      "The dramatic drive through Oman's canyon roads."
+    ],
+    "route": [
+      "Muscat",
+      "Nizwa",
+      "Wahiba Sands"
+    ]
+  },
+  {
+    "slug": "morocco",
+    "name": "Morocco",
+    "continent": "Africa",
+    "coords": "31.6°N, 8.0°W",
+    "year": null,
+    "focus": [
+      "Sahara",
+      "Souks",
+      "Berber camp"
+    ],
+    "blurb": "A Berber desert camp, the souks of Marrakech and the edge of the Sahara.",
+    "story": [
+      "Morocco was a trip of contrasts — dense, chaotic medinas one day and total desert silence the next.",
+      "Sleeping in a Berber camp on the edge of the Sahara, away from any city noise, was the moment the trip really clicked."
+    ],
+    "highlights": [
+      "A night in a Berber camp under the desert sky.",
+      "Navigating the souks of Marrakech.",
+      "Crossing the Atlas Mountains by road."
+    ],
+    "route": [
+      "Marrakech",
+      "Atlas Mountains",
+      "Merzouga"
+    ]
+  },
+  {
+    "slug": "philippines",
+    "name": "Philippines",
+    "continent": "Asia",
+    "coords": "14.6°N, 121.0°E",
+    "year": null,
+    "focus": [
+      "Islands",
+      "Diving",
+      "Beaches"
+    ],
+    "blurb": "Island-hopping, clear water and some of Southeast Asia's best diving.",
+    "story": [
+      "The Philippines is built for exactly the kind of trip I like — islands, boats and time spent mostly in or near the water.",
+      "Between diving, beach-hopping and the sheer number of islands to choose from, this was a trip that could easily have been twice as long."
+    ],
+    "highlights": [
+      "Diving in some of the country's clearest water.",
+      "Hopping between islands with barely any plan.",
+      "Local seafood eaten within sight of the boat that caught it."
+    ],
+    "route": [
+      "Manila",
+      "Palawan",
+      "Cebu"
+    ]
+  },
+  {
+    "slug": "singapore",
+    "name": "Singapore",
+    "continent": "Asia",
+    "coords": "1.35°N, 103.8°E",
+    "year": null,
+    "focus": [
+      "Cityscape",
+      "Food",
+      "Stopover"
+    ],
+    "blurb": "A hyper-efficient city-state and one of the best food stopovers in Asia.",
+    "story": [
+      "Singapore usually ended up as a stopover on the way to somewhere else, but it earned a trip in its own right — the food alone justifies a few extra days.",
+      "The contrast between its skyline and its green spaces made it feel far less concrete-heavy than expected."
+    ],
+    "highlights": [
+      "Hawker-centre food that outclassed most restaurants.",
+      "Gardens by the Bay at night.",
+      "A city that somehow runs on time, every time."
+    ],
+    "route": [
+      "Singapore"
+    ]
+  },
+  {
+    "slug": "sri-lanka",
+    "name": "Sri Lanka",
+    "continent": "Asia",
+    "coords": "7.9°N, 80.7°E",
+    "year": null,
+    "focus": [
+      "Ella train",
+      "Tea country",
+      "Coast"
+    ],
+    "blurb": "The Ella train through tea country, beaches and a laid-back south coast.",
+    "story": [
+      "The train from Kandy to Ella is one of those routes people talk about for good reason — hours of tea plantations and mountains rolling past an open door.",
+      "Between the hill country and the south coast, Sri Lanka packed a surprising range of landscape into a small island."
+    ],
+    "highlights": [
+      "Riding the Ella train through the tea plantations.",
+      "Watching the sunrise from Adam's Peak.",
+      "Relaxed days on the south coast."
+    ],
+    "route": [
+      "Kandy",
+      "Ella",
+      "Mirissa"
+    ]
+  },
+  {
+    "slug": "thailand",
+    "name": "Thailand",
+    "continent": "Asia",
+    "coords": "13.75°N, 100.5°E",
+    "year": "2026",
+    "focus": [
+      "Diving",
+      "Jungle",
+      "Elephants"
+    ],
+    "blurb": "A mix of terrestrial and underwater wildlife exploration.",
+    "story": [
+      "Thailand mixed jungle and ocean in a way few other countries manage — elephants and forest trails in the north, reefs and dive sites further south.",
+      "It became a trip about wildlife more than temples, though there was plenty of both."
+    ],
+    "highlights": [
+      "Time with elephants at an ethical sanctuary.",
+      "Diving Thailand's southern reefs.",
+      "Jungle trekking away from the main tourist routes."
+    ],
+    "route": [
+      "Bangkok",
+      "Chiang Mai",
+      "Koh Tao"
+    ]
+  },
+  {
+    "slug": "turkey",
+    "name": "Turkey",
+    "continent": "Asia",
+    "coords": "38.6°N, 34.8°E",
+    "year": null,
+    "focus": [
+      "Cappadocia",
+      "Balloon",
+      "History"
+    ],
+    "blurb": "Sunrise over Cappadocia from a hot-air balloon, and history at every turn.",
+    "story": [
+      "Turkey bridges two continents in more than just geography — the history, food and landscape all feel like a meeting point.",
+      "Rising over Cappadocia's valleys in a hot-air balloon at dawn is one of those experiences that photos genuinely undersell."
+    ],
+    "highlights": [
+      "A hot-air balloon ride over Cappadocia at sunrise.",
+      "Exploring Istanbul's layered history in a single afternoon.",
+      "Cave hotels carved straight into the rock."
+    ],
+    "route": [
+      "Istanbul",
+      "Cappadocia",
+      "Pamukkale"
+    ]
+  },
+  {
+    "slug": "united-arab-emirates",
+    "name": "United Arab Emirates",
+    "continent": "Asia",
+    "coords": "25.2°N, 55.3°E",
+    "year": null,
+    "focus": [
+      "Desert safari",
+      "Skyline",
+      "Culture"
+    ],
+    "blurb": "Desert safaris, a skyline built at speed, and a hub for exploring the wider Gulf.",
+    "story": [
+      "The UAE is an easy place to underestimate — beyond the skyline, the desert on its doorstep is genuinely worth the detour.",
+      "It doubled as a stopover for several other Middle East and Asia trips, so it's tied to more journeys than most countries on this list."
+    ],
+    "highlights": [
+      "A desert safari and dune bashing outside Dubai.",
+      "The view from the top of a record-breaking skyline.",
+      "Old Dubai's souks versus the new city, side by side."
+    ],
+    "route": [
+      "Dubai",
+      "Abu Dhabi"
+    ]
+  },
+  {
+    "slug": "uzbekistan",
+    "name": "Uzbekistan",
+    "continent": "Asia",
+    "coords": "39.65°N, 66.96°E",
+    "year": null,
+    "focus": [
+      "Silk Road",
+      "Samarkand",
+      "Architecture"
+    ],
+    "blurb": "Turquoise-tiled Silk Road cities and some of Central Asia's finest architecture.",
+    "story": [
+      "Uzbekistan doesn't get nearly enough credit for what it holds — Samarkand and Bukhara are two of the most striking city centres I've walked through anywhere.",
+      "Following the old Silk Road route made the history feel tangible rather than just read about."
+    ],
+    "highlights": [
+      "Registan Square in Samarkand at golden hour.",
+      "Wandering the old town of Bukhara.",
+      "Tracing a small stretch of the historic Silk Road."
+    ],
+    "route": [
+      "Tashkent",
+      "Samarkand",
+      "Bukhara"
+    ]
+  },
+  {
+    "slug": "vietnam",
+    "name": "Vietnam",
+    "continent": "Asia",
+    "coords": "21.0°N, 105.8°E",
+    "year": "2026",
+    "focus": [
+      "Mountains",
+      "Road trip",
+      "Wildlife"
+    ],
+    "blurb": "Northern mountains, countryside, caves and the south.",
+    "story": [
+      "The Ha Giang Loop was the centrepiece of this trip — days on a motorbike through northern mountains that kept getting more dramatic around every bend.",
+      "From caves in the north to the pace of the south, Vietnam turned into one of the best road trips on this list."
+    ],
+    "highlights": [
+      "Riding the Ha Giang Loop through the northern mountains.",
+      "Exploring the cave systems near Phong Nha.",
+      "The contrast between rural north and buzzing south."
+    ],
+    "route": [
+      "Hanoi",
+      "Ha Giang",
+      "Ho Chi Minh City"
+    ]
+  },
+  {
+    "slug": "austria",
+    "name": "Austria",
+    "continent": "Europe",
+    "coords": "47.5°N, 14.6°E",
+    "year": null,
+    "focus": [
+      "Alps",
+      "Vienna",
+      "Hiking"
+    ],
+    "blurb": "Alpine lakes, imperial Vienna and easy access to the mountains.",
+    "story": [
+      "Austria made a strong case for the Alps outside the more obvious Swiss and Italian routes — the lake districts alone are worth the trip.",
+      "Vienna's architecture and coffee-house culture made a good contrast to the hiking further west."
+    ],
+    "highlights": [
+      "Hiking above an alpine lake in the Salzkammergut.",
+      "Vienna's imperial architecture and coffee houses.",
+      "Mountain views that rival anywhere else in the Alps."
+    ],
+    "route": [
+      "Vienna",
+      "Salzburg",
+      "Hallstatt"
+    ]
+  },
+  {
+    "slug": "belgium",
+    "name": "Belgium",
+    "continent": "Europe",
+    "coords": "50.85°N, 4.35°E",
+    "year": null,
+    "focus": [
+      "Bruges",
+      "Beer",
+      "Chocolate"
+    ],
+    "blurb": "Canals, medieval streets and more beer and chocolate than strictly necessary.",
+    "story": [
+      "Belgium is an easy country to underrate — Bruges alone is worth a dedicated trip, canals and all.",
+      "Between the food, the beer and the compact old towns, it made for a relaxed, low-effort few days."
+    ],
+    "highlights": [
+      "Walking Bruges' canals at dusk.",
+      "A proper Belgian beer tasting.",
+      "Brussels' mix of grand architecture and comic-book murals."
+    ],
+    "route": [
+      "Brussels",
+      "Bruges",
+      "Ghent"
+    ]
+  },
+  {
+    "slug": "bulgaria",
+    "name": "Bulgaria",
+    "continent": "Europe",
+    "coords": "42.7°N, 23.3°E",
+    "year": null,
+    "focus": [
+      "Mountains",
+      "History",
+      "Value"
+    ],
+    "blurb": "Underrated mountains, monasteries and one of Europe's best-value trips.",
+    "story": [
+      "Bulgaria surprised me more than almost anywhere else in Europe — mountains, monasteries and old towns with barely any crowds.",
+      "It's the kind of country that quietly outperforms its reputation once you actually spend time there."
+    ],
+    "highlights": [
+      "Rila Monastery tucked into the mountains.",
+      "Hiking trails with almost no other tourists.",
+      "Sofia's mix of Roman, Ottoman and Soviet layers."
+    ],
+    "route": [
+      "Sofia",
+      "Plovdiv",
+      "Rila"
+    ]
+  },
+  {
+    "slug": "croatia",
+    "name": "Croatia",
+    "continent": "Europe",
+    "coords": "45.8°N, 15.9°E",
+    "year": null,
+    "focus": [
+      "Coastline",
+      "Islands",
+      "Old towns"
+    ],
+    "blurb": "Adriatic islands, walled old towns and some of Europe's clearest water.",
+    "story": [
+      "Croatia's coastline does a lot of the talking, but it was the old towns — Dubrovnik especially — that stuck with me just as much.",
+      "Island-hopping down the Dalmatian coast made for one of the more relaxed European trips on this list."
+    ],
+    "highlights": [
+      "Walking Dubrovnik's city walls at sunset.",
+      "Swimming in the Adriatic's clear water.",
+      "Island-hopping the Dalmatian coast."
+    ],
+    "route": [
+      "Split",
+      "Hvar",
+      "Dubrovnik"
+    ]
+  },
+  {
+    "slug": "france",
+    "name": "France",
+    "continent": "Europe",
+    "coords": "48.85°N, 2.35°E",
+    "year": null,
+    "focus": [
+      "Paris",
+      "Alps",
+      "Countryside"
+    ],
+    "blurb": "Paris, the French Alps and enough countryside in between to slow down.",
+    "story": [
+      "France covered a lot of ground — Paris for the obvious reasons, but the Alps and countryside further out were just as memorable.",
+      "It's a country that rewards slowing down: long lunches, quiet villages and mountains within a few hours of the capital."
+    ],
+    "highlights": [
+      "Paris from a rooftop rather than a queue.",
+      "Hiking a stretch of the French Alps.",
+      "Villages that felt untouched by the tourist routes."
+    ],
+    "route": [
+      "Paris",
+      "Chamonix",
+      "Lyon"
+    ]
+  },
+  {
+    "slug": "germany",
+    "name": "Germany",
+    "continent": "Europe",
+    "coords": "52.5°N, 13.4°E",
+    "year": null,
+    "focus": [
+      "Cities",
+      "Beer gardens",
+      "History"
+    ],
+    "blurb": "History-dense cities, Bavarian beer gardens and efficient everything.",
+    "story": [
+      "Germany's cities each felt distinctly different — Berlin's history, Munich's beer-garden culture, and everything in between.",
+      "It became a trip built around contrasts: heavy 20th-century history one day, easy beer-garden afternoons the next."
+    ],
+    "highlights": [
+      "Walking Berlin's layered Cold War history.",
+      "A proper Bavarian beer garden in Munich.",
+      "Neuschwanstein Castle on a clear day."
+    ],
+    "route": [
+      "Berlin",
+      "Munich",
+      "Füssen"
+    ]
+  },
+  {
+    "slug": "hungary",
+    "name": "Hungary",
+    "continent": "Europe",
+    "coords": "47.5°N, 19.05°E",
+    "year": null,
+    "focus": [
+      "Budapest",
+      "Thermal baths",
+      "Danube"
+    ],
+    "blurb": "Budapest's thermal baths and one of the Danube's finest city skylines.",
+    "story": [
+      "Budapest alone made this trip worthwhile — the Danube skyline at night is one of the best city views in Europe.",
+      "Soaking in a centuries-old thermal bath after a day of walking became the daily routine, and it's hard to argue with that."
+    ],
+    "highlights": [
+      "Soaking in Budapest's thermal baths.",
+      "The Danube skyline lit up at night.",
+      "Ruin bars in the old Jewish quarter."
+    ],
+    "route": [
+      "Budapest"
+    ]
+  },
+  {
+    "slug": "italy",
+    "name": "Italy",
+    "continent": "Europe",
+    "coords": "46.4°N, 11.9°E",
+    "year": "2026",
+    "focus": [
+      "Dolomites",
+      "Hiking",
+      "Lakes"
+    ],
+    "blurb": "A hiking-focused journey through the Dolomites.",
+    "story": [
+      "The Dolomites were the whole point of this trip — jagged limestone peaks that look almost unreal in the right light.",
+      "Multiple days of hut-to-hut hiking, with lakes and small alpine towns along the way, made it one of the best mountain trips on the list."
+    ],
+    "highlights": [
+      "Hut-to-hut hiking through the Dolomites.",
+      "Lake Braies at first light, before the crowds.",
+      "Small alpine towns that felt frozen in time."
+    ],
+    "route": [
+      "Bassano del Grappa",
+      "Cortina d'Ampezzo",
+      "Lago di Braies"
+    ]
+  },
+  {
+    "slug": "monaco",
+    "name": "Monaco",
+    "continent": "Europe",
+    "coords": "43.73°N, 7.42°E",
+    "year": null,
+    "focus": [
+      "Riviera",
+      "Day trip",
+      "Coastline"
+    ],
+    "blurb": "A quick, glamorous detour along the French Riviera.",
+    "story": [
+      "Monaco was a short, easy detour along the Riviera — more a walk around than a full trip, but worth the stop.",
+      "The contrast between the harbour's superyachts and the old town on the hill above made it an interesting hour or two."
+    ],
+    "highlights": [
+      "Walking the harbour lined with superyachts.",
+      "The old town of Monaco-Ville above the coast.",
+      "A short stretch of the legendary Grand Prix circuit."
+    ],
+    "route": [
+      "Monaco"
+    ]
+  },
+  {
+    "slug": "netherlands",
+    "name": "Netherlands",
+    "continent": "Europe",
+    "coords": "52.37°N, 4.9°E",
+    "year": null,
+    "focus": [
+      "Canals",
+      "Cycling",
+      "Cities"
+    ],
+    "blurb": "Canal-lined cities, flat roads made for cycling, and easy trains between them.",
+    "story": [
+      "The Netherlands is one of the easiest countries to travel around — flat, well-connected and built for cycling everywhere.",
+      "Amsterdam's canals got most of the attention, but the smaller cities further out were just as worth the trip."
+    ],
+    "highlights": [
+      "Cycling between canal-lined towns.",
+      "Amsterdam's museums and canal architecture.",
+      "Tulip fields in full bloom outside the city."
+    ],
+    "route": [
+      "Amsterdam",
+      "Utrecht",
+      "Rotterdam"
+    ]
+  },
+  {
+    "slug": "poland",
+    "name": "Poland",
+    "continent": "Europe",
+    "coords": "52.23°N, 21.0°E",
+    "year": null,
+    "focus": [
+      "History",
+      "Old towns",
+      "Value"
+    ],
+    "blurb": "Rebuilt old towns, heavy history and some of Europe's best-value cities.",
+    "story": [
+      "Poland's history is impossible to separate from a visit — Warsaw's rebuilt old town and Kraków's preserved one tell very different stories from the same century.",
+      "It's a country that rewards taking the history seriously rather than rushing between photo spots."
+    ],
+    "highlights": [
+      "Walking Kraków's preserved medieval old town.",
+      "Warsaw's old town, rebuilt brick by brick after the war.",
+      "Salt mines carved deep beneath Wieliczka."
+    ],
+    "route": [
+      "Warsaw",
+      "Kraków"
+    ]
+  },
+  {
+    "slug": "slovakia",
+    "name": "Slovakia",
+    "continent": "Europe",
+    "coords": "48.15°N, 17.1°E",
+    "year": null,
+    "focus": [
+      "Tatras",
+      "Castles",
+      "Old towns"
+    ],
+    "blurb": "The High Tatras, hilltop castles and a quieter corner of Central Europe.",
+    "story": [
+      "Slovakia mostly got overshadowed by its neighbours in planning, but the High Tatras earned it a spot on its own merits.",
+      "Between the mountains and a handful of well-preserved old towns, it turned into a quiet, underrated stop."
+    ],
+    "highlights": [
+      "Hiking in the High Tatras.",
+      "Bratislava's compact, walkable old town.",
+      "Castles perched above small river towns."
+    ],
+    "route": [
+      "Bratislava",
+      "High Tatras"
+    ]
+  },
+  {
+    "slug": "spain",
+    "name": "Spain",
+    "continent": "Europe",
+    "coords": "40.4°N, 3.7°W",
+    "year": null,
+    "focus": [
+      "Canary Islands",
+      "Home turf",
+      "Volcanoes"
+    ],
+    "blurb": "Home ground — and still a country worth exploring region by region.",
+    "story": [
+      "Being home turf, Spain gets explored differently — less like a single trip and more like an ongoing project, region by region.",
+      "Between the regional food differences, the coastline and the mountains, it rarely gets old, even close to home."
+    ],
+    "highlights": [
+      "Watching sunrise over Roque Nublo with Teide across the water.",
+      "Driving through Teide National Park's volcanic landscape.",
+      "Regional food that changes completely every few hundred kilometres."
+    ],
+    "route": [
+      "Madrid",
+      "Gran Canaria",
+      "Tenerife"
+    ]
+  },
+  {
+    "slug": "uk",
+    "name": "United Kingdom",
+    "continent": "Europe",
+    "coords": "51.5°N, 0.13°W",
+    "year": null,
+    "focus": [
+      "London",
+      "Countryside",
+      "History"
+    ],
+    "blurb": "London's density, and a countryside that rewards getting out of it.",
+    "story": [
+      "London anchored most of the time here, but the countryside further out — coastline, hills, small towns — was where the trip really opened up.",
+      "It's a country that looks small on a map and somehow keeps producing new places worth a detour."
+    ],
+    "highlights": [
+      "London's museums, most of them free.",
+      "Coastal walks well outside the city.",
+      "Small towns that felt lifted straight from a period drama."
+    ],
+    "route": [
+      "London",
+      "Edinburgh"
+    ]
+  },
+  {
+    "slug": "vatican",
+    "name": "Vatican City",
+    "continent": "Europe",
+    "coords": "41.9°N, 12.45°E",
+    "year": null,
+    "focus": [
+      "St Peter's",
+      "Museums",
+      "Rome day trip"
+    ],
+    "blurb": "The smallest country in the world, and one of its densest concentrations of art.",
+    "story": [
+      "Vatican City is easy to fold into a Rome trip, but it deserves its own mention — the scale of St Peter's Basilica alone is disorienting.",
+      "The Sistine Chapel gets the attention, but the sheer density of art through the Vatican Museums is the real experience."
+    ],
+    "highlights": [
+      "Standing beneath the dome of St Peter's Basilica.",
+      "The Sistine Chapel ceiling, in person rather than in photos.",
+      "Walking through the Vatican Museums' endless corridors."
+    ],
+    "route": [
+      "Vatican City"
+    ]
+  },
+  {
+    "slug": "canada",
+    "name": "Canada",
+    "continent": "North America",
+    "coords": "45.4°N, 75.7°W",
+    "year": null,
+    "focus": [
+      "Nature",
+      "Cities",
+      "Wildlife"
+    ],
+    "blurb": "Big landscapes, wildlife-rich national parks and cities that feel easy to like.",
+    "story": [
+      "Canada is a country where the scale of the landscape does most of the work — national parks that make you feel genuinely small.",
+      "Between the cities and the wilderness on their doorstep, it struck a good balance between comfort and being properly outdoors."
+    ],
+    "highlights": [
+      "Wildlife-spotting in a national park.",
+      "Cities that mix easily with nature nearby.",
+      "Landscapes that put distance into perspective."
+    ],
+    "route": [
+      "Toronto",
+      "Banff",
+      "Vancouver"
+    ]
+  },
+  {
+    "slug": "guatemala",
+    "name": "Guatemala",
+    "continent": "North America",
+    "coords": "14.6°N, 90.5°W",
+    "year": "2026",
+    "focus": [
+      "Acatenango",
+      "Volcanoes",
+      "Adventure"
+    ],
+    "blurb": "Volcanoes, highland landscapes and an unforgettable ascent of Acatenango.",
+    "story": [
+      "Climbing Acatenango overnight to watch neighbouring Volcán de Fuego erupt in the dark was one of the most striking things I've seen on any trip.",
+      "Beyond the volcano, the highlands and colonial towns gave the trip a completely different rhythm — slower, quieter, older."
+    ],
+    "highlights": [
+      "Watching Volcán de Fuego erupt from Acatenango's summit camp.",
+      "Colonial streets of Antigua at golden hour.",
+      "Highland markets that felt untouched by tourism."
+    ],
+    "route": [
+      "Guatemala City",
+      "Antigua",
+      "Acatenango"
+    ]
+  },
+  {
+    "slug": "mexico",
+    "name": "Mexico",
+    "continent": "North America",
+    "coords": "23.6°N, 102.5°W",
+    "year": "2026",
+    "focus": [
+      "Sharks",
+      "Mantas",
+      "Marine life"
+    ],
+    "blurb": "Baja California, marine megafauna and the Yucatán.",
+    "story": [
+      "Mexico turned into one of the best diving trips on this list — Baja California's marine life is hard to overstate.",
+      "From sea lions and mobula rays in the Pacific to the cenotes and reefs of the Yucatán, the country delivered on both coasts."
+    ],
+    "highlights": [
+      "Diving with sea lions and mobula rays in Baja California.",
+      "Snorkelling a cenote in the Yucatán.",
+      "Street food that outclassed every restaurant nearby."
+    ],
+    "route": [
+      "La Paz",
+      "Cabo Pulmo",
+      "Tulum"
+    ]
+  },
+  {
+    "slug": "usa",
+    "name": "United States",
+    "continent": "North America",
+    "coords": "38.9°N, 77.0°W",
+    "year": null,
+    "focus": [
+      "Road trips",
+      "National parks",
+      "Cities"
+    ],
+    "blurb": "National parks, long drives and cities that couldn't be more different from each other.",
+    "story": [
+      "The US rewards distance — some of the best stretches were the long drives between national parks rather than the cities themselves.",
+      "Every region felt like visiting a slightly different country, which is most of the appeal of covering it piece by piece."
+    ],
+    "highlights": [
+      "A road trip strung between national parks.",
+      "Skylines that look exactly like the films, and still impress.",
+      "Diners and small towns well off the interstate."
+    ],
+    "route": [
+      "New York",
+      "Grand Canyon",
+      "San Francisco"
+    ]
+  },
+  {
+    "slug": "australia",
+    "name": "Australia",
+    "continent": "Oceania",
+    "coords": "-16.9°S, 145.7°E",
+    "year": "2025",
+    "focus": [
+      "Wildlife",
+      "Diving",
+      "Road trips"
+    ],
+    "blurb": "Tropical forests, the Great Barrier Reef and unforgettable wildlife encounters.",
+    "story": [
+      "Australia was one of those trips where the reason for going was simple: wildlife.",
+      "I wanted to see what the country looked like beyond the cities — rainforest, reef, beaches, remote roads and the animals that make Australia unlike anywhere else. The trip became a mix of diving on the Great Barrier Reef, exploring the Daintree, searching for cassowaries and platypuses, driving between places that looked ridiculously far apart on a map, and stopping whenever something interesting appeared."
+    ],
+    "highlights": [
+      "Diving the Great Barrier Reef.",
+      "Exploring the Daintree rainforest and searching for cassowaries.",
+      "Searching for platypuses around Julatten.",
+      "Sleeping among Australia's wildlife rather than behind city walls.",
+      "Realising that every road trip in Australia is considerably longer than it looks."
+    ],
+    "route": [
+      "Brisbane",
+      "Gold Coast",
+      "Cairns",
+      "Daintree",
+      "Cape Tribulation",
+      "Julatten",
+      "Great Barrier Reef"
+    ]
+  },
+  {
+    "slug": "new-zealand",
+    "name": "New Zealand",
+    "continent": "Oceania",
+    "coords": "-43.6°S, 170.1°E",
+    "year": "2026",
+    "focus": [
+      "Mountains",
+      "Road trip",
+      "Alpine"
+    ],
+    "blurb": "A South Island road trip built around alpine landscapes and long hikes.",
+    "story": [
+      "A campervan and the South Island turned out to be a near-perfect combination — every day ended somewhere different, usually with a mountain in view.",
+      "The hiking did most of the work here: long alpine trails, glacier valleys and lakes so clear they barely looked real."
+    ],
+    "highlights": [
+      "Hiking the Roy's Peak track at sunrise.",
+      "Campervanning down the South Island with no fixed plan.",
+      "Glacial lakes that looked almost artificially blue."
+    ],
+    "route": [
+      "Christchurch",
+      "Mount Cook",
+      "Wanaka",
+      "Queenstown"
+    ]
+  }
 ]
