@@ -1,1 +1,64 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><defs><linearGradient id="a" x2="1" y2="1"><stop stop-color="#dce8df"/><stop offset=".5" stop-color="#7fa296"/><stop offset="1" stop-color="#24483e"/></linearGradient></defs><rect width="1600" height="900" fill="url(#a)"/><path d="M0 650 280 300 440 500 700 120 980 510 1190 230 1600 650V900H0Z" fill="#31594d"/><path d="M0 710 380 470 650 620 930 410 1200 610 1440 470 1600 600V900H0Z" fill="#1e3c34"/><ellipse cx="1100" cy="760" rx="600" ry="100" fill="#9bc5c0" opacity=".5"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#dce8df"/>
+<stop offset=".5" stop-color="#7fa296"/>
+<stop offset="1" stop-color="#24483e"/>
+</linearGradient>
+<linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#f4c97a"/>
+<stop offset="1" stop-color="#e8a94f"/>
+</linearGradient>
+</defs>
+
+<rect width="1600" height="900" fill="url(#sky)"/>
+
+<!-- sun / horizon glow -->
+<ellipse cx="1180" cy="330" rx="120" ry="120" fill="url(#sun)" opacity=".55"/>
+
+<!-- data network overlaid on the sky: nodes = places, lines = the connections the whole site is built on -->
+<g stroke="#f6f3ea" stroke-width="1.1" opacity=".38" fill="none">
+<path d="M330,190 L560,260"/>
+<path d="M560,260 L840,150"/>
+<path d="M560,260 L700,380"/>
+<path d="M840,150 L1080,240"/>
+<path d="M700,380 L920,420"/>
+<path d="M1080,240 L1290,190"/>
+<path d="M920,420 L1150,340"/>
+<path d="M1150,340 L1290,190"/>
+</g>
+<g fill="#f6f3ea" opacity=".75">
+<circle cx="330" cy="190" r="4"/>
+<circle cx="560" cy="260" r="6"/>
+<circle cx="840" cy="150" r="4"/>
+<circle cx="700" cy="380" r="7"/>
+<circle cx="1080" cy="240" r="4"/>
+<circle cx="920" cy="420" r="5"/>
+<circle cx="1150" cy="340" r="4"/>
+<circle cx="1290" cy="190" r="5"/>
+</g>
+
+<!-- distant bird silhouettes -->
+<g fill="none" stroke="#1e3c34" stroke-width="4" stroke-linecap="round" opacity=".5">
+<path d="M960,210 q18,-16 36,0 q18,-16 36,0"/>
+<path d="M1040,180 q14,-12 28,0 q14,-12 28,0"/>
+</g>
+
+<!-- far mountain ridge -->
+<path d="M0 650 280 300 440 500 700 120 980 510 1190 230 1600 650V900H0Z" fill="#31594d"/>
+
+<!-- near mountain ridge, with one volcanic peak carrying a faint eruption glow -->
+<path d="M0 710 380 470 650 620 930 410 1200 610 1440 470 1600 600V900H0Z" fill="#1e3c34"/>
+<g opacity=".85">
+<circle cx="930" cy="410" r="10" fill="#f4805a"/>
+<circle cx="930" cy="410" r="22" fill="#f4805a" opacity=".35"/>
+<path d="M930,405 q6,-22 -4,-34 M930,402 q16,-14 12,-30" stroke="#f4805a" stroke-width="2.5" fill="none" opacity=".7"/>
+</g>
+
+<!-- ocean band at the base -->
+<ellipse cx="1100" cy="760" rx="600" ry="100" fill="#9bc5c0" opacity=".5"/>
+<g stroke="#e9eee5" stroke-width="2" opacity=".3" fill="none">
+<path d="M550,820 q40,-14 80,0 q40,-14 80,0 q40,-14 80,0"/>
+<path d="M850,850 q40,-14 80,0 q40,-14 80,0 q40,-14 80,0"/>
+</g>
+</svg>
