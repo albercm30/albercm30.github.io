@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#3a2e1a"/><stop offset="1" stop-color="#8a6b3a"/>
+</linearGradient>
+</defs>
+<rect width="800" height="440" fill="url(#bg)"/>
+<!-- baseline -->
+<line x1="120" y1="360" x2="680" y2="360" stroke="#f2e9d8" stroke-width="1.5" opacity="0.6"/>
+<!-- bar 1: Twitter ad (1x baseline) -->
+<rect x="190" y="320" width="90" height="40" fill="#f2e9d8" opacity="0.9"/>
+<!-- bar 2: Facebook post (approx 1.9x of twitter ad per stated ratios) -->
+<rect x="360" y="284" width="90" height="76" fill="#f2e9d8" opacity="0.9"/>
+<!-- bar 3: Facebook ad (8.7x twitter ad) -->
+<rect x="530" y="100" width="90" height="260" fill="#f7d488"/>
+<!-- small annotation dots/ticks -->
+<g fill="#f2e9d8" opacity="0.5">
+<circle cx="235" cy="310" r="3"/>
+<circle cx="405" cy="274" r="3"/>
+<circle cx="575" cy="90" r="3"/>
+</g>
+</svg>

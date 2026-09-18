@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#1a2e40"/><stop offset="1" stop-color="#3a6b7a"/>
+</linearGradient>
+</defs>
+<rect width="800" height="440" fill="url(#bg)"/>
+<!-- table grid motif (1000+ tables) -->
+<g opacity="0.22" fill="#e9eee5">
+<g id="grid"></g>
+</g>
+<g opacity="0.22" fill="#e9eee5">
+<!-- generate grid manually -->
+<rect x="60" y="70" width="14" height="14"/><rect x="84" y="70" width="14" height="14"/><rect x="108" y="70" width="14" height="14"/><rect x="132" y="70" width="14" height="14"/>
+<rect x="60" y="94" width="14" height="14"/><rect x="84" y="94" width="14" height="14"/><rect x="108" y="94" width="14" height="14"/><rect x="132" y="94" width="14" height="14"/>
+<rect x="60" y="118" width="14" height="14"/><rect x="84" y="118" width="14" height="14"/><rect x="108" y="118" width="14" height="14"/><rect x="132" y="118" width="14" height="14"/>
+<rect x="60" y="142" width="14" height="14"/><rect x="84" y="142" width="14" height="14"/><rect x="108" y="142" width="14" height="14"/><rect x="132" y="142" width="14" height="14"/>
+<rect x="60" y="166" width="14" height="14"/><rect x="84" y="166" width="14" height="14"/><rect x="108" y="166" width="14" height="14"/><rect x="132" y="166" width="14" height="14"/>
+<rect x="60" y="190" width="14" height="14"/><rect x="84" y="190" width="14" height="14"/><rect x="108" y="190" width="14" height="14"/><rect x="132" y="190" width="14" height="14"/>
+<rect x="60" y="214" width="14" height="14"/><rect x="84" y="214" width="14" height="14"/><rect x="108" y="214" width="14" height="14"/><rect x="132" y="214" width="14" height="14"/>
+<rect x="60" y="238" width="14" height="14"/><rect x="84" y="238" width="14" height="14"/><rect x="108" y="238" width="14" height="14"/><rect x="132" y="238" width="14" height="14"/>
+<rect x="60" y="262" width="14" height="14"/><rect x="84" y="262" width="14" height="14"/><rect x="108" y="262" width="14" height="14"/><rect x="132" y="262" width="14" height="14"/>
+<rect x="60" y="286" width="14" height="14"/><rect x="84" y="286" width="14" height="14"/><rect x="108" y="286" width="14" height="14"/><rect x="132" y="286" width="14" height="14"/>
+<rect x="60" y="310" width="14" height="14"/><rect x="84" y="310" width="14" height="14"/><rect x="108" y="310" width="14" height="14"/><rect x="132" y="310" width="14" height="14"/>
+<rect x="60" y="334" width="14" height="14"/><rect x="84" y="334" width="14" height="14"/><rect x="108" y="334" width="14" height="14"/><rect x="132" y="334" width="14" height="14"/>
+</g>
+<!-- flow lines converging -->
+<g stroke="#e9eee5" stroke-width="1.4" opacity="0.55" fill="none">
+<path d="M170,90 C 300,90 340,150 430,170"/>
+<path d="M170,160 C 300,160 340,170 430,180"/>
+<path d="M170,230 C 300,230 340,195 430,190"/>
+<path d="M170,300 C 300,300 340,210 430,200"/>
+</g>
+<!-- consolidated nodes (GCP -> transform -> AWS) -->
+<circle cx="430" cy="185" r="9" fill="#e9eee5"/>
+<path d="M460,185 L560,150" stroke="#e9eee5" stroke-width="1.6" opacity="0.7"/>
+<path d="M460,185 L560,220" stroke="#e9eee5" stroke-width="1.6" opacity="0.7"/>
+<circle cx="565" cy="148" r="12" fill="none" stroke="#cfe3c9" stroke-width="2.4"/>
+<circle cx="565" cy="222" r="12" fill="none" stroke="#cfe3c9" stroke-width="2.4"/>
+<path d="M577,148 L660,110" stroke="#cfe3c9" stroke-width="1.6" opacity="0.8"/>
+<path d="M577,222 L660,260" stroke="#cfe3c9" stroke-width="1.6" opacity="0.8"/>
+<rect x="655" y="95" width="60" height="30" rx="4" fill="none" stroke="#f4c97a" stroke-width="2.4"/>
+<rect x="655" y="245" width="60" height="30" rx="4" fill="none" stroke="#f4c97a" stroke-width="2.4"/>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#0f2818"/><stop offset="1" stop-color="#3d7a4e"/>
+</linearGradient>
+</defs>
+<rect width="800" height="440" fill="url(#bg)"/>
+<!-- dot-matrix world map silhouette (very abstract) -->
+<g fill="#e9eee5" opacity="0.35">
+<circle cx="120" cy="130" r="3"/><circle cx="140" cy="130" r="3"/><circle cx="160" cy="125" r="3"/><circle cx="180" cy="135" r="3"/>
+<circle cx="120" cy="150" r="3"/><circle cx="140" cy="155" r="3"/><circle cx="165" cy="150" r="3"/>
+<circle cx="260" cy="140" r="3"/><circle cx="280" cy="145" r="3"/><circle cx="300" cy="140" r="3"/><circle cx="320" cy="150" r="3"/><circle cx="290" cy="165" r="3"/>
+<circle cx="400" cy="120" r="3"/><circle cx="420" cy="125" r="3"/><circle cx="440" cy="120" r="3"/><circle cx="460" cy="130" r="3"/><circle cx="430" cy="145" r="3"/>
+<circle cx="540" cy="150" r="3"/><circle cx="560" cy="155" r="3"/><circle cx="580" cy="150" r="3"/><circle cx="600" cy="160" r="3"/>
+<circle cx="300" cy="230" r="3"/><circle cx="315" cy="250" r="3"/><circle cx="330" cy="270" r="3"/><circle cx="290" cy="255" r="3"/>
+<circle cx="620" cy="290" r="3"/><circle cx="640" cy="300" r="3"/><circle cx="600" cy="310" r="3"/>
+</g>
+<!-- highlighted evidence pins with probability rings -->
+<circle cx="290" cy="165" r="26" fill="none" stroke="#f4c97a" stroke-width="1.4" opacity="0.55"/>
+<circle cx="290" cy="165" r="14" fill="none" stroke="#f4c97a" stroke-width="1.8" opacity="0.85"/>
+<circle cx="290" cy="165" r="5" fill="#f4c97a"/>
+<circle cx="560" cy="155" r="20" fill="none" stroke="#e9eee5" stroke-width="1.4" opacity="0.45"/>
+<circle cx="560" cy="155" r="5" fill="#e9eee5"/>
+<circle cx="330" cy="270" r="18" fill="none" stroke="#e9eee5" stroke-width="1.2" opacity="0.4"/>
+<circle cx="330" cy="270" r="4" fill="#e9eee5"/>
+</svg>

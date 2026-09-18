@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#183646"/><stop offset="1" stop-color="#4d7b78"/>
+</linearGradient>
+</defs>
+<rect width="800" height="440" fill="url(#bg)"/>
+<!-- scattered unsorted dots (left, incoming raw incident reports) -->
+<g fill="#e9eee5" opacity="0.85">
+<circle cx="90" cy="110" r="6"/><circle cx="130" cy="160" r="5"/><circle cx="80" cy="210" r="7"/>
+<circle cx="140" cy="250" r="5"/><circle cx="95" cy="300" r="6"/><circle cx="150" cy="90" r="5"/>
+<circle cx="115" cy="330" r="6"/><circle cx="70" cy="260" r="5"/><circle cx="160" cy="190" r="6"/>
+</g>
+<!-- funnel lines -->
+<g stroke="#e9eee5" stroke-width="1" opacity="0.35" fill="none">
+<path d="M90,110 C 250,140 300,180 400,200"/>
+<path d="M130,160 C 250,170 300,190 400,205"/>
+<path d="M80,210 C 250,210 300,210 400,210"/>
+<path d="M140,250 C 250,230 300,215 400,215"/>
+<path d="M95,300 C 250,270 300,230 400,220"/>
+<path d="M150,90 C 250,130 300,170 400,195"/>
+<path d="M115,330 C 250,290 300,240 400,225"/>
+<path d="M70,260 C 250,250 300,225 400,218"/>
+<path d="M160,190 C 250,195 300,203 400,208"/>
+</g>
+<!-- sorted taxonomy rows (right, classified output) -->
+<g fill="none" stroke="#f4c97a" stroke-width="2.2">
+<rect x="440" y="120" width="220" height="26" rx="4"/>
+<rect x="440" y="164" width="170" height="26" rx="4"/>
+<rect x="440" y="208" width="240" height="26" rx="4"/>
+<rect x="440" y="252" width="130" height="26" rx="4"/>
+<rect x="440" y="296" width="190" height="26" rx="4"/>
+</g>
+</svg>
