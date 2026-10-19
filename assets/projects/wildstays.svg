@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#1c3526"/><stop offset="1" stop-color="#7d8f4e"/>
+</linearGradient>
+</defs>
+<rect width="800" height="440" fill="url(#bg)"/>
+<!-- topographic contour lines -->
+<g fill="none" stroke="#e9eee5" stroke-width="1.2" opacity="0.18">
+<path d="M-20 110 Q 120 40 260 100 T 520 80 T 830 60"/>
+<path d="M-20 140 Q 120 80 260 135 T 520 118 T 830 100"/>
+<path d="M-20 170 Q 120 120 260 168 T 520 156 T 830 140"/>
+</g>
+<!-- stay: cabin with map pin -->
+<g transform="translate(150 215)">
+<path d="M-70 40 L-70 -10 L0 -70 L70 -10 L70 40 Z" fill="none" stroke="#e9eee5" stroke-width="3" stroke-linejoin="round" opacity="0.9"/>
+<rect x="-16" y="-8" width="32" height="48" rx="3" fill="#e9eee5" opacity="0.35"/>
+<path d="M-82 -2 L0 -78 L82 -2" fill="none" stroke="#f4c97a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<!-- ground line and trees -->
+<line x1="40" y1="255" x2="330" y2="255" stroke="#e9eee5" stroke-width="1.5" opacity="0.4"/>
+<g fill="#e9eee5" opacity="0.28"><path d="M45 255 l12 -44 l12 44z"/><path d="M62 255 l10 -34 l10 34z"/><path d="M295 255 l12 -44 l12 44z"/><path d="M312 255 l10 -34 l10 34z"/></g>
+<!-- map pin above -->
+<g transform="translate(150 70)"><path d="M0 40 C-18 16 -22 4 -22 -6 A22 22 0 1 1 22 -6 C22 4 18 16 0 40 Z" fill="#f4c97a"/><circle cx="0" cy="-6" r="8" fill="#1c3526"/></g>
+<!-- 12-month chance meter -->
+<line x1="420" y1="385" x2="780" y2="385" stroke="#e9eee5" stroke-width="1.2" opacity="0.4"/>
+<rect x="430" y="303" width="16" height="82" rx="3" fill="#e9eee5" opacity="0.3"/><rect x="458" y="312" width="16" height="73" rx="3" fill="#e9eee5" opacity="0.3"/><rect x="486" y="300" width="16" height="85" rx="3" fill="#e9eee5" opacity="0.3"/><rect x="514" y="278" width="16" height="107" rx="3" fill="#e9eee5" opacity="0.3"/><rect x="542" y="252" width="16" height="133" rx="3" fill="#f4c97a" opacity="1"/><rect x="570" y="218" width="16" height="167" rx="3" fill="#f4c97a" opacity="1"/><rect x="598" y="203" width="16" height="182" rx="3" fill="#f4c97a" opacity="1"/><rect x="626" y="210" width="16" height="175" rx="3" fill="#f4c97a" opacity="1"/><rect x="654" y="240" width="16" height="145" rx="3" fill="#f4c97a" opacity="1"/><rect x="682" y="270" width="16" height="115" rx="3" fill="#e9eee5" opacity="0.3"/><rect x="710" y="294" width="16" height="91" rx="3" fill="#e9eee5" opacity="0.3"/><rect x="738" y="306" width="16" height="79" rx="3" fill="#e9eee5" opacity="0.3"/>
+<path d="M606 187 l-6 -10 h12 z" fill="#f4c97a"/>
+</svg>

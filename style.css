@@ -184,3 +184,4 @@
 :root[data-theme="dark"] .nav-cta{background:var(--green);color:#10170f}
 @media(max-width:620px){:root[data-theme="dark"] .hero-bg{background:linear-gradient(90deg,rgba(17,23,18,.97),rgba(17,23,18,.75)),url("/assets/hero.jpg") center/cover}}
 .project-flights{background:linear-gradient(135deg,#132a44,#4a7ba0)}
+.project-wildstays{background:linear-gradient(135deg,#1c3526,#7d8f4e)}

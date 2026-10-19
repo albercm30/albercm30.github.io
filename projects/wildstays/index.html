@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script><meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width,initial-scale=1"><title>WildStays · Alberto Castellano Macías</title><meta name="description" content="A search engine for lodges, cabins and hides chosen by the wild animals you can see from them, with an honest chance score for every species and month."><link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"><meta property="og:type" content="website"><meta property="og:title" content="WildStays"><meta property="og:description" content="Sleep where the wildlife is: stays ranked by the chance of seeing each species, month by month."><link rel="canonical" href="https://albercm30.github.io/projects/wildstays/"><meta property="og:url" content="https://albercm30.github.io/projects/wildstays/"><meta property="og:site_name" content="Alberto Castellano Macías"><meta property="og:image" content="https://albercm30.github.io/assets/og/projects-wildstays.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:image" content="https://albercm30.github.io/assets/og/projects-wildstays.jpg"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet"><link rel="stylesheet" href="/style.css"></head><body><div id="nav"></div>
+<section class="page-hero"><div class="shell"><p class="eyebrow">PERSONAL · FULL-STACK · DATA</p><h1 class="page-title">WildStays</h1><p class="intro">Sleep where the wildlife is. A search engine for lodges, cabins and overnight hides, chosen by the wild animals you can see from them, with an honest chance score for every species and every month.</p></div></section>
+<section class="case"><div class="shell case-grid"><main>
+
+<h2>Problem</h2>
+<p>Lodges all promise "incredible wildlife", but not which animals, in which month, or how likely you are to actually see them. Choosing where to sleep for a trip built around a species (puffins, wolves, orangutans) means piecing together brochures, forums and trip reports, and none of them tell you how reliable the claim is.</p>
+
+<h2>Approach</h2>
+<div class="process"><div>01<br>Curated stays</div><div>02<br>Open-data evidence</div><div>03<br>Chance score</div><div>04<br>Guest reports</div><div>05<br>Search and planners</div></div>
+
+<h2>How it works</h2>
+<p>You search by species, country and month, and stays are ranked by the chance of seeing the animal. Every stay page has a 12-month chance meter per species, an evidence badge, open-data record counts, tips, a map, and a label for <em>where</em> each animal is seen: from your room, on the property, on a guided trip or nearby. The site also has a species finder that understands common names ("grizzly", "big cat") and scientific names, region and month pages, and a six-language interface (English, Spanish, French, German, Italian and Portuguese).</p>
+<p>Species with enough stays get an auto-generated trip planner, printable to PDF and sold for about €2 through a single payment link and webhook. Tours, travel insurance and gear guides are offered as partner links that go through a redirect which counts clicks anonymously.</p>
+
+<h2>The chance score</h2>
+<p>Each species at each stay gets a score per month from three sources: the stay's own documented claim (weight 3), open GBIF records within 5 km in that month (weight 2) and approved guest reports (weight 1 each). Scores map to high, medium or low, and a claim on its own can never reach better than medium. Notes that say an animal is rare lower its score, so a "bonus" species never reads as a likely sighting. After about 20 guest reports, guest data outweighs everything else.</p>
+<p>The badge on each animal says where the evidence comes from: publicly documented, host says, records nearby, or guest-confirmed once five guests agree. The model is deliberately plain and explainable, with unit tests, rather than a black box.</p>
+
+<h2>Data and quality control</h2>
+<p>The seed data covers 632 stays in 72 countries and 642 species, compiled from the stays' own websites and travel sources. A monthly GitHub Action refreshes GBIF records and iNaturalist photos (open licences only, credited on every photo). Two checks keep the data honest: an audit that compares every listed animal against GBIF records (within 5 km, only within 25 km, none, or only outside the listed months) and hides unsupported claims, and a link checker that removes the "Visit website" button from broken, parked or spam sites. Both feed an admin quality page.</p>
+
+<h2>Ethics policy</h2>
+<p>Only wild animals. Captive animals, sanctuaries, shows, rides, touching and hand-feeding are excluded, as are stays that attract animals with bait, feeders or feeding stations. Every exclusion and its reason is recorded in a data file, and seeding hides those stays automatically.</p>
+
+<h2>Technical decisions</h2>
+<ul>
+<li><strong>Next.js with server actions and Postgres.</strong> Next.js 15, React 19, TypeScript, Tailwind 4 and Prisma, with Leaflet maps. The same app serves public pages, forms and a password-protected admin area.</li>
+<li><strong>Built for search.</strong> Species, country, region and month pages, a sitemap and schema.org data target queries like "where to stay to see puffins".</li>
+<li><strong>Privacy and spam by design.</strong> Written for a site run from Spain (GDPR and the Spanish e-commerce law): consent checkboxes that aren't pre-ticked, cookieless analytics, a honeypot, a signed time trap and per-visitor rate limiting based on a salted daily hash instead of the IP address.</li>
+<li><strong>Hosts can claim listings.</strong> Seed stays are shown as unclaimed; hosts can claim them or add new places, and an admin approves each claim and sighting report.</li>
+<li><strong>Automation and tests.</strong> CI type-checks, runs the tests, seeds a throwaway database and builds on every push; scheduled jobs handle data sync and privacy clean-up.</li>
+</ul>
+
+<h2>Honest limits</h2>
+<p>It's a pre-launch MVP. The chance scores are estimates from open records, host claims and guest reports, not guarantees, and some map pins are only approximate. No guest statistics are invented: guest scores start at zero and grow only with real reports. Stay descriptions and tips are in English only, and the legal pages are a starting point to be reviewed by a professional before the site earns money.</p>
+
+</main><aside><div class="sidebox"><p class="micro">TECHNOLOGIES</p><div class="tagrow"><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Tailwind CSS</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span><span class="tag">Leaflet</span><span class="tag">GitHub Actions</span></div></div><div class="sidebox"><p class="micro">DATA SOURCES</p><p>GBIF open records · iNaturalist photos · stays' own websites · guest reports</p></div><div class="sidebox"><p class="micro">SCALE</p><p>632 stays · 72 countries · 642 species · 6 languages · ~22k lines of code</p></div><div class="sidebox"><p class="micro">STATUS</p><p>MVP built and tested. Pre-launch.</p></div></aside></div></section>
+<div class="contact"><div class="shell"><p class="eyebrow" style="color:#dce6d8">GET IN TOUCH</p><h2>Let's build something <em>interesting.</em></h2><p>Data, AI, travel, wildlife — or some combination of all four.</p><div class="buttons" style="justify-content:center"><a class="btn" style="background:white;color:#40573b" href="mailto:albertocm30.2001@gmail.com">Email me ↗</a><a class="btn" style="border:1px solid #dce6d8;color:white" href="https://github.com/albercm30" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></div>
+<footer class="footer shell"><span>© 2026 Alberto Castellano Macías</span><span>Data · AI · Travel · Wildlife · Photography</span></footer>
+<script src="/js/site.js"></script>
+</body></html>
