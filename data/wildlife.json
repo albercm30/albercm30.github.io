@@ -1,11 +1,11 @@
 {
   "source": "iNaturalist",
   "username": "albercm30",
-  "generated_at": "2026-10-19T18:55:02.451084+00:00",
-  "total_observations": 256,
-  "total_species": 231,
+  "generated_at": "2026-09-14T09:51:47.956185+00:00",
+  "total_observations": 255,
+  "total_species": 230,
   "total_countries": 17,
-  "mapped_observations": 255,
+  "mapped_observations": 254,
   "country_counts": {
     "Australia": 71,
     "Vietnam": 49,
@@ -15,7 +15,7 @@
     "Malaysia": 12,
     "Sri Lanka": 11,
     "China": 8,
-    "Spain": 7,
+    "Spain": 6,
     "United States": 5,
     "Italy": 3,
     "Guatemala": 2,
@@ -26,19 +26,6 @@
     "Poland": 1
   },
   "observations": [
-    {
-      "id": 409441559,
-      "name": "European Mantis",
-      "common_name": "European Mantis",
-      "scientific_name": "Mantis religiosa",
-      "place_guess": "Agaete, Las Palmas, ES",
-      "country": "Spain",
-      "observed_on": "2026-10-15",
-      "latitude": 28.0508379574,
-      "longitude": -15.6892486302,
-      "photo_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/752828498/square.jpg",
-      "inaturalist_url": "https://www.inaturalist.org/observations/409441559"
-    },
     {
       "id": 398399978,
       "name": "Alpine Marmot",
@@ -2238,8 +2225,8 @@
     },
     {
       "id": 348246001,
-      "name": "Variable Squirrel",
-      "common_name": "Variable Squirrel",
+      "name": "Finlayson's Squirrel",
+      "common_name": "Finlayson's Squirrel",
       "scientific_name": "Callosciurus finlaysonii",
       "place_guess": "Thanarat Road, Pak Chong District, Nakhon Ratchasima, TH",
       "country": "Thailand",
@@ -2537,8 +2524,8 @@
     },
     {
       "id": 348245847,
-      "name": "Variable Squirrel",
-      "common_name": "Variable Squirrel",
+      "name": "Finlayson's Squirrel",
+      "common_name": "Finlayson's Squirrel",
       "scientific_name": "Callosciurus finlaysonii",
       "place_guess": "Thanarat Road, Pak Chong District, Nakhon Ratchasima, TH",
       "country": "Thailand",
