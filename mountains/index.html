@@ -1,11 +1,25 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mountains · Alberto Castellano Macías</title><meta name="description" content="Seven summits and alpine routes across Guatemala, New Zealand, Vietnam and the Dolomites — logged with real distance, elevation gain and elevation profiles."><link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"><meta property="og:type" content="website"><meta property="og:title" content="Mountains · Alberto Castellano Macías"><meta property="og:description" content="Seven summits and alpine routes, logged with real elevation and distance data."><meta property="og:image" content="/assets/nature/volcanfuego.JPEG"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet"><link rel="stylesheet" href="/style.css"></head><body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mountains · Alberto Castellano Macías</title><meta name="description" content="Eight summits and alpine routes across Guatemala, New Zealand, Vietnam, the Dolomites and Gran Canaria — logged with real distance, elevation gain and elevation profiles."><link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"><meta property="og:type" content="website"><meta property="og:title" content="Mountains · Alberto Castellano Macías"><meta property="og:description" content="Eight summits and alpine routes, logged with real elevation and distance data."><meta property="og:image" content="/assets/nature/volcanfuego.JPEG"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><link rel="stylesheet" href="/style.css"></head><body>
 <div id="nav"></div>
 
 <section class="page-hero">
   <div class="shell">
     <p class="eyebrow">MOUNTAINS</p>
     <h1 class="page-title">Higher places.<br><em>Longer days.</em></h1>
-    <p class="intro">Seven routes across four countries — distance, elevation gain and duration straight from Strava, with a real elevation profile wherever GPX data exists.</p>
+    <p class="intro">Eight routes across five countries — distance, elevation gain and duration straight from Strava, with a real elevation profile wherever GPX data exists.</p>
+  </div>
+</section>
+
+
+<section class="section shell" style="padding-bottom:0">
+  <div class="stats four reveal" id="mtn-stats">
+    <div class="stat"><strong data-k="routes">8</strong><span>Routes<br>logged</span></div>
+    <div class="stat"><strong data-k="km">116</strong><span>Kilometres<br>on foot</span></div>
+    <div class="stat"><strong data-k="gain">6,898</strong><span>Metres of<br>elevation gain</span></div>
+    <div class="stat"><strong data-k="high">3,976</strong><span>Highest point<br>(metres)</span></div>
+  </div>
+  <div class="route-map-wrap">
+    <div id="route-map" aria-label="Map of all hiking routes"></div>
+    <div class="route-chips filters" id="route-chips"></div>
   </div>
 </section>
 
@@ -13,7 +27,7 @@
   <div class="section-head">
     <div>
       <p class="eyebrow">THE LOG</p>
-      <h2>Seven routes,<br><em>on record so far.</em></h2>
+      <h2>Eight routes,<br><em>on record so far.</em></h2>
     </div>
     <p class="section-note">Distance, gain and duration are the real Strava numbers. Acatenango's chart is a simplified up-and-down shape since no GPX exists for that one yet.</p>
   </div>
@@ -220,6 +234,34 @@
     </div>
   </div>
 
+
+  <div class="peak-card">
+    <div class="peak-grid">
+      <div>
+        <p class="peak-region">GRAN CANARIA · SPAIN · 2026</p>
+        <h3 class="peak-name">Agaete – Tamadaba</h3>
+
+        <div class="hero-facts" style="margin-top:22px">
+          <div class="hero-fact"><span>Distance</span><span>25.12 km</span></div>
+          <div class="hero-fact"><span>Elevation gain</span><span>1,425 m</span></div>
+          <div class="hero-fact"><span>Summit / high point</span><span>1,312 m</span></div>
+          <div class="hero-fact"><span>Duration</span><span>6h 50m</span></div>
+        </div>
+      </div>
+      <div>
+        <svg class="elevation-chart" viewBox="0 0 480 200" preserveAspectRatio="xMidYMax meet">
+          <line class="baseline" x1="15" y1="170" x2="465" y2="170"/>
+          <path class="peak-area" d="M 15.0,170 L 15.0,165.7 L 21.4,157.8 L 27.9,153.1 L 34.3,147.6 L 40.7,142.5 L 47.1,134.7 L 53.6,125.6 L 60.0,117.9 L 66.4,110.6 L 72.9,104.4 L 79.3,94.5 L 85.7,86.3 L 92.1,76.1 L 98.6,69.9 L 105.0,66.9 L 111.4,63.4 L 117.9,60.3 L 124.3,59.0 L 130.7,52.6 L 137.1,48.2 L 143.6,46.1 L 150.0,46.3 L 156.4,45.9 L 162.9,42.4 L 169.3,39.9 L 175.7,39.6 L 182.1,40.0 L 188.6,38.8 L 195.0,36.9 L 201.4,36.6 L 207.9,39.1 L 214.3,40.3 L 220.7,37.3 L 227.1,36.7 L 233.6,38.1 L 240.0,39.9 L 246.4,39.9 L 252.9,39.5 L 259.3,40.2 L 265.7,37.6 L 272.1,34.9 L 278.6,34.0 L 285.0,36.9 L 291.4,42.5 L 297.9,45.9 L 304.3,52.1 L 310.7,59.3 L 317.1,66.2 L 323.6,71.5 L 330.0,77.7 L 336.4,84.1 L 342.9,91.1 L 349.3,91.6 L 355.7,90.4 L 362.1,96.3 L 368.6,101.6 L 375.0,105.4 L 381.4,113.9 L 387.9,117.2 L 394.3,124.9 L 400.7,129.8 L 407.1,136.2 L 413.6,135.8 L 420.0,133.1 L 426.4,142.0 L 432.9,150.9 L 439.3,158.8 L 445.7,163.0 L 452.1,164.2 L 458.6,168.4 L 465.0,170.0 L 465.0,170 Z"/>
+          <path class="peak-line" d="M 15.0,165.7 L 21.4,157.8 L 27.9,153.1 L 34.3,147.6 L 40.7,142.5 L 47.1,134.7 L 53.6,125.6 L 60.0,117.9 L 66.4,110.6 L 72.9,104.4 L 79.3,94.5 L 85.7,86.3 L 92.1,76.1 L 98.6,69.9 L 105.0,66.9 L 111.4,63.4 L 117.9,60.3 L 124.3,59.0 L 130.7,52.6 L 137.1,48.2 L 143.6,46.1 L 150.0,46.3 L 156.4,45.9 L 162.9,42.4 L 169.3,39.9 L 175.7,39.6 L 182.1,40.0 L 188.6,38.8 L 195.0,36.9 L 201.4,36.6 L 207.9,39.1 L 214.3,40.3 L 220.7,37.3 L 227.1,36.7 L 233.6,38.1 L 240.0,39.9 L 246.4,39.9 L 252.9,39.5 L 259.3,40.2 L 265.7,37.6 L 272.1,34.9 L 278.6,34.0 L 285.0,36.9 L 291.4,42.5 L 297.9,45.9 L 304.3,52.1 L 310.7,59.3 L 317.1,66.2 L 323.6,71.5 L 330.0,77.7 L 336.4,84.1 L 342.9,91.1 L 349.3,91.6 L 355.7,90.4 L 362.1,96.3 L 368.6,101.6 L 375.0,105.4 L 381.4,113.9 L 387.9,117.2 L 394.3,124.9 L 400.7,129.8 L 407.1,136.2 L 413.6,135.8 L 420.0,133.1 L 426.4,142.0 L 432.9,150.9 L 439.3,158.8 L 445.7,163.0 L 452.1,164.2 L 458.6,168.4 L 465.0,170.0"/>
+          <circle cx="278.6" cy="34.0" r="4" class="summit-dot"/>
+          <text x="278.6" y="24.0" text-anchor="middle">1,312 M</text>
+          <text x="15.0" y="185">212 M</text>
+        </svg>
+        <p class="elevation-caption">Real elevation profile, logged from GPX</p>
+    </div>
+    </div>
+  </div>
+
 </section>
 
 <section class="section shell" style="padding-top:0">
@@ -232,5 +274,40 @@
 
 <div class="contact"><div class="shell"><p class="eyebrow" style="color:#dce6d8">GET IN TOUCH</p><h2>Let's build something <em>interesting.</em></h2><p>Data, AI, travel, wildlife — or some combination of all four.</p><div class="buttons" style="justify-content:center"><a class="btn" style="background:white;color:#40573b" href="mailto:albertocm30.2001@gmail.com">Email me ↗</a><a class="btn" style="border:1px solid #dce6d8;color:white" href="https://github.com/albercm30" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></div>
 <footer class="footer shell"><span>© 2026 Alberto Castellano Macías</span><span>Data · AI · Travel · Wildlife · Photography</span></footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function(){
+  var fmt=function(n){return Math.round(n).toLocaleString("en-US")};
+  fetch("/data/mountains.json?v="+Date.now()).then(function(r){return r.json()}).then(function(routes){
+    var km=0,gain=0,high=0;
+    routes.forEach(function(r){km+=r.km;gain+=r.gain;if(r.high>high)high=r.high});
+    var set={routes:routes.length,km:fmt(km),gain:fmt(gain),high:fmt(high)};
+    document.querySelectorAll("#mtn-stats [data-k]").forEach(function(el){el.textContent=set[el.dataset.k]});
+
+    if(typeof L==="undefined"||!document.getElementById("route-map"))return;
+    var map=L.map("route-map",{scrollWheelZoom:false,worldCopyJump:true}).setView([30,0],2);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:"&copy; OpenStreetMap contributors"}).addTo(map);
+    var chips=document.getElementById("route-chips"),layers={},all=[];
+    routes.forEach(function(r){
+      var pop='<div class="route-pop"><strong>'+r.name+'</strong><span>'+r.region+'</span><span>'+r.km+' km · '+fmt(r.gain)+' m gain · '+r.duration+'</span></div>';
+      var dot=L.circleMarker([r.lat,r.lng],{radius:7,color:"#fff",weight:2,fillColor:"#40573b",fillOpacity:1}).bindPopup(pop).addTo(map);
+      var group=[dot];
+      if(r.track&&r.track.length>1){group.push(L.polyline(r.track,{color:"#c9a24b",weight:3,opacity:.95}).addTo(map))}
+      layers[r.slug]={dot:dot,track:r.track};
+      all.push([r.lat,r.lng]);
+      var b=document.createElement("button");b.type="button";b.className="filter";b.textContent=r.name;
+      b.onclick=function(){
+        chips.querySelectorAll(".filter").forEach(function(x){x.classList.remove("active")});b.classList.add("active");
+        if(r.track&&r.track.length>1){map.fitBounds(L.latLngBounds(r.track),{padding:[40,40],maxZoom:14})}else{map.setView([r.lat,r.lng],12)}
+        dot.openPopup();
+      };
+      chips.appendChild(b);
+    });
+    var allBtn=document.createElement("button");allBtn.type="button";allBtn.className="filter active";allBtn.textContent="All routes";
+    allBtn.onclick=function(){chips.querySelectorAll(".filter").forEach(function(x){x.classList.remove("active")});allBtn.classList.add("active");map.closePopup();map.setView([30,0],2)};
+    chips.insertBefore(allBtn,chips.firstChild);
+  }).catch(function(e){console.warn("mountains.json failed",e)});
+})();
+</script>
 <script src="/js/site.js"></script>
 </body></html>
