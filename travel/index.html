@@ -21,7 +21,7 @@ html,body{overflow-x:hidden}
 .legend-item{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:9px;letter-spacing:.8px;color:var(--soft);text-transform:uppercase}
 .legend-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
 .country-popup strong{display:block;font-family:var(--serif);font-size:20px;font-weight:400;line-height:1.05;margin-bottom:4px;color:#20231f}
-.country-popup .popup-continent{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.8px;text-transform:uppercase;color:#6d756d;margin-bottom:8px}
+.country-popup .popup-continent{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.8px;text-transform:uppercase;color:#60675f;margin-bottom:8px}
 .country-popup .popup-focus{font-size:12px;color:#505950;margin-bottom:8px}
 .country-popup a{font-size:11px;font-weight:800;color:var(--green2)}
 .bucket-summary{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:45px}
@@ -38,7 +38,7 @@ html,body{overflow-x:hidden}
 .bucket-item{display:grid;grid-template-columns:52px 28px minmax(0,1fr);gap:18px;align-items:center;border-bottom:1px solid var(--line);padding:16px 4px;min-width:0}
 .bucket-check{width:22px;height:22px;border:1px solid var(--soft);display:grid;place-items:center;color:transparent;flex-shrink:0}
 .bucket-check.is-complete{background:var(--green);border-color:var(--green);color:white;font-size:13px}
-.bucket-item.done .bucket-title{text-decoration:line-through;opacity:.55}
+.bucket-item.done .bucket-title{text-decoration:line-through;opacity:.75}
 .bucket-index{font-family:var(--mono);font-size:11px;color:var(--soft)}
 .bucket-title{font-size:16px;min-width:0}
 @media (max-width:760px){
@@ -51,7 +51,7 @@ html,body{overflow-x:hidden}
 </head>
 <body>
 
-<div id="nav"></div>
+<a class="skip-link" href="#main">Skip to content</a><div id="nav"></div><main id="main" tabindex="-1">
 
 <section class="page-hero">
   <div class="shell">
@@ -422,7 +422,7 @@ html,body{overflow-x:hidden}
   <div id="bucket-container"></div>
 </section>
 
-<div class="contact">
+</main><div class="contact">
   <div class="shell">
     <p class="eyebrow" style="color:#dce6d8">GET IN TOUCH</p>
     <h2>Let's build something <em>interesting.</em></h2>
