@@ -4,4 +4,4 @@ document.addEventListener("DOMContentLoaded",()=>{const b=document.querySelector
 
 document.addEventListener("DOMContentLoaded",()=>{const p=location.pathname.replace(/index\.html$/,"");document.querySelectorAll(".navlinks a").forEach(a=>{const h=a.getAttribute("href").replace(/index\.html$/,"");if(h!=="/"&&(p===h||p.startsWith(h)))a.setAttribute("aria-current","page")})});
 /* Privacy-friendly, cookieless stats (GoatCounter). Create a free site at goatcounter.com, then put its code here, e.g. var GC="albercm30". Leave empty to keep stats off. */
-(function(){var GC="";if(!GC||location.hostname!=="albercm30.github.io")return;var s=document.createElement("script");s.async=true;s.src="https://gc.zgo.at/count.js";s.setAttribute("data-goatcounter","https://"+GC+".goatcounter.com/count");document.head.appendChild(s)})();
+(function(){var GC="albercm30";if(!GC||location.hostname!=="albercm30.github.io")return;var s=document.createElement("script");s.async=true;s.src="https://gc.zgo.at/count.js";s.setAttribute("data-goatcounter","https://"+GC+".goatcounter.com/count");document.head.appendChild(s)})();
