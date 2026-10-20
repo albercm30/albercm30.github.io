@@ -1,0 +1,52 @@
+# Weekly broken-link check.
+# Scans every page for broken internal links and dead external links.
+# If something is broken it opens (or updates) an issue called "Broken links report", which GitHub
+# emails to you. When everything is fine again it closes that issue by itself.
+# You can also run it any time: Actions -> "Link check" -> Run workflow.
+name: Link check
+
+on:
+  schedule:
+    - cron: "30 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check links
+        id: check
+        run: |
+          set +e
+          python scripts/check_links.py --report link-report.md
+          echo "status=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Open, update or close the issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          STATUS: ${{ steps.check.outputs.status }}
+        run: |
+          title="Broken links report"
+          number=$(gh issue list --state open --search "\"$title\" in:title" --json number --jq '.[0].number')
+          if [ "$STATUS" != "0" ]; then
+            if [ -n "$number" ]; then
+              gh issue edit "$number" --body-file link-report.md
+              gh issue comment "$number" --body "Checked again: some links are still broken. The report above is up to date."
+            else
+              gh issue create --title "$title" --body-file link-report.md
+            fi
+          elif [ -n "$number" ]; then
+            gh issue close "$number" --comment "All links are OK now."
+          fi

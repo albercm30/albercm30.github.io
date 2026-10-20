@@ -2,6 +2,30 @@
    wildlife species are read live from /data/wildlife.json (so they follow the weekly iNaturalist update). */
 (function () {
   if (window.__siteSearch) return;
+  var I18 = window.__i18n || { lang: "en", pages: [] };
+  var ES = I18.lang === "es";
+  var L = ES ? {
+    title: "Buscar en el sitio", ph: "Buscar países, rutas, proyectos, especies…", res: "Resultados de búsqueda",
+    hint: '<kbd>↑</kbd> <kbd>↓</kbd> para moverte · <kbd>Intro</kbd> para abrir · <kbd>Esc</kbd> para cerrar',
+    none: "Sin resultados. Prueba con un país, una ruta o un animal.", loading: "Cargando…"
+  } : {
+    title: "Search the site", ph: "Search countries, hikes, projects, species…", res: "Search results",
+    hint: '<kbd>↑</kbd> <kbd>↓</kbd> to move · <kbd>Enter</kbd> to open · <kbd>Esc</kbd> to close',
+    none: "No results. Try a country, a hike or an animal.", loading: "Loading…"
+  };
+  var ES_TITLES = { "/": "Inicio", "/professional/": "Profesional", "/travel/": "Viajes", "/mountains/": "Montañas", "/diving/": "Buceo", "/wildlife/": "Fauna", "/photography/": "Fotografía", "/contact/": "Contacto", "/projects/ai-incident-classification/": "Clasificación de incidentes de IA", "/projects/bachelor-thesis/": "TFG: consumo energético de los anuncios online" };
+  var ES_WORDS = [["Project case study", "Caso de estudio"], ["Wildlife", "Fauna"], ["Country", "País"], ["Hike", "Ruta"], ["Page", "Página"], ["Volcano", "Volcán"], ["New Zealand", "Nueva Zelanda"], ["Dolomites", "Dolomitas"], ["Italy", "Italia"], ["Spain", "España"], ["North America", "Norteamérica"], ["South America", "Sudamérica"], ["Europe", "Europa"], ["Africa", "África"], ["Oceania", "Oceanía"]];
+  var ES_TAGS = { Page: "Página", Project: "Proyecto", Country: "País", Hike: "Ruta", Wildlife: "Fauna" };
+  function toEs(e) {
+    if (e.es) return e;
+    e.es = true;
+    if (I18.pages.indexOf(e.u) > -1) { if (ES_TITLES[e.u] && (e.g === "Page" || e.g === "Project")) e.t = ES_TITLES[e.u]; e.u = e.u === "/" ? "/es/" : "/es" + e.u; }
+    var parts = String(e.s || "").split(" · ");
+    parts = parts.map(function (p) { ES_WORDS.forEach(function (w) { p = p.split(w[0]).join(w[1]); }); return p; });
+    e.s = parts.join(" · ");
+    e.gl = ES_TAGS[e.g] || e.g;
+    return e;
+  }
   var norm = function (s) { return String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(); };
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
   var stamp = Math.floor(Date.now() / 3600000);
@@ -12,13 +36,13 @@
   overlay.hidden = true;
   overlay.setAttribute("role", "dialog");
   overlay.setAttribute("aria-modal", "true");
-  overlay.setAttribute("aria-label", "Search the site");
+  overlay.setAttribute("aria-label", L.title);
   overlay.innerHTML =
     '<div class="search-box">' +
-    '<label class="sr-only" for="site-search-input">Search the site</label>' +
-    '<input id="site-search-input" type="search" autocomplete="off" spellcheck="false" placeholder="Search countries, hikes, projects, species…" role="combobox" aria-expanded="true" aria-controls="site-search-results" aria-autocomplete="list">' +
-    '<ul id="site-search-results" role="listbox" aria-label="Search results"></ul>' +
-    '<p class="search-hint"><kbd>↑</kbd> <kbd>↓</kbd> to move · <kbd>Enter</kbd> to open · <kbd>Esc</kbd> to close</p>' +
+    '<label class="sr-only" for="site-search-input">' + L.title + '</label>' +
+    '<input id="site-search-input" type="search" autocomplete="off" spellcheck="false" placeholder="' + L.ph + '" role="combobox" aria-expanded="true" aria-controls="site-search-results" aria-autocomplete="list">' +
+    '<ul id="site-search-results" role="listbox" aria-label="' + L.res + '"></ul>' +
+    '<p class="search-hint">' + L.hint + "</p>" +
     "</div>";
   document.body.appendChild(overlay);
   var input = overlay.querySelector("input");
@@ -41,6 +65,7 @@
         });
         Object.keys(seen).forEach(function (k) { var e = seen[k]; var cs = Object.keys(e.countries); e.k += cs.join(" "); if (cs.length) e.s += " · " + cs.slice(0, 2).join(", "); delete e.countries; });
       }
+      if (ES) items.forEach(toEs);
       items.forEach(function (e) { e._t = norm(e.t); e._h = norm(e.t + " " + e.s + " " + e.k); });
       data = items; return items;
     });
@@ -69,9 +94,9 @@
   function render() {
     shown = run(input.value);
     active = shown.length ? 0 : -1;
-    if (!shown.length) { list.innerHTML = '<li class="search-empty" role="presentation">No results. Try a country, a hike or an animal.</li>'; input.removeAttribute("aria-activedescendant"); return; }
+    if (!shown.length) { list.innerHTML = '<li class="search-empty" role="presentation">' + L.none + '</li>'; input.removeAttribute("aria-activedescendant"); return; }
     list.innerHTML = shown.map(function (e, i) {
-      return '<li role="option" id="sr-' + i + '" aria-selected="' + (i === 0) + '"><a href="' + esc(e.u) + '" tabindex="-1"><span class="sr-title">' + esc(e.t) + '</span><span class="sr-sub">' + esc(e.s) + '</span><span class="sr-tag">' + esc(e.g) + "</span></a></li>";
+      return '<li role="option" id="sr-' + i + '" aria-selected="' + (i === 0) + '"><a href="' + esc(e.u) + '" tabindex="-1"><span class="sr-title">' + esc(e.t) + '</span><span class="sr-sub">' + esc(e.s) + '</span><span class="sr-tag">' + esc(e.gl || e.g) + "</span></a></li>";
     }).join("");
     input.setAttribute("aria-activedescendant", "sr-0");
   }
@@ -88,7 +113,7 @@
     overlay.hidden = false;
     document.documentElement.classList.add("search-open");
     input.value = "";
-    list.innerHTML = '<li class="search-empty" role="presentation">Loading…</li>';
+    list.innerHTML = '<li class="search-empty" role="presentation">' + L.loading + '</li>';
     load().then(render);
     setTimeout(function () { input.focus(); }, 0);
   }

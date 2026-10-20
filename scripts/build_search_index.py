@@ -39,7 +39,8 @@ entries = []
 pages = [("index.html", "/", "Home"), ("professional", "/professional/", "Professional"),
          ("travel", "/travel/", "Travel"), ("mountains", "/mountains/", "Mountains"),
          ("diving", "/diving/", "Diving"), ("wildlife", "/wildlife/", "Wildlife"),
-         ("photography", "/photography/", "Photography")]
+         ("photography", "/photography/", "Photography"),
+         ("contact", "/contact/", "Contact")]
 for folder, url, name in pages:
     p = ROOT / (folder if folder.endswith(".html") else f"{folder}/index.html")
     _, desc = meta(p)
