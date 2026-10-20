@@ -261,3 +261,8 @@ main:focus{outline:none}
 .search-hint{font-size:11px;color:var(--soft);padding:6px 4px 0}
 .search-hint kbd{font:600 10px var(--mono);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
 @media(max-width:560px){.search-overlay{padding-top:8vh}.sr-sub{display:none}.search-hint{display:none}}
+
+#about{padding:44px 0 8px}
+#about + #experience{padding-top:40px}
+.about-facts{margin:20px 0 4px}
+@media(max-width:760px){#about{padding:32px 0 4px}}
