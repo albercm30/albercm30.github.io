@@ -2,11 +2,11 @@
 <main id="main" tabindex="-1">
 <section class="page-hero"><div class="shell"><p class="eyebrow">CONTACTO</p><h1 class="page-title">Vamos a <em>hablar.</em></h1><p class="intro">Datos, IA, fauna, viajes o una idea que te gustaría construir conmigo. Envíame un mensaje o escríbeme directamente.</p></div></section>
 <section class="section shell" style="padding-top:56px"><div class="contact-grid">
-<form class="contact-form" id="contact-form" novalidate>
+<form class="contact-form" id="contact-form" action="https://formsubmit.co/b80db8a39a19842267fda33a0635f552" method="POST" novalidate>
 <div class="field"><label for="cf-name">Tu nombre</label><input id="cf-name" name="name" type="text" autocomplete="name" required maxlength="120"></div>
 <div class="field"><label for="cf-email">Tu correo</label><input id="cf-email" name="email" type="email" autocomplete="email" required maxlength="160"></div>
 <div class="field"><label for="cf-message">Mensaje</label><textarea id="cf-message" name="message" rows="7" required minlength="10" maxlength="4000"></textarea></div>
-<input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0">
+<input type="hidden" name="_subject" value="Nuevo mensaje desde albercm30.github.io (ES)"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" id="cf-next" value="https://albercm30.github.io/es/contact/?sent=1"><input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0">
 <button class="btn btn-green" type="submit" id="cf-send">Enviar mensaje →</button>
 <p class="form-note">Solo usaré tus datos para responderte.</p>
 <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
@@ -20,25 +20,16 @@
 <footer class="footer shell"><span>© 2026 Alberto Castellano Macías</span><span>Datos · IA · Viajes · Fauna · Fotografía</span></footer>
 <script>
 (function(){
-  // Messages are delivered by FormSubmit (formsubmit.co). The long code below is FormSubmit's private alias for your inbox,
-  // so your address is not exposed in the page source.
-  var ENDPOINT="https://formsubmit.co/ajax/b80db8a39a19842267fda33a0635f552";
-  var FALLBACK_EMAIL="albertocm30.2001@gmail.com";
+  // The form posts straight to FormSubmit (formsubmit.co) using its private alias for your inbox, then comes back here with ?sent=1.
   var form=document.getElementById("contact-form"),status=document.getElementById("cf-status"),btn=document.getElementById("cf-send"),loaded=Date.now();
+  var FALLBACK_EMAIL="albertocm30.2001@gmail.com";
   function say(msg,ok){status.textContent=msg;status.className="form-status "+(ok?"ok":"err")}
-  function fallbackLink(d){var body=encodeURIComponent((d.message||"")+"\n\n— "+(d.name||""));return '<a class="text-link" href="mailto:'+FALLBACK_EMAIL+'?subject='+encodeURIComponent("Mensaje desde tu web")+'&body='+body+'">escríbeme un correo directamente</a>'}
+  if(/[?&]sent=1/.test(location.search)){say("¡Gracias! Tu mensaje se ha enviado.",true);try{history.replaceState(null,"",location.pathname)}catch(e){}}
   form.addEventListener("submit",function(e){
-    e.preventDefault();
     var d={name:form.name.value.trim(),email:form.email.value.trim(),message:form.message.value.trim()};
-    if(form._honey.value){say("¡Gracias! Tu mensaje se ha enviado.",true);form.reset();return}
-    if(!d.name||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)||d.message.length<10){say("Añade tu nombre, un correo válido y un mensaje de al menos 10 caracteres.",false);return}
-    if(Date.now()-loaded<2500){say("¡Gracias! Tu mensaje se ha enviado.",true);form.reset();return}
-    btn.disabled=true;btn.textContent="Enviando…";say("",true);
-    fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({name:d.name,email:d.email,message:d.message,_subject:"Nuevo mensaje desde albercm30.github.io (ES)",_template:"table",_replyto:d.email})})
-    .then(function(r){return r.json().catch(function(){return {}}).then(function(j){return {ok:r.ok,j:j}})})
-    .then(function(x){if(x.ok&&(x.j.success===true||x.j.success==="true")){say("¡Gracias! Tu mensaje se ha enviado.",true);form.reset()}else{throw new Error("fail")}})
-    .catch(function(){status.className="form-status err";status.innerHTML="Lo siento, no se ha podido enviar. Por favor, "+fallbackLink(d)+".";})
-    .then(function(){btn.disabled=false;btn.textContent="Enviar mensaje →"});
+    if(form._honey.value||Date.now()-loaded<2500){e.preventDefault();say("¡Gracias! Tu mensaje se ha enviado.",true);form.reset();return}
+    if(!d.name||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)||d.message.length<10){e.preventDefault();say("Añade tu nombre, un correo válido y un mensaje de al menos 10 caracteres.",false);return}
+    btn.disabled=true;btn.textContent="Enviando…";
   });
 })();
 </script>

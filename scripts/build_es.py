@@ -48,6 +48,14 @@ TRANSLATED = {url_path(p) for p in PAGES}
 # Pages whose inline scripts contain display text (bucket list, map popups, labels): known strings are translated.
 SCRIPT_LITERAL_PAGES = {"travel/index.html", "diving/index.html", "wildlife/index.html"}
 
+# Literal replacements applied to the whole page (form hidden fields).
+HTML_REPL = {
+    "contact/index.html": [
+        ('value="https://albercm30.github.io/contact/?sent=1"', 'value="https://albercm30.github.io/es/contact/?sent=1"'),
+        ('value="New message from albercm30.github.io"', 'value="Nuevo mensaje desde albercm30.github.io (ES)"'),
+    ],
+}
+
 # Literal replacements inside inline <script> blocks (form messages, map labels...).
 SCRIPT_REPL = {
     "contact/index.html": [
@@ -55,11 +63,6 @@ SCRIPT_REPL = {
         ('"Please add your name, a valid email and a message of at least 10 characters."',
          '"Añade tu nombre, un correo válido y un mensaje de al menos 10 caracteres."'),
         ('"Sending…"', '"Enviando…"'),
-        ('btn.textContent="Send message →"', 'btn.textContent="Enviar mensaje →"'),
-        ('"Sorry, that didn\'t go through. Please "', '"Lo siento, no se ha podido enviar. Por favor, "'),
-        ('>email me directly</a>', '>escríbeme un correo directamente</a>'),
-        ('"Message from your website"', '"Mensaje desde tu web"'),
-        ('"New message from albercm30.github.io"', '"Nuevo mensaje desde albercm30.github.io (ES)"'),
     ],
     "travel/index.html": [
         ('href="/countries/${country.slug}/"', 'href="/es/countries/${country.slug}/"'),
@@ -296,6 +299,10 @@ def build_page(page):
             tr = translate(key, page, "text")
             out.append(lead + (esc_text(tr) if tr is not None else core) + trail)
     res = "".join(out)
+    for a, b in HTML_REPL.get(page, []):
+        if a not in res:
+            missing.append((page, "html", a))
+        res = res.replace(a, b)
 
     # every SCRIPT_REPL entry must have been used somewhere in the page
     for a, b in SCRIPT_REPL.get(page, []):
