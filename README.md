@@ -59,3 +59,7 @@ Never edit files under `es/` by hand; they are regenerated. Wildlife species nam
 - `scripts/build_shapes.py <ne_10m_admin_0_countries.geojson>`: regenerates the "shape of" section on every country page (Natural Earth, public domain). Run `build_es.py` afterwards. Spain draws the Canary Islands.
 - Bump the `?v=` query string on `/js/*.js` and `/style.css` in every HTML file when they change.
 - Themed cursors: `html[data-sec]` is set by `js/visuals.js` from the URL; the cursor SVGs are generated into `style.css` by `scripts/build_cursors.py` (paw = wildlife, camera = photography, peaks = mountains, shark = diving, plane = travel/countries, `</>` = professional/projects). Links and inputs keep their normal cursors; touch devices are unaffected.
+- Route on the country outline: stop coordinates live in `data/stops.json` (name → [lat, lng], names must match the route in `countries.json`). `python scripts/build_shapes.py <geojson> [slug ...]` redraws the outline and route; the travel globe reads the same file and shows the route when you hover a country.
+- Share images: `python scripts/build_og.py [slug ...]` redraws `assets/og/countries-*.jpg` (and `es/`) from each page's photo, outline and route.
+- Photography page: country filter chips and lightbox captions come from each card's "Category · Country" tag.
+- Dive log: the dot strip is built from the rows of the dive table.

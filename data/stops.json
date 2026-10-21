@@ -1,0 +1,11 @@
+{
+"malaysia": {"Kuala Lumpur": [3.139, 101.687], "Sandakan": [5.839, 118.117], "Kota Kinabalu": [5.980, 116.073]},
+"sri-lanka": {"Anuradhapura": [8.311, 80.404], "Sigiriya": [7.957, 80.760], "Kandy": [7.291, 80.633], "Ella": [6.867, 81.046], "Arugam Bay": [6.840, 81.836], "Mirissa": [5.948, 80.459]},
+"thailand": {"Bangkok": [13.756, 100.502], "Khao Yai": [14.440, 101.372], "Koh Tao": [10.095, 99.840]},
+"vietnam": {"Hanoi": [21.028, 105.834], "Ha Long Bay": [20.910, 107.184], "Ninh Binh": [20.250, 105.975], "Ha Giang": [22.823, 104.984], "Phong Nha": [17.590, 106.283], "Da Nang": [16.054, 108.202], "Ho Chi Minh City": [10.823, 106.630]},
+"italy": {"Venice": [45.440, 12.316], "Bassano del Grappa": [45.766, 11.735], "Cortina d'Ampezzo": [46.537, 12.136], "Tre Cime di Lavaredo": [46.618, 12.302], "Lago di Braies": [46.694, 12.085], "Val di Funes": [46.644, 11.720]},
+"guatemala": {"Guatemala City": [14.634, -90.507], "Antigua": [14.557, -90.733], "Acatenango": [14.501, -90.876]},
+"mexico": {"La Paz": [24.142, -110.313], "Cabo Pulmo": [23.440, -109.425], "Tulum": [20.211, -87.465], "Chichén Itzá": [20.684, -88.568]},
+"australia": {"Sydney": [-33.869, 151.209], "Brisbane": [-27.470, 153.026], "Gold Coast": [-28.017, 153.400], "Cairns": [-16.920, 145.770], "Daintree": [-16.250, 145.420], "Cape Tribulation": [-16.087, 145.463], "Julatten": [-16.606, 145.337], "Great Barrier Reef": [-16.800, 146.050]},
+"new-zealand": {"Christchurch": [-43.532, 172.636], "Abel Tasman": [-40.870, 172.980], "Mount Cook": [-43.595, 170.142], "Lindis Pass": [-44.572, 169.640], "Wanaka": [-44.703, 169.132], "Queenstown": [-45.031, 168.663], "Otago Coast": [-45.370, 170.830]}
+}

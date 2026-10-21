@@ -95,9 +95,18 @@ def shape(slug, feat, coords):
         pin = T(laea(lo, la, lon0, lat0))
         if not (6 < pin[0] < W-6 and 6 < pin[1] < H-6): pin = None
         if slug in ONLY_BOX: pin = None
-    return "".join(d), "".join(cross), pin
+    return "".join(d), "".join(cross), pin, (lambda lo, la: T(laea(lo, la, lon0, lat0))), (W, H)
 
-def svg(path, cross, pin):
+def route_svg(slug, names, stops, Tf):
+    pts = [(n, Tf(stops[n][1], stops[n][0])) for n in names if n in stops]
+    if len(pts) < 2: return ''
+    xs = [p[1][0] for p in pts]; ys = [p[1][1] for p in pts]
+    if max(max(xs)-min(xs), max(ys)-min(ys)) < 0.17*max(W, H): return ''   # cluster too tight to read on the outline
+    d = 'M' + 'L'.join('%.1f %.1f' % p[1] for p in pts)
+    g = ''.join('<g class="route-stop" transform="translate(%.1f %.1f)"><title>%s</title><circle r="13"/><text y="4.6">%d</text></g>' % (x, y, n.replace('&', '&amp;'), i) for i, (n, (x, y)) in enumerate(pts, 1))
+    return '<path class="route-path" pathLength="1" d="%s"/>%s' % (d, g)
+
+def svg(path, cross, pin, route=''):
     p = '<path class="shape-line" pathLength="1" d="%s"/>' % path
     s = ('<svg class="shape-svg" viewBox="0 0 %d %d" aria-hidden="true" focusable="false"><defs>'
          '<linearGradient id="shp-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--green)"/><stop offset="1" style="stop-color:var(--green2)"/></linearGradient>'
@@ -105,8 +114,12 @@ def svg(path, cross, pin):
          '<path class="shape-grid" d="%s"/>'
          '<path class="shape-shadow" transform="translate(7 9)" d="%s"/>'
          '<path class="shape-fill" d="%s"/><path class="shape-hatch" d="%s"/>%s') % (W, H, cross, path, path, path, p)
-    if pin: s += '<g class="shape-pin" transform="translate(%.1f %.1f)"><circle class="pulse" r="6"/><circle class="dot" r="4.2"/></g>' % pin
+    s += route
+    if pin and not route: s += '<g class="shape-pin" transform="translate(%.1f %.1f)"><circle class="pulse" r="6"/><circle class="dot" r="4.2"/></g>' % pin
     return s + '</svg>'
+
+STOPS = json.load(open(ROOT/'data/stops.json'))
+ONLY = set(sys.argv[2:])
 
 def main(geo_path):
     geo = json.load(open(geo_path)); by = {}
@@ -115,9 +128,11 @@ def main(geo_path):
     for c in data:
         slug = c["slug"]; page = ROOT/"countries"/slug/"index.html"
         if slug not in A3 or A3[slug] not in by or not page.exists(): print("skip", slug); continue
-        path, cross, pin = shape(slug, by[A3[slug]], c.get("coords"))
+        if ONLY and slug not in ONLY: continue
+        path, cross, pin, Tf, _ = shape(slug, by[A3[slug]], c.get("coords"))
+        route = route_svg(slug, c.get('route', []), STOPS.get(slug, {}), Tf) if slug in STOPS else ''
         h = page.read_text(encoding="utf-8")
-        svgx = svg(path, cross, pin)
+        svgx = svg(path, cross, pin, route)
         if "<!--shape-->" in h:
             h = re.sub(r"<!--shape-->.*?<!--/shape-->", lambda m: "<!--shape-->"+svgx+"<!--/shape-->", h, count=1, flags=re.S)
         else:

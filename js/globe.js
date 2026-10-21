@@ -149,6 +149,25 @@
         return { startLat: HOME.lat, startLng: HOME.lng, endLat: c.lat, endLng: c.lng };
       });
 
+      /* trip routes: shown as bright arcs between the real stops when you hover a country that has them */
+      var STOPS = {}, ROUTE = {}, routeArcs = [], stopPts = [], curRoute = null;
+      fetch("/data/stops.json").then(function (r) { return r.json(); }).then(function (j) { STOPS = j; }).catch(function () {});
+      fetch("/data/countries.json").then(function (r) { return r.json(); }).then(function (j) { j.forEach(function (c) { ROUTE[c.slug] = c.route || []; }); }).catch(function () {});
+      function setRoute(c) {
+        var slug = c && c.slug && STOPS[c.slug] && ROUTE[c.slug] ? c.slug : null;
+        if (slug === curRoute) return;
+        curRoute = slug; routeArcs = []; stopPts = [];
+        if (slug) {
+          var pts = ROUTE[slug].filter(function (n) { return STOPS[slug][n]; }).map(function (n) { return { stop: n, lat: STOPS[slug][n][0], lng: STOPS[slug][n][1] }; });
+          for (var i = 0; i < pts.length - 1; i++) routeArcs.push({ route: true, startLat: pts[i].lat, startLng: pts[i].lng, endLat: pts[i + 1].lat, endLng: pts[i + 1].lng });
+          stopPts = pts;
+        }
+        try { g.arcsData(arcs.concat(routeArcs)); g.pointsData(list.concat(stopPts)); } catch (e) {}
+      }
+      function ptTip(d) {
+        return d.stop ? '<div style="font:700 12px/1.4 DM Sans,Arial,sans-serif;padding:5px 9px;background:#101a13;color:#ffd48a;border:1px solid #6a5a2a;border-radius:8px">' + d.stop + '</div>' : tip(d);
+      }
+
       var B = buildBackground(list);
       var g = Globe()(box)
         .width(box.clientWidth).height(box.clientHeight)
@@ -162,21 +181,21 @@
         .polygonLabel(function (f) { return f.__c ? tip(f.__c) : ""; })
         .onPolygonHover(function (f) {
           box.style.cursor = f && f.__c ? "pointer" : "grab";
-          B.show(f && f.__c);
+          B.show(f && f.__c); setRoute(f && f.__c);
           g.polygonAltitude(function (d) { return d === f && d.__c ? 0.045 : (d.__c ? 0.02 : 0.006); });
         })
         .onPolygonClick(function (f) { if (f && f.__c) go(f.__c); })
         .pointsData(list)
         .pointLat("lat").pointLng("lng")
-        .pointColor(function () { return "#fff4c2"; })
-        .pointAltitude(0.03).pointRadius(0.32)
-        .pointLabel(tip)
-        .onPointHover(function (c) { B.show(c); })
+        .pointColor(function (d) { return d.stop ? "#ffb347" : "#fff4c2"; })
+        .pointAltitude(function (d) { return d.stop ? 0.05 : 0.03; }).pointRadius(function (d) { return d.stop ? 0.16 : 0.32; })
+        .pointLabel(ptTip)
+        .onPointHover(function (c) { B.show(c && c.slug ? c : null); setRoute(c && c.slug ? c : null); })
         .onPointClick(go)
         .arcsData(arcs)
-        .arcColor(function () { return ["rgba(228,217,166,.05)", "rgba(228,217,166,.7)"]; })
-        .arcStroke(0.28).arcAltitudeAutoScale(0.45)
-        .arcDashLength(0.35).arcDashGap(0.9).arcDashAnimateTime(reduce ? 0 : 3800)
+        .arcColor(function (d) { return d.route ? ["rgba(255,212,138,.55)", "rgba(255,179,71,1)"] : ["rgba(228,217,166,.05)", "rgba(228,217,166,.7)"]; })
+        .arcStroke(function (d) { return d.route ? 0.5 : 0.28; }).arcAltitudeAutoScale(function (d) { return d.route ? 0.2 : 0.45; })
+        .arcDashLength(function (d) { return d.route ? 0.5 : 0.35; }).arcDashGap(function (d) { return d.route ? 0.15 : 0.9; }).arcDashAnimateTime(reduce ? 0 : 3800)
         .ringsData([HOME]).ringColor(function () { return function (t) { return "rgba(255,244,194," + (1 - t) + ")"; }; })
         .ringMaxRadius(5).ringPropagationSpeed(2).ringRepeatPeriod(1800)
         .labelsData([{ lat: HOME.lat, lng: HOME.lng, text: T.home }])

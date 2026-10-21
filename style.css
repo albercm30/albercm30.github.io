@@ -394,3 +394,36 @@ html[data-sec] input,html[data-sec] textarea{cursor:text}
 .hero-shape .shape-svg{position:absolute;left:0;top:0;width:100%;height:calc(100% - 26px);max-width:none;max-height:none}
 .hero-meta{position:absolute;left:0;right:0;bottom:0;text-align:center}}
 @media(max-width:900px){.hero-shape .shape-svg{height:240px;max-height:240px}}
+
+/* ===== Photography: country filter + lightbox caption ===== */
+.country-filter{display:flex;flex-wrap:wrap;gap:6px;margin:-14px 0 26px}
+.country-chip{appearance:none;border:1px solid var(--line);background:transparent;color:var(--soft);border-radius:999px;padding:6px 12px;font:600 11px var(--sans);cursor:pointer;transition:.2s}
+.country-chip small{margin-left:6px;font:700 9px var(--mono);opacity:.7}
+.country-chip:hover{border-color:var(--ink);color:var(--ink)}
+.country-chip.is-active{background:var(--sage);border-color:var(--green);color:var(--green2)}
+.photo-card.is-filtered{display:none!important}
+.lb-cap .lb-title{display:block;font:400 22px var(--serif);color:#fff;margin-bottom:2px}
+.lb-cap .lb-tag{display:block;font:700 10px var(--mono);letter-spacing:1.4px;text-transform:uppercase;color:#c9d9a8;margin-bottom:6px}
+.lb-cap .lb-alt{display:block;max-width:640px;margin:0 auto;color:#cfd8c8}
+
+/* ===== Dive log strip ===== */
+.dive-strip-box{margin:0 0 34px;position:relative}
+.dive-strip{display:flex;flex-wrap:wrap;gap:8px}
+.dive-dot{appearance:none;border:2px solid var(--c);background:transparent;color:var(--ink);width:38px;height:38px;border-radius:50%;font:700 11px var(--mono);cursor:pointer;display:grid;place-items:center;transition:transform .2s,background .2s,color .2s;opacity:1}
+.dive-dot:hover,.dive-dot:focus-visible,.dive-dot.is-on{background:var(--c);color:#fff;transform:translateY(-4px) scale(1.1);outline:none}
+@media(prefers-reduced-motion:no-preference){.dive-strip:not(.in) .dive-dot{opacity:0;transform:translateY(10px)}.dive-strip.in .dive-dot{transition:opacity .4s calc(var(--i)*45ms),transform .4s calc(var(--i)*45ms),background .2s,color .2s}}
+.dive-tip{min-height:46px;margin-top:14px;padding:10px 14px;border-left:3px solid var(--c,var(--green));background:var(--sage);border-radius:0 10px 10px 0;opacity:.0;transition:opacity .2s;font-size:13px}
+.dive-tip.on{opacity:1}.dive-tip strong{display:block;font:400 19px var(--serif)}.dive-tip span{font:600 10px var(--mono);letter-spacing:.8px;text-transform:uppercase;color:var(--soft)}
+.dive-strip-key{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;font:600 10px var(--mono);letter-spacing:.8px;text-transform:uppercase;color:var(--soft)}
+.dive-strip-key span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:7px}
+.dive-row.dive-hl{background:var(--sage)}
+
+/* ===== Route drawn on the country outline ===== */
+.route-path{fill:none;stroke:var(--gold);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:.95}
+.route-stop circle{fill:var(--dark);stroke:#fff;stroke-width:2.4}
+.route-stop text{fill:#fff;font:700 13px var(--mono);text-anchor:middle;pointer-events:none}
+.route-stop{cursor:default}
+@media(prefers-reduced-motion:no-preference){
+.shape-art:not(.in) .route-path{stroke-opacity:0}.shape-art .route-path{transition:stroke-opacity 1s 2s}
+.shape-art:not(.in) .route-stop{opacity:0;transform-box:fill-box}.shape-art .route-stop{transition:opacity .5s calc(1.6s + var(--k,0)*.12s)}
+.shape-art .route-stop:hover circle{fill:var(--gold)}}

@@ -77,4 +77,68 @@ function setup(svg){
   svg.setAttribute("role","img");
 }
 [].slice.call(document.querySelectorAll(".elevation-chart")).forEach(setup);
+
+/* ---------- photography: filter by country ---------- */
+(function(){
+  var tabs=document.querySelector(".photo-tabs");if(!tabs)return;
+  var ES=document.documentElement.lang==="es",ALL=ES?"Todos":"All",sel=null;
+  var bar=document.createElement("div");bar.className="country-filter";bar.setAttribute("role","group");bar.setAttribute("aria-label",ES?"Filtrar por país":"Filter by country");
+  tabs.parentNode.insertBefore(bar,tabs.nextSibling);
+  function countryOf(card){var sp=card.querySelector(".photo-card-info span");if(!sp)return null;var p=sp.textContent.replace(/\s+/g," ").trim().split(" · ");return p.length>1&&!/^(Placeholder|Marcador)/i.test(p[p.length-1])&&!/^(Featured|Field notes)$/i.test(p[p.length-1])?p[p.length-1]:null}
+  function activePanel(){return document.querySelector(".gallery-panel.is-visible")||document}
+  function build(){
+    var cnt={},cards=activePanel().querySelectorAll(".photo-card");
+    cards.forEach(function(c){var k=countryOf(c);if(k)cnt[k]=(cnt[k]||0)+1});
+    var keys=Object.keys(cnt).sort(function(a,b){return cnt[b]-cnt[a]||a.localeCompare(b)});
+    if(sel&&!cnt[sel])sel=null;
+    bar.innerHTML="";
+    if(keys.length<2){bar.style.display="none";apply();return}
+    bar.style.display="";
+    [[null,ALL,cards.length]].concat(keys.map(function(k){return [k,k,cnt[k]]})).forEach(function(e){
+      var b=document.createElement("button");b.type="button";b.className="country-chip"+(sel===e[0]?" is-active":"");b.setAttribute("aria-pressed",sel===e[0]);
+      b.innerHTML="";b.appendChild(document.createTextNode(e[1]));var n=document.createElement("small");n.textContent=e[0]?e[2]:"";b.appendChild(n);
+      b.onclick=function(){sel=e[0];build()};bar.appendChild(b)});
+    apply();
+  }
+  function apply(){
+    document.querySelectorAll(".photo-card").forEach(function(c){c.classList.toggle("is-filtered",!!sel&&countryOf(c)!==sel)});
+    document.querySelectorAll(".photo-rail").forEach(function(r){r.scrollLeft=0});
+  }
+  tabs.addEventListener("click",function(){setTimeout(build,30)});
+  build();
+})();
+
+/* ---------- dive log: one dot per dive ---------- */
+(function(){
+  var table=document.querySelector(".dive-table");if(!table)return;
+  var legend={};document.querySelectorAll(".legend-dot").forEach(function(d){var m=/legend-([a-z-]+)/.exec(d.className.replace("legend-dot",""));if(m)legend[m[1]]=getComputedStyle(d).backgroundColor});
+  var KEY={"malapascua":"malapascua","koh tao":"koh-tao","great barrier reef":"gbr","cabo pulmo":"cabo-pulmo"};
+  var dives=[],groups=[];
+  table.querySelectorAll(".dive-row:not(.header)").forEach(function(row){
+    var t=function(c){var e=row.querySelector(c);return e?e.textContent.replace(/\s+/g," ").trim():""};
+    var nums=t(".dive-number").split(/[–-]/).map(function(x){return parseInt(x,10)}).filter(function(x){return x});
+    var from=nums[0],to=nums[1]||nums[0],site=t(".dive-site"),dest=t(".dive-country"),sp=t(".dive-species"),place=dest.split(" · ")[0];
+    for(var n=from;n<=to;n++)dives.push({n:n,site:site,dest:dest,place:place,sp:sp==="-"?"":sp,row:row,color:legend[KEY[place.toLowerCase()]]||"var(--green)"});
+  });
+  if(!dives.length)return;
+  var wrap=document.createElement("div");wrap.className="dive-strip";wrap.setAttribute("role","list");
+  var tip=document.createElement("div");tip.className="dive-tip";tip.setAttribute("aria-hidden","true");
+  var last=null;dives.forEach(function(d,i){
+    if(!last||last.place!==d.place){last={place:d.place,color:d.color,count:0};groups.push(last)}last.count++;
+    var b=document.createElement("button");b.type="button";b.className="dive-dot";b.style.setProperty("--c",d.color);b.style.setProperty("--i",i);
+    b.setAttribute("role","listitem");b.setAttribute("aria-label","Dive "+d.n+": "+d.site+", "+d.dest+(d.sp?", "+d.sp:""));
+    var s=document.createElement("span");s.textContent=d.n;b.appendChild(s);
+    function on(){wrap.querySelectorAll(".is-on").forEach(function(x){x.classList.remove("is-on")});b.classList.add("is-on");d.row.classList.add("dive-hl");
+      tip.innerHTML="";var a=document.createElement("strong");a.textContent=d.site;var c=document.createElement("span");c.textContent="#"+d.n+" · "+d.dest+(d.sp?" · "+d.sp:"");tip.appendChild(a);tip.appendChild(c);tip.style.setProperty("--c",d.color);tip.classList.add("on")}
+    function off(){b.classList.remove("is-on");d.row.classList.remove("dive-hl");tip.classList.remove("on")}
+    b.addEventListener("mouseenter",on);b.addEventListener("focus",on);b.addEventListener("mouseleave",off);b.addEventListener("blur",off);
+    b.addEventListener("click",function(){d.row.scrollIntoView({behavior:"smooth",block:"center"})});
+    wrap.appendChild(b);
+  });
+  var key=document.createElement("div");key.className="dive-strip-key";
+  groups.forEach(function(g){var s=document.createElement("span");s.style.setProperty("--c",g.color);s.textContent=g.place+" · "+g.count;key.appendChild(s)});
+  var box=document.createElement("div");box.className="dive-strip-box";box.appendChild(wrap);box.appendChild(tip);box.appendChild(key);
+  table.parentNode.insertBefore(box,table);
+  reveal([wrap],"in");
+})();
 })();

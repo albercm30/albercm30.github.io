@@ -58,9 +58,12 @@ if(e.key==="Escape")close();else if(e.key==="ArrowLeft")show(cur-1);else if(e.ke
 }
 function show(i){cur=(i+imgs.length)%imgs.length;var s=imgs[cur];img.classList.remove("on");
 var full=s.currentSrc||s.src;img.onload=function(){img.classList.add("on")};img.src=full;img.alt=s.alt||"";
-cap.innerHTML="";cap.appendChild(document.createTextNode(s.alt||""));var sm=document.createElement("small");sm.textContent=(cur+1)+" "+L.of+" "+imgs.length;cap.appendChild(sm);
+cap.innerHTML="";var card=s.closest&&s.closest(".photo-card"),inf=card&&card.querySelector(".photo-card-info");
+if(inf){var t=inf.querySelector("strong"),g=inf.querySelector("span");if(t){var b=document.createElement("strong");b.className="lb-title";b.textContent=t.textContent.trim();cap.appendChild(b)}
+if(g){var tg=document.createElement("span");tg.className="lb-tag";tg.textContent=g.textContent.trim();cap.appendChild(tg)}}
+var al=document.createElement("span");al.className="lb-alt";al.textContent=s.alt||"";cap.appendChild(al);var sm=document.createElement("small");sm.textContent=(cur+1)+" "+L.of+" "+imgs.length;cap.appendChild(sm);
 [1,-1].forEach(function(d){var o=imgs[(cur+d+imgs.length)%imgs.length];if(o){var pre=new Image();pre.src=o.currentSrc||o.src}})}
-function open(i,from){if(!box)build();var im=all[i],gp=im.closest(".photo-rail,.photo-grid");imgs=gp?all.filter(function(x){return gp.contains(x)}):all;i=imgs.indexOf(im);opener=from;box.classList.add("open");document.documentElement.style.overflow="hidden";show(i);box.querySelector(".lb-close").focus()}
+function open(i,from){if(!box)build();var im=all[i],gp=im.closest(".photo-rail,.photo-grid");imgs=(gp?all.filter(function(x){return gp.contains(x)}):all).filter(function(x){var c=x.closest(".photo-card");return !(c&&c.classList.contains("is-filtered"))});i=imgs.indexOf(im);opener=from;box.classList.add("open");document.documentElement.style.overflow="hidden";show(i);box.querySelector(".lb-close").focus()}
 function close(){box.classList.remove("open");document.documentElement.style.overflow="";img.removeAttribute("src");if(opener)opener.focus()}
 });
 })();

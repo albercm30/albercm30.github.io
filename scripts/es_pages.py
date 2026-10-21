@@ -393,6 +393,8 @@ T.update({
 'Cities · Sri Lanka': 'Ciudades · Sri Lanka',
 'Wildlife · Sri Lanka': 'Fauna · Sri Lanka',
 'Nature · Sri Lanka': 'Naturaleza · Sri Lanka',
+"Golden tree snake": "Culebra arborícola dorada",
+"Green pit viper": "Víbora de foso verde",
 "Wildlife · Thailand": "Fauna · Tailandia",
 "Cities · Bangkok": "Ciudades · Bangkok",
 "Nature · Thailand": "Naturaleza · Tailandia",
