@@ -101,10 +101,13 @@ def route_svg(slug, names, stops, Tf):
     pts = [(n, Tf(stops[n][1], stops[n][0])) for n in names if n in stops]
     if len(pts) < 2: return ''
     xs = [p[1][0] for p in pts]; ys = [p[1][1] for p in pts]
-    if max(max(xs)-min(xs), max(ys)-min(ys)) < 0.17*max(W, H): return ''   # cluster too tight to read on the outline
+    import itertools
+    md = min([math.hypot(p[1][0]-q[1][0], p[1][1]-q[1][1]) for p, q in itertools.combinations(pts, 2)] or [99])
+    r = 13 if md >= 34 else max(4.5, md*0.36)      # shrink the markers when stops sit close together
+    small = r < 10
     d = 'M' + 'L'.join('%.1f %.1f' % p[1] for p in pts)
-    g = ''.join('<g class="route-stop" transform="translate(%.1f %.1f)"><title>%s</title><circle r="13"/><text y="4.6">%d</text></g>' % (x, y, n.replace('&', '&amp;'), i) for i, (n, (x, y)) in enumerate(pts, 1))
-    return '<path class="route-path" pathLength="1" d="%s"/>%s' % (d, g)
+    g = ''.join('<g class="route-stop%s" transform="translate(%.1f %.1f)"><title>%s</title><circle r="%.1f"/>%s</g>' % (' sm' if small else '', x, y, n.replace('&', '&amp;'), r, '' if small else '<text y="4.6">%d</text>' % i) for i, (n, (x, y)) in enumerate(pts, 1))
+    return '<path class="route-path%s" pathLength="1" d="%s"/>%s' % (' thin' if small else '', d, g)
 
 def svg(path, cross, pin, route=''):
     p = '<path class="shape-line" pathLength="1" d="%s"/>' % path

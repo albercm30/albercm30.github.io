@@ -235,19 +235,19 @@
     "coords": "31.6°N, 8.0°W",
     "year": null,
     "focus": [
-      "Sahara",
-      "Souks",
-      "Berber camp"
+      "Tangier",
+      "Medina",
+      "Strait of Gibraltar"
     ],
-    "blurb": "A Berber desert camp, the souks of Marrakech and the edge of the Sahara.",
+    "blurb": "Tangier, the port city at the edge of Africa, with Europe in sight across the Strait.",
     "story": [
-      "Morocco was a trip of contrasts — dense, chaotic medinas one day and total desert silence the next.",
-      "Sleeping in a Berber camp on the edge of the Sahara, away from any city noise, was the moment the trip really clicked."
+      "Morocco was a short stop in Tangier, the port city where the Mediterranean meets the Atlantic and Europe is just across the water.",
+      "The old medina and the feeling of standing at a crossroads between two continents made it a quick but memorable change of pace."
     ],
     "highlights": [
-      "A night in a Berber camp under the desert sky.",
-      "Navigating the souks of Marrakech.",
-      "Crossing the Atlas Mountains by road."
+      "Getting lost in the lanes of Tangier's medina.",
+      "Seeing Europe across the Strait of Gibraltar.",
+      "A first taste of Morocco."
     ],
     "route": [
       "Tangier"
@@ -476,11 +476,11 @@
     "story": [
       "The Ha Giang Loop was the centrepiece of this trip — days on a motorbike through northern mountains that kept getting more dramatic around every bend.",
       "From caves in the north to the pace of the south, Vietnam turned into one of the best road trips on this list.",
-      "Off the bike there was just as much variety: the limestone bays around Ha Long, boat rides between the forested karsts of Ninh Binh, and sunset over the coast at Da Nang."
+      "Off the bike there was just as much variety: the limestone bays around Cát Bà Island, boat rides between the forested karsts of Ninh Binh, and sunset over the coast at Da Nang."
     ],
     "highlights": [
       "Riding the Ha Giang Loop through the northern mountains.",
-      "Drifting between limestone karsts on a boat in Ha Long Bay.",
+      "Drifting between limestone karsts on a boat around Cát Bà Island.",
       "Rowing between forested cliffs in Ninh Binh.",
       "Exploring the cave systems near Phong Nha.",
       "Parasailers and a white Buddha over the bay at Da Nang.",
@@ -492,6 +492,7 @@
       "Cat Ba Island",
       "Ninh Binh",
       "Phong Nha",
+      "Da Nang",
       "Hoi An",
       "Da Lat",
       "Ho Chi Minh City"
@@ -504,19 +505,19 @@
     "coords": "47.5°N, 14.6°E",
     "year": null,
     "focus": [
-      "Alps",
       "Vienna",
-      "Hiking"
+      "Architecture",
+      "Coffee houses"
     ],
-    "blurb": "Alpine lakes, imperial Vienna and easy access to the mountains.",
+    "blurb": "Imperial Vienna and its coffee-house culture.",
     "story": [
-      "Austria made a strong case for the Alps outside the more obvious Swiss and Italian routes — the lake districts alone are worth the trip.",
-      "Vienna's architecture and coffee-house culture made a good contrast to the hiking further west."
+      "Austria was Vienna — imperial palaces, grand boulevards and a coffee-house culture that makes slowing down easy.",
+      "It also fit neatly into a Central European loop with Bratislava and Budapest."
     ],
     "highlights": [
-      "Hiking above an alpine lake in the Salzkammergut.",
+      "A long afternoon in a Viennese coffee house.",
       "Vienna's imperial architecture and coffee houses.",
-      "Mountain views that rival anywhere else in the Alps."
+      "Easy train connections to Bratislava and Budapest."
     ],
     "route": [
       "Vienna"
@@ -561,14 +562,14 @@
       "History",
       "Value"
     ],
-    "blurb": "Underrated mountains, monasteries and one of Europe's best-value trips.",
+    "blurb": "Sofia, Plovdiv and the Seven Rila Lakes: underrated mountains and one of Europe's best-value trips.",
     "story": [
-      "Bulgaria surprised me more than almost anywhere else in Europe — mountains, monasteries and old towns with barely any crowds.",
+      "Bulgaria surprised me more than almost anywhere else in Europe — a lively capital, Plovdiv's old town and the Rila mountains, all with barely any crowds.",
       "It's the kind of country that quietly outperforms its reputation once you actually spend time there."
     ],
     "highlights": [
-      "Rila Monastery tucked into the mountains.",
-      "Hiking trails with almost no other tourists.",
+      "Hiking up to the Seven Rila Lakes.",
+      "Plovdiv's old town and Roman theatre.",
       "Sofia's mix of Roman, Ottoman and Soviet layers."
     ],
     "route": [
@@ -584,19 +585,19 @@
     "coords": "45.8°N, 15.9°E",
     "year": null,
     "focus": [
-      "Coastline",
-      "Islands",
-      "Old towns"
+      "Zagreb",
+      "Pag island",
+      "Adriatic"
     ],
-    "blurb": "Adriatic islands, walled old towns and some of Europe's clearest water.",
+    "blurb": "Zagreb's old upper town and the Adriatic island of Pag.",
     "story": [
-      "Croatia's coastline does a lot of the talking, but it was the old towns — Dubrovnik especially — that stuck with me just as much.",
-      "Island-hopping down the Dalmatian coast made for one of the more relaxed European trips on this list."
+      "Croatia split neatly in two: Zagreb's old upper town and cafés, and the Adriatic island of Pag, where Novalja sits on the coast.",
+      "A short trip, but it covered both the capital and the sea."
     ],
     "highlights": [
-      "Walking Dubrovnik's city walls at sunset.",
-      "Swimming in the Adriatic's clear water.",
-      "Island-hopping the Dalmatian coast."
+      "Wandering Zagreb's old upper town.",
+      "Swimming in the Adriatic's clear water off Pag.",
+      "Novalja, on the island of Pag."
     ],
     "route": [
       "Zagreb",
@@ -611,18 +612,18 @@
     "year": null,
     "focus": [
       "Paris",
-      "Alps",
-      "Countryside"
+      "Riviera",
+      "Basque coast"
     ],
-    "blurb": "Paris, the French Alps and enough countryside in between to slow down.",
+    "blurb": "Paris, the Riviera at Villefranche-sur-Mer and the Basque coast.",
     "story": [
-      "France covered a lot of ground — Paris for the obvious reasons, but the Alps and countryside further out were just as memorable.",
-      "It's a country that rewards slowing down: long lunches, quiet villages and mountains within a few hours of the capital."
+      "France covered a lot of ground — Paris for the obvious reasons, then the Riviera at Villefranche-sur-Mer and the Basque coast around Saint-Jean-de-Luz, Ascain and Hendaye.",
+      "It's a country that rewards slowing down: long lunches, harbour towns and a coastline that changes completely from one end to the other."
     ],
     "highlights": [
       "Paris from a rooftop rather than a queue.",
-      "Hiking a stretch of the French Alps.",
-      "Villages that felt untouched by the tourist routes."
+      "Villefranche-sur-Mer's colourful harbour on the Riviera.",
+      "The Basque coast around Saint-Jean-de-Luz."
     ],
     "route": [
       "Paris",
@@ -649,7 +650,7 @@
     "highlights": [
       "Walking Berlin's layered Cold War history.",
       "A proper Bavarian beer garden in Munich.",
-      "Neuschwanstein Castle on a clear day."
+      "Munich's Marienplatz and old town."
     ],
     "route": [
       "Berlin",
@@ -692,11 +693,11 @@
       "Hiking",
       "Lakes"
     ],
-    "blurb": "A hiking-focused journey through the Dolomites, with Venice on the way.",
+    "blurb": "A hiking-focused journey through the Dolomites, with Venice, Florence, Rome and a run down to Sicily.",
     "story": [
       "The Dolomites were the whole point of this trip — jagged limestone peaks that look almost unreal in the right light.",
       "Multiple days of hut-to-hut hiking, with lakes and small alpine towns along the way, made it one of the best mountain trips on the list.",
-      "The classics were all there — the Tre Cime di Lavaredo, Lago di Braies, the little church of St John in Val di Funes — and the trip also took in the canals and lagoon of Venice."
+      "The classics were all there — the Tre Cime di Lavaredo, Lago di Braies, the little church of St John in Val di Funes — and the trip also took in the canals and lagoon of Venice, Florence, Rome and Pompeii, Taormina in Sicily and the Matterhorn from the Aosta Valley."
     ],
     "highlights": [
       "Hut-to-hut hiking through the Dolomites.",
@@ -776,18 +777,18 @@
     "year": null,
     "focus": [
       "History",
-      "Old towns",
-      "Value"
+      "Old town",
+      "Cities"
     ],
-    "blurb": "Rebuilt old towns, heavy history and some of Europe's best-value cities.",
+    "blurb": "Warsaw's rebuilt old town and a capital shaped by heavy history.",
     "story": [
-      "Poland's history is impossible to separate from a visit — Warsaw's rebuilt old town and Kraków's preserved one tell very different stories from the same century.",
-      "It's a country that rewards taking the history seriously rather than rushing between photo spots."
+      "Poland's history is impossible to separate from a visit — Warsaw's old town, rebuilt after the war, tells the story of the twentieth century on its own.",
+      "It's a city that rewards taking the history seriously rather than rushing between photo spots."
     ],
     "highlights": [
-      "Walking Kraków's preserved medieval old town.",
+      "Walking Warsaw's rebuilt old town.",
       "Warsaw's old town, rebuilt brick by brick after the war.",
-      "Salt mines carved deep beneath Wieliczka."
+      "A capital that mixes heavy history with modern city life."
     ],
     "route": [
       "Warsaw"
@@ -800,19 +801,19 @@
     "coords": "48.15°N, 17.1°E",
     "year": null,
     "focus": [
-      "Tatras",
-      "Castles",
-      "Old towns"
+      "Bratislava",
+      "Old town",
+      "Danube"
     ],
-    "blurb": "The High Tatras, hilltop castles and a quieter corner of Central Europe.",
+    "blurb": "Bratislava's compact old town on the Danube.",
     "story": [
-      "Slovakia mostly got overshadowed by its neighbours in planning, but the High Tatras earned it a spot on its own merits.",
-      "Between the mountains and a handful of well-preserved old towns, it turned into a quiet, underrated stop."
+      "Slovakia was a short stop in Bratislava, the capital that sits right on the Danube, close to Vienna and Budapest.",
+      "A compact old town and a castle on the hill made for an easy, underrated visit."
     ],
     "highlights": [
-      "Hiking in the High Tatras.",
+      "Bratislava Castle above the Danube.",
       "Bratislava's compact, walkable old town.",
-      "Castles perched above small river towns."
+      "How close it sits to Vienna and Budapest."
     ],
     "route": [
       "Bratislava"
@@ -829,9 +830,9 @@
       "Home turf",
       "Volcanoes"
     ],
-    "blurb": "Home ground — and still a country worth exploring region by region.",
+    "blurb": "Home ground — from the Canary Islands to the cities and coasts of the mainland.",
     "story": [
-      "Being home turf, Spain gets explored differently — less like a single trip and more like an ongoing project, region by region.",
+      "Being home turf, Spain gets explored differently — less like a single trip and more like an ongoing project, from the Canary Islands to Madrid, Barcelona, Andalucía and the north coast.",
       "Between the regional food differences, the coastline and the mountains, it rarely gets old, even close to home."
     ],
     "highlights": [
@@ -854,19 +855,19 @@
     "coords": "51.5°N, 0.13°W",
     "year": null,
     "focus": [
-      "London",
-      "Countryside",
-      "History"
+      "Manchester",
+      "Liverpool",
+      "Cities"
     ],
-    "blurb": "London's density, and a countryside that rewards getting out of it.",
+    "blurb": "Manchester and Liverpool — two northern English cities, a short train ride apart.",
     "story": [
-      "London anchored most of the time here, but the countryside further out — coastline, hills, small towns — was where the trip really opened up.",
-      "It's a country that looks small on a map and somehow keeps producing new places worth a detour."
+      "The UK trip was built around two northern English cities, Manchester and Liverpool, a short train ride apart.",
+      "Industrial heritage, football and music history run through both, and each has a very different feel."
     ],
     "highlights": [
-      "London's museums, most of them free.",
-      "Coastal walks well outside the city.",
-      "Small towns that felt lifted straight from a period drama."
+      "Manchester's red-brick industrial heritage.",
+      "Liverpool's waterfront and Beatles history.",
+      "How close two very different cities sit."
     ],
     "route": [
       "Manchester",
@@ -905,19 +906,19 @@
     "coords": "45.4°N, 75.7°W",
     "year": null,
     "focus": [
-      "Nature",
-      "Cities",
-      "Wildlife"
+      "Quebec",
+      "Old town",
+      "Cities"
     ],
-    "blurb": "Big landscapes, wildlife-rich national parks and cities that feel easy to like.",
+    "blurb": "Quebec City's walled old town, a French-speaking corner of North America.",
     "story": [
-      "Canada is a country where the scale of the landscape does most of the work — national parks that make you feel genuinely small.",
-      "Between the cities and the wilderness on their doorstep, it struck a good balance between comfort and being properly outdoors."
+      "Canada was Quebec City, the walled, French-speaking city on the St Lawrence River.",
+      "Cobbled streets, the Château Frontenac and a European feel made it seem more like a trip across the Atlantic than across a continent."
     ],
     "highlights": [
-      "Wildlife-spotting in a national park.",
-      "Cities that mix easily with nature nearby.",
-      "Landscapes that put distance into perspective."
+      "Walking Quebec City's walled old town.",
+      "The Château Frontenac above the St Lawrence.",
+      "A little bit of Europe in North America."
     ],
     "route": [
       "Quebec"
@@ -991,18 +992,18 @@
     "year": null,
     "focus": [
       "Road trips",
-      "National parks",
-      "Cities"
+      "Cities",
+      "Coast"
     ],
-    "blurb": "National parks, long drives and cities that couldn't be more different from each other.",
+    "blurb": "From the California coast to New York, Washington and the rocky coast of Maine.",
     "story": [
-      "The US rewards distance — some of the best stretches were the long drives between national parks rather than the cities themselves.",
+      "The US rewards distance — Southern California, the East Coast cities and the rocky coast of Maine felt like three different countries.",
       "Every region felt like visiting a slightly different country, which is most of the appeal of covering it piece by piece."
     ],
     "highlights": [
-      "A road trip strung between national parks.",
+      "Beaches and surf towns along the Southern California coast.",
       "Skylines that look exactly like the films, and still impress.",
-      "Diners and small towns well off the interstate."
+      "The rocky Maine coast around Bar Harbor and Acadia."
     ],
     "route": [
       "San Diego",
@@ -1034,7 +1035,7 @@
     "highlights": [
       "Diving the Great Barrier Reef.",
       "Exploring the Daintree rainforest and searching for cassowaries.",
-      "Searching for platypuses around Julatten.",
+      "Searching for platypuses around Yungaburra.",
       "Sleeping among Australia's wildlife rather than behind city walls.",
       "Realising that every road trip in Australia is considerably longer than it looks.",
       "Spotting koalas, kangaroos and kookaburras in the wild.",

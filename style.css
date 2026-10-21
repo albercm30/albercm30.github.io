@@ -422,7 +422,7 @@ html[data-sec] input,html[data-sec] textarea{cursor:text}
 .route-path{fill:none;stroke:var(--gold);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:.95}
 .route-stop circle{fill:var(--dark);stroke:#fff;stroke-width:2.4}
 .route-stop text{fill:#fff;font:700 13px var(--mono);text-anchor:middle;pointer-events:none}
-.route-stop{cursor:default}
+.route-stop{cursor:default}.route-path.thin{stroke-width:2.6}.route-stop.sm circle{stroke-width:1.8}
 @media(prefers-reduced-motion:no-preference){
 .shape-art:not(.in) .route-path{stroke-opacity:0}.shape-art .route-path{transition:stroke-opacity 1s 2s}
 .shape-art:not(.in) .route-stop{opacity:0;transform-box:fill-box}.shape-art .route-stop{transition:opacity .5s calc(1.6s + var(--k,0)*.12s)}
