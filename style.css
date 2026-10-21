@@ -299,3 +299,28 @@ main:focus{outline:none}
 @media (hover:none){#globe canvas{touch-action:pan-y!important}}
 @media (max-width:700px){.globe-wrap{height:430px;border-radius:18px}}
 .globe-note{margin-top:14px;font-family:var(--mono);font-size:9px;letter-spacing:.8px;color:var(--soft);text-transform:uppercase}
+
+/* globe background */
+.gb{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+#globe{z-index:1}
+.gb-row{position:absolute;left:0;right:0;white-space:nowrap;overflow:hidden;font:400 clamp(70px,11vw,150px)/1 var(--serif);letter-spacing:-3px;color:transparent;-webkit-text-stroke:1px rgba(228,217,166,.13)}
+.gb-track{display:inline-block;animation:gbL 110s linear infinite;will-change:transform}
+.gb-row0{top:4%}.gb-row1{top:36%}.gb-row1 .gb-track{animation-name:gbR;animation-duration:140s}.gb-row2{top:68%}.gb-row2 .gb-track{animation-duration:125s}
+@keyframes gbL{to{transform:translateX(-50%)}}@keyframes gbR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.gb-photo{position:absolute;inset:-4%;width:108%;height:108%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity 1s ease;filter:saturate(.85) brightness(.75);-webkit-mask-image:radial-gradient(ellipse at center,#000 25%,transparent 78%);mask-image:radial-gradient(ellipse at center,#000 25%,transparent 78%)}
+.gb-photo.on{opacity:.5;animation:gbZoom 14s ease-out forwards}
+@keyframes gbZoom{from{transform:scale(1.04)}to{transform:scale(1.14)}}
+.gb-cap{position:absolute;left:50%;bottom:26px;text-align:center;color:#f3efdc;opacity:0;transform:translate(-50%,8px);transition:.5s;z-index:3;width:50%}
+.gb-cap.on{opacity:1;transform:translate(-50%,0)}
+.gb-cap strong{display:block;font:400 clamp(30px,4vw,52px)/1 var(--serif);letter-spacing:-1px}
+.gb-cap span{display:block;margin-top:6px;font:700 10px var(--mono);letter-spacing:1.6px;text-transform:uppercase;color:#c9d9a8}
+.gb-card{position:absolute;z-index:2;width:150px;pointer-events:auto;background:#f6f1de;padding:7px 7px 24px;border-radius:4px;box-shadow:0 12px 30px rgba(0,0,0,.45);transition:opacity .5s,transform .3s;animation:gbFloat 7s ease-in-out infinite}
+.gb-card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:2px;background:#cfc9ae}
+.gb-card span{position:absolute;left:9px;right:9px;bottom:5px;font:700 9px var(--mono);letter-spacing:1px;text-transform:uppercase;color:#3b4a3a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gb-card:hover{transform:rotate(0) scale(1.08)!important;animation-play-state:paused}
+.gb-card.swap{opacity:0}
+.gb-card0{left:3.5%;top:9%;--r:-6deg}.gb-card1{left:9%;top:42%;--r:4deg;animation-delay:-2s}.gb-card2{left:2.5%;bottom:7%;--r:-3deg;animation-delay:-4s}
+.gb-card3{right:3.5%;top:12%;--r:5deg;animation-delay:-1s}.gb-card4{right:9%;top:45%;--r:-4deg;animation-delay:-3s}.gb-card5{right:2.5%;bottom:8%;--r:6deg;animation-delay:-5s}
+@keyframes gbFloat{0%,100%{transform:translateY(0) rotate(var(--r))}50%{transform:translateY(-12px) rotate(calc(var(--r) + 1.5deg))}}
+@media (max-width:900px){.gb-card{display:none}.gb-cap{width:80%;bottom:16px}}
+@media (prefers-reduced-motion:reduce){.gb-track,.gb-card,.gb-photo.on{animation:none}}

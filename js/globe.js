@@ -32,6 +32,82 @@
     });
   }
 
+
+  /* ---- Background: drifting country names, floating photo cards, and a photo that fades in when you hover a country ---- */
+  var PH = { australia: [1,2,3,4,5,6], guatemala: [2], italy: [1,2], mexico: [1], "new-zealand": [1,2,3,4], spain: [1,2], vietnam: [1,2,3] };
+  var ALLPH = [];
+  Object.keys(PH).forEach(function (s) { PH[s].forEach(function (n) { ALLPH.push({ slug: s, file: s + "-0" + n + ".jpg" }); }); });
+  function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
+  function el(tag, cls, parent) { var e = document.createElement(tag); if (cls) e.className = cls; if (parent) parent.appendChild(e); return e; }
+
+  function buildBackground(list) {
+    var bg = el("div", "gb");
+    bg.setAttribute("aria-hidden", "true");
+    var names = list.map(function (c) { return I.country(c.name); });
+    for (var r = 0; r < 3; r++) {
+      var row = el("div", "gb-row gb-row" + r, bg);
+      var inner = el("div", "gb-track", row);
+      var rot = names.slice(r * 5).concat(names.slice(0, r * 5));
+      var txt = rot.join("  ·  ") + "  ·  ";
+      inner.textContent = txt + txt;
+    }
+    var photoA = el("img", "gb-photo", bg), photoB = el("img", "gb-photo", bg);
+    photoA.alt = photoB.alt = "";
+    var cap = el("div", "gb-cap", bg);
+    var capName = el("strong", "", cap), capSub = el("span", "", cap);
+    box.parentNode.insertBefore(bg, box);
+
+    var front = photoA, back = photoB, hideT = null, curSlug = null;
+    function show(c) {
+      clearTimeout(hideT);
+      if (!c || !PH[c.slug]) {
+        hideT = setTimeout(function () { front.classList.remove("on"); back.classList.remove("on"); cap.classList.remove("on"); curSlug = null; }, 220);
+        return;
+      }
+      if (curSlug === c.slug) return;
+      curSlug = c.slug;
+      var n = pick(PH[c.slug]), nx = back;
+      nx.onload = function () {
+        nx.classList.add("on"); front.classList.remove("on");
+        var t = front; front = nx; back = t;
+      };
+      nx.src = "/assets/travel/globe-l/" + c.slug + "-0" + n + ".jpg";
+      capName.textContent = I.country(c.name);
+      capSub.textContent = c.focus || "";
+      cap.classList.add("on");
+    }
+
+    // floating photo cards on the sides
+    var cards = [];
+    {
+      var order = ALLPH.slice().sort(function () { return Math.random() - 0.5; });
+      for (var i = 0; i < 6; i++) {
+        var a = el("a", "gb-card gb-card" + i, bg), im = el("img", "", a), lb = el("span", "", a);
+        im.alt = ""; im.loading = "lazy"; im.decoding = "async";
+        cards.push({ a: a, im: im, lb: lb });
+      }
+      var ix = 0;
+      var setCard = function (k, p) {
+        var cd = cards[k], c = list.filter(function (x) { return x.slug === p.slug; })[0];
+        cd.a.href = (I.pre || "") + "/countries/" + p.slug + "/";
+        cd.im.src = "/assets/travel/globe-s/" + p.file;
+        cd.lb.textContent = c ? I.country(c.name) : "";
+        cd.a.setAttribute("aria-label", cd.lb.textContent);
+      };
+      cards.forEach(function (cd, k) { setCard(k, order[ix++ % order.length]); });
+      if (!reduce) {
+        var turn = 0;
+        setInterval(function () {
+          var k = turn++ % cards.length, cd = cards[k];
+          if (document.hidden) return;
+          cd.a.classList.add("swap");
+          setTimeout(function () { setCard(k, order[ix++ % order.length]); cd.a.classList.remove("swap"); }, 500);
+        }, 3200);
+      }
+    }
+    return { show: show };
+  }
+
   function start() {
     if (started) return;
     started = true;
@@ -72,6 +148,7 @@
         return { startLat: HOME.lat, startLng: HOME.lng, endLat: c.lat, endLng: c.lng };
       });
 
+      var B = buildBackground(list);
       var g = Globe()(box)
         .width(box.clientWidth).height(box.clientHeight)
         .backgroundColor("rgba(0,0,0,0)")
@@ -84,6 +161,7 @@
         .polygonLabel(function (f) { return f.__c ? tip(f.__c) : ""; })
         .onPolygonHover(function (f) {
           box.style.cursor = f && f.__c ? "pointer" : "grab";
+          B.show(f && f.__c);
           g.polygonAltitude(function (d) { return d === f && d.__c ? 0.045 : (d.__c ? 0.02 : 0.006); });
         })
         .onPolygonClick(function (f) { if (f && f.__c) go(f.__c); })
@@ -92,6 +170,7 @@
         .pointColor(function () { return "#fff4c2"; })
         .pointAltitude(0.03).pointRadius(0.32)
         .pointLabel(tip)
+        .onPointHover(function (c) { B.show(c); })
         .onPointClick(go)
         .arcsData(arcs)
         .arcColor(function () { return ["rgba(228,217,166,.05)", "rgba(228,217,166,.7)"]; })
