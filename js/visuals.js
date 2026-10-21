@@ -1,6 +1,7 @@
 /* Visual extras: interactive elevation profiles (mountains) + country outline draw-in. No dependencies. */
 (function(){
 "use strict";
+document.documentElement.dataset.sec=(location.pathname.replace(/^\/es(?=\/|$)/,"").split("/")[1]||"home");
 var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
 var NS="http://www.w3.org/2000/svg";
 function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e}

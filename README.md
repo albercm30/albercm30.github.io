@@ -58,3 +58,4 @@ Never edit files under `es/` by hand; they are regenerated. Wildlife species nam
 - `js/visuals.js`: interactive elevation charts on /mountains/ and the draw-in animation of the country outline.
 - `scripts/build_shapes.py <ne_10m_admin_0_countries.geojson>`: regenerates the "shape of" section on every country page (Natural Earth, public domain). Run `build_es.py` afterwards. Spain draws the Canary Islands.
 - Bump the `?v=` query string on `/js/*.js` and `/style.css` in every HTML file when they change.
+- Themed cursors: `html[data-sec]` is set by `js/visuals.js` from the URL; the cursor SVGs are generated into `style.css` by `scripts/build_cursors.py` (paw = wildlife, camera = photography, peaks = mountains, shark = diving, plane = travel/countries, `</>` = professional/projects). Links and inputs keep their normal cursors; touch devices are unaffected.
