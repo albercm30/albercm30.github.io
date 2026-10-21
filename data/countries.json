@@ -22,8 +22,12 @@
     ],
     "route": [
       "Beijing",
+      "Pingyao",
       "Xi'an",
-      "Chengdu"
+      "Chengdu",
+      "Chongqing",
+      "Zhangjiajie",
+      "Guilin"
     ]
   },
   {
@@ -49,8 +53,9 @@
     ],
     "route": [
       "Delhi",
-      "Varanasi",
-      "Agra"
+      "Jaipur",
+      "Agra",
+      "Varanasi"
     ]
   },
   {
@@ -76,7 +81,9 @@
     ],
     "route": [
       "Tokyo",
+      "Mount Fuji",
       "Kyoto",
+      "Nara",
       "Osaka"
     ]
   },
@@ -103,8 +110,10 @@
     ],
     "route": [
       "Amman",
+      "Dead Sea",
       "Petra",
-      "Wadi Rum"
+      "Wadi Rum",
+      "Aqaba"
     ]
   },
   {
@@ -129,7 +138,11 @@
       "A part of Central Asia that felt genuinely unfamiliar."
     ],
     "route": [
-      "Almaty"
+      "Almaty",
+      "Altyn-Emel",
+      "Charyn Canyon",
+      "Kolsai Lakes",
+      "Astana"
     ]
   },
   {
@@ -179,6 +192,7 @@
       "Kuala Lumpur's mix of skyline and street food."
     ],
     "route": [
+      "Johor Bahru",
       "Kuala Lumpur",
       "Sandakan",
       "Kota Kinabalu"
@@ -207,8 +221,11 @@
     ],
     "route": [
       "Muscat",
+      "Dimaniyat Islands",
       "Nizwa",
-      "Wahiba Sands"
+      "Wahiba Sands",
+      "Sur",
+      "Salalah"
     ]
   },
   {
@@ -233,9 +250,7 @@
       "Crossing the Atlas Mountains by road."
     ],
     "route": [
-      "Marrakech",
-      "Atlas Mountains",
-      "Merzouga"
+      "Tangier"
     ]
   },
   {
@@ -261,8 +276,12 @@
     ],
     "route": [
       "Manila",
-      "Palawan",
-      "Cebu"
+      "Coron",
+      "El Nido",
+      "Puerto Princesa",
+      "Cebu",
+      "Malapascua",
+      "Siargao"
     ]
   },
   {
@@ -316,12 +335,14 @@
       "Sunsets on the beach and the surf bays of the coast."
     ],
     "route": [
+      "Wilpattu",
       "Anuradhapura",
       "Sigiriya",
+      "Kitulgala",
       "Kandy",
       "Ella",
       "Arugam Bay",
-      "Mirissa"
+      "Ahangama"
     ]
   },
   {
@@ -378,7 +399,9 @@
     "route": [
       "Istanbul",
       "Cappadocia",
-      "Pamukkale"
+      "Pamukkale",
+      "Selçuk",
+      "Bodrum"
     ]
   },
   {
@@ -404,6 +427,9 @@
     ],
     "route": [
       "Dubai",
+      "Sharjah",
+      "Hatta",
+      "Khor Fakkan",
       "Abu Dhabi"
     ]
   },
@@ -430,6 +456,7 @@
     ],
     "route": [
       "Tashkent",
+      "Chimgan",
       "Samarkand",
       "Bukhara"
     ]
@@ -461,11 +488,12 @@
     ],
     "route": [
       "Hanoi",
-      "Ha Long Bay",
-      "Ninh Binh",
       "Ha Giang",
+      "Cat Ba Island",
+      "Ninh Binh",
       "Phong Nha",
-      "Da Nang",
+      "Hoi An",
+      "Da Lat",
       "Ho Chi Minh City"
     ]
   },
@@ -491,9 +519,7 @@
       "Mountain views that rival anywhere else in the Alps."
     ],
     "route": [
-      "Vienna",
-      "Salzburg",
-      "Hallstatt"
+      "Vienna"
     ]
   },
   {
@@ -520,7 +546,8 @@
     "route": [
       "Brussels",
       "Bruges",
-      "Ghent"
+      "Ghent",
+      "Antwerp"
     ]
   },
   {
@@ -547,7 +574,7 @@
     "route": [
       "Sofia",
       "Plovdiv",
-      "Rila"
+      "Rila Lakes"
     ]
   },
   {
@@ -572,9 +599,8 @@
       "Island-hopping the Dalmatian coast."
     ],
     "route": [
-      "Split",
-      "Hvar",
-      "Dubrovnik"
+      "Zagreb",
+      "Novalja"
     ]
   },
   {
@@ -600,8 +626,8 @@
     ],
     "route": [
       "Paris",
-      "Chamonix",
-      "Lyon"
+      "Villefranche-sur-Mer",
+      "Saint-Jean-de-Luz"
     ]
   },
   {
@@ -627,8 +653,7 @@
     ],
     "route": [
       "Berlin",
-      "Munich",
-      "Füssen"
+      "Munich"
     ]
   },
   {
@@ -682,12 +707,13 @@
       "Small alpine towns that felt frozen in time."
     ],
     "route": [
+      "Aosta",
+      "Dolomites",
       "Venice",
-      "Bassano del Grappa",
-      "Cortina d'Ampezzo",
-      "Tre Cime di Lavaredo",
-      "Lago di Braies",
-      "Val di Funes"
+      "Florence",
+      "Rome",
+      "Pompeii",
+      "Taormina"
     ]
   },
   {
@@ -738,8 +764,8 @@
     ],
     "route": [
       "Amsterdam",
-      "Utrecht",
-      "Rotterdam"
+      "The Hague",
+      "Delft"
     ]
   },
   {
@@ -764,8 +790,7 @@
       "Salt mines carved deep beneath Wieliczka."
     ],
     "route": [
-      "Warsaw",
-      "Kraków"
+      "Warsaw"
     ]
   },
   {
@@ -790,8 +815,7 @@
       "Castles perched above small river towns."
     ],
     "route": [
-      "Bratislava",
-      "High Tatras"
+      "Bratislava"
     ]
   },
   {
@@ -816,7 +840,9 @@
       "Regional food that changes completely every few hundred kilometres."
     ],
     "route": [
-      "Madrid",
+      "La Graciosa",
+      "Lanzarote",
+      "Fuerteventura",
       "Gran Canaria",
       "Tenerife"
     ]
@@ -843,8 +869,8 @@
       "Small towns that felt lifted straight from a period drama."
     ],
     "route": [
-      "London",
-      "Edinburgh"
+      "Manchester",
+      "Liverpool"
     ]
   },
   {
@@ -894,9 +920,7 @@
       "Landscapes that put distance into perspective."
     ],
     "route": [
-      "Toronto",
-      "Banff",
-      "Vancouver"
+      "Quebec"
     ]
   },
   {
@@ -953,8 +977,10 @@
     "route": [
       "La Paz",
       "Cabo Pulmo",
-      "Tulum",
-      "Chichén Itzá"
+      "Mexico City",
+      "Mérida",
+      "Chichén Itzá",
+      "Holbox"
     ]
   },
   {
@@ -979,9 +1005,12 @@
       "Diners and small towns well off the interstate."
     ],
     "route": [
+      "San Diego",
+      "Los Angeles",
       "New York",
-      "Grand Canyon",
-      "San Francisco"
+      "Washington, D.C.",
+      "Boston",
+      "Bar Harbor"
     ]
   },
   {
@@ -1016,12 +1045,12 @@
     ],
     "route": [
       "Sydney",
-      "Brisbane",
+      "Byron Bay",
       "Gold Coast",
+      "Brisbane",
       "Cairns",
+      "Yungaburra",
       "Daintree",
-      "Cape Tribulation",
-      "Julatten",
       "Great Barrier Reef"
     ]
   },
@@ -1054,10 +1083,11 @@
     "route": [
       "Christchurch",
       "Abel Tasman",
+      "Franz Josef",
       "Mount Cook",
-      "Lindis Pass",
       "Wanaka",
       "Queenstown",
+      "Milford Sound",
       "Otago Coast"
     ]
   }
