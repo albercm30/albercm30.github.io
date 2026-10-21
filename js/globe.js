@@ -34,9 +34,10 @@
 
 
   /* ---- Background: drifting country names, floating photo cards, and a photo that fades in when you hover a country ---- */
-  var PH = { australia: [1,2,3,4,5,6], guatemala: [2], italy: [1,2], mexico: [1], "new-zealand": [1,2,3,4], spain: [1,2], vietnam: [1,2,3] };
+  var PH = { australia: [1,2,3,4,5,6], guatemala: [2,3,5], italy: [1,2,3,4,5,6,7,8,9,10,11,12], mexico: [1,2,3,4,5,6,7], "new-zealand": [1,2,3,4], spain: [1,2], vietnam: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15] };
   var ALLPH = [];
-  Object.keys(PH).forEach(function (s) { PH[s].forEach(function (n) { ALLPH.push({ slug: s, file: s + "-0" + n + ".jpg" }); }); });
+  Object.keys(PH).forEach(function (s) { PH[s].forEach(function (n) { ALLPH.push({ slug: s, file: s + "-" + pad(n) + ".jpg" }); }); });
+  function pad(n) { return n < 10 ? "0" + n : "" + n; }
   function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
   function el(tag, cls, parent) { var e = document.createElement(tag); if (cls) e.className = cls; if (parent) parent.appendChild(e); return e; }
 
@@ -71,7 +72,7 @@
         nx.classList.add("on"); front.classList.remove("on");
         var t = front; front = nx; back = t;
       };
-      nx.src = "/assets/travel/globe-l/" + c.slug + "-0" + n + ".jpg";
+      nx.src = "/assets/travel/globe-l/" + c.slug + "-" + pad(n) + ".jpg";
       capName.textContent = I.country(c.name);
       capSub.textContent = c.focus || "";
       cap.classList.add("on");
