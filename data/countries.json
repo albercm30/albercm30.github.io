@@ -298,22 +298,29 @@
     "year": null,
     "focus": [
       "Ella train",
-      "Tea country",
-      "Coast"
+      "Ancient cities",
+      "Wildlife"
     ],
-    "blurb": "The Ella train through tea country, beaches and a laid-back south coast.",
+    "blurb": "Sigiriya, the white stupas of Anuradhapura, the Ella train through fog-covered tea country, elephants and a palm-lined coast.",
     "story": [
-      "The train from Kandy to Ella is one of those routes people talk about for good reason — hours of tea plantations and mountains rolling past an open door.",
-      "Between the hill country and the south coast, Sri Lanka packed a surprising range of landscape into a small island."
+      "The train from Kandy to Ella is one of those routes people talk about for good reason — hours of tea plantations and mountains rolling past an open door. The day I rode it the whole hill country was wrapped in fog.",
+      "Sri Lanka packed a surprising range into a small island: ancient stupas and the rock fortress of Sigiriya, jungle rivers, elephants and monkeys, and a coast of palm-lined railway lines and surf bays.",
+      "I climbed neighbouring Pidurangala at sunset to see Sigiriya from above, walked around the white stupas of Anuradhapura, floated down a rainforest river in lifejackets and helmets with friends, and watched an elephant bathe in a lake. Toque macaques and a crested serpent eagle turned up along the way, and there were beach sunsets and a stretch of south-coast railway between the palms."
     ],
     "highlights": [
-      "Riding the Ella train through the tea plantations.",
-      "Watching the sunrise from Adam's Peak.",
-      "Relaxed days on the south coast."
+      "Riding the Ella train through fog-covered tea country.",
+      "Climbing Pidurangala at sunset for the view of Sigiriya rock.",
+      "Walking among the white stupas of Anuradhapura.",
+      "Floating down a jungle river in lifejackets and helmets.",
+      "Watching an elephant bathe, toque macaques and a crested serpent eagle.",
+      "Sunsets on the beach and the surf bays of the coast."
     ],
     "route": [
+      "Anuradhapura",
+      "Sigiriya",
       "Kandy",
       "Ella",
+      "Arugam Bay",
       "Mirissa"
     ]
   },
