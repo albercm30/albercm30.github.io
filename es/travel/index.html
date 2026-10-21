@@ -66,20 +66,9 @@ html,body{overflow-x:hidden}
     <div class="stat"><strong>38</strong><span>Países</span></div>
     <div class="stat"><strong>5</strong><span>Continentes</span></div>
     <div class="stat"><strong>19</strong><span>Inmersiones</span></div>
-    <div class="stat"><strong>7</strong><span>Montañas</span></div>
+    <div class="stat"><strong>8</strong><span>Montañas</span></div>
     <div class="stat"><strong>230+</strong><span>Especies</span></div>
   </div>
-</section>
-
-<section class="section shell" id="globe-sec" style="padding-top:20px;padding-bottom:20px">
-  <div class="section-head">
-    <div>
-      <p class="eyebrow">EL MUNDO, GIRANDO</p>
-      <h2>Treinta y ocho países,<br><em>un solo globo.</em></h2>
-    </div>
-    <p class="section-note">Arrastra para girar. Los países dorados son los que he visitado; haz clic en uno para abrir su página.</p>
-  </div>
-  <div class="globe-wrap"><div id="globe" role="img" aria-label="Globo 3D interactivo de los países visitados."></div></div>
 </section>
 
 <section class="section shell" style="padding-top:20px;padding-bottom:15px">
@@ -88,18 +77,22 @@ html,body{overflow-x:hidden}
       <p class="eyebrow">DÓNDE HE ESTADO</p>
       <h2>Un mapa del<br><em>recorrido.</em></h2>
     </div>
-    <p class="section-note">Dos vistas: un país cada vez, o cada uno de los lugares que he marcado yo mismo.</p>
+    <p class="section-note">Tres vistas: un globo giratorio, un país cada vez, o cada lugar que he marcado yo mismo.</p>
   </div>
 
   <div class="filters" id="map-tabs">
-    <button class="filter active" data-map="leaflet" type="button">Por país</button>
+    <button class="filter active" data-map="globe" type="button">Globo</button>
+    <button class="filter" data-map="leaflet" type="button">Por país</button>
     <button class="filter" data-map="google" type="button">Cada lugar donde he estado</button>
   </div>
 
-  <div class="world-map" id="map-panel-leaflet">
+  <div class="globe-wrap" id="globe-sec"><div id="globe" role="img" aria-label="Globo 3D interactivo de los países visitados."></div></div>
+  <p id="globe-note" class="globe-note">Arrastra para girar. Los países dorados son los que he visitado; haz clic en uno para abrir su página.</p>
+
+  <div class="world-map" id="map-panel-leaflet" style="display:none">
     <div id="world-map"></div>
   </div>
-  <div class="world-map-legend" id="map-legend">
+  <div class="world-map-legend" id="map-legend" style="display:none">
     <div class="legend-item"><span class="legend-dot" style="background:#8a7b4b"></span>Asia</div>
     <div class="legend-item"><span class="legend-dot" style="background:#40573b"></span>Europa</div>
     <div class="legend-item"><span class="legend-dot" style="background:#a06b3a"></span>África</div>
@@ -842,14 +835,18 @@ if (mapTabs) {
     if (!btn) return;
     mapTabs.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
-    const showGoogle = btn.dataset.map === "google";
-    document.getElementById("map-panel-leaflet").style.display = showGoogle ? "none" : "block";
-    document.getElementById("map-legend").style.display = showGoogle ? "none" : "flex";
-    document.getElementById("map-panel-google").style.display = showGoogle ? "block" : "none";
-    document.getElementById("google-map-note").style.display = showGoogle ? "block" : "none";
-    if (!showGoogle && typeof worldMap !== "undefined") {
+    const which = btn.dataset.map;
+    const show = (id, on, disp) => { const el = document.getElementById(id); if (el) el.style.display = on ? disp : "none"; };
+    show("globe-sec", which === "globe", "block");
+    show("globe-note", which === "globe", "block");
+    show("map-panel-leaflet", which === "leaflet", "block");
+    show("map-legend", which === "leaflet", "flex");
+    show("map-panel-google", which === "google", "block");
+    show("google-map-note", which === "google", "block");
+    if (which === "leaflet" && typeof worldMap !== "undefined") {
       try { setTimeout(() => worldMap.invalidateSize(), 50); } catch (err) {}
     }
+    if (which === "globe") { try { setTimeout(() => window.dispatchEvent(new Event("resize")), 50); } catch (err) {} }
   });
 }
 </script>

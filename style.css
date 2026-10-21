@@ -298,3 +298,4 @@ main:focus{outline:none}
 #globe canvas{outline:none}
 @media (hover:none){#globe canvas{touch-action:pan-y!important}}
 @media (max-width:700px){.globe-wrap{height:430px;border-radius:18px}}
+.globe-note{margin-top:14px;font-family:var(--mono);font-size:9px;letter-spacing:.8px;color:var(--soft);text-transform:uppercase}

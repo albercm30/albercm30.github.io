@@ -16,7 +16,13 @@
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   var started = false;
 
-  function fail() { sec.hidden = true; }
+  function fail() {
+    sec.style.display = "none";
+    var n = document.getElementById("globe-note"); if (n) n.style.display = "none";
+    var tab = document.querySelector('#map-tabs [data-map="globe"]'), next = document.querySelector('#map-tabs [data-map="leaflet"]');
+    if (tab) tab.style.display = "none";
+    if (next) next.click();
+  }
 
   function load(src) {
     return new Promise(function (ok, ko) {

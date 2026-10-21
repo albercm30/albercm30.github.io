@@ -18,6 +18,9 @@ T.update({
 "Drag to rotate. Gold countries are the ones I've been to; click one to open its page.":
     "Arrastra para girar. Los países dorados son los que he visitado; haz clic en uno para abrir su página.",
 "Interactive 3D globe of the countries visited.": "Globo 3D interactivo de los países visitados.",
+"Globe": "Globo",
+"Three views: a spinning globe, one country at a time, or every single place I've marked myself.":
+    "Tres vistas: un globo giratorio, un país cada vez, o cada lugar que he marcado yo mismo.",
 "A map of the": "Un mapa del",
 "journey.": "recorrido.",
 "Two views: one country at a time, or every single place I've marked myself.":
