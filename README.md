@@ -51,4 +51,5 @@ Never edit files under `es/` by hand; they are regenerated. Wildlife species nam
 2. Add them to `countries/<slug>/index.html` as `<div class="photo-tile"><img src=… alt=… width=… height=…></div>` — galleries keep each photo's own proportions and open in a click-to-enlarge viewer automatically.
 3. Add the photo numbers to `PH` in `js/globe.js`.
 4. **Make the text match the photos**: update the country's story, highlights and route in both `data/countries.json` and the page, so the places and experiences shown in the photos are also described.
-5. Add Spanish for every new caption/sentence in `scripts/es_countries.py`, then run `python scripts/build_search_index.py && python scripts/build_es.py`.
+5. **Photography page**: add the best new shots to `photography/index.html` as `<article class="photo-card">` cards in the matching category rail (Wildlife / Nature / Cities / People), titled and tagged like `Wildlife · Thailand`, and remove placeholder cards that are no longer needed.
+6. Add Spanish for every new caption/sentence in `scripts/es_countries.py`, then run `python scripts/build_search_index.py && python scripts/build_es.py`.

@@ -37,10 +37,10 @@ document.addEventListener("keydown",e=>{const t=e.target,typing=t&&(t.tagName===
 var I=window.__i18n||{lang:"en"},ES=I.lang==="es";
 var L=ES?{close:"Cerrar",prev:"Anterior",next:"Siguiente",of:"de",enlarge:"ampliar"}:{close:"Close",prev:"Previous",next:"Next",of:"of",enlarge:"enlarge"};
 document.addEventListener("DOMContentLoaded",function(){
-var imgs=[].slice.call(document.querySelectorAll(".photo-tile > img"));
-if(!imgs.length)return;
+var all=[].slice.call(document.querySelectorAll(".photo-tile > img, .photo-card > img")),imgs=all;
+if(!all.length)return;
 var box,img,cap,cur=0,opener=null,x0=null;
-imgs.forEach(function(im,i){var t=im.parentNode;t.tabIndex=0;t.setAttribute("role","button");t.setAttribute("aria-label",(im.alt||"")+" ("+L.enlarge+")");
+all.forEach(function(im,i){var t=im.parentNode;t.tabIndex=0;t.setAttribute("role","button");t.setAttribute("aria-label",(im.alt||"")+" ("+L.enlarge+")");
 t.addEventListener("click",function(){open(i,t)});
 t.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();open(i,t)}})});
 function mk(tag,cls,txt,lab){var e=document.createElement(tag);if(cls)e.className=cls;if(txt)e.textContent=txt;if(lab){e.setAttribute("aria-label",lab);e.type="button"}return e}
@@ -60,7 +60,7 @@ function show(i){cur=(i+imgs.length)%imgs.length;var s=imgs[cur];img.classList.r
 var full=s.currentSrc||s.src;img.onload=function(){img.classList.add("on")};img.src=full;img.alt=s.alt||"";
 cap.innerHTML="";cap.appendChild(document.createTextNode(s.alt||""));var sm=document.createElement("small");sm.textContent=(cur+1)+" "+L.of+" "+imgs.length;cap.appendChild(sm);
 [1,-1].forEach(function(d){var o=imgs[(cur+d+imgs.length)%imgs.length];if(o){var pre=new Image();pre.src=o.currentSrc||o.src}})}
-function open(i,from){if(!box)build();opener=from;box.classList.add("open");document.documentElement.style.overflow="hidden";show(i);box.querySelector(".lb-close").focus()}
+function open(i,from){if(!box)build();var im=all[i],gp=im.closest(".photo-rail,.photo-grid");imgs=gp?all.filter(function(x){return gp.contains(x)}):all;i=imgs.indexOf(im);opener=from;box.classList.add("open");document.documentElement.style.overflow="hidden";show(i);box.querySelector(".lb-close").focus()}
 function close(){box.classList.remove("open");document.documentElement.style.overflow="";img.removeAttribute("src");if(opener)opener.focus()}
 });
 })();

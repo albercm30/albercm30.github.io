@@ -57,7 +57,7 @@ T.update({
 "La Paz": "La Paz", "Cabo Pulmo": "Cabo Pulmo", "Tulum": "Tulum",
 "Marrakech": "Marrakech", "Atlas Mountains": "Montañas del Atlas", "Merzouga": "Merzouga",
 "Amsterdam": "Ámsterdam", "Utrecht": "Utrecht", "Rotterdam": "Róterdam",
-"Christchurch": "Christchurch", "Sydney": "Sídney", "Abel Tasman": "Abel Tasman", "Lindis Pass": "Paso de Lindis", "Otago Coast": "Costa de Otago", "Mount Cook": "Monte Cook", "Wanaka": "Wanaka", "Queenstown": "Queenstown",
+"Christchurch": "Christchurch", "Khao Yai": "Khao Yai", "Sydney": "Sídney", "Abel Tasman": "Abel Tasman", "Lindis Pass": "Paso de Lindis", "Otago Coast": "Costa de Otago", "Mount Cook": "Monte Cook", "Wanaka": "Wanaka", "Queenstown": "Queenstown",
 "Muscat": "Mascate", "Nizwa": "Nizwa", "Wahiba Sands": "Arenas de Wahiba",
 "Manila": "Manila", "Palawan": "Palawan", "Cebu": "Cebú",
 "Warsaw": "Varsovia", "Kraków": "Cracovia",
@@ -450,6 +450,44 @@ T.update({
     "La Ópera de Sídney bajo el puente de la bahía en un día nublado",
 "A humpback whale surfacing in choppy water off the coast":
     "Una ballena jorobada saliendo a la superficie en aguas picadas frente a la costa",
+"Bangkok's skyline rising above temple roofs":
+    "El horizonte de Bangkok sobre los tejados de los templos",
+"Neon signs lighting up Yaowarat Road in Bangkok's Chinatown at night":
+    "Letreros de neón iluminando la calle Yaowarat, en el barrio chino de Bangkok, de noche",
+"A green pit viper coiled on a branch":
+    "Una víbora verde enroscada en una rama",
+"A giant golden orb-weaver spider in the centre of its web":
+    "Una araña tejedora dorada gigante en el centro de su tela",
+"A great hornbill at its nest hole with a snake in its beak":
+    "Un cálao grande en la entrada de su nido con una serpiente en el pico",
+"A golden tree snake coiled in a branch on a night walk":
+    "Una serpiente arborícola dorada enroscada en una rama durante un paseo nocturno",
+"A spiny forest lizard clinging to a sapling":
+    "Un lagarto espinoso del bosque agarrado a un arbolito",
+"A mother elephant and two calves crossing the road as visitors watch":
+    "Una elefanta con dos crías cruzando la carretera mientras los visitantes observan",
+"A young elephant raising its trunk at the forest edge":
+    "Un elefante joven levantando la trompa en el borde del bosque",
+"A Malayan porcupine with its quills raised":
+    "Un puercoespín malayo con las púas erizadas",
+"A tarantula at the mouth of its burrow":
+    "Una tarántula en la entrada de su madriguera",
+"Gilded gables and red-tiled roofs at a Bangkok temple":
+    "Frontones dorados y tejados rojos en un templo de Bangkok",
+"Sunset over the sea with dive boats and a longtail anchored off the beach":
+    "Atardecer sobre el mar con barcos de buceo y una barca longtail frente a la playa",
+"Thailand mixed jungle and ocean in a way few other countries manage — wild elephants and forest trails inland at Khao Yai, reefs and dive sites further south around Koh Tao.":
+    "Tailandia mezcló selva y océano como pocos países logran: elefantes salvajes y senderos de bosque en el interior, en Khao Yai, y arrecifes y puntos de buceo más al sur, alrededor de Koh Tao.",
+"Bangkok set the scene with neon-lit Chinatown nights and gilded temple roofs. Then came the jungle: elephants crossing the road with their calves, a great hornbill at its nest, pit vipers and golden tree snakes on night walks, and everything from porcupines to tarantulas along the trails.":
+    "Bangkok puso el escenario con las noches de neón del barrio chino y los tejados dorados de los templos. Luego llegó la selva: elefantes cruzando la carretera con sus crías, un cálao grande en su nido, víboras verdes y serpientes arborícolas doradas en paseos nocturnos, y de todo, de puercoespines a tarántulas, a lo largo de los senderos.",
+"Watching wild elephants and their calves cross the road in Khao Yai.":
+    "Ver elefantes salvajes y sus crías cruzar la carretera en Khao Yai.",
+"Night walks and jungle treks for snakes, spiders, hornbills and porcupines.":
+    "Paseos nocturnos y trekking por la selva para ver serpientes, arañas, cálaos y puercoespines.",
+"Bangkok's Chinatown neon and temple roofs against the skyline.":
+    "El neón del barrio chino de Bangkok y los tejados de los templos frente al horizonte.",
+"Sunset over the Gulf of Thailand from the beach at Koh Tao.":
+    "Atardecer sobre el golfo de Tailandia desde la playa de Koh Tao.",
 # Oman
 "Dramatic wadis, desert dunes and a quieter side of the Gulf.": "Wadis espectaculares, dunas del desierto y una cara más tranquila del Golfo.",
 "Oman is one of the most underrated countries for landscape — canyons, wadis and mountains that don't get nearly enough attention compared to its neighbours.":
