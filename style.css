@@ -346,12 +346,10 @@ main:focus{outline:none}
 .lb-close{top:16px;right:16px}.lb-prev{left:12px;top:50%;transform:translateY(-50%)}.lb-next{right:12px;top:50%;transform:translateY(-50%)}
 @media (max-width:700px){.lb{padding:56px 10px 80px}.lb-prev,.lb-next{top:auto;bottom:16px;transform:none}.lb-prev{left:16px}.lb-next{right:16px}.lb-cap{padding:0 70px;bottom:20px;font-size:12px}}
 
-/* ===== Country outline ===== */
-.shape-section{padding:30px 0 70px}
-.shape-grid-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:center}
-.shape-copy h2{font:400 44px/1.05 var(--serif);margin-top:10px}.shape-copy h2 em{color:var(--green)}
-.shape-art{position:relative;border:1px solid var(--line);border-radius:22px;background:radial-gradient(120% 90% at 30% 20%,var(--white),var(--sage));padding:10px;overflow:hidden}
-.shape-svg{width:100%;height:auto;display:block;max-height:480px}
+/* ===== Country outline (in the country hero) ===== */
+.hero-shape{display:flex;flex-direction:column;align-items:center;gap:14px}
+.hero-shape .shape-svg{width:100%;max-width:400px;height:auto;max-height:340px;display:block}
+.hero-meta{font:400 11px var(--mono);letter-spacing:1.2px;text-transform:uppercase;color:var(--soft)}
 .shape-grid{fill:none;stroke:var(--green);stroke-opacity:.28;stroke-width:1}
 .shape-shadow{fill:var(--green2);opacity:.16}
 .shape-fill{fill:url(#shp-g);opacity:.9;transition:opacity 1s .9s}
@@ -361,10 +359,8 @@ main:focus{outline:none}
 @keyframes shpPulse{0%{transform:scale(.6);opacity:.5}100%{transform:scale(3.4);opacity:0}}
 @media(prefers-reduced-motion:no-preference){
 .shape-art:not(.in) .shape-line{stroke-dashoffset:1}.shape-art:not(.in) .shape-fill{opacity:0}
-.shape-art .shape-line{transition:stroke-dashoffset 2.2s cubic-bezier(.4,0,.2,1)}
-.shape-art.in .shape-svg{animation:shpFloat 9s ease-in-out 3s infinite}}
-@keyframes shpFloat{50%{transform:translateY(-5px)}}
-@media(max-width:860px){.shape-grid-wrap{grid-template-columns:1fr;gap:24px}.shape-copy h2{font-size:36px}}
+.shape-art .shape-line{transition:stroke-dashoffset 2.2s cubic-bezier(.4,0,.2,1)}}
+@media(max-width:900px){.country-hero-grid{grid-template-columns:1fr}.hero-shape{align-items:flex-start}.hero-shape .shape-svg{max-width:300px}}
 
 /* ===== Elevation profile extras ===== */
 .elevation-chart.interactive{cursor:crosshair;overflow:visible}
@@ -377,8 +373,3 @@ main:focus{outline:none}
 .elevation-chart .scrub-tip rect{fill:var(--dark);opacity:.92}
 .elevation-chart .scrub-tip text{fill:#fff;font-size:10px}
 
-/* translucent hero bands so the background canvas shows through */
-.page-hero{background:rgba(237,241,233,.6)}
-:root:not([data-theme="light"]) .page-hero{background:rgba(26,37,29,.6)}
-:root[data-theme="dark"] .page-hero{background:rgba(26,37,29,.6)}
-@media(prefers-color-scheme:light){:root:not([data-theme="dark"]) .page-hero{background:rgba(237,241,233,.6)}}

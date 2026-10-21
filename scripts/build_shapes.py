@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Inject an outline-of-the-country section into every country page.
+"""Regenerate the country outline shown in the country hero (the <!--shape--> block inside .hero-shape).
 
 Usage: python scripts/build_shapes.py path/to/ne_10m_admin_0_countries.geojson
 (Natural Earth, public domain: https://github.com/nvkelso/natural-earth-vector/tree/master/geojson)
@@ -116,14 +116,12 @@ def main(geo_path):
         slug = c["slug"]; page = ROOT/"countries"/slug/"index.html"
         if slug not in A3 or A3[slug] not in by or not page.exists(): print("skip", slug); continue
         path, cross, pin = shape(slug, by[A3[slug]], c.get("coords"))
-        name = HEADING.get(slug, c["name"]+".")
-        sec = ('<!--shape--><section class="shape-section"><div class="shell shape-grid-wrap"><div class="shape-copy"><p class="eyebrow">THE SHAPE</p>'
-               '<h2>The shape of<br><em>%s</em></h2></div><div class="shape-art">%s</div></div></section><!--/shape-->' % (name, svg(path, cross, pin)))
         h = page.read_text(encoding="utf-8")
-        if "<!--shape-->" in h: h = re.sub(r"<!--shape-->.*?<!--/shape-->", lambda m: sec, h, count=1, flags=re.S)
+        svgx = svg(path, cross, pin)
+        if "<!--shape-->" in h:
+            h = re.sub(r"<!--shape-->.*?<!--/shape-->", lambda m: "<!--shape-->"+svgx+"<!--/shape-->", h, count=1, flags=re.S)
         else:
-            assert '<section class="route-section">' in h, slug
-            h = h.replace('<section class="route-section">', sec+'<section class="route-section">', 1)
+            print("no hero-shape block in", slug)
         page.write_text(h, encoding="utf-8"); print(slug, len(path)//1000, "kB")
 
 if __name__ == "__main__": main(sys.argv[1])
