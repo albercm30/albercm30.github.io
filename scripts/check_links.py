@@ -39,6 +39,8 @@ class Collector(HTMLParser):
             self.ids.add(a["id"])
         if tag == "a" and a.get("name"):
             self.ids.add(a["name"])
+        if tag == "link" and (a.get("rel") or "").lower() in ("preconnect", "dns-prefetch"):
+            return  # bare origins, not pages
         attr = LINK_ATTRS.get(tag)
         if attr and a.get(attr):
             self.links.append((tag, a[attr].strip()))
