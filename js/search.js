@@ -13,19 +13,7 @@
     hint: '<kbd>↑</kbd> <kbd>↓</kbd> to move · <kbd>Enter</kbd> to open · <kbd>Esc</kbd> to close',
     none: "No results. Try a country, a hike or an animal.", loading: "Loading…"
   };
-  var ES_TITLES = { "/": "Inicio", "/professional/": "Profesional", "/travel/": "Viajes", "/mountains/": "Montañas", "/diving/": "Buceo", "/wildlife/": "Fauna", "/photography/": "Fotografía", "/contact/": "Contacto", "/projects/ai-incident-classification/": "Clasificación de incidentes de IA", "/projects/bachelor-thesis/": "TFG: consumo energético de los anuncios online" };
-  var ES_WORDS = [["Project case study", "Caso de estudio"], ["Wildlife", "Fauna"], ["Country", "País"], ["Hike", "Ruta"], ["Page", "Página"], ["Volcano", "Volcán"], ["New Zealand", "Nueva Zelanda"], ["Dolomites", "Dolomitas"], ["Italy", "Italia"], ["Spain", "España"], ["North America", "Norteamérica"], ["South America", "Sudamérica"], ["Europe", "Europa"], ["Africa", "África"], ["Oceania", "Oceanía"]];
-  var ES_TAGS = { Page: "Página", Project: "Proyecto", Country: "País", Hike: "Ruta", Wildlife: "Fauna" };
-  function toEs(e) {
-    if (e.es) return e;
-    e.es = true;
-    if (I18.pages.indexOf(e.u) > -1) { if (ES_TITLES[e.u] && (e.g === "Page" || e.g === "Project")) e.t = ES_TITLES[e.u]; e.u = e.u === "/" ? "/es/" : "/es" + e.u; }
-    var parts = String(e.s || "").split(" · ");
-    parts = parts.map(function (p) { ES_WORDS.forEach(function (w) { p = p.split(w[0]).join(w[1]); }); return p; });
-    e.s = parts.join(" · ");
-    e.gl = ES_TAGS[e.g] || e.g;
-    return e;
-  }
+  var cn = function (n) { return I18.country ? I18.country(n) : n; };
   var norm = function (s) { return String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(); };
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
   var stamp = Math.floor(Date.now() / 3600000);
@@ -52,7 +40,7 @@
     if (data) return Promise.resolve(data);
     if (loading) return loading;
     var get = function (u) { return fetch(u + "?v=" + stamp).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); };
-    loading = Promise.all([get("/data/search-index.json"), get("/data/wildlife.json")]).then(function (a) {
+    loading = Promise.all([get(ES ? "/data/search-index-es.json" : "/data/search-index.json"), get("/data/wildlife.json")]).then(function (a) {
       var items = (a[0] || []).slice();
       var w = a[1] && a[1].observations;
       if (w) {
@@ -60,12 +48,11 @@
         w.forEach(function (o) {
           var name = o.common_name || o.name; if (!name) return;
           var key = norm(name);
-          if (!seen[key]) { seen[key] = { t: name, s: "Wildlife · " + (o.scientific_name || ""), u: "/wildlife/", g: "Wildlife", k: (o.scientific_name || "") + " ", countries: {} }; items.push(seen[key]); }
+          if (!seen[key]) { seen[key] = { t: name, s: (ES ? "Fauna" : "Wildlife") + " · " + (o.scientific_name || ""), u: (ES ? "/es" : "") + "/wildlife/", g: "Wildlife", gl: ES ? "Fauna" : "Wildlife", k: (o.scientific_name || "") + " ", countries: {} }; items.push(seen[key]); }
           if (o.country) seen[key].countries[o.country] = 1;
         });
-        Object.keys(seen).forEach(function (k) { var e = seen[k]; var cs = Object.keys(e.countries); e.k += cs.join(" "); if (cs.length) e.s += " · " + cs.slice(0, 2).join(", "); delete e.countries; });
+        Object.keys(seen).forEach(function (k) { var e = seen[k]; var cs = Object.keys(e.countries); e.k += cs.join(" "); if (cs.length) e.s += " · " + cs.slice(0, 2).map(cn).join(", "); delete e.countries; });
       }
-      if (ES) items.forEach(toEs);
       items.forEach(function (e) { e._t = norm(e.t); e._h = norm(e.t + " " + e.s + " " + e.k); });
       data = items; return items;
     });

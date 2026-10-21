@@ -269,11 +269,32 @@ T.update({
 "View on GitHub ↗": "Ver en GitHub ↗",
 })
 
-exec(open(__file__.replace("es_strings.py", "es_projects.py"), encoding="utf8").read())
+for _name in ("es_projects", "es_countries", "es_pages"):
+    exec(open(__file__.replace("es_strings.py", _name + ".py"), encoding="utf8").read())
 
 # Texts that are identical in Spanish (names, technologies, places). Anything not found in T or KEEP stops the build.
 KEEP = set("""
 Alberto Castellano Macías
+51 min
+Malapascua
+Bantigue
+East Garden / Ka Osting
+North Point / Deep Slope
+Monad Shoal
+Kimud Shoal
+Japanese Gardens
+White Rock
+Chumphon Pinnacle
+Green Rock
+Norman Reef — Playgrounds
+Troppos — Norman Reef
+El Bajo
+El Cantil
+Open Water
+Advanced Open Water
+© 2026 Alberto Castellano
+iNaturalist
+albercm30
 Universidad Carlos III de Madrid
 TypeScript
 Tailwind CSS

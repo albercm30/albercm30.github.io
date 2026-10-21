@@ -11,7 +11,7 @@ The English HTML is the source of truth. For every page listed in PAGES this scr
   * writes the result to es/<same path>.
 
 It stops with a list of untranslated strings if a page gets new English text, so nothing is silently left out.
-Edit the Spanish in scripts/es_strings.py (and es_projects.py), then run it again.
+Edit the Spanish in scripts/es_strings.py (and es_projects.py, es_countries.py, es_pages.py), then run it again.
 """
 import html
 import json
@@ -20,15 +20,23 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from es_strings import T, KEEP  # noqa: E402
+from es_strings import T, KEEP, PAGE_T  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://albercm30.github.io"
 
-PAGES = ["index.html", "professional/index.html", "contact/index.html", "mountains/index.html"] + [
-    f"projects/{p}/index.html"
-    for p in "ai-incident-classification bachelor-thesis flights-tracker kondo wildcast wildlife-data-explorer wildstays".split()
-]
+def discover():
+    """Every index.html on the site (home, sections, projects, countries...). 404.html is handled separately."""
+    skip = ("es/", "fx/", "scripts/", "node_modules/", ".git/", "assets/", "data/", "js/")
+    out = []
+    for p in ROOT.glob("**/index.html"):
+        rel = p.relative_to(ROOT).as_posix()
+        if not rel.startswith(skip):
+            out.append(rel)
+    return sorted(out, key=lambda r: (r != "index.html", r))
+
+
+PAGES = discover()
 
 
 def url_path(page):
@@ -37,8 +45,8 @@ def url_path(page):
 
 TRANSLATED = {url_path(p) for p in PAGES}
 
-LANG_NOTE = ('<p class="lang-note shell">Las secciones de Viajes, Buceo, Fauna y Fotografía están, por ahora, '
-             'solo en inglés. <a href="{en}" hreflang="en" lang="en">Read this page in English</a>.</p>')
+# Pages whose inline scripts contain display text (bucket list, map popups, labels): known strings are translated.
+SCRIPT_LITERAL_PAGES = {"travel/index.html", "diving/index.html", "wildlife/index.html"}
 
 # Literal replacements inside inline <script> blocks (form messages, map labels...).
 SCRIPT_REPL = {
@@ -52,6 +60,18 @@ SCRIPT_REPL = {
         ('>email me directly</a>', '>escríbeme un correo directamente</a>'),
         ('"Message from your website"', '"Mensaje desde tu web"'),
         ('"New message from albercm30.github.io"', '"Nuevo mensaje desde albercm30.github.io (ES)"'),
+    ],
+    "travel/index.html": [
+        ('href="/countries/${country.slug}/"', 'href="/es/countries/${country.slug}/"'),
+        ('See the trip ↗', 'Ver el viaje ↗'),
+    ],
+    "wildlife/index.html": [
+        ("${escapeHtml(country)}", "${escapeHtml(window.__i18n.country(country))}"),
+        ("IMAGE UNAVAILABLE", "IMAGEN NO DISPONIBLE"),
+        ("NO PHOTOGRAPH", "SIN FOTOGRAFÍA"),
+        ("No country data available.", "No hay datos de países."),
+        ("Open on iNaturalist ↗", "Abrir en iNaturalist ↗"),
+        ("View observation ↗", "Ver observación ↗"),
     ],
     "mountains/index.html": [
         ('var fmt=function(n){return Math.round(n).toLocaleString("en-US")};',
@@ -84,22 +104,82 @@ def esc_attr(s):
     return esc_text(s).replace('"', "&quot;")
 
 
-def translate(key, page, where):
-    """Return Spanish for `key`, or None to leave it unchanged."""
+def lookup(key, page):
+    d = PAGE_T.get(page, {})
+    if key in d:
+        return d[key]
     if key in T:
         return T[key]
     if key in KEEP:
-        return None
-    suffix = " · Alberto Castellano Macías"
-    if key.endswith(suffix) and key[: -len(suffix)] in KEEP:
-        return None
-    if NUMERIC.match(key):
-        out = num_es(key)
-        return out if out != key else None
-    if not HAS_WORDS.search(key):
-        return None
-    missing.append((page, where, key))
+        return key
     return None
+
+
+COORD = re.compile(r"^(\d+\.\d)°([NS]), (\d+\.\d)°([EW])$")
+
+
+def compose(key, page):
+    """Spanish for `key`, built from smaller pieces when needed. None if something is unknown."""
+    r = lookup(key, page)
+    if r is not None:
+        return r
+    suffix = " · Alberto Castellano Macías"
+    if key.endswith(suffix):
+        p = compose(key[: -len(suffix)], page)
+        return None if p is None else p + suffix
+    m = re.match(r"^(\d+) visited$", key)
+    if m:
+        return m.group(1) + (" visitado" if int(m.group(1)) == 1 else " visitados")
+    m = re.match(r"^(.+) · add a photo$", key)
+    if m:
+        p = compose(m.group(1), page)
+        return None if p is None else p + " · añade una foto"
+    m = COORD.match(key)
+    if m:
+        return f"{m.group(1).replace('.', ',')}°{m.group(2)}, {m.group(3).replace('.', ',')}°{'O' if m.group(4) == 'W' else m.group(4)}"
+    if NUMERIC.match(key):
+        return num_es(key)
+    if key.endswith(".") and len(key) > 1:
+        p = lookup(key[:-1], page)
+        if p is not None:
+            return p + "."
+    for sep in (" · ", " / ", " — ", ", "):
+        if sep in key:
+            parts = [compose(p, page) for p in key.split(sep)]
+            if all(p is not None for p in parts):
+                return sep.join(parts)
+    if not HAS_WORDS.search(key):
+        return key
+    return None
+
+
+def translate(key, page, where):
+    """Return Spanish for `key`, or None to leave it unchanged (unknown keys are reported)."""
+    r = compose(key, page)
+    if r is None:
+        missing.append((page, where, key))
+        return None
+    return None if r == key else r
+
+
+def translate_script_literals(src, page):
+    """Translate "double quoted" JS strings that are known display text (bucket list, popups, labels)."""
+    def lit(m):
+        inner = m.group(1)
+        try:
+            val = json.loads('"' + inner + '"')
+        except ValueError:
+            return m.group(0)
+        key = " ".join(val.split())
+        if not key or not HAS_WORDS.search(key):
+            return m.group(0)
+        r = compose(key, page)
+        if r is None or r == key:
+            return m.group(0)
+        lead = val[: len(val) - len(val.lstrip())]
+        trail = val[len(val.rstrip()):]
+        return json.dumps(lead + r + trail, ensure_ascii=False)
+    return re.sub(r'"((?:[^"\\\n]|\\.)*)"', lit, src)
 
 
 def es_href(href):
@@ -192,15 +272,15 @@ def build_page(page):
                 m = re.match(r"(<script[^>]*>)(.*)(</script>)$", p, re.S)
                 data = fix_ld(json.loads(m.group(2)), page)
                 out.append(m.group(1) + json.dumps(data, ensure_ascii=False, separators=(",", ":")) + m.group(3))
-            elif "src=" in p.split(">", 1)[0] or page not in SCRIPT_REPL:
+            elif "src=" in p.split(">", 1)[0]:
                 out.append(p)
             else:
                 s = p
-                for a, b in SCRIPT_REPL[page]:
-                    if a not in s:
-                        # only apply replacements that belong to this particular script block
-                        continue
-                    s = s.replace(a, b)
+                if page in SCRIPT_LITERAL_PAGES:
+                    s = translate_script_literals(s, page)
+                for a, b in SCRIPT_REPL.get(page, []):
+                    if a in s:
+                        s = s.replace(a, b)
                 out.append(s)
         elif p.startswith("</"):
             out.append(p)
@@ -230,9 +310,6 @@ def build_page(page):
     res, n = re.subn(r'(<link rel="canonical" href="[^"]*">)', lambda m: m.group(1) + block, res, count=1)
     if n != 1:
         missing.append((page, "head", "no canonical link"))
-    res, n = re.subn(r'(<footer class="footer shell">)', lambda m: LANG_NOTE.format(en=url_path(page)) + m.group(1), res, count=1)
-    if n != 1:
-        missing.append((page, "footer", "no footer"))
     return res
 
 
@@ -279,6 +356,38 @@ def update_sitemap():
     f.write_text(xml, encoding="utf8", newline="")
 
 
+def build_search_index_es():
+    """data/search-index-es.json: the English search index with Spanish titles, descriptions and links."""
+    src = ROOT / "data" / "search-index.json"
+    if not src.exists():
+        return
+    suffix = " · Alberto Castellano Macías"
+    out = []
+    for e in json.loads(src.read_text(encoding="utf8")):
+        u = e["u"]
+        n = dict(e)
+        n["u"] = "/es" + u
+        page_file = ROOT / "es" / u.strip("/") / "index.html" if u != "/" else ROOT / "es" / "index.html"
+        if e["g"] in ("Page", "Project", "Country") and page_file.exists():
+            h = page_file.read_text(encoding="utf8")
+            t = re.search(r"<title>(.*?)</title>", h, re.S)
+            d = re.search(r'<meta name="description" content="([^"]*)"', h)
+            if t:
+                n["t"] = html.unescape(t.group(1)).replace(suffix, "").strip()
+            if d:
+                n["k"] = html.unescape(d.group(1)).strip()
+            if n["t"] == "Home" or u == "/":
+                n["t"] = "Inicio"
+        parts = []
+        for p in e["s"].split(" · "):
+            r = compose(p, "") or {"Page": "Página", "Project case study": "Caso de estudio", "Country": "País", "Hike": "Ruta"}.get(p, p)
+            parts.append(r)
+        n["s"] = " · ".join(parts)
+        n["gl"] = {"Page": "Página", "Project": "Proyecto", "Country": "País", "Hike": "Ruta", "Wildlife": "Fauna"}.get(e["g"], e["g"])
+        out.append(n)
+    (ROOT / "data" / "search-index-es.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf8", newline="")
+
+
 def main():
     built = []
     for page in PAGES:
@@ -287,7 +396,7 @@ def main():
     if missing:
         print("Untranslated strings (add them to scripts/es_strings.py or es_projects.py):\n")
         for page, where, key in missing:
-            print(f"  [{page}] ({where}) {key[:160]!r}")
+            print(f"  [{page}] ({where}) {key!r}")
         sys.exit(1)
     for page, res in built:
         dest = ROOT / "es" / page
@@ -295,6 +404,7 @@ def main():
         dest.write_text(res, encoding="utf8", newline="")
         patch_english(page)
     update_sitemap()
+    build_search_index_es()
     print(f"Built {len(built)} Spanish pages in es/ and added hreflang to the English twins.")
 
 

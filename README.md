@@ -33,13 +33,13 @@ No Python server is required after deployment.
 
 ## Spanish version (`/es/`)
 
-Home, Professional, Contact, Mountains and the seven project case studies exist in Spanish. The English HTML is the source of truth:
+Every page has a Spanish twin under `/es/` (home, professional, projects, mountains, travel, the 38 countries, diving, wildlife, photography, contact). The EN/ES button in the nav swaps `/es/` in and out of the current URL, so you stay on the same page and keep navigating in that language. The English HTML is the source of truth:
 
-1. Edit the English page as usual.
-2. If you added new English text, add its Spanish to `scripts/es_strings.py` (or `scripts/es_projects.py`).
-3. Run `python scripts/build_es.py`. It rewrites `es/`, the `hreflang` tags and the sitemap, and stops with a list of any text that still needs a translation.
+1. Edit the English page as usual (or regenerate the country pages).
+2. If you added new English text, add its Spanish to `scripts/es_strings.py`, `es_projects.py`, `es_countries.py` or `es_pages.py`.
+3. Run `python scripts/build_search_index.py` and then `python scripts/build_es.py`. The second one rewrites `es/`, the `hreflang` tags, the sitemap and `data/search-index-es.json`, and stops with a list of any text that still needs a translation.
 
-Never edit files under `es/` by hand; they are regenerated. Travel, Diving, Wildlife, Photography and the country pages are English only for now.
+Never edit files under `es/` by hand; they are regenerated. Wildlife species names come from iNaturalist and stay in English.
 
 ## Broken-link check
 

@@ -1,0 +1,1071 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script><meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Viajes · Alberto Castellano Macías</title>
+<meta name="description" content="Un archivo de campo de 38 países en cinco continentes: rutas, momentos destacados y la historia detrás de cada viaje."><link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"><meta property="og:type" content="website"><meta property="og:title" content="Viajes · Alberto Castellano Macías"><meta property="og:description" content="Un archivo de campo de 38 países en cinco continentes: rutas, momentos destacados y la historia detrás de cada viaje."><link rel="canonical" href="https://albercm30.github.io/es/travel/"><link rel="alternate" hreflang="en" href="https://albercm30.github.io/travel/"><link rel="alternate" hreflang="es" href="https://albercm30.github.io/es/travel/"><link rel="alternate" hreflang="x-default" href="https://albercm30.github.io/travel/"><meta property="og:locale" content="es_ES"><meta property="og:locale:alternate" content="en_US"><meta property="og:url" content="https://albercm30.github.io/es/travel/"><meta property="og:site_name" content="Alberto Castellano Macías"><meta property="og:image" content="https://albercm30.github.io/assets/og/es/travel.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:image" content="https://albercm30.github.io/assets/og/es/travel.jpg"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+html,body{overflow-x:hidden}
+.world-map{width:100%;height:560px;border:1px solid var(--line);overflow:hidden;background:#dce5df;margin-top:18px}
+#world-map{width:100%;height:100%}
+.leaflet-container{font-family:var(--sans),"DM Sans",sans-serif;background:#dce5df}
+.leaflet-container img{max-width:none!important}
+.leaflet-container .leaflet-tile{max-width:none!important;max-height:none!important}
+.leaflet-container .leaflet-marker-icon,.leaflet-container .leaflet-marker-shadow{max-width:none!important;max-height:none!important}
+.world-map-legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px}
+.legend-item{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:9px;letter-spacing:.8px;color:var(--soft);text-transform:uppercase}
+.legend-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.country-popup strong{display:block;font-family:var(--serif);font-size:20px;font-weight:400;line-height:1.05;margin-bottom:4px;color:#20231f}
+.country-popup .popup-continent{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.8px;text-transform:uppercase;color:#60675f;margin-bottom:8px}
+.country-popup .popup-focus{font-size:12px;color:#505950;margin-bottom:8px}
+.country-popup a{font-size:11px;font-weight:800;color:var(--green2)}
+.bucket-summary{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:45px}
+.bucket-number{font-family:var(--serif);font-size:clamp(54px,8vw,100px);line-height:.9;letter-spacing:-3px}
+.bucket-number small{font-family:var(--mono);font-size:12px;letter-spacing:1.5px;color:var(--soft)}
+.bucket-progress{width:280px;max-width:100%}
+.bucket-progress-bar{height:5px;background:#d8ddd5;overflow:hidden;margin-top:12px}
+.bucket-progress-fill{height:100%;width:0%;background:var(--green);transition:width .35s ease}
+.bucket-category{border-top:1px solid var(--line);margin-top:40px;padding-top:30px;min-width:0}
+.bucket-category-title{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:18px}
+.bucket-category-title h3{margin:0;font-family:var(--serif);font-size:34px;font-weight:400}
+.bucket-category-title span{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--soft);text-transform:uppercase}
+.bucket-list{border-top:1px solid var(--line);min-width:0}
+.bucket-item{display:grid;grid-template-columns:52px 28px minmax(0,1fr);gap:18px;align-items:center;border-bottom:1px solid var(--line);padding:16px 4px;min-width:0}
+.bucket-check{width:22px;height:22px;border:1px solid var(--soft);display:grid;place-items:center;color:transparent;flex-shrink:0}
+.bucket-check.is-complete{background:var(--green);border-color:var(--green);color:white;font-size:13px}
+.bucket-item.done .bucket-title{text-decoration:line-through;opacity:.75}
+.bucket-index{font-family:var(--mono);font-size:11px;color:var(--soft)}
+.bucket-title{font-size:16px;min-width:0}
+@media (max-width:760px){
+  .bucket-summary{display:block}
+  .bucket-progress{margin-top:25px;width:100%}
+  .bucket-item{grid-template-columns:30px 28px minmax(0,1fr)}
+  .world-map{height:420px}
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Saltar al contenido</a><div id="nav"></div><main id="main" tabindex="-1">
+
+<section class="page-hero">
+  <div class="shell">
+    <p class="eyebrow">EL MUNDO</p>
+    <h1 class="page-title">Lugares que se convirtieron en<br><em>recuerdos.</em></h1>
+    <p class="intro">Un archivo en crecimiento de viajes, países, rutas y experiencias: de senderos de selva y volcanes a algunos de los océanos más ricos del mundo.</p>
+  </div>
+</section>
+
+<section class="section shell" style="padding-top:20px;padding-bottom:20px">
+  <div class="stats reveal">
+    <div class="stat"><strong>38</strong><span>Países</span></div>
+    <div class="stat"><strong>5</strong><span>Continentes</span></div>
+    <div class="stat"><strong>19</strong><span>Inmersiones</span></div>
+    <div class="stat"><strong>7</strong><span>Montañas</span></div>
+    <div class="stat"><strong>230+</strong><span>Especies</span></div>
+  </div>
+</section>
+
+<section class="section shell" style="padding-top:20px;padding-bottom:15px">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">DÓNDE HE ESTADO</p>
+      <h2>Un mapa del<br><em>recorrido.</em></h2>
+    </div>
+    <p class="section-note">Dos vistas: un país cada vez, o cada uno de los lugares que he marcado yo mismo.</p>
+  </div>
+
+  <div class="filters" id="map-tabs">
+    <button class="filter active" data-map="leaflet" type="button">Por país</button>
+    <button class="filter" data-map="google" type="button">Cada lugar donde he estado</button>
+  </div>
+
+  <div class="world-map" id="map-panel-leaflet">
+    <div id="world-map"></div>
+  </div>
+  <div class="world-map-legend" id="map-legend">
+    <div class="legend-item"><span class="legend-dot" style="background:#8a7b4b"></span>Asia</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#40573b"></span>Europa</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#a06b3a"></span>África</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#55768b"></span>Norteamérica</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#80604f"></span>Oceanía</div>
+  </div>
+
+  <div class="world-map" id="map-panel-google" style="display:none">
+    <iframe src="https://www.google.com/maps/d/embed?mid=1I71FaMiuri4lthwFDmGFIn30gOzlYSs-&hl=es&ehbc=2E312F" loading="lazy" title="Mapa de viajes personal de Alberto" style="width:100%;height:100%;border:0;display:block"></iframe>
+  </div>
+  <p id="google-map-note" style="display:none;margin-top:14px;font-family:var(--mono);font-size:9px;letter-spacing:.8px;color:var(--soft);text-transform:uppercase">MI PROPIO MAPA COLOCADO A MANO · CADA CIUDAD, SENDERO, PUNTO DE BUCEO Y PARADA, NO SOLO PAÍSES</p>
+</section>
+
+<section class="section shell" style="padding-top:35px;padding-bottom:25px">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">ARCHIVO DE PAÍSES</p>
+      <h2>Treinta y ocho lugares,<br>un registro <em>continente a continente</em> .</h2>
+    </div>
+    <p class="section-note">Todos los países visitados, agrupados por continente. Entra para ver la ruta, los motivos y las notas de campo.</p>
+  </div>
+
+<div class="continent-group">
+  <div class="continent-head">
+    <h3>Asia</h3>
+    <span class="continent-count">16 visitados</span>
+  </div>
+  <div class="atlas-list">
+    <a class="atlas-row" href="/es/countries/china/">
+  <span class="atlas-index">01</span>
+  <span class="atlas-name">China</span>
+  <span class="atlas-tags">Gran Muralla · Pandas · Comida callejera</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/india/">
+  <span class="atlas-index">02</span>
+  <span class="atlas-name">India</span>
+  <span class="atlas-tags">Varanasi · Ghats · Cultura</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/japan/">
+  <span class="atlas-index">03</span>
+  <span class="atlas-name">Japón</span>
+  <span class="atlas-tags">Ramen · Wagyu · Ciudades</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/jordan/">
+  <span class="atlas-index">04</span>
+  <span class="atlas-name">Jordania</span>
+  <span class="atlas-tags">Petra · Desierto · Wadi Rum</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/kazakhstan/">
+  <span class="atlas-index">05</span>
+  <span class="atlas-name">Kazajistán</span>
+  <span class="atlas-tags">Estepa · Almaty · Asia Central</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/kuwait/">
+  <span class="atlas-index">06</span>
+  <span class="atlas-name">Kuwait</span>
+  <span class="atlas-tags">Golfo · Cultura · Ciudades</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/malaysia/">
+  <span class="atlas-index">07</span>
+  <span class="atlas-name">Malasia</span>
+  <span class="atlas-tags">Borneo · Selva · Orangutanes</span>
+  <span class="atlas-year">2025</span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/oman/">
+  <span class="atlas-index">08</span>
+  <span class="atlas-name">Omán</span>
+  <span class="atlas-tags">Desierto · Wadis · Costa</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/philippines/">
+  <span class="atlas-index">09</span>
+  <span class="atlas-name">Filipinas</span>
+  <span class="atlas-tags">Islas · Buceo · Playas</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/singapore/">
+  <span class="atlas-index">10</span>
+  <span class="atlas-name">Singapur</span>
+  <span class="atlas-tags">Paisaje urbano · Gastronomía · Escala</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/sri-lanka/">
+  <span class="atlas-index">11</span>
+  <span class="atlas-name">Sri Lanka</span>
+  <span class="atlas-tags">Tren de Ella · Tierra del té · Costa</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/thailand/">
+  <span class="atlas-index">12</span>
+  <span class="atlas-name">Tailandia</span>
+  <span class="atlas-tags">Buceo · Selva · Elefantes</span>
+  <span class="atlas-year">2026</span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/turkey/">
+  <span class="atlas-index">13</span>
+  <span class="atlas-name">Turquía</span>
+  <span class="atlas-tags">Capadocia · Globo aerostático · Historia</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/united-arab-emirates/">
+  <span class="atlas-index">14</span>
+  <span class="atlas-name">Emiratos Árabes Unidos</span>
+  <span class="atlas-tags">Safari por el desierto · Skyline · Cultura</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/uzbekistan/">
+  <span class="atlas-index">15</span>
+  <span class="atlas-name">Uzbekistán</span>
+  <span class="atlas-tags">Ruta de la Seda · Samarcanda · Arquitectura</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/vietnam/">
+  <span class="atlas-index">16</span>
+  <span class="atlas-name">Vietnam</span>
+  <span class="atlas-tags">Montañas · Viaje por carretera · Fauna</span>
+  <span class="atlas-year">2026</span>
+  <span class="atlas-arrow">↗</span>
+</a>
+  </div>
+</div>
+
+<div class="continent-group">
+  <div class="continent-head">
+    <h3>Europa</h3>
+    <span class="continent-count">15 visitados</span>
+  </div>
+  <div class="atlas-list">
+    <a class="atlas-row" href="/es/countries/austria/">
+  <span class="atlas-index">01</span>
+  <span class="atlas-name">Austria</span>
+  <span class="atlas-tags">Alpes · Viena · Senderismo</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/belgium/">
+  <span class="atlas-index">02</span>
+  <span class="atlas-name">Bélgica</span>
+  <span class="atlas-tags">Brujas · Cerveza · Chocolate</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/bulgaria/">
+  <span class="atlas-index">03</span>
+  <span class="atlas-name">Bulgaria</span>
+  <span class="atlas-tags">Montañas · Historia · Buena relación calidad-precio</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/croatia/">
+  <span class="atlas-index">04</span>
+  <span class="atlas-name">Croacia</span>
+  <span class="atlas-tags">Costa · Islas · Cascos antiguos</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/france/">
+  <span class="atlas-index">05</span>
+  <span class="atlas-name">Francia</span>
+  <span class="atlas-tags">París · Alpes · Campiña</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/germany/">
+  <span class="atlas-index">06</span>
+  <span class="atlas-name">Alemania</span>
+  <span class="atlas-tags">Ciudades · Cervecerías al aire libre · Historia</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/hungary/">
+  <span class="atlas-index">07</span>
+  <span class="atlas-name">Hungría</span>
+  <span class="atlas-tags">Budapest · Termas · Danubio</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/italy/">
+  <span class="atlas-index">08</span>
+  <span class="atlas-name">Italia</span>
+  <span class="atlas-tags">Dolomitas · Senderismo · Lagos</span>
+  <span class="atlas-year">2026</span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/monaco/">
+  <span class="atlas-index">09</span>
+  <span class="atlas-name">Mónaco</span>
+  <span class="atlas-tags">Riviera · Excursión de un día · Costa</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/netherlands/">
+  <span class="atlas-index">10</span>
+  <span class="atlas-name">Países Bajos</span>
+  <span class="atlas-tags">Canales · Ciclismo · Ciudades</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/poland/">
+  <span class="atlas-index">11</span>
+  <span class="atlas-name">Polonia</span>
+  <span class="atlas-tags">Historia · Cascos antiguos · Buena relación calidad-precio</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/slovakia/">
+  <span class="atlas-index">12</span>
+  <span class="atlas-name">Eslovaquia</span>
+  <span class="atlas-tags">Tatras · Castillos · Cascos antiguos</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/spain/">
+  <span class="atlas-index">13</span>
+  <span class="atlas-name">España</span>
+  <span class="atlas-tags">Islas Canarias · En casa · Volcanes</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/uk/">
+  <span class="atlas-index">14</span>
+  <span class="atlas-name">Reino Unido</span>
+  <span class="atlas-tags">Londres · Campiña · Historia</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/vatican/">
+  <span class="atlas-index">15</span>
+  <span class="atlas-name">Ciudad del Vaticano</span>
+  <span class="atlas-tags">San Pedro · Museos · Excursión de un día desde Roma</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a>
+  </div>
+</div>
+
+<div class="continent-group">
+  <div class="continent-head">
+    <h3>África</h3>
+    <span class="continent-count">01 visitado</span>
+  </div>
+  <div class="atlas-list">
+    <a class="atlas-row" href="/es/countries/morocco/">
+  <span class="atlas-index">01</span>
+  <span class="atlas-name">Marruecos</span>
+  <span class="atlas-tags">Sáhara · Zocos · Campamento bereber</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a>
+  </div>
+</div>
+
+<div class="continent-group">
+  <div class="continent-head">
+    <h3>Norteamérica</h3>
+    <span class="continent-count">04 visitados</span>
+  </div>
+  <div class="atlas-list">
+    <a class="atlas-row" href="/es/countries/canada/">
+  <span class="atlas-index">01</span>
+  <span class="atlas-name">Canadá</span>
+  <span class="atlas-tags">Naturaleza · Ciudades · Fauna</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/guatemala/">
+  <span class="atlas-index">02</span>
+  <span class="atlas-name">Guatemala</span>
+  <span class="atlas-tags">Acatenango · Volcanes · Aventura</span>
+  <span class="atlas-year">2026</span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/mexico/">
+  <span class="atlas-index">03</span>
+  <span class="atlas-name">México</span>
+  <span class="atlas-tags">Tiburones · Mantas · Vida marina</span>
+  <span class="atlas-year">2026</span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/usa/">
+  <span class="atlas-index">04</span>
+  <span class="atlas-name">Estados Unidos</span>
+  <span class="atlas-tags">Viajes por carretera · Parques nacionales · Ciudades</span>
+  <span class="atlas-year"></span>
+  <span class="atlas-arrow">↗</span>
+</a>
+  </div>
+</div>
+
+<div class="continent-group">
+  <div class="continent-head">
+    <h3>Oceanía</h3>
+    <span class="continent-count">02 visitados</span>
+  </div>
+  <div class="atlas-list">
+    <a class="atlas-row" href="/es/countries/australia/">
+  <span class="atlas-index">01</span>
+  <span class="atlas-name">Australia</span>
+  <span class="atlas-tags">Fauna · Buceo · Viajes por carretera</span>
+  <span class="atlas-year">2025</span>
+  <span class="atlas-arrow">↗</span>
+</a><a class="atlas-row" href="/es/countries/new-zealand/">
+  <span class="atlas-index">02</span>
+  <span class="atlas-name">Nueva Zelanda</span>
+  <span class="atlas-tags">Montañas · Viaje por carretera · Alpino</span>
+  <span class="atlas-year">2026</span>
+  <span class="atlas-arrow">↗</span>
+</a>
+  </div>
+</div>
+
+</section>
+
+<section class="section shell" style="padding-top:45px">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">LA LISTA DE DESEOS</p>
+      <h2>Cosas por las que merece<br><em>la pena cruzar un océano.</em></h2>
+    </div>
+    <p class="section-note">Una lista personal de lugares, encuentros con fauna, aventuras, hitos y planes algo disparatados.</p>
+  </div>
+
+  <div class="bucket-summary">
+    <div>
+      <div class="bucket-number">
+        <span id="bucket-completed">0</span>
+        <small>/ <span id="bucket-total">0</span> completados</small>
+      </div>
+      <p class="micro" style="margin-top:15px">ARCHIVO DE VIAJES PERSONAL · ACTUALIZADO POR MÍ</p>
+    </div>
+    <div class="bucket-progress">
+      <div style="display:flex;justify-content:space-between">
+        <span class="micro">PROGRESO TOTAL</span>
+        <span class="micro" id="bucket-percent">0%</span>
+      </div>
+      <div class="bucket-progress-bar">
+        <div class="bucket-progress-fill" id="bucket-progress-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="bucket-container"></div>
+</section>
+
+</main><div class="contact">
+  <div class="shell">
+    <p class="eyebrow" style="color:#dce6d8">PONTE EN CONTACTO</p>
+    <h2>Construyamos algo <em>interesante.</em></h2>
+    <p>Datos, IA, viajes, fauna… o una combinación de los cuatro.</p>
+    <div class="buttons" style="justify-content:center">
+      <a class="btn" style="background:white;color:#40573b" href="/es/contact/">Enviar un mensaje →</a><a class="btn" style="border:1px solid #dce6d8;color:white" href="mailto:albertocm30.2001@gmail.com">Escríbeme un correo ↗</a>
+      <a class="btn" style="border:1px solid #dce6d8;color:white" href="https://github.com/albercm30" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer shell">
+  <span>© 2026 Alberto Castellano Macías</span>
+  <span>Datos · IA · Viajes · Fauna · Fotografía</span>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const worldCountries = [
+  {
+    "name": "China",
+    "lat": 39.9,
+    "lng": 116.4,
+    "color": "#8a7b4b",
+    "continent": "Asia",
+    "slug": "china",
+    "focus": "Gran Muralla · Pandas · Comida callejera"
+  },
+  {
+    "name": "India",
+    "lat": 25.3,
+    "lng": 83.0,
+    "color": "#8a7b4b",
+    "continent": "Asia",
+    "slug": "india",
+    "focus": "Varanasi · Ghats · Cultura"
+  },
+  {
+    "name": "Japón",
+    "lat": 35.7,
+    "lng": 139.7,
+    "color": "#8a7b4b",
+    "continent": "Asia",
+    "slug": "japan",
+    "focus": "Ramen · Wagyu · Ciudades"
+  },
+  {
+    "name": "Jordania",
+    "lat": 31.9,
+    "lng": 35.9,
+    "color": "#8a7b4b",
+    "continent": "Asia",
+    "slug": "jordan",
+    "focus": "Petra · Desierto · Wadi Rum"
+  },
+  {
+    "name": "Kazajistán",
+    "lat": 51.2,
+    "lng": 71.4,
+    "color": "#8a7b4b",
+    "continent": "Asia",
+    "slug": "kazakhstan",
+    "focus": "Estepa · Almaty · Asia Central"
+  },
+  {
+    "name": "Kuwait",
+    "lat": 29.4,
+    "lng": 47.9,
+    "color": "#8a7b4b",
+    "continent": "Asia",
+    "slug": "kuwait",
+    "focus": "Golfo · Cultura · Ciudades"
+  },
+  {
+    "name": "Malasia",
+    "lat": 3.1,
+    "lng": 101.7,
+    "color": "#8a7b4b",
+    "continent": "Asia",
+    "slug": "malaysia",
+    "focus": "Borneo · Selva · Orangutanes"
+  },
+  {
+    "name": "Omán",
+    "lat": 23.6,
+    "lng": 58.5,
+    "color": "#8a7b4b",
+    "continent": "Asia",
+    "slug": "oman",
+    "focus": "Desierto · Wadis · Costa"
+  },
+  {
+    "name": "Marruecos",
+    "lat": 31.6,
+    "lng": -8.0,
+    "color": "#a06b3a",
+    "continent": "África",
+    "slug": "morocco",
+    "focus": "Sáhara · Zocos · Campamento bereber"
+  },
+  {
+    "name": "Filipinas",
+    "lat": 14.6,
+    "lng": 121.0,
+    "color": "#8a7b4b",
+    "continent": "Asia",
+    "slug": "philippines",
+    "focus": "Islas · Buceo · Playas"
+  },
+  {
+    "name": "Singapur",
+    "lat": 1.35,
+    "lng": 103.8,
+    "color": "#8a7b4b",
+    "continent": "Asia",
+    "slug": "singapore",
+    "focus": "Paisaje urbano · Gastronomía · Escala"
+  },
+  {
+    "name": "Sri Lanka",
+    "lat": 7.9,
+    "lng": 80.7,
+    "color": "#8a7b4b",
+    "continent": "Asia",
+    "slug": "sri-lanka",
+    "focus": "Tren de Ella · Tierra del té · Costa"
+  },
+  {
+    "name": "Tailandia",
+    "lat": 13.75,
+    "lng": 100.5,
+    "color": "#8a7b4b",
+    "continent": "Asia",
+    "slug": "thailand",
+    "focus": "Buceo · Selva · Elefantes"
+  },
+  {
+    "name": "Turquía",
+    "lat": 38.6,
+    "lng": 34.8,
+    "color": "#8a7b4b",
+    "continent": "Asia",
+    "slug": "turkey",
+    "focus": "Capadocia · Globo aerostático · Historia"
+  },
+  {
+    "name": "Emiratos Árabes Unidos",
+    "lat": 25.2,
+    "lng": 55.3,
+    "color": "#8a7b4b",
+    "continent": "Asia",
+    "slug": "united-arab-emirates",
+    "focus": "Safari por el desierto · Skyline · Cultura"
+  },
+  {
+    "name": "Uzbekistán",
+    "lat": 39.65,
+    "lng": 66.96,
+    "color": "#8a7b4b",
+    "continent": "Asia",
+    "slug": "uzbekistan",
+    "focus": "Ruta de la Seda · Samarcanda · Arquitectura"
+  },
+  {
+    "name": "Vietnam",
+    "lat": 21.0,
+    "lng": 105.8,
+    "color": "#8a7b4b",
+    "continent": "Asia",
+    "slug": "vietnam",
+    "focus": "Montañas · Viaje por carretera · Fauna"
+  },
+  {
+    "name": "Austria",
+    "lat": 47.5,
+    "lng": 14.6,
+    "color": "#40573b",
+    "continent": "Europa",
+    "slug": "austria",
+    "focus": "Alpes · Viena · Senderismo"
+  },
+  {
+    "name": "Bélgica",
+    "lat": 50.85,
+    "lng": 4.35,
+    "color": "#40573b",
+    "continent": "Europa",
+    "slug": "belgium",
+    "focus": "Brujas · Cerveza · Chocolate"
+  },
+  {
+    "name": "Bulgaria",
+    "lat": 42.7,
+    "lng": 23.3,
+    "color": "#40573b",
+    "continent": "Europa",
+    "slug": "bulgaria",
+    "focus": "Montañas · Historia · Buena relación calidad-precio"
+  },
+  {
+    "name": "Croacia",
+    "lat": 45.8,
+    "lng": 15.9,
+    "color": "#40573b",
+    "continent": "Europa",
+    "slug": "croatia",
+    "focus": "Costa · Islas · Cascos antiguos"
+  },
+  {
+    "name": "Francia",
+    "lat": 48.85,
+    "lng": 2.35,
+    "color": "#40573b",
+    "continent": "Europa",
+    "slug": "france",
+    "focus": "París · Alpes · Campiña"
+  },
+  {
+    "name": "Alemania",
+    "lat": 52.5,
+    "lng": 13.4,
+    "color": "#40573b",
+    "continent": "Europa",
+    "slug": "germany",
+    "focus": "Ciudades · Cervecerías al aire libre · Historia"
+  },
+  {
+    "name": "Hungría",
+    "lat": 47.5,
+    "lng": 19.05,
+    "color": "#40573b",
+    "continent": "Europa",
+    "slug": "hungary",
+    "focus": "Budapest · Termas · Danubio"
+  },
+  {
+    "name": "Italia",
+    "lat": 46.4,
+    "lng": 11.9,
+    "color": "#40573b",
+    "continent": "Europa",
+    "slug": "italy",
+    "focus": "Dolomitas · Senderismo · Lagos"
+  },
+  {
+    "name": "Mónaco",
+    "lat": 43.73,
+    "lng": 7.42,
+    "color": "#40573b",
+    "continent": "Europa",
+    "slug": "monaco",
+    "focus": "Riviera · Excursión de un día · Costa"
+  },
+  {
+    "name": "Países Bajos",
+    "lat": 52.37,
+    "lng": 4.9,
+    "color": "#40573b",
+    "continent": "Europa",
+    "slug": "netherlands",
+    "focus": "Canales · Ciclismo · Ciudades"
+  },
+  {
+    "name": "Polonia",
+    "lat": 52.23,
+    "lng": 21.0,
+    "color": "#40573b",
+    "continent": "Europa",
+    "slug": "poland",
+    "focus": "Historia · Cascos antiguos · Buena relación calidad-precio"
+  },
+  {
+    "name": "Eslovaquia",
+    "lat": 48.15,
+    "lng": 17.1,
+    "color": "#40573b",
+    "continent": "Europa",
+    "slug": "slovakia",
+    "focus": "Tatras · Castillos · Cascos antiguos"
+  },
+  {
+    "name": "España",
+    "lat": 40.4,
+    "lng": -3.7,
+    "color": "#40573b",
+    "continent": "Europa",
+    "slug": "spain",
+    "focus": "Islas Canarias · En casa · Volcanes"
+  },
+  {
+    "name": "Reino Unido",
+    "lat": 51.5,
+    "lng": -0.13,
+    "color": "#40573b",
+    "continent": "Europa",
+    "slug": "uk",
+    "focus": "Londres · Campiña · Historia"
+  },
+  {
+    "name": "Ciudad del Vaticano",
+    "lat": 41.9,
+    "lng": 12.45,
+    "color": "#40573b",
+    "continent": "Europa",
+    "slug": "vatican",
+    "focus": "San Pedro · Museos · Excursión de un día desde Roma"
+  },
+  {
+    "name": "Canadá",
+    "lat": 45.4,
+    "lng": -75.7,
+    "color": "#55768b",
+    "continent": "Norteamérica",
+    "slug": "canada",
+    "focus": "Naturaleza · Ciudades · Fauna"
+  },
+  {
+    "name": "Guatemala",
+    "lat": 14.6,
+    "lng": -90.5,
+    "color": "#55768b",
+    "continent": "Norteamérica",
+    "slug": "guatemala",
+    "focus": "Acatenango · Volcanes · Aventura"
+  },
+  {
+    "name": "México",
+    "lat": 23.6,
+    "lng": -102.5,
+    "color": "#55768b",
+    "continent": "Norteamérica",
+    "slug": "mexico",
+    "focus": "Tiburones · Mantas · Vida marina"
+  },
+  {
+    "name": "Estados Unidos",
+    "lat": 38.9,
+    "lng": -77.0,
+    "color": "#55768b",
+    "continent": "Norteamérica",
+    "slug": "usa",
+    "focus": "Viajes por carretera · Parques nacionales · Ciudades"
+  },
+  {
+    "name": "Australia",
+    "lat": -16.9,
+    "lng": 145.7,
+    "color": "#80604f",
+    "continent": "Oceanía",
+    "slug": "australia",
+    "focus": "Fauna · Buceo · Viajes por carretera"
+  },
+  {
+    "name": "Nueva Zelanda",
+    "lat": -43.6,
+    "lng": 170.1,
+    "color": "#80604f",
+    "continent": "Oceanía",
+    "slug": "new-zealand",
+    "focus": "Montañas · Viaje por carretera · Alpino"
+  }
+];
+
+const worldMap = L.map("world-map", {
+  worldCopyJump: true,
+  minZoom: 2,
+  maxZoom: 18,
+  zoomControl: false
+}).setView([20, 30], 2);
+
+L.control.zoom({position: "bottomright"}).addTo(worldMap);
+
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 19,
+  attribution: "&copy; OpenStreetMap contributors"
+}).addTo(worldMap);
+
+function createCountryMarker(country) {
+  return L.divIcon({
+    className: "",
+    html: `<div style="width:14px;height:14px;border-radius:50%;background:${country.color};border:3px solid white;box-shadow:0 1px 5px rgba(0,0,0,.25),0 0 0 1px ${country.color};"></div>`,
+    iconSize: [14, 14],
+    iconAnchor: [7, 7],
+    popupAnchor: [0, -7]
+  });
+}
+
+worldCountries.forEach(country => {
+  const marker = L.marker([country.lat, country.lng], {icon: createCountryMarker(country)}).addTo(worldMap);
+  marker.bindPopup(`
+    <div class="country-popup">
+      <strong>${country.name}</strong>
+      <span class="popup-continent">${country.continent}</span>
+      <p class="popup-focus">${country.focus}</p>
+      <a href="/es/countries/${country.slug}/">Ver el viaje ↗</a>
+    </div>
+  `);
+});
+</script>
+
+<script>
+const mapTabs = document.getElementById("map-tabs");
+if (mapTabs) {
+  mapTabs.addEventListener("click", e => {
+    const btn = e.target.closest(".filter");
+    if (!btn) return;
+    mapTabs.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    const showGoogle = btn.dataset.map === "google";
+    document.getElementById("map-panel-leaflet").style.display = showGoogle ? "none" : "block";
+    document.getElementById("map-legend").style.display = showGoogle ? "none" : "flex";
+    document.getElementById("map-panel-google").style.display = showGoogle ? "block" : "none";
+    document.getElementById("google-map-note").style.display = showGoogle ? "block" : "none";
+    if (!showGoogle && typeof worldMap !== "undefined") {
+      try { setTimeout(() => worldMap.invalidateSize(), 50); } catch (err) {}
+    }
+  });
+}
+</script>
+
+<script src="/js/site.js"></script>
+
+<script>
+const bucketList = [
+
+  {
+    category: "Buceo",
+
+    items: [
+      { id: 1, title: "Bucear con un banco de mantarrayas", completed: true },
+      { id: 2, title: "Bucear con un banco de tiburones martillo", completed: false },
+      { id: 3, title: "Bucear con tiburones tigre", completed: false },
+      { id: 4, title: "Bucear con tiburones toro", completed: true },
+      { id: 5, title: "Bucear en las Galápagos", completed: false },
+      { id: 6, title: "Bucear en Baja California", completed: true },
+      { id: 7, title: "Bucear en Australia: Gran Barrera de Coral", completed: true },
+      { id: 8, title: "Bucear con tiburones", completed: true },
+      { id: 9, title: "Bucear en un pecio icónico", completed: false },
+      { id: 10, title: "Bucear en Raja Ampat", completed: false },
+      { id: 11, title: "Vivir la Sardine Run en Sudáfrica", completed: false },
+      { id: 12, title: "Nadar o bucear con tiburones ballena", completed: true },
+      { id: 13, title: "Nadar o bucear con leones marinos", completed: true },
+      { id: 14, title: "Nadar o bucear con delfines", completed: false },
+      { id: 15, title: "Nadar o bucear con ballenas", completed: false },
+      { id: 16, title: "Nadar o bucear con orcas", completed: false },
+      { id: 17, title: "Hacer snorkel o bucear en las Maldivas", completed: false },
+      { id: 18, title: "Ver una ballena azul", completed: false },
+      { id: 19, title: "Visitar una isla del Pacífico y bucear", completed: false },
+      { id: 20, title: "Obtener la certificación Advanced Open Water", completed: true },
+      { id: 21, title: "Nadar en agua bajo cero", completed: false },
+      { id: 22, title: "Hacer un crucero de buceo en Revillagigedo", completed: false },
+      { id: 23, title: "Hacer un crucero de buceo en Noruega", completed: false },
+      { id: 24, title: "Bucear en una jaula con tiburones blancos", completed: false }
+    ]
+  },
+
+
+  {
+    category: "Deporte",
+
+    items: [
+      { id: 25, title: "Hacer surf en la Gold Coast, Australia", completed: true },
+      { id: 26, title: "Subir una montaña de más de 5.000 m", completed: false },
+      { id: 27, title: "Subir y ver un volcán activo", completed: true },
+      { id: 28, title: "Llegar al campo base del Everest", completed: false },
+      { id: 29, title: "Correr un maratón en un lugar exótico", completed: false },
+      { id: 30, title: "Montar a caballo en Kirguistán", completed: false },
+      { id: 31, title: "Aprender a esquiar en Japón", completed: false },
+      { id: 32, title: "Asistir a un Mundial de la FIFA", completed: false },
+      { id: 33, title: "Asistir a un Grand Slam de tenis", completed: false },
+      { id: 34, title: "Asistir a unos Juegos Olímpicos", completed: false },
+      { id: 35, title: "Asistir a un partido de fútbol americano", completed: true },
+      { id: 36, title: "Asistir a un partido de la NBA", completed: false },
+      { id: 37, title: "Hacer senderismo en las Dolomitas", completed: true },
+      { id: 38, title: "Hacer rafting", completed: true },
+      { id: 39, title: "Hacer senderismo y comer fondue en Suiza", completed: false },
+      { id: 40, title: "Hacer kayak entre icebergs", completed: false },
+      { id: 41, title: "Subir al monte Bromo o al Ijen", completed: false },
+      { id: 42, title: "Subir al Teide desde el nivel del mar", completed: false },
+      { id: 43, title: "Pescar o hacer pesca submarina en un lugar exótico", completed: false },
+      { id: 44, title: "Montar en moto de nieve y en moto de agua", completed: false },
+      { id: 45, title: "Hacer senderismo en las Azores", completed: false },
+      { id: 46, title: "Caminar sobre glaciares", completed: false }
+    ]
+  },
+
+
+  {
+    category: "Actividades",
+
+    items: [
+      { id: 47, title: "Visitar la Antártida", completed: false },
+      { id: 48, title: "Volar en globo aerostático", completed: true },
+      { id: 49, title: "Dormir en un campamento bereber o beduino en el desierto", completed: true },
+      { id: 50, title: "Hacer un viaje en autocaravana por Nueva Zelanda", completed: true },
+      { id: 51, title: "Hacer un viaje en autocaravana por Islandia", completed: false },
+      { id: 52, title: "Ver la aurora boreal", completed: false },
+      { id: 53, title: "Ver la aurora austral", completed: false },
+      { id: 54, title: "Viajar por la Patagonia argentina", completed: false },
+      { id: 55, title: "Recorrer Sudamérica con mochila", completed: false },
+      { id: 56, title: "Hacer una expedición al Amazonas", completed: false },
+      { id: 57, title: "Ver las cataratas del Iguazú", completed: false },
+      { id: 58, title: "Hacer un viaje con amigos por Asia", completed: true },
+      { id: 59, title: "Acampar en Yellowstone", completed: false },
+      { id: 60, title: "Explorar China y ver pandas gigantes", completed: true },
+      { id: 61, title: "Ver las olas de Nazaré", completed: false },
+      { id: 62, title: "Hacer un safari nocturno y dormir en un parque nacional", completed: true },
+      { id: 63, title: "Comer ramen y wagyu en Japón", completed: true },
+      { id: 64, title: "Bañarme en un onsen japonés", completed: false },
+      { id: 65, title: "Bañarme en aguas termales volcánicas en Islandia", completed: false },
+      { id: 66, title: "Cruzar Europa en tren", completed: true },
+      { id: 67, title: "Ver bioluminiscencia", completed: true },
+      { id: 68, title: "Visitar las islas Lofoten", completed: false },
+      { id: 69, title: "Hacer un curso de manejo de animales peligrosos", completed: false },
+      { id: 70, title: "Vivir una experiencia astronómica en Chile", completed: false },
+      { id: 71, title: "Hacer un viaje de fotografía de fauna", completed: true },
+      { id: 72, title: "Recorrer el Ha Giang Loop en Vietnam", completed: true },
+      { id: 73, title: "Hacer un viaje por carretera por Asia", completed: true },
+      { id: 74, title: "Vivir la cultura local de Oriente Medio", completed: true },
+      { id: 75, title: "Visitar Moscú y viajar por Rusia", completed: false },
+      { id: 76, title: "Visitar Madagascar", completed: false },
+      { id: 77, title: "Acampar en Mongolia", completed: false },
+      { id: 78, title: "Recorrer el Nilo y ver las pirámides", completed: false },
+      { id: 79, title: "Visitar el Tíbet", completed: false },
+      { id: 80, title: "Vivir un festival icónico", completed: false },
+      { id: 81, title: "Carnaval y favelas en Río", completed: false },
+      { id: 82, title: "Visitar Varanasi y los ghats", completed: true },
+      { id: 83, title: "Visitar Costa Rica y su selva", completed: false },
+      { id: 84, title: "Vivir el Día de los Muertos en México", completed: false },
+      { id: 85, title: "Hacer un viaje por carretera por Namibia", completed: false },
+      { id: 86, title: "Ver las cataratas Victoria", completed: false },
+      { id: 87, title: "Visitar Socotra y descubrir sus especies", completed: false },
+      { id: 88, title: "Viajar en el tren de Ella en Sri Lanka", completed: true },
+      { id: 89, title: "Explorar los pueblos de la Toscana", completed: false },
+      { id: 90, title: "Explorar la fauna de Papúa Nueva Guinea", completed: false },
+      { id: 91, title: "Ver un eclipse solar total", completed: false }
+    ]
+  },
+
+
+  {
+    category: "Hitos",
+
+    items: [
+      { id: 92, title: "Visitar 100 países", completed: false },
+      { id: 93, title: "Ver las Nuevas 7 Maravillas del Mundo", completed: false },
+      { id: 94, title: "Nadar en los cinco océanos", completed: false },
+      { id: 95, title: "Vivir un año fuera de Europa", completed: true },
+      { id: 96, title: "Visitar los siete continentes", completed: false },
+      { id: 97, title: "Probar muchas frutas exóticas en Asia", completed: true },
+      { id: 98, title: "Bucear en los siete continentes", completed: false },
+      { id: 99, title: "Completar 30 cumbres", completed: false }
+    ]
+  },
+
+
+  {
+    category: "Fauna terrestre",
+
+    items: [
+      { id: 100, title: "Ver gorilas en libertad", completed: false },
+      { id: 101, title: "Ver osos pescando salmón en Alaska", completed: false },
+      { id: 102, title: "Ver osos polares en Svalbard", completed: false },
+      { id: 103, title: "Ver la migración de ñus en el Serengeti", completed: false },
+      { id: 104, title: "Ver animales salvajes en la selva de Borneo", completed: true },
+      { id: 105, title: "Acampar en Australia entre canguros salvajes", completed: true },
+      { id: 106, title: "Ver serpientes y arañas peligrosas en libertad", completed: true },
+      { id: 107, title: "Ver elefantes salvajes", completed: true },
+      { id: 108, title: "Ver rinocerontes salvajes", completed: false },
+      { id: 109, title: "Ver cocodrilos salvajes", completed: true },
+      { id: 110, title: "Ver leones salvajes", completed: false },
+      { id: 111, title: "Ver tigres salvajes", completed: false },
+      { id: 112, title: "Ver al esquivo leopardo", completed: false },
+      { id: 113, title: "Ver guepardos salvajes", completed: false },
+      { id: 114, title: "Ver leopardos de las nieves en libertad", completed: false },
+      { id: 115, title: "Ver jaguares en el Pantanal", completed: false },
+      { id: 116, title: "Ver pumas salvajes", completed: false },
+      { id: 117, title: "Ver una pantera negra en libertad", completed: false },
+      { id: 118, title: "Ver 15 especies de serpientes en libertad", completed: false },
+      { id: 119, title: "Acampar en Daintree y ver casuarios", completed: true },
+      { id: 120, title: "Ver 20 especies raras en libertad", completed: false }
+    ]
+  }
+
+];
+
+const bucketContainer = document.getElementById("bucket-container");
+
+function renderBucketList() {
+  bucketContainer.innerHTML = "";
+  bucketList.forEach(group => {
+    const section = document.createElement("div");
+    section.className = "bucket-category";
+    const title = document.createElement("div");
+    title.className = "bucket-category-title";
+    const heading = document.createElement("h3");
+    heading.textContent = group.category;
+    const finished = group.items.filter(item => item.completed).length;
+    const count = document.createElement("span");
+    count.textContent = `${finished} / ${group.items.length}`;
+    title.appendChild(heading);
+    title.appendChild(count);
+    const list = document.createElement("div");
+    list.className = "bucket-list";
+    group.items.forEach(item => {
+      const row = document.createElement("div");
+      row.className = "bucket-item" + (item.completed ? " done" : "");
+      const number = document.createElement("span");
+      number.className = "bucket-index";
+      number.textContent = String(item.id).padStart(3, "0");
+      const checkbox = document.createElement("span");
+      checkbox.className = "bucket-check";
+      if (item.completed) {
+        checkbox.classList.add("is-complete");
+        checkbox.textContent = "✓";
+      }
+      const text = document.createElement("span");
+      text.className = "bucket-title";
+      text.textContent = item.title;
+      row.appendChild(number);
+      row.appendChild(checkbox);
+      row.appendChild(text);
+      list.appendChild(row);
+    });
+    section.appendChild(title);
+    section.appendChild(list);
+    bucketContainer.appendChild(section);
+  });
+}
+
+function updateProgress() {
+  const total = bucketList.reduce((sum, group) => sum + group.items.length, 0);
+  const completed = bucketList.reduce((sum, group) => sum + group.items.filter(item => item.completed).length, 0);
+  const percentage = total === 0 ? 0 : Math.round((completed / total) * 100);
+  document.getElementById("bucket-completed").textContent = completed;
+  document.getElementById("bucket-total").textContent = total;
+  document.getElementById("bucket-percent").textContent = `${percentage}%`;
+  document.getElementById("bucket-progress-fill").style.width = `${percentage}%`;
+}
+
+renderBucketList();
+updateProgress();
+</script>
+
+</body>
+</html>
