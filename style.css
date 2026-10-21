@@ -290,3 +290,11 @@ main:focus{outline:none}
 .lang-switch:hover{border-color:var(--green)}
 .lang-note{padding:22px 0 0;font-size:11px;color:var(--soft);line-height:1.6}
 .lang-note a{text-decoration:underline;text-underline-offset:2px}
+
+/* Travel page globe */
+.globe-wrap{position:relative;height:min(72vh,640px);min-height:380px;border-radius:24px;overflow:hidden;background:radial-gradient(ellipse at 50% 35%,#21412e 0%,#0f1c14 62%,#0a120d 100%);box-shadow:0 24px 60px rgba(15,28,20,.25)}
+.globe-wrap::before{content:"";position:absolute;inset:0;opacity:.55;background-image:radial-gradient(1px 1px at 12% 20%,#fff8 50%,transparent 51%),radial-gradient(1px 1px at 78% 12%,#fff7 50%,transparent 51%),radial-gradient(1.5px 1.5px at 33% 82%,#fff6 50%,transparent 51%),radial-gradient(1px 1px at 90% 70%,#fff7 50%,transparent 51%),radial-gradient(1px 1px at 55% 8%,#fff6 50%,transparent 51%),radial-gradient(1px 1px at 6% 62%,#fff6 50%,transparent 51%);pointer-events:none}
+#globe{position:absolute;inset:0;cursor:grab}#globe:active{cursor:grabbing}
+#globe canvas{outline:none}
+@media (hover:none){#globe canvas{touch-action:pan-y!important}}
+@media (max-width:700px){.globe-wrap{height:430px;border-radius:18px}}

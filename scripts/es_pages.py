@@ -12,6 +12,12 @@ T.update({
 "A growing archive of trips, countries, routes and experiences — from jungle trails and volcanoes to some of the world's richest oceans.":
     "Un archivo en crecimiento de viajes, países, rutas y experiencias: de senderos de selva y volcanes a algunos de los océanos más ricos del mundo.",
 "WHERE I'VE BEEN": "DÓNDE HE ESTADO",
+"THE WORLD, SPINNING": "EL MUNDO, GIRANDO",
+"Thirty-eight countries,": "Treinta y ocho países,",
+"one globe.": "un solo globo.",
+"Drag to rotate. Gold countries are the ones I've been to; click one to open its page.":
+    "Arrastra para girar. Los países dorados son los que he visitado; haz clic en uno para abrir su página.",
+"Interactive 3D globe of the countries visited.": "Globo 3D interactivo de los países visitados.",
 "A map of the": "Un mapa del",
 "journey.": "recorrido.",
 "Two views: one country at a time, or every single place I've marked myself.":
