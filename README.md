@@ -44,3 +44,11 @@ Never edit files under `es/` by hand; they are regenerated. Wildlife species nam
 ## Broken-link check
 
 `.github/workflows/link-check.yml` runs every Monday (and on demand from the Actions tab). It opens or updates an issue called "Broken links report" when something is broken, and closes it when everything is fine. Run it locally with `python scripts/check_links.py`.
+
+## Adding photos to a country
+
+1. Save the photos as `assets/travel/<slug>-NN.jpg` (max ~2000px) and make small copies in `assets/travel/globe-s/` (520px) and `globe-l/` (1100px) for the globe.
+2. Add them to `countries/<slug>/index.html` as `<div class="photo-tile"><img src=… alt=… width=… height=…></div>` — galleries keep each photo's own proportions and open in a click-to-enlarge viewer automatically.
+3. Add the photo numbers to `PH` in `js/globe.js`.
+4. **Make the text match the photos**: update the country's story, highlights and route in both `data/countries.json` and the page, so the places and experiences shown in the photos are also described.
+5. Add Spanish for every new caption/sentence in `scripts/es_countries.py`, then run `python scripts/build_search_index.py && python scripts/build_es.py`.

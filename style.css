@@ -324,3 +324,24 @@ main:focus{outline:none}
 @keyframes gbFloat{0%,100%{transform:translateY(0) rotate(var(--r))}50%{transform:translateY(-12px) rotate(calc(var(--r) + 1.5deg))}}
 @media (max-width:900px){.gb-card{display:none}.gb-cap{width:80%;bottom:16px}}
 @media (prefers-reduced-motion:reduce){.gb-track,.gb-card,.gb-photo.on{animation:none}}
+
+/* galleries: keep each photo's own proportions (no cropping), click to enlarge */
+.photo-grid:has(.photo-tile>img){display:block;columns:3;column-gap:8px}
+.photo-grid.two-up:has(.photo-tile>img){columns:2}
+.photo-grid.solo:has(.photo-tile>img){columns:1}
+.photo-grid:has(.photo-tile>img) .photo-tile{display:block;break-inside:avoid;margin:0 0 8px;height:auto;grid-column:auto;grid-row:auto}
+.photo-grid:has(.photo-tile>img) .photo-tile>img{height:auto;object-fit:initial;object-position:initial!important}
+.photo-grid:has(.photo-tile>img) .photo-placeholder{aspect-ratio:4/3;height:auto}
+.photo-tile:has(>img){cursor:zoom-in}
+.photo-tile:has(>img):focus-visible{outline:3px solid var(--green);outline-offset:2px}
+@media (max-width:900px){.photo-grid:has(.photo-tile>img){columns:2}}
+.lb{position:fixed;inset:0;z-index:1000;background:rgba(10,16,12,.94);display:none;align-items:center;justify-content:center;flex-direction:column;padding:56px 64px 74px}
+.lb.open{display:flex}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;opacity:0;transform:scale(.985);transition:opacity .25s,transform .25s;box-shadow:0 20px 70px rgba(0,0,0,.5)}
+.lb img.on{opacity:1;transform:none}
+.lb-cap{position:absolute;left:0;right:0;bottom:22px;text-align:center;color:#e6ecdf;font-size:13px;padding:0 70px}
+.lb-cap small{display:block;margin-top:4px;font:700 9px var(--mono);letter-spacing:1.4px;color:#aebba5;text-transform:uppercase}
+.lb button{position:absolute;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25);width:44px;height:44px;border-radius:50%;font-size:20px;cursor:pointer;display:grid;place-items:center}
+.lb button:hover{background:rgba(255,255,255,.22)}
+.lb-close{top:16px;right:16px}.lb-prev{left:12px;top:50%;transform:translateY(-50%)}.lb-next{right:12px;top:50%;transform:translateY(-50%)}
+@media (max-width:700px){.lb{padding:56px 10px 80px}.lb-prev,.lb-next{top:auto;bottom:16px;transform:none}.lb-prev{left:16px}.lb-next{right:16px}.lb-cap{padding:0 70px;bottom:20px;font-size:12px}}

@@ -435,19 +435,27 @@
       "Road trip",
       "Wildlife"
     ],
-    "blurb": "Northern mountains, countryside, caves and the south.",
+    "blurb": "Northern mountains, limestone bays, countryside, caves and the coast.",
     "story": [
       "The Ha Giang Loop was the centrepiece of this trip — days on a motorbike through northern mountains that kept getting more dramatic around every bend.",
-      "From caves in the north to the pace of the south, Vietnam turned into one of the best road trips on this list."
+      "From caves in the north to the pace of the south, Vietnam turned into one of the best road trips on this list.",
+      "Off the bike there was just as much variety: the limestone bays around Ha Long, boat rides between the forested karsts of Ninh Binh, and sunset over the coast at Da Nang."
     ],
     "highlights": [
       "Riding the Ha Giang Loop through the northern mountains.",
+      "Drifting between limestone karsts on a boat in Ha Long Bay.",
+      "Rowing between forested cliffs in Ninh Binh.",
       "Exploring the cave systems near Phong Nha.",
+      "Parasailers and a white Buddha over the bay at Da Nang.",
       "The contrast between rural north and buzzing south."
     ],
     "route": [
       "Hanoi",
+      "Ha Long Bay",
+      "Ninh Binh",
       "Ha Giang",
+      "Phong Nha",
+      "Da Nang",
       "Ho Chi Minh City"
     ]
   },
@@ -649,20 +657,27 @@
       "Hiking",
       "Lakes"
     ],
-    "blurb": "A hiking-focused journey through the Dolomites.",
+    "blurb": "A hiking-focused journey through the Dolomites, with Venice on the way.",
     "story": [
       "The Dolomites were the whole point of this trip — jagged limestone peaks that look almost unreal in the right light.",
-      "Multiple days of hut-to-hut hiking, with lakes and small alpine towns along the way, made it one of the best mountain trips on the list."
+      "Multiple days of hut-to-hut hiking, with lakes and small alpine towns along the way, made it one of the best mountain trips on the list.",
+      "The classics were all there — the Tre Cime di Lavaredo, Lago di Braies, the little church of St John in Val di Funes — and the trip also took in the canals and lagoon of Venice."
     ],
     "highlights": [
       "Hut-to-hut hiking through the Dolomites.",
       "Lake Braies at first light, before the crowds.",
+      "The Tre Cime di Lavaredo against a deep blue sky.",
+      "St John's chapel in Ranui, with the Odle rising behind it.",
+      "Gondolas and quiet canals in Venice.",
       "Small alpine towns that felt frozen in time."
     ],
     "route": [
+      "Venice",
       "Bassano del Grappa",
       "Cortina d'Ampezzo",
-      "Lago di Braies"
+      "Tre Cime di Lavaredo",
+      "Lago di Braies",
+      "Val di Funes"
     ]
   },
   {
@@ -892,7 +907,7 @@
     ],
     "highlights": [
       "Watching Volcán de Fuego erupt from Acatenango's summit camp.",
-      "Colonial streets of Antigua at golden hour.",
+      "Colonial streets of Antigua beneath Volcán de Agua at golden hour.",
       "Highland markets that felt untouched by tourism."
     ],
     "route": [
@@ -915,17 +930,21 @@
     "blurb": "Baja California, marine megafauna and the Yucatán.",
     "story": [
       "Mexico turned into one of the best diving trips on this list — Baja California's marine life is hard to overstate.",
-      "From sea lions and mobula rays in the Pacific to the cenotes and reefs of the Yucatán, the country delivered on both coasts."
+      "From sea lions and mobula rays in the Pacific to the cenotes and reefs of the Yucatán, the country delivered on both coasts.",
+      "On land it was just as rewarding: the colonial streets and Mayan ruins of the Yucatán, flamingos wading in the shallows, and birds like the turquoise-browed motmot."
     ],
     "highlights": [
       "Diving with sea lions and mobula rays in Baja California.",
       "Snorkelling a cenote in the Yucatán.",
+      "Flamingos wading in a Yucatán lagoon under a storm sky.",
+      "Colonial streets, bright churches and the pyramid at Chichén Itzá.",
       "Street food that outclassed every restaurant nearby."
     ],
     "route": [
       "La Paz",
       "Cabo Pulmo",
-      "Tulum"
+      "Tulum",
+      "Chichén Itzá"
     ]
   },
   {
@@ -966,19 +985,27 @@
       "Diving",
       "Road trips"
     ],
-    "blurb": "Tropical forests, the Great Barrier Reef and unforgettable wildlife encounters.",
+    "blurb": "Tropical forests, the Great Barrier Reef, Gold Coast beaches and unforgettable wildlife encounters.",
     "story": [
       "Australia was one of those trips where the reason for going was simple: wildlife.",
-      "I wanted to see what the country looked like beyond the cities — rainforest, reef, beaches, remote roads and the animals that make Australia unlike anywhere else. The trip became a mix of diving on the Great Barrier Reef, exploring the Daintree, searching for cassowaries and platypuses, driving between places that looked ridiculously far apart on a map, and stopping whenever something interesting appeared."
+      "I wanted to see what the country looked like beyond the cities — rainforest, reef, beaches, remote roads and the animals that make Australia unlike anywhere else. The trip became a mix of diving on the Great Barrier Reef, exploring the Daintree, searching for cassowaries and platypuses, driving between places that looked ridiculously far apart on a map, and stopping whenever something interesting appeared.",
+      "Away from the far north, the Queensland coast added a gentler side: koalas dozing in eucalyptus trees, kangaroos and kookaburras in the bush, a waterfall in the Gold Coast hinterland, and beach days — and plenty of jump photos — with friends.",
+      "The trip also took in Sydney — the harbour, the Opera House and the skyline from the water — and a humpback whale surfacing offshore."
     ],
     "highlights": [
       "Diving the Great Barrier Reef.",
       "Exploring the Daintree rainforest and searching for cassowaries.",
       "Searching for platypuses around Julatten.",
       "Sleeping among Australia's wildlife rather than behind city walls.",
-      "Realising that every road trip in Australia is considerably longer than it looks."
+      "Realising that every road trip in Australia is considerably longer than it looks.",
+      "Spotting koalas, kangaroos and kookaburras in the wild.",
+      "Waterfalls and eucalyptus forest in the Gold Coast hinterland.",
+      "Beach days and sunset jump photos on the Gold Coast.",
+      "Seeing Sydney's harbour, Opera House and skyline from the water.",
+      "Watching a humpback whale surface offshore."
     ],
     "route": [
+      "Sydney",
       "Brisbane",
       "Gold Coast",
       "Cairns",
@@ -999,21 +1026,29 @@
       "Road trip",
       "Alpine"
     ],
-    "blurb": "A South Island road trip built around alpine landscapes and long hikes.",
+    "blurb": "A South Island road trip built around alpine landscapes, long hikes and native wildlife.",
     "story": [
       "A campervan and the South Island turned out to be a near-perfect combination — every day ended somewhere different, usually with a mountain in view.",
-      "The hiking did most of the work here: long alpine trails, glacier valleys and lakes so clear they barely looked real."
+      "The hiking did most of the work here: long alpine trails, glacier valleys and lakes so clear they barely looked real.",
+      "Wildlife kept turning up where I least expected it — kea squabbling on alpine rocks, a falcon on its nest, penguin crossing signs along the coast — and the autumn light on Aoraki / Mount Cook, Lake Wānaka and Lake Wakatipu made every stop feel like a postcard."
     ],
     "highlights": [
       "Hiking the Roy's Peak track at sunrise.",
       "Campervanning down the South Island with no fixed plan.",
-      "Glacial lakes that looked almost artificially blue."
+      "Glacial lakes that looked almost artificially blue.",
+      "Alpenglow on Aoraki / Mount Cook at sunset.",
+      "Meeting kea, the cheeky alpine parrots, up close.",
+      "Driftwood-strewn beaches in Abel Tasman National Park.",
+      "The lone tree in Lake Wānaka, and Queenstown from above."
     ],
     "route": [
       "Christchurch",
+      "Abel Tasman",
       "Mount Cook",
+      "Lindis Pass",
       "Wanaka",
-      "Queenstown"
+      "Queenstown",
+      "Otago Coast"
     ]
   }
 ]

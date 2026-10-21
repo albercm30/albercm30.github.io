@@ -57,7 +57,7 @@ T.update({
 "La Paz": "La Paz", "Cabo Pulmo": "Cabo Pulmo", "Tulum": "Tulum",
 "Marrakech": "Marrakech", "Atlas Mountains": "Montañas del Atlas", "Merzouga": "Merzouga",
 "Amsterdam": "Ámsterdam", "Utrecht": "Utrecht", "Rotterdam": "Róterdam",
-"Christchurch": "Christchurch", "Mount Cook": "Monte Cook", "Wanaka": "Wanaka", "Queenstown": "Queenstown",
+"Christchurch": "Christchurch", "Sydney": "Sídney", "Abel Tasman": "Abel Tasman", "Lindis Pass": "Paso de Lindis", "Otago Coast": "Costa de Otago", "Mount Cook": "Monte Cook", "Wanaka": "Wanaka", "Queenstown": "Queenstown",
 "Muscat": "Mascate", "Nizwa": "Nizwa", "Wahiba Sands": "Arenas de Wahiba",
 "Manila": "Manila", "Palawan": "Palawan", "Cebu": "Cebú",
 "Warsaw": "Varsovia", "Kraków": "Cracovia",
@@ -303,6 +303,28 @@ T.update({
 "Rowing boats gliding between forested limestone cliffs": "Barcas de remos deslizándose entre acantilados de roca caliza cubiertos de bosque",
 "Lit stalactites and stalagmites inside a vast cave": "Estalactitas y estalagmitas iluminadas en el interior de una cueva enorme",
 "A parasailer drifting over the bay at dusk, with a white Buddha statue on the hillside": "Un parapente tirado por lancha sobre la bahía al anochecer, con una estatua blanca de Buda en la ladera",
+'On land it was just as rewarding: the colonial streets and Mayan ruins of the Yucatán, flamingos wading in the shallows, and birds like the turquoise-browed motmot.': 'En tierra fue igual de gratificante: las calles coloniales y las ruinas mayas de Yucatán, flamencos caminando por aguas poco profundas y aves como el momoto cejiturquesa.',
+'Flamingos wading in a Yucatán lagoon under a storm sky.': 'Flamencos caminando por una laguna de Yucatán bajo un cielo de tormenta.',
+'Colonial streets, bright churches and the pyramid at Chichén Itzá.': 'Calles coloniales, iglesias de colores vivos y la pirámide de Chichén Itzá.',
+'Chichén Itzá': 'Chichén Itzá',
+'A hiking-focused journey through the Dolomites, with Venice on the way.': 'Un viaje centrado en el senderismo por los Dolomitas, con Venecia de paso.',
+'The classics were all there — the Tre Cime di Lavaredo, Lago di Braies, the little church of St John in Val di Funes — and the trip also took in the canals and lagoon of Venice.': 'Los clásicos estaban todos: las Tre Cime di Lavaredo, el Lago di Braies, la pequeña iglesia de San Juan en Val di Funes; y el viaje también pasó por los canales y la laguna de Venecia.',
+'The Tre Cime di Lavaredo against a deep blue sky.': 'Las Tre Cime di Lavaredo contra un cielo azul intenso.',
+"St John's chapel in Ranui, with the Odle rising behind it.": 'La capilla de San Juan en Ranui, con las Odle alzándose detrás.',
+'Gondolas and quiet canals in Venice.': 'Góndolas y canales tranquilos en Venecia.',
+'Venice': 'Venecia',
+'Tre Cime di Lavaredo': 'Tre Cime di Lavaredo',
+'Val di Funes': 'Val di Funes',
+'Colonial streets of Antigua beneath Volcán de Agua at golden hour.': 'Calles coloniales de Antigua bajo el Volcán de Agua a la hora dorada.',
+'Northern mountains, limestone bays, countryside, caves and the coast.': 'Montañas del norte, bahías de roca caliza, campo, cuevas y costa.',
+'Off the bike there was just as much variety: the limestone bays around Ha Long, boat rides between the forested karsts of Ninh Binh, and sunset over the coast at Da Nang.': 'Fuera de la moto había igual de variedad: las bahías de roca caliza de Ha Long, paseos en barca entre los karsts boscosos de Ninh Binh y el atardecer sobre la costa de Da Nang.',
+'Drifting between limestone karsts on a boat in Ha Long Bay.': 'Navegando en barco entre karsts de roca caliza en la bahía de Ha Long.',
+'Rowing between forested cliffs in Ninh Binh.': 'Remando entre acantilados cubiertos de bosque en Ninh Binh.',
+'Parasailers and a white Buddha over the bay at Da Nang.': 'Parapentes tirados por lancha y un Buda blanco sobre la bahía de Da Nang.',
+'Ha Long Bay': 'Bahía de Ha Long',
+'Ninh Binh': 'Ninh Binh',
+'Phong Nha': 'Phong Nha',
+'Da Nang': 'Da Nang',
 "El Castillo at Chichén Itzá, Yucatán": "El Castillo en Chichén Itzá, Yucatán",
 "Mexico turned into one of the best diving trips on this list — Baja California's marine life is hard to overstate.":
     "México acabó siendo uno de los mejores viajes de buceo de esta lista: es difícil exagerar la vida marina de Baja California.",
@@ -352,6 +374,82 @@ T.update({
 "Hiking the Roy's Peak track at sunrise.": "Subir el sendero de Roy's Peak al amanecer.",
 "Campervanning down the South Island with no fixed plan.": "Recorrer la Isla Sur en autocaravana sin un plan fijo.",
 "Glacial lakes that looked almost artificially blue.": "Lagos glaciares de un azul casi artificial.",
+"A South Island road trip built around alpine landscapes, long hikes and native wildlife.":
+    "Un viaje por carretera por la Isla Sur centrado en paisajes alpinos, caminatas largas y fauna autóctona.",
+"Wildlife kept turning up where I least expected it — kea squabbling on alpine rocks, a falcon on its nest, penguin crossing signs along the coast — and the autumn light on Aoraki / Mount Cook, Lake Wānaka and Lake Wakatipu made every stop feel like a postcard.":
+    "La fauna aparecía donde menos lo esperaba —kea peleándose sobre rocas alpinas, un halcón en su nido, señales de cruce de pingüinos por la costa— y la luz otoñal sobre Aoraki / Monte Cook, el lago Wānaka y el lago Wakatipu hacía que cada parada pareciera una postal.",
+"Alpenglow on Aoraki / Mount Cook at sunset.":
+    "El resplandor rosado sobre Aoraki / Monte Cook al atardecer.",
+"Meeting kea, the cheeky alpine parrots, up close.":
+    "Conocer de cerca a los kea, los descarados loros alpinos.",
+"Driftwood-strewn beaches in Abel Tasman National Park.":
+    "Playas cubiertas de madera de deriva en el Parque Nacional Abel Tasman.",
+"The lone tree in Lake Wānaka, and Queenstown from above.":
+    "El árbol solitario del lago Wānaka y Queenstown desde lo alto.",
+"Lake Wakatipu and the Remarkables seen from above Queenstown":
+    "Lago Wakatipu y Remarkables vistos desde lo alto de Queenstown",
+"Golden tussock hills and the road winding through the Lindis Pass":
+    "Colinas doradas de hierba y la carretera serpenteando por el paso de Lindis",
+"Aoraki / Mount Cook catching the last light at sunset":
+    "Aoraki / Monte Cook recibiendo la última luz del atardecer",
+"A kea perched on the rocks, close up":
+    "Un kea posado sobre las rocas, de cerca",
+"The lone Wānaka tree standing in the lake beneath lenticular clouds":
+    "El árbol solitario de Wānaka en el lago bajo nubes lenticulares",
+"A quiet beach with a driftwood shelter in Abel Tasman National Park":
+    "Una playa tranquila con un refugio de madera de deriva en el Parque Nacional Abel Tasman",
+"A flock of birds over the sea at dusk":
+    "Una bandada de aves sobre el mar al anochecer",
+"A \"Penguins crossing\" road sign on the South Island coast":
+    "Una señal de «Cruce de pingüinos» en la costa de la Isla Sur",
+"A sandy bay below an orange cliff on the Otago coast":
+    "Una bahía de arena bajo un acantilado anaranjado en la costa de Otago",
+"A New Zealand falcon (kārearea) perched on its nest":
+    "Un halcón de Nueva Zelanda (kārearea) posado en su nido",
+"Dew-covered spider webs along a suspension bridge":
+    "Telarañas cubiertas de rocío a lo largo de un puente colgante",
+"Relaxing in a camp chair above the lake, autumn colours along the shore":
+    "Relajado en una silla de camping sobre el lago, con colores de otoño en la orilla",
+"Tropical forests, the Great Barrier Reef, Gold Coast beaches and unforgettable wildlife encounters.":
+    "Bosques tropicales, la Gran Barrera de Coral, playas de la Gold Coast y encuentros inolvidables con la fauna.",
+"Away from the far north, the Queensland coast added a gentler side: koalas dozing in eucalyptus trees, kangaroos and kookaburras in the bush, a waterfall in the Gold Coast hinterland, and beach days — and plenty of jump photos — with friends.":
+    "Lejos del extremo norte, la costa de Queensland aportó un lado más tranquilo: koalas dormitando en los eucaliptos, canguros y cookaburras en el matorral, una cascada en el interior de la Gold Coast y días de playa —y muchas fotos saltando— con amigos.",
+"Spotting koalas, kangaroos and kookaburras in the wild.":
+    "Ver koalas, canguros y cookaburras en libertad.",
+"Waterfalls and eucalyptus forest in the Gold Coast hinterland.":
+    "Cascadas y bosque de eucaliptos en el interior de la Gold Coast.",
+"Beach days and sunset jump photos on the Gold Coast.":
+    "Días de playa y fotos saltando al atardecer en la Gold Coast.",
+"A koala resting in a eucalyptus tree in the evening light":
+    "Un koala descansando en un eucalipto con la luz de la tarde",
+"A dark swallowtail butterfly feeding on a pink ixora flower":
+    "Una mariposa cola de golondrina oscura alimentándose de una flor rosa de ixora",
+"A waterfall dropping down a cliff into the forest in the Gold Coast hinterland":
+    "Una cascada que cae por un acantilado hacia el bosque en el interior de la Gold Coast",
+"A bearded dragon basking on a bare branch against a blue sky":
+    "Un dragón barbudo tomando el sol sobre una rama desnuda contra un cielo azul",
+"A mid-air jump photo on the beach at Coolangatta":
+    "Una foto saltando en el aire en la playa de Coolangatta",
+"Friends jumping on the beach at dusk, mountains silhouetted on the horizon":
+    "Amigos saltando en la playa al anochecer, con las montañas recortadas en el horizonte",
+"An eastern grey kangaroo standing upright in the bush":
+    "Un canguro gris oriental erguido en el matorral",
+"A laughing kookaburra perched on a branch in the evening sun":
+    "Un cookaburra risueño posado en una rama bajo el sol de la tarde",
+"The trip also took in Sydney — the harbour, the Opera House and the skyline from the water — and a humpback whale surfacing offshore.":
+    "El viaje también pasó por Sídney —el puerto, la Ópera y el horizonte desde el agua— y una ballena jorobada saliendo a la superficie mar adentro.",
+"Seeing Sydney's harbour, Opera House and skyline from the water.":
+    "Ver el puerto, la Ópera y el horizonte de Sídney desde el agua.",
+"Watching a humpback whale surface offshore.":
+    "Ver una ballena jorobada salir a la superficie mar adentro.",
+"The Sydney skyline from the water, with Sydney Tower rising above the sandstone cliffs":
+    "El horizonte de Sídney desde el agua, con la Sydney Tower sobre los acantilados de arenisca",
+"Circular Quay's towers and a green-and-yellow ferry on Sydney Harbour":
+    "Los rascacielos de Circular Quay y un ferri verde y amarillo en el puerto de Sídney",
+"The Sydney Opera House beneath the Harbour Bridge on a cloudy day":
+    "La Ópera de Sídney bajo el puente de la bahía en un día nublado",
+"A humpback whale surfacing in choppy water off the coast":
+    "Una ballena jorobada saliendo a la superficie en aguas picadas frente a la costa",
 # Oman
 "Dramatic wadis, desert dunes and a quieter side of the Gulf.": "Wadis espectaculares, dunas del desierto y una cara más tranquila del Golfo.",
 "Oman is one of the most underrated countries for landscape — canyons, wadis and mountains that don't get nearly enough attention compared to its neighbours.":
