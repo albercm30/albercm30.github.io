@@ -12,6 +12,9 @@ T.update({
 "WHY I WENT": "POR QUÉ FUI",
 "The story of": "La historia de",
 "THE ROUTE": "LA RUTA",
+"THE SHAPE": "LA FORMA",
+"The shape of": "La forma de",
+"the Canaries.": "Canarias.",
 "Getting around": "Moverse por el país",
 "A rough shape of the trip — add real dates, distances or a GPX layer later.":
     "Un esquema aproximado del viaje; más adelante añadiré fechas reales, distancias o una capa GPX.",

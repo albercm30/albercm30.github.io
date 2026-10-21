@@ -121,6 +121,18 @@ T.update({
 "Travelpayouts flight prices · Spanish public holidays": "Precios de vuelos de Travelpayouts · Festivos españoles",
 "195 countries · daily scans · ~3.7k lines of Python": "195 países · escaneos diarios · ~3,7k líneas de Python",
 
+# ------------------------------------------------ project screenshots (WildCast, WildStays)
+'WildCast showing a world map of pilot areas and a ranked list of species for the Central Amazon Rainforest with probability bars and confidence labels': 'WildCast con un mapa mundial de áreas piloto y una lista ordenada de especies de la selva amazónica central, con barras de probabilidad y etiquetas de confianza',
+'Pick an area and a date: species are ranked by calibrated probability, each tagged with how many real records back it (here the Central Amazon, in September).': 'Elige un área y una fecha: las especies se ordenan por probabilidad calibrada y cada una indica cuántos registros reales la respaldan (aquí, la Amazonia central en septiembre).',
+'WildStays home page with a search by wildlife, region, month, seen-from and budget, plus popular species': 'Página de inicio de WildStays con búsqueda por fauna, región, mes, desde dónde se ve y presupuesto, y especies populares',
+'Home: search by animal, region, month and budget, or jump straight to a popular species.': 'Inicio: busca por animal, región, mes y presupuesto, o salta directamente a una especie popular.',
+'WildStays species finder listing African mammals seen in May with stay counts': 'Buscador de especies de WildStays con mamíferos africanos vistos en mayo y el número de alojamientos',
+'Species finder: 1,012 animals searchable by name, region and month, with the number of stays for each.': 'Buscador de especies: 1.012 animales por nombre, región y mes, con el número de alojamientos de cada uno.',
+'WildStays page explaining how chances are calculated, with three sources of evidence and four evidence badges': 'Página de WildStays que explica cómo se calculan las probabilidades, con tres fuentes de evidencia y cuatro insignias',
+'How chances are calculated: three sources of evidence and a badge that says which one a claim rests on.': 'Cómo se calculan las probabilidades: tres fuentes de evidencia y una insignia que indica en cuál se basa cada afirmación.',
+'WildStays form for hosts to list their stay, with fields for wildlife seen and evidence': 'Formulario de WildStays para que los anfitriones den de alta su alojamiento, con campos de fauna vista y evidencia',
+'List your stay: hosts describe what guests see and add evidence for a stronger badge.': 'Da de alta tu alojamiento: los anfitriones describen lo que ven los huéspedes y añaden evidencia para una insignia más sólida.',
+
 # ------------------------------------------------ kondo
 "Kondo — NFQ · Alberto Castellano Macías": "Kondo — NFQ · Alberto Castellano Macías",
 "Data engineering and AI work at NFQ: the GCP-to-AWS pipeline behind Allfunds' Kondo platform, plus AI proof-of-concepts for document recognition.":
