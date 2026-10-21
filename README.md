@@ -55,7 +55,7 @@ Never edit files under `es/` by hand; they are regenerated. Wildlife species nam
 6. Add Spanish for every new caption/sentence in `scripts/es_countries.py`, then run `python scripts/build_search_index.py && python scripts/build_es.py`.
 
 ## Visual extras
-- `js/bg.js`: cursor-reactive background canvas, one theme per section (constellation = home, lattice = professional/projects, routes = travel/countries, contours = mountains, bubbles = diving, fireflies = wildlife/contact, bokeh = photography). Disabled with reduced motion.
+- `js/bg.js`: cursor-reactive constellation background, homepage only. Disabled with reduced motion.
 - `js/visuals.js`: interactive elevation charts on /mountains/ and the draw-in animation of the country outline.
 - `scripts/build_shapes.py <ne_10m_admin_0_countries.geojson>`: regenerates the "shape of" section on every country page (Natural Earth, public domain). Run `build_es.py` afterwards. Spain draws the Canary Islands.
 - Bump the `?v=` query string on `/js/*.js` and `/style.css` in every HTML file when they change.
