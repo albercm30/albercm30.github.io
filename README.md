@@ -63,3 +63,6 @@ Never edit files under `es/` by hand; they are regenerated. Wildlife species nam
 - Share images: `python scripts/build_og.py [slug ...]` redraws `assets/og/countries-*.jpg` (and `es/`) from each page's photo, outline and route.
 - Photography page: country filter chips and lightbox captions come from each card's "Category · Country" tag.
 - Dive log: the dot strip is built from the rows of the dive table.
+
+## Trip Reports demo (`/projects/trip-reports/`)
+`js/tripdemo.js` is a client-side demo of the "AI trip reports for wildlife guides" project: free-form notes in, species matched against `data/taxonomy-demo.json` (284 species, `[common, scientific]`), uncertain or unknown sightings flagged for the guide, templated narrative in three tones and two languages, guide-approval gate, then print/PDF, text copy and CSV/JSON export. Nothing is uploaded. To add species, append `[name, scientific]` pairs to the taxonomy file; places for the route map come from `data/stops.json` plus a few names listed in the script.

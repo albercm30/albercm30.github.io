@@ -301,3 +301,80 @@ T.update({
 "STATUS": "ESTADO",
 "MVP built and tested. Pre-launch.": "MVP construido y probado. Previo al lanzamiento.",
 })
+# ------------------------------------------------ trip reports
+T.update({
+"Trip Reports · Alberto Castellano Macías": "Informes de viaje · Alberto Castellano Macías",
+"Trip Reports": "Informes de viaje",
+"PERSONAL · AI · PRODUCT": "PERSONAL · IA · PRODUCTO",
+"PERSONAL · AI · IN DEVELOPMENT": "PERSONAL · IA · EN DESARROLLO",
+"A tool that turns a wildlife guide's rough notes, voice memos and photos into a polished trip report with a checked species list. Try the demo in your browser.":
+    "Una herramienta que convierte las notas sueltas, notas de voz y fotos de un guía de fauna en un informe de viaje pulido con una lista de especies verificada. Prueba la demo en tu navegador.",
+"From rough field notes to a checked, branded trip report in minutes. Try the demo.":
+    "De notas de campo sueltas a un informe de viaje verificado y con tu marca en minutos. Prueba la demo.",
+"Rough field notes and a voice memo turning into a finished trip report with a checked species list and a guide-approval badge":
+    "Notas de campo sueltas y una nota de voz que se convierten en un informe de viaje terminado, con una lista de especies verificada y un sello de aprobación del guía",
+"Turns a guide's quick notes, voice memos and photos into a polished trip report with a checked species list. Try the demo.":
+    "Convierte las notas rápidas, notas de voz y fotos de un guía en un informe de viaje pulido con una lista de especies verificada. Prueba la demo.",
+"Case study and demo →": "Caso de estudio y demo →",
+"Wildlife guides spend their evenings writing trip reports by hand. This tool turns a guide's quick notes, voice memos and photos into a polished report with a checked species list, and the guide approves it before anyone sees it.":
+    "Los guías de fauna se pasan las noches escribiendo informes de viaje a mano. Esta herramienta convierte las notas rápidas, notas de voz y fotos de un guía en un informe pulido con una lista de especies verificada, y el guía lo aprueba antes de que nadie lo vea.",
+"TRY THE DEMO": "PRUEBA LA DEMO",
+"From rough field notes to a": "De notas de campo sueltas a un",
+"trip report.": "informe de viaje.",
+"Load a sample or write your own notes, fix whatever the tool is unsure about, approve, and get a branded report you can print or export as data. It all runs in your browser and nothing is uploaded.":
+    "Carga un ejemplo o escribe tus propias notas, corrige lo que la herramienta no tenga claro, aprueba y obtén un informe con tu marca que puedes imprimir o exportar como datos. Todo funciona en tu navegador y no se sube nada.",
+"Loading the demo…": "Cargando la demo…",
+"The demo needs JavaScript.": "La demo necesita JavaScript.",
+"Birding and wildlife tour companies send their guests a trip report: a daily narrative, a species list and photos. Guides usually write it by hand after a long day in the field, from memory and a scribbled checklist. It takes an hour that nobody has, species names drift between days, and the list is rarely checked against a standard taxonomy.":
+    "Las empresas de turismo de aves y fauna envían a sus clientes un informe de viaje: una narración diaria, una lista de especies y fotos. Los guías suelen escribirlo a mano tras un largo día de campo, de memoria y con una lista garabateada. Cuesta una hora que nadie tiene, los nombres de las especies cambian de un día a otro y la lista casi nunca se contrasta con una taxonomía estándar.",
+"Quick notes": "Notas rápidas",
+"Species matching": "Cotejo de especies",
+"Draft report": "Borrador del informe",
+"Guide approves": "El guía aprueba",
+"Branded report": "Informe con marca",
+"The guide spends under five minutes a day on input: a voice memo, a rough species list and a few photos, sent through a simple web form or, better, a WhatsApp or Telegram bot, since guides are in the field on their phones. The voice memo is transcribed, every species name is matched against a standard taxonomy, and a language model writes each day's narrative in the operator's tone.":
+    "El guía dedica menos de cinco minutos al día a introducir datos: una nota de voz, una lista de especies sin pulir y unas fotos, enviadas por un formulario web sencillo o, mejor, por un bot de WhatsApp o Telegram, ya que los guías están en el campo con el móvil. La nota de voz se transcribe, cada nombre de especie se coteja con una taxonomía estándar y un modelo de lenguaje escribe la narración de cada día con el tono del operador.",
+"The output is a branded web page and PDF with the daily narrative, a species table, a photo gallery and a route map, in English, Spanish or German. Operators can also reuse it for marketing.":
+    "El resultado es una página web y un PDF con la marca del operador, con la narración diaria, una tabla de especies, una galería de fotos y un mapa de la ruta, en inglés, español o alemán. Los operadores también pueden reutilizarlo en su marketing.",
+"Three rules": "Tres reglas",
+"It never adds a species on its own.": "Nunca añade una especie por su cuenta.",
+"The narrative only mentions animals the guide actually listed. Anything uncertain (a question mark, \"maybe\", a name that isn't in the taxonomy) is flagged and waits for the guide.":
+    "La narración solo menciona animales que el guía anotó de verdad. Todo lo dudoso (un signo de interrogación, «quizá», un nombre que no está en la taxonomía) se marca y espera al guía.",
+"The guide approves everything.": "El guía lo aprueba todo.",
+"Nothing reaches a client until the guide has resolved every flag and pressed approve.":
+    "Nada llega a un cliente hasta que el guía ha resuelto todas las marcas y ha pulsado aprobar.",
+"The operator owns the data.": "Los datos son del operador.",
+"Each approved report is also structured sighting data (species, count, place, day, observer) that is shared only with the operator's permission.":
+    "Cada informe aprobado es también un conjunto de datos de avistamientos estructurados (especie, cantidad, lugar, día, observador) que solo se comparte con permiso del operador.",
+"What the demo does": "Qué hace la demo",
+"The demo above is the real workflow in miniature. It reads free-form notes (days, weather, times, counts, \"x3\" and \"(3)\", exclamation marks for highlights), corrects small spelling slips, matches partial names such as \"pig-tailed macaque\", and flags what it cannot place. It then drafts the narrative in three tones and two languages, builds the species table and route map, adds the approval step, and exports the sightings as CSV or JSON.":
+    "La demo de arriba es el flujo real en miniatura. Lee notas libres (días, tiempo, horas, cantidades, «x3» y «(3)», signos de exclamación para lo destacado), corrige pequeños errores ortográficos, reconoce nombres parciales como «pig-tailed macaque» y marca lo que no sabe ubicar. Después redacta la narración en tres tonos y dos idiomas, crea la tabla de especies y el mapa de la ruta, añade el paso de aprobación y exporta los avistamientos en CSV o JSON.",
+"Two parts are simplified so it runs for free in the browser: it matches against a small list of 284 species instead of the full GBIF taxonomy, and the narrative comes from written templates instead of a language model. Voice dictation uses the browser's own speech recognition where available, instead of Whisper.":
+    "Dos partes están simplificadas para que funcione gratis en el navegador: compara con una pequeña lista de 284 especies en lugar de la taxonomía completa de GBIF, y la narración sale de plantillas escritas en lugar de un modelo de lenguaje. El dictado por voz usa el reconocimiento de voz del propio navegador, cuando está disponible, en lugar de Whisper.",
+"Business and data": "Negocio y datos",
+"The customer is the operator: a small monthly fee per company, fully remote, with no data licensing problem because the content comes from the operator. The side effect is the interesting part: with permission, every report adds clean, expert-verified sighting records from many countries at once, which is the dataset that trip and chance forecasting is usually missing.":
+    "El cliente es el operador: una pequeña cuota mensual por empresa, totalmente en remoto y sin problemas de licencias de datos, porque el contenido lo aporta el operador. El efecto secundario es lo interesante: con permiso, cada informe añade registros de avistamientos limpios y verificados por expertos, de muchos países a la vez, que es el conjunto de datos que suele faltar para prever viajes y probabilidades.",
+"Technical plan": "Plan técnico",
+"Python backend (FastAPI) with Supabase": "Backend en Python (FastAPI) con Supabase",
+"for the database and file storage.": "para la base de datos y el almacenamiento de archivos.",
+"Whisper": "Whisper",
+"for transcription and": "para la transcripción y",
+"GBIF's backbone taxonomy": "la taxonomía de referencia de GBIF",
+"for species names, which has a licence that allows this use.": "para los nombres de especies, cuya licencia permite este uso.",
+"The Claude API": "La API de Claude",
+"for the narrative, with the matched species list as the only source of animals it may mention.":
+    "para la narración, con la lista de especies cotejada como única fuente de animales que puede mencionar.",
+"WhatsApp or Telegram bot": "Bot de WhatsApp o Telegram",
+"for input, and": "para la entrada de datos, y",
+"Stripe": "Stripe",
+"for billing.": "para la facturación.",
+"This is an early-stage project, and the demo is a prototype of the workflow, not the finished product. Its species list is tiny, the notes parser expects English lines, and the narrative is templated. Uploaded photos are only shown in the report and are not analysed.":
+    "Es un proyecto en fase inicial y la demo es un prototipo del flujo de trabajo, no el producto terminado. Su lista de especies es pequeña, el analizador de notas espera líneas en inglés y la narración es de plantillas. Las fotos subidas solo se muestran en el informe y no se analizan.",
+"FastAPI": "FastAPI",
+"Supabase": "Supabase",
+"GBIF": "GBIF",
+"Claude API": "API de Claude",
+"FOR": "PARA",
+"Birding and wildlife tour operators and their guides": "Operadores de turismo de aves y fauna y sus guías",
+"In development. Browser demo available.": "En desarrollo. Demo disponible en el navegador.",
+})
