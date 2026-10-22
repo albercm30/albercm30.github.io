@@ -1,1095 +1,1098 @@
 [
-  {
-    "slug": "china",
-    "name": "China",
-    "continent": "Asia",
-    "coords": "39.9°N, 116.4°E",
-    "year": null,
-    "focus": [
-      "Great Wall",
-      "Pandas",
-      "Street food"
-    ],
-    "blurb": "Giant pandas, ancient dynasties and cities that never really sleep.",
-    "story": [
-      "Getting to see giant pandas up close was the whole reason this trip existed — everything else was a bonus built around it.",
-      "From the scale of the Great Wall to the density of its megacities, China was a constant lesson in extremes: ancient and ultramodern, rural and hyper-urban, often within the same afternoon."
-    ],
-    "highlights": [
-      "Seeing giant pandas in Chengdu.",
-      "Walking a quiet, unrestored section of the Great Wall.",
-      "Getting lost in the pace of a first-tier Chinese city."
-    ],
-    "route": [
-      "Beijing",
-      "Pingyao",
-      "Xi'an",
-      "Chengdu",
-      "Chongqing",
-      "Zhangjiajie",
-      "Guilin"
-    ]
-  },
-  {
-    "slug": "india",
-    "name": "India",
-    "continent": "Asia",
-    "coords": "25.3°N, 83.0°E",
-    "year": null,
-    "focus": [
-      "Varanasi",
-      "Ghats",
-      "Culture"
-    ],
-    "blurb": "The ghats of Varanasi and a country that overwhelms every sense at once.",
-    "story": [
-      "India doesn't ease you in. Between the colour, the noise, the food and the sheer number of people, it's the kind of place that reorders how you think a city can work.",
-      "Varanasi was the centre of gravity for this trip — watching life, ritual and the Ganges move together on the ghats at dawn is not something that leaves you."
-    ],
-    "highlights": [
-      "Sunrise on the ghats of Varanasi.",
-      "Sharing meals that were nothing like the India I expected.",
-      "Train journeys that turned into the best part of the day."
-    ],
-    "route": [
-      "Delhi",
-      "Jaipur",
-      "Agra",
-      "Varanasi"
-    ]
-  },
-  {
-    "slug": "japan",
-    "name": "Japan",
-    "continent": "Asia",
-    "coords": "35.7°N, 139.7°E",
-    "year": null,
-    "focus": [
-      "Ramen",
-      "Wagyu",
-      "Cities"
-    ],
-    "blurb": "Ramen, wagyu and the strange comfort of a country that runs on precision.",
-    "story": [
-      "Japan is a country built for people who like details to be right — the trains, the food, the way a whole city can be quiet and considerate at once.",
-      "Most of the trip revolved around eating: proper ramen, wagyu that justified the hype, and enough convenience-store snacks to embarrass myself slightly."
-    ],
-    "highlights": [
-      "Eating ramen that reset my expectations of the dish.",
-      "Wagyu beef that was worth every yen.",
-      "The quiet efficiency of getting anywhere by train."
-    ],
-    "route": [
-      "Tokyo",
-      "Mount Fuji",
-      "Kyoto",
-      "Nara",
-      "Osaka"
-    ]
-  },
-  {
-    "slug": "jordan",
-    "name": "Jordan",
-    "continent": "Asia",
-    "coords": "31.9°N, 35.9°E",
-    "year": null,
-    "focus": [
-      "Petra",
-      "Desert",
-      "Wadi Rum"
-    ],
-    "blurb": "Petra carved into rock, and a night under the stars in the desert.",
-    "story": [
-      "Jordan packs an outsized amount of history and landscape into a small country — Petra alone is worth the trip, but the desert is what stays with you.",
-      "A night camping in the desert, away from any real light pollution, was one of those simple experiences that's hard to explain properly to people who weren't there."
-    ],
-    "highlights": [
-      "Walking the Siq into Petra for the first time.",
-      "Sleeping in a desert camp under a sky full of stars.",
-      "Floating in the Dead Sea."
-    ],
-    "route": [
-      "Amman",
-      "Dead Sea",
-      "Petra",
-      "Wadi Rum",
-      "Aqaba"
-    ]
-  },
-  {
-    "slug": "kazakhstan",
-    "name": "Kazakhstan",
-    "continent": "Asia",
-    "coords": "51.2°N, 71.4°E",
-    "year": null,
-    "focus": [
-      "Steppe",
-      "Almaty",
-      "Central Asia"
-    ],
-    "blurb": "Vast steppe, Soviet-era cities and a first real taste of Central Asia.",
-    "story": [
-      "Kazakhstan was an introduction to a part of the world that rarely gets talked about — huge, empty landscapes and cities that mix Soviet architecture with something newer.",
-      "The scale of the country is hard to describe until you've tried to cross even a small part of it by road."
-    ],
-    "highlights": [
-      "The sheer emptiness of the steppe.",
-      "Almaty's mountain backdrop.",
-      "A part of Central Asia that felt genuinely unfamiliar."
-    ],
-    "route": [
-      "Almaty",
-      "Altyn-Emel",
-      "Charyn Canyon",
-      "Kolsai Lakes",
-      "Astana"
-    ]
-  },
-  {
-    "slug": "kuwait",
-    "name": "Kuwait",
-    "continent": "Asia",
-    "coords": "29.4°N, 47.9°E",
-    "year": null,
-    "focus": [
-      "Gulf",
-      "Culture",
-      "Cities"
-    ],
-    "blurb": "A stop through the Gulf and a glimpse of Kuwaiti city life.",
-    "story": [
-      "Kuwait was a shorter stop, but a useful one for understanding how the Gulf states differ from each other beyond the skyline photos.",
-      "Local food, the corniche and the contrast between old town and new development made for an easy few days."
-    ],
-    "highlights": [
-      "Walking the waterfront corniche.",
-      "Trying Kuwaiti and wider Gulf cuisine.",
-      "A different side of Gulf city life."
-    ],
-    "route": [
-      "Kuwait City"
-    ]
-  },
-  {
-    "slug": "malaysia",
-    "name": "Malaysia",
-    "continent": "Asia",
-    "coords": "3.1°N, 101.7°E",
-    "year": "2025",
-    "focus": [
-      "Borneo",
-      "Rainforest",
-      "Orangutans"
-    ],
-    "blurb": "Rainforest, islands and some of Southeast Asia's richest wildlife.",
-    "story": [
-      "Borneo was the highlight here — rainforest thick enough to feel genuinely remote, and wildlife encounters that made every early wake-up worth it.",
-      "Orangutans in the wild, alongside islands and reef further south, made Malaysia one of the strongest wildlife trips on the list."
-    ],
-    "highlights": [
-      "Seeing wild orangutans in Borneo's rainforest.",
-      "Diving and snorkelling off Malaysia's islands.",
-      "Kuala Lumpur's mix of skyline and street food."
-    ],
-    "route": [
-      "Johor Bahru",
-      "Kuala Lumpur",
-      "Sandakan",
-      "Kota Kinabalu"
-    ]
-  },
-  {
-    "slug": "oman",
-    "name": "Oman",
-    "continent": "Asia",
-    "coords": "23.6°N, 58.5°E",
-    "year": null,
-    "focus": [
-      "Desert",
-      "Wadis",
-      "Coastline"
-    ],
-    "blurb": "Dramatic wadis, desert dunes and a quieter side of the Gulf.",
-    "story": [
-      "Oman is one of the most underrated countries for landscape — canyons, wadis and mountains that don't get nearly enough attention compared to its neighbours.",
-      "Between the desert and the coastline, it felt like several very different trips packed into one country."
-    ],
-    "highlights": [
-      "Swimming in a wadi carved through the mountains.",
-      "Watching the desert change colour at sunset.",
-      "The dramatic drive through Oman's canyon roads."
-    ],
-    "route": [
-      "Muscat",
-      "Dimaniyat Islands",
-      "Nizwa",
-      "Wahiba Sands",
-      "Sur",
-      "Salalah"
-    ]
-  },
-  {
-    "slug": "morocco",
-    "name": "Morocco",
-    "continent": "Africa",
-    "coords": "31.6°N, 8.0°W",
-    "year": null,
-    "focus": [
-      "Tangier",
-      "Medina",
-      "Strait of Gibraltar"
-    ],
-    "blurb": "Tangier, the port city at the edge of Africa, with Europe in sight across the Strait.",
-    "story": [
-      "Morocco was a short stop in Tangier, the port city where the Mediterranean meets the Atlantic and Europe is just across the water.",
-      "The old medina and the feeling of standing at a crossroads between two continents made it a quick but memorable change of pace."
-    ],
-    "highlights": [
-      "Getting lost in the lanes of Tangier's medina.",
-      "Seeing Europe across the Strait of Gibraltar.",
-      "A first taste of Morocco."
-    ],
-    "route": [
-      "Tangier"
-    ]
-  },
-  {
-    "slug": "philippines",
-    "name": "Philippines",
-    "continent": "Asia",
-    "coords": "14.6°N, 121.0°E",
-    "year": null,
-    "focus": [
-      "Islands",
-      "Diving",
-      "Beaches"
-    ],
-    "blurb": "Island-hopping, clear water and some of Southeast Asia's best diving.",
-    "story": [
-      "The Philippines is built for exactly the kind of trip I like — islands, boats and time spent mostly in or near the water.",
-      "Between diving, beach-hopping and the sheer number of islands to choose from, this was a trip that could easily have been twice as long."
-    ],
-    "highlights": [
-      "Diving in some of the country's clearest water.",
-      "Hopping between islands with barely any plan.",
-      "Local seafood eaten within sight of the boat that caught it."
-    ],
-    "route": [
-      "Manila",
-      "Coron",
-      "El Nido",
-      "Puerto Princesa",
-      "Cebu",
-      "Malapascua",
-      "Siargao"
-    ]
-  },
-  {
-    "slug": "singapore",
-    "name": "Singapore",
-    "continent": "Asia",
-    "coords": "1.35°N, 103.8°E",
-    "year": null,
-    "focus": [
-      "Cityscape",
-      "Food",
-      "Stopover"
-    ],
-    "blurb": "A hyper-efficient city-state and one of the best food stopovers in Asia.",
-    "story": [
-      "Singapore usually ended up as a stopover on the way to somewhere else, but it earned a trip in its own right — the food alone justifies a few extra days.",
-      "The contrast between its skyline and its green spaces made it feel far less concrete-heavy than expected."
-    ],
-    "highlights": [
-      "Hawker-centre food that outclassed most restaurants.",
-      "Gardens by the Bay at night.",
-      "A city that somehow runs on time, every time."
-    ],
-    "route": [
-      "Singapore"
-    ]
-  },
-  {
-    "slug": "sri-lanka",
-    "name": "Sri Lanka",
-    "continent": "Asia",
-    "coords": "7.9°N, 80.7°E",
-    "year": null,
-    "focus": [
-      "Ella train",
-      "Ancient cities",
-      "Wildlife"
-    ],
-    "blurb": "Sigiriya, the white stupas of Anuradhapura, the Ella train through fog-covered tea country, elephants and a palm-lined coast.",
-    "story": [
-      "The train from Kandy to Ella is one of those routes people talk about for good reason — hours of tea plantations and mountains rolling past an open door. The day I rode it the whole hill country was wrapped in fog.",
-      "Sri Lanka packed a surprising range into a small island: ancient stupas and the rock fortress of Sigiriya, jungle rivers, elephants and monkeys, and a coast of palm-lined railway lines and surf bays.",
-      "I climbed neighbouring Pidurangala at sunset to see Sigiriya from above, walked around the white stupas of Anuradhapura, floated down a rainforest river in lifejackets and helmets with friends, and watched an elephant bathe in a lake. Toque macaques and a crested serpent eagle turned up along the way, and there were beach sunsets and a stretch of south-coast railway between the palms."
-    ],
-    "highlights": [
-      "Riding the Ella train through fog-covered tea country.",
-      "Climbing Pidurangala at sunset for the view of Sigiriya rock.",
-      "Walking among the white stupas of Anuradhapura.",
-      "Floating down a jungle river in lifejackets and helmets.",
-      "Watching an elephant bathe, toque macaques and a crested serpent eagle.",
-      "Sunsets on the beach and the surf bays of the coast."
-    ],
-    "route": [
-      "Wilpattu",
-      "Anuradhapura",
-      "Sigiriya",
-      "Kitulgala",
-      "Kandy",
-      "Ella",
-      "Arugam Bay",
-      "Ahangama"
-    ]
-  },
-  {
-    "slug": "thailand",
-    "name": "Thailand",
-    "continent": "Asia",
-    "coords": "13.75°N, 100.5°E",
-    "year": "2026",
-    "focus": [
-      "Diving",
-      "Jungle",
-      "Elephants"
-    ],
-    "blurb": "A mix of terrestrial and underwater wildlife exploration.",
-    "story": [
-      "Thailand mixed jungle and ocean in a way few other countries manage — wild elephants and forest trails inland at Khao Yai, reefs and dive sites further south around Koh Tao.",
-      "It became a trip about wildlife more than temples, though there was plenty of both.",
-      "Bangkok set the scene with neon-lit Chinatown nights and gilded temple roofs. Then came the jungle: elephants crossing the road with their calves, a great hornbill at its nest, pit vipers and golden tree snakes on night walks, and everything from porcupines to tarantulas along the trails."
-    ],
-    "highlights": [
-      "Watching wild elephants and their calves cross the road in Khao Yai.",
-      "Diving Thailand's southern reefs.",
-      "Night walks and jungle treks for snakes, spiders, hornbills and porcupines.",
-      "Bangkok's Chinatown neon and temple roofs against the skyline.",
-      "Sunset over the Gulf of Thailand from the beach at Koh Tao."
-    ],
-    "route": [
-      "Bangkok",
-      "Khao Yai",
-      "Koh Tao"
-    ]
-  },
-  {
-    "slug": "turkey",
-    "name": "Turkey",
-    "continent": "Asia",
-    "coords": "38.6°N, 34.8°E",
-    "year": null,
-    "focus": [
-      "Cappadocia",
-      "Balloon",
-      "History"
-    ],
-    "blurb": "Sunrise over Cappadocia from a hot-air balloon, and history at every turn.",
-    "story": [
-      "Turkey bridges two continents in more than just geography — the history, food and landscape all feel like a meeting point.",
-      "Rising over Cappadocia's valleys in a hot-air balloon at dawn is one of those experiences that photos genuinely undersell."
-    ],
-    "highlights": [
-      "A hot-air balloon ride over Cappadocia at sunrise.",
-      "Exploring Istanbul's layered history in a single afternoon.",
-      "Cave hotels carved straight into the rock."
-    ],
-    "route": [
-      "Istanbul",
-      "Cappadocia",
-      "Pamukkale",
-      "Selçuk",
-      "Bodrum"
-    ]
-  },
-  {
-    "slug": "united-arab-emirates",
-    "name": "United Arab Emirates",
-    "continent": "Asia",
-    "coords": "25.2°N, 55.3°E",
-    "year": null,
-    "focus": [
-      "Desert safari",
-      "Skyline",
-      "Culture"
-    ],
-    "blurb": "Desert safaris, a skyline built at speed, and a hub for exploring the wider Gulf.",
-    "story": [
-      "The UAE is an easy place to underestimate — beyond the skyline, the desert on its doorstep is genuinely worth the detour.",
-      "It doubled as a stopover for several other Middle East and Asia trips, so it's tied to more journeys than most countries on this list."
-    ],
-    "highlights": [
-      "A desert safari and dune bashing outside Dubai.",
-      "The view from the top of a record-breaking skyline.",
-      "Old Dubai's souks versus the new city, side by side."
-    ],
-    "route": [
-      "Dubai",
-      "Sharjah",
-      "Hatta",
-      "Khor Fakkan",
-      "Abu Dhabi"
-    ]
-  },
-  {
-    "slug": "uzbekistan",
-    "name": "Uzbekistan",
-    "continent": "Asia",
-    "coords": "39.65°N, 66.96°E",
-    "year": null,
-    "focus": [
-      "Silk Road",
-      "Samarkand",
-      "Architecture"
-    ],
-    "blurb": "Turquoise-tiled Silk Road cities and some of Central Asia's finest architecture.",
-    "story": [
-      "Uzbekistan doesn't get nearly enough credit for what it holds — Samarkand and Bukhara are two of the most striking city centres I've walked through anywhere.",
-      "Following the old Silk Road route made the history feel tangible rather than just read about."
-    ],
-    "highlights": [
-      "Registan Square in Samarkand at golden hour.",
-      "Wandering the old town of Bukhara.",
-      "Tracing a small stretch of the historic Silk Road."
-    ],
-    "route": [
-      "Tashkent",
-      "Chimgan",
-      "Samarkand",
-      "Bukhara"
-    ]
-  },
-  {
-    "slug": "vietnam",
-    "name": "Vietnam",
-    "continent": "Asia",
-    "coords": "21.0°N, 105.8°E",
-    "year": "2026",
-    "focus": [
-      "Mountains",
-      "Road trip",
-      "Wildlife"
-    ],
-    "blurb": "Northern mountains, limestone bays, countryside, caves and the coast.",
-    "story": [
-      "The Ha Giang Loop was the centrepiece of this trip — days on a motorbike through northern mountains that kept getting more dramatic around every bend.",
-      "From caves in the north to the pace of the south, Vietnam turned into one of the best road trips on this list.",
-      "Off the bike there was just as much variety: the limestone bays around Cát Bà Island, boat rides between the forested karsts of Ninh Binh, and sunset over the coast at Da Nang."
-    ],
-    "highlights": [
-      "Riding the Ha Giang Loop through the northern mountains.",
-      "Drifting between limestone karsts on a boat around Cát Bà Island.",
-      "Rowing between forested cliffs in Ninh Binh.",
-      "Exploring the cave systems near Phong Nha.",
-      "Parasailers and a white Buddha over the bay at Da Nang.",
-      "The contrast between rural north and buzzing south."
-    ],
-    "route": [
-      "Hanoi",
-      "Ha Giang",
-      "Cat Ba Island",
-      "Ninh Binh",
-      "Phong Nha",
-      "Da Nang",
-      "Hoi An",
-      "Da Lat",
-      "Ho Chi Minh City"
-    ]
-  },
-  {
-    "slug": "austria",
-    "name": "Austria",
-    "continent": "Europe",
-    "coords": "47.5°N, 14.6°E",
-    "year": null,
-    "focus": [
-      "Vienna",
-      "Architecture",
-      "Coffee houses"
-    ],
-    "blurb": "Imperial Vienna and its coffee-house culture.",
-    "story": [
-      "Austria was Vienna — imperial palaces, grand boulevards and a coffee-house culture that makes slowing down easy.",
-      "It also fit neatly into a Central European loop with Bratislava and Budapest."
-    ],
-    "highlights": [
-      "A long afternoon in a Viennese coffee house.",
-      "Vienna's imperial architecture and coffee houses.",
-      "Easy train connections to Bratislava and Budapest."
-    ],
-    "route": [
-      "Vienna"
-    ]
-  },
-  {
-    "slug": "belgium",
-    "name": "Belgium",
-    "continent": "Europe",
-    "coords": "50.85°N, 4.35°E",
-    "year": null,
-    "focus": [
-      "Bruges",
-      "Beer",
-      "Chocolate"
-    ],
-    "blurb": "Canals, medieval streets and more beer and chocolate than strictly necessary.",
-    "story": [
-      "Belgium is an easy country to underrate — Bruges alone is worth a dedicated trip, canals and all.",
-      "Between the food, the beer and the compact old towns, it made for a relaxed, low-effort few days."
-    ],
-    "highlights": [
-      "Walking Bruges' canals at dusk.",
-      "A proper Belgian beer tasting.",
-      "Brussels' mix of grand architecture and comic-book murals."
-    ],
-    "route": [
-      "Brussels",
-      "Bruges",
-      "Ghent",
-      "Antwerp"
-    ]
-  },
-  {
-    "slug": "bulgaria",
-    "name": "Bulgaria",
-    "continent": "Europe",
-    "coords": "42.7°N, 23.3°E",
-    "year": null,
-    "focus": [
-      "Mountains",
-      "History",
-      "Value"
-    ],
-    "blurb": "Sofia, Plovdiv and the Seven Rila Lakes: underrated mountains and one of Europe's best-value trips.",
-    "story": [
-      "Bulgaria surprised me more than almost anywhere else in Europe — a lively capital, Plovdiv's old town and the Rila mountains, all with barely any crowds.",
-      "It's the kind of country that quietly outperforms its reputation once you actually spend time there."
-    ],
-    "highlights": [
-      "Hiking up to the Seven Rila Lakes.",
-      "Plovdiv's old town and Roman theatre.",
-      "Sofia's mix of Roman, Ottoman and Soviet layers."
-    ],
-    "route": [
-      "Sofia",
-      "Plovdiv",
-      "Rila Lakes"
-    ]
-  },
-  {
-    "slug": "croatia",
-    "name": "Croatia",
-    "continent": "Europe",
-    "coords": "45.8°N, 15.9°E",
-    "year": null,
-    "focus": [
-      "Zagreb",
-      "Pag island",
-      "Adriatic"
-    ],
-    "blurb": "Zagreb's old upper town and the Adriatic island of Pag.",
-    "story": [
-      "Croatia split neatly in two: Zagreb's old upper town and cafés, and the Adriatic island of Pag, where Novalja sits on the coast.",
-      "A short trip, but it covered both the capital and the sea."
-    ],
-    "highlights": [
-      "Wandering Zagreb's old upper town.",
-      "Swimming in the Adriatic's clear water off Pag.",
-      "Novalja, on the island of Pag."
-    ],
-    "route": [
-      "Zagreb",
-      "Novalja"
-    ]
-  },
-  {
-    "slug": "france",
-    "name": "France",
-    "continent": "Europe",
-    "coords": "48.85°N, 2.35°E",
-    "year": null,
-    "focus": [
-      "Paris",
-      "Riviera",
-      "Basque coast"
-    ],
-    "blurb": "Paris, the Riviera at Villefranche-sur-Mer and the Basque coast.",
-    "story": [
-      "France covered a lot of ground — Paris for the obvious reasons, then the Riviera at Villefranche-sur-Mer and the Basque coast around Saint-Jean-de-Luz, Ascain and Hendaye.",
-      "It's a country that rewards slowing down: long lunches, harbour towns and a coastline that changes completely from one end to the other."
-    ],
-    "highlights": [
-      "Paris from a rooftop rather than a queue.",
-      "Villefranche-sur-Mer's colourful harbour on the Riviera.",
-      "The Basque coast around Saint-Jean-de-Luz."
-    ],
-    "route": [
-      "Paris",
-      "Villefranche-sur-Mer",
-      "Saint-Jean-de-Luz"
-    ]
-  },
-  {
-    "slug": "germany",
-    "name": "Germany",
-    "continent": "Europe",
-    "coords": "52.5°N, 13.4°E",
-    "year": null,
-    "focus": [
-      "Cities",
-      "Beer gardens",
-      "History"
-    ],
-    "blurb": "History-dense cities, Bavarian beer gardens and efficient everything.",
-    "story": [
-      "Germany's cities each felt distinctly different — Berlin's history, Munich's beer-garden culture, and everything in between.",
-      "It became a trip built around contrasts: heavy 20th-century history one day, easy beer-garden afternoons the next."
-    ],
-    "highlights": [
-      "Walking Berlin's layered Cold War history.",
-      "A proper Bavarian beer garden in Munich.",
-      "Munich's Marienplatz and old town."
-    ],
-    "route": [
-      "Berlin",
-      "Munich"
-    ]
-  },
-  {
-    "slug": "hungary",
-    "name": "Hungary",
-    "continent": "Europe",
-    "coords": "47.5°N, 19.05°E",
-    "year": null,
-    "focus": [
-      "Budapest",
-      "Thermal baths",
-      "Danube"
-    ],
-    "blurb": "Budapest's thermal baths and one of the Danube's finest city skylines.",
-    "story": [
-      "Budapest alone made this trip worthwhile — the Danube skyline at night is one of the best city views in Europe.",
-      "Soaking in a centuries-old thermal bath after a day of walking became the daily routine, and it's hard to argue with that."
-    ],
-    "highlights": [
-      "Soaking in Budapest's thermal baths.",
-      "The Danube skyline lit up at night.",
-      "Ruin bars in the old Jewish quarter."
-    ],
-    "route": [
-      "Budapest"
-    ]
-  },
-  {
-    "slug": "italy",
-    "name": "Italy",
-    "continent": "Europe",
-    "coords": "46.4°N, 11.9°E",
-    "year": "2026",
-    "focus": [
-      "Dolomites",
-      "Hiking",
-      "Lakes"
-    ],
-    "blurb": "A hiking-focused journey through the Dolomites, with Venice, Florence, Rome and a run down to Sicily.",
-    "story": [
-      "The Dolomites were the whole point of this trip — jagged limestone peaks that look almost unreal in the right light.",
-      "Multiple days of hut-to-hut hiking, with lakes and small alpine towns along the way, made it one of the best mountain trips on the list.",
-      "The classics were all there — the Tre Cime di Lavaredo, Lago di Braies, the little church of St John in Val di Funes — and the trip also took in the canals and lagoon of Venice, Florence, Rome and Pompeii, Taormina in Sicily and the Matterhorn from the Aosta Valley."
-    ],
-    "highlights": [
-      "Hut-to-hut hiking through the Dolomites.",
-      "Lake Braies at first light, before the crowds.",
-      "The Tre Cime di Lavaredo against a deep blue sky.",
-      "St John's chapel in Ranui, with the Odle rising behind it.",
-      "Gondolas and quiet canals in Venice.",
-      "Small alpine towns that felt frozen in time."
-    ],
-    "route": [
-      "Aosta",
-      "Dolomites",
-      "Venice",
-      "Florence",
-      "Rome",
-      "Pompeii",
-      "Taormina"
-    ]
-  },
-  {
-    "slug": "monaco",
-    "name": "Monaco",
-    "continent": "Europe",
-    "coords": "43.73°N, 7.42°E",
-    "year": null,
-    "focus": [
-      "Riviera",
-      "Day trip",
-      "Coastline"
-    ],
-    "blurb": "A quick, glamorous detour along the French Riviera.",
-    "story": [
-      "Monaco was a short, easy detour along the Riviera — more a walk around than a full trip, but worth the stop.",
-      "The contrast between the harbour's superyachts and the old town on the hill above made it an interesting hour or two."
-    ],
-    "highlights": [
-      "Walking the harbour lined with superyachts.",
-      "The old town of Monaco-Ville above the coast.",
-      "A short stretch of the legendary Grand Prix circuit."
-    ],
-    "route": [
-      "Monaco"
-    ]
-  },
-  {
-    "slug": "netherlands",
-    "name": "Netherlands",
-    "continent": "Europe",
-    "coords": "52.37°N, 4.9°E",
-    "year": null,
-    "focus": [
-      "Canals",
-      "Cycling",
-      "Cities"
-    ],
-    "blurb": "Canal-lined cities, flat roads made for cycling, and easy trains between them.",
-    "story": [
-      "The Netherlands is one of the easiest countries to travel around — flat, well-connected and built for cycling everywhere.",
-      "Amsterdam's canals got most of the attention, but the smaller cities further out were just as worth the trip."
-    ],
-    "highlights": [
-      "Cycling between canal-lined towns.",
-      "Amsterdam's museums and canal architecture.",
-      "Tulip fields in full bloom outside the city."
-    ],
-    "route": [
-      "Amsterdam",
-      "The Hague",
-      "Delft"
-    ]
-  },
-  {
-    "slug": "poland",
-    "name": "Poland",
-    "continent": "Europe",
-    "coords": "52.23°N, 21.0°E",
-    "year": null,
-    "focus": [
-      "History",
-      "Old town",
-      "Cities"
-    ],
-    "blurb": "Warsaw's rebuilt old town and a capital shaped by heavy history.",
-    "story": [
-      "Poland's history is impossible to separate from a visit — Warsaw's old town, rebuilt after the war, tells the story of the twentieth century on its own.",
-      "It's a city that rewards taking the history seriously rather than rushing between photo spots."
-    ],
-    "highlights": [
-      "Walking Warsaw's rebuilt old town.",
-      "Warsaw's old town, rebuilt brick by brick after the war.",
-      "A capital that mixes heavy history with modern city life."
-    ],
-    "route": [
-      "Warsaw"
-    ]
-  },
-  {
-    "slug": "slovakia",
-    "name": "Slovakia",
-    "continent": "Europe",
-    "coords": "48.15°N, 17.1°E",
-    "year": null,
-    "focus": [
-      "Bratislava",
-      "Old town",
-      "Danube"
-    ],
-    "blurb": "Bratislava's compact old town on the Danube.",
-    "story": [
-      "Slovakia was a short stop in Bratislava, the capital that sits right on the Danube, close to Vienna and Budapest.",
-      "A compact old town and a castle on the hill made for an easy, underrated visit."
-    ],
-    "highlights": [
-      "Bratislava Castle above the Danube.",
-      "Bratislava's compact, walkable old town.",
-      "How close it sits to Vienna and Budapest."
-    ],
-    "route": [
-      "Bratislava"
-    ]
-  },
-  {
-    "slug": "spain",
-    "name": "Spain",
-    "continent": "Europe",
-    "coords": "40.4°N, 3.7°W",
-    "year": null,
-    "focus": [
-      "Canary Islands",
-      "Home turf",
-      "Volcanoes"
-    ],
-    "blurb": "Home ground — from the Canary Islands to the cities and coasts of the mainland.",
-    "story": [
-      "Being home turf, Spain gets explored differently — less like a single trip and more like an ongoing project, from the Canary Islands to Madrid, Barcelona, Andalucía and the north coast.",
-      "Between the regional food differences, the coastline and the mountains, it rarely gets old, even close to home."
-    ],
-    "highlights": [
-      "Watching sunrise over Roque Nublo with Teide across the water.",
-      "Driving through Teide National Park's volcanic landscape.",
-      "Regional food that changes completely every few hundred kilometres."
-    ],
-    "route": [
-      "La Graciosa",
-      "Lanzarote",
-      "Fuerteventura",
-      "Gran Canaria",
-      "Tenerife"
-    ]
-  },
-  {
-    "slug": "uk",
-    "name": "United Kingdom",
-    "continent": "Europe",
-    "coords": "51.5°N, 0.13°W",
-    "year": null,
-    "focus": [
-      "Manchester",
-      "Liverpool",
-      "Cities"
-    ],
-    "blurb": "Manchester and Liverpool — two northern English cities, a short train ride apart.",
-    "story": [
-      "The UK trip was built around two northern English cities, Manchester and Liverpool, a short train ride apart.",
-      "Industrial heritage, football and music history run through both, and each has a very different feel."
-    ],
-    "highlights": [
-      "Manchester's red-brick industrial heritage.",
-      "Liverpool's waterfront and Beatles history.",
-      "How close two very different cities sit."
-    ],
-    "route": [
-      "Manchester",
-      "Liverpool"
-    ]
-  },
-  {
-    "slug": "vatican",
-    "name": "Vatican City",
-    "continent": "Europe",
-    "coords": "41.9°N, 12.45°E",
-    "year": null,
-    "focus": [
-      "St Peter's",
-      "Museums",
-      "Rome day trip"
-    ],
-    "blurb": "The smallest country in the world, and one of its densest concentrations of art.",
-    "story": [
-      "Vatican City is easy to fold into a Rome trip, but it deserves its own mention — the scale of St Peter's Basilica alone is disorienting.",
-      "The Sistine Chapel gets the attention, but the sheer density of art through the Vatican Museums is the real experience."
-    ],
-    "highlights": [
-      "Standing beneath the dome of St Peter's Basilica.",
-      "The Sistine Chapel ceiling, in person rather than in photos.",
-      "Walking through the Vatican Museums' endless corridors."
-    ],
-    "route": [
-      "Vatican City"
-    ]
-  },
-  {
-    "slug": "canada",
-    "name": "Canada",
-    "continent": "North America",
-    "coords": "45.4°N, 75.7°W",
-    "year": null,
-    "focus": [
-      "Quebec",
-      "Old town",
-      "Cities"
-    ],
-    "blurb": "Quebec City's walled old town, a French-speaking corner of North America.",
-    "story": [
-      "Canada was Quebec City, the walled, French-speaking city on the St Lawrence River.",
-      "Cobbled streets, the Château Frontenac and a European feel made it seem more like a trip across the Atlantic than across a continent."
-    ],
-    "highlights": [
-      "Walking Quebec City's walled old town.",
-      "The Château Frontenac above the St Lawrence.",
-      "A little bit of Europe in North America."
-    ],
-    "route": [
-      "Quebec"
-    ]
-  },
-  {
-    "slug": "guatemala",
-    "name": "Guatemala",
-    "continent": "North America",
-    "coords": "14.6°N, 90.5°W",
-    "year": "2026",
-    "focus": [
-      "Acatenango",
-      "Volcanoes",
-      "Adventure"
-    ],
-    "blurb": "Volcanoes, highland landscapes and an unforgettable ascent of Acatenango.",
-    "story": [
-      "Climbing Acatenango overnight to watch neighbouring Volcán de Fuego erupt in the dark was one of the most striking things I've seen on any trip.",
-      "Beyond the volcano, the highlands and colonial towns gave the trip a completely different rhythm — slower, quieter, older."
-    ],
-    "highlights": [
-      "Watching Volcán de Fuego erupt from Acatenango's summit camp.",
-      "Colonial streets of Antigua beneath Volcán de Agua at golden hour.",
-      "Highland markets that felt untouched by tourism."
-    ],
-    "route": [
-      "Guatemala City",
-      "Antigua",
-      "Acatenango"
-    ]
-  },
-  {
-    "slug": "mexico",
-    "name": "Mexico",
-    "continent": "North America",
-    "coords": "23.6°N, 102.5°W",
-    "year": "2026",
-    "focus": [
-      "Sharks",
-      "Mantas",
-      "Marine life"
-    ],
-    "blurb": "Baja California, marine megafauna and the Yucatán.",
-    "story": [
-      "Mexico turned into one of the best diving trips on this list — Baja California's marine life is hard to overstate.",
-      "From sea lions and mobula rays in the Pacific to the cenotes and reefs of the Yucatán, the country delivered on both coasts.",
-      "On land it was just as rewarding: the colonial streets and Mayan ruins of the Yucatán, flamingos wading in the shallows, and birds like the turquoise-browed motmot."
-    ],
-    "highlights": [
-      "Diving with sea lions and mobula rays in Baja California.",
-      "Snorkelling a cenote in the Yucatán.",
-      "Flamingos wading in a Yucatán lagoon under a storm sky.",
-      "Colonial streets, bright churches and the pyramid at Chichén Itzá.",
-      "Street food that outclassed every restaurant nearby."
-    ],
-    "route": [
-      "La Paz",
-      "Cabo Pulmo",
-      "Mexico City",
-      "Mérida",
-      "Chichén Itzá",
-      "Holbox"
-    ]
-  },
-  {
-    "slug": "usa",
-    "name": "United States",
-    "continent": "North America",
-    "coords": "38.9°N, 77.0°W",
-    "year": null,
-    "focus": [
-      "Road trips",
-      "Cities",
-      "Coast"
-    ],
-    "blurb": "From the California coast to New York, Washington and the rocky coast of Maine.",
-    "story": [
-      "The US rewards distance — Southern California, the East Coast cities and the rocky coast of Maine felt like three different countries.",
-      "Every region felt like visiting a slightly different country, which is most of the appeal of covering it piece by piece."
-    ],
-    "highlights": [
-      "Beaches and surf towns along the Southern California coast.",
-      "Skylines that look exactly like the films, and still impress.",
-      "The rocky Maine coast around Bar Harbor and Acadia."
-    ],
-    "route": [
-      "San Diego",
-      "Los Angeles",
-      "New York",
-      "Washington, D.C.",
-      "Boston",
-      "Bar Harbor"
-    ]
-  },
-  {
-    "slug": "australia",
-    "name": "Australia",
-    "continent": "Oceania",
-    "coords": "-16.9°S, 145.7°E",
-    "year": "2025",
-    "focus": [
-      "Wildlife",
-      "Diving",
-      "Road trips"
-    ],
-    "blurb": "Tropical forests, the Great Barrier Reef, Gold Coast beaches and unforgettable wildlife encounters.",
-    "story": [
-      "Australia was one of those trips where the reason for going was simple: wildlife.",
-      "I wanted to see what the country looked like beyond the cities — rainforest, reef, beaches, remote roads and the animals that make Australia unlike anywhere else. The trip became a mix of diving on the Great Barrier Reef, exploring the Daintree, searching for cassowaries and platypuses, driving between places that looked ridiculously far apart on a map, and stopping whenever something interesting appeared.",
-      "Away from the far north, the Queensland coast added a gentler side: koalas dozing in eucalyptus trees, kangaroos and kookaburras in the bush, a waterfall in the Gold Coast hinterland, and beach days — and plenty of jump photos — with friends.",
-      "The trip also took in Sydney — the harbour, the Opera House and the skyline from the water — and a humpback whale surfacing offshore."
-    ],
-    "highlights": [
-      "Diving the Great Barrier Reef.",
-      "Exploring the Daintree rainforest and searching for cassowaries.",
-      "Searching for platypuses around Yungaburra.",
-      "Sleeping among Australia's wildlife rather than behind city walls.",
-      "Realising that every road trip in Australia is considerably longer than it looks.",
-      "Spotting koalas, kangaroos and kookaburras in the wild.",
-      "Waterfalls and eucalyptus forest in the Gold Coast hinterland.",
-      "Beach days and sunset jump photos on the Gold Coast.",
-      "Seeing Sydney's harbour, Opera House and skyline from the water.",
-      "Watching a humpback whale surface offshore."
-    ],
-    "route": [
-      "Sydney",
-      "Byron Bay",
-      "Gold Coast",
-      "Brisbane",
-      "Cairns",
-      "Yungaburra",
-      "Daintree",
-      "Great Barrier Reef"
-    ]
-  },
-  {
-    "slug": "new-zealand",
-    "name": "New Zealand",
-    "continent": "Oceania",
-    "coords": "-43.6°S, 170.1°E",
-    "year": "2026",
-    "focus": [
-      "Mountains",
-      "Road trip",
-      "Alpine"
-    ],
-    "blurb": "A South Island road trip built around alpine landscapes, long hikes and native wildlife.",
-    "story": [
-      "A campervan and the South Island turned out to be a near-perfect combination — every day ended somewhere different, usually with a mountain in view.",
-      "The hiking did most of the work here: long alpine trails, glacier valleys and lakes so clear they barely looked real.",
-      "Wildlife kept turning up where I least expected it — kea squabbling on alpine rocks, a falcon on its nest, penguin crossing signs along the coast — and the autumn light on Aoraki / Mount Cook, Lake Wānaka and Lake Wakatipu made every stop feel like a postcard."
-    ],
-    "highlights": [
-      "Hiking the Roy's Peak track at sunrise.",
-      "Campervanning down the South Island with no fixed plan.",
-      "Glacial lakes that looked almost artificially blue.",
-      "Alpenglow on Aoraki / Mount Cook at sunset.",
-      "Meeting kea, the cheeky alpine parrots, up close.",
-      "Driftwood-strewn beaches in Abel Tasman National Park.",
-      "The lone tree in Lake Wānaka, and Queenstown from above."
-    ],
-    "route": [
-      "Christchurch",
-      "Abel Tasman",
-      "Franz Josef",
-      "Mount Cook",
-      "Wanaka",
-      "Queenstown",
-      "Milford Sound",
-      "Otago Coast"
-    ]
-  }
+ {
+  "slug": "china",
+  "name": "China",
+  "continent": "Asia",
+  "coords": "39.9°N, 116.4°E",
+  "year": null,
+  "focus": [
+   "Great Wall",
+   "Pandas",
+   "Street food"
+  ],
+  "blurb": "Giant pandas, ancient dynasties and cities that never really sleep.",
+  "story": [
+   "Getting to see giant pandas up close was the whole reason this trip existed — everything else was a bonus built around it.",
+   "From the scale of the Great Wall to the density of its megacities, China was a constant lesson in extremes: ancient and ultramodern, rural and hyper-urban, often within the same afternoon."
+  ],
+  "highlights": [
+   "Seeing giant pandas in Chengdu.",
+   "Walking a quiet, unrestored section of the Great Wall.",
+   "Getting lost in the pace of a first-tier Chinese city."
+  ],
+  "route": [
+   "Beijing",
+   "Pingyao",
+   "Xi'an",
+   "Chengdu",
+   "Chongqing",
+   "Zhangjiajie",
+   "Guilin"
+  ]
+ },
+ {
+  "slug": "india",
+  "name": "India",
+  "continent": "Asia",
+  "coords": "25.3°N, 83.0°E",
+  "year": null,
+  "focus": [
+   "Varanasi",
+   "Ghats",
+   "Culture"
+  ],
+  "blurb": "The ghats of Varanasi and a country that overwhelms every sense at once.",
+  "story": [
+   "India doesn't ease you in. Between the colour, the noise, the food and the sheer number of people, it's the kind of place that reorders how you think a city can work.",
+   "Varanasi was the centre of gravity for this trip — watching life, ritual and the Ganges move together on the ghats at dawn is not something that leaves you."
+  ],
+  "highlights": [
+   "Sunrise on the ghats of Varanasi.",
+   "Sharing meals that were nothing like the India I expected.",
+   "Train journeys that turned into the best part of the day."
+  ],
+  "route": [
+   "Delhi",
+   "Jaipur",
+   "Agra",
+   "Varanasi"
+  ]
+ },
+ {
+  "slug": "japan",
+  "name": "Japan",
+  "continent": "Asia",
+  "coords": "35.7°N, 139.7°E",
+  "year": null,
+  "focus": [
+   "Ramen",
+   "Wagyu",
+   "Cities"
+  ],
+  "blurb": "Ramen, wagyu and the strange comfort of a country that runs on precision.",
+  "story": [
+   "Japan is a country built for people who like details to be right — the trains, the food, the way a whole city can be quiet and considerate at once.",
+   "Most of the trip revolved around eating: proper ramen, wagyu that justified the hype, and enough convenience-store snacks to embarrass myself slightly."
+  ],
+  "highlights": [
+   "Eating ramen that reset my expectations of the dish.",
+   "Wagyu beef that was worth every yen.",
+   "The quiet efficiency of getting anywhere by train."
+  ],
+  "route": [
+   "Tokyo",
+   "Mount Fuji",
+   "Kyoto",
+   "Nara",
+   "Osaka"
+  ]
+ },
+ {
+  "slug": "jordan",
+  "name": "Jordan",
+  "continent": "Asia",
+  "coords": "31.9°N, 35.9°E",
+  "year": null,
+  "focus": [
+   "Petra",
+   "Desert",
+   "Wadi Rum"
+  ],
+  "blurb": "Petra carved into rock, and a night under the stars in the desert.",
+  "story": [
+   "Jordan packs an outsized amount of history and landscape into a small country — Petra alone is worth the trip, but the desert is what stays with you.",
+   "A night camping in the desert, away from any real light pollution, was one of those simple experiences that's hard to explain properly to people who weren't there."
+  ],
+  "highlights": [
+   "Walking the Siq into Petra for the first time.",
+   "Sleeping in a desert camp under a sky full of stars.",
+   "Floating in the Dead Sea."
+  ],
+  "route": [
+   "Amman",
+   "Dead Sea",
+   "Petra",
+   "Wadi Rum",
+   "Aqaba"
+  ]
+ },
+ {
+  "slug": "kazakhstan",
+  "name": "Kazakhstan",
+  "continent": "Asia",
+  "coords": "51.2°N, 71.4°E",
+  "year": null,
+  "focus": [
+   "Steppe",
+   "Almaty",
+   "Central Asia"
+  ],
+  "blurb": "Vast steppe, Soviet-era cities and a first real taste of Central Asia.",
+  "story": [
+   "Kazakhstan was an introduction to a part of the world that rarely gets talked about — huge, empty landscapes and cities that mix Soviet architecture with something newer.",
+   "The scale of the country is hard to describe until you've tried to cross even a small part of it by road."
+  ],
+  "highlights": [
+   "The sheer emptiness of the steppe.",
+   "Almaty's mountain backdrop.",
+   "A part of Central Asia that felt genuinely unfamiliar."
+  ],
+  "route": [
+   "Almaty",
+   "Altyn-Emel",
+   "Charyn Canyon",
+   "Kolsai Lakes",
+   "Astana"
+  ]
+ },
+ {
+  "slug": "kuwait",
+  "name": "Kuwait",
+  "continent": "Asia",
+  "coords": "29.4°N, 47.9°E",
+  "year": null,
+  "focus": [
+   "Gulf",
+   "Culture",
+   "Cities"
+  ],
+  "blurb": "A stop through the Gulf and a glimpse of Kuwaiti city life.",
+  "story": [
+   "Kuwait was a shorter stop, but a useful one for understanding how the Gulf states differ from each other beyond the skyline photos.",
+   "Local food, the corniche and the contrast between old town and new development made for an easy few days."
+  ],
+  "highlights": [
+   "Walking the waterfront corniche.",
+   "Trying Kuwaiti and wider Gulf cuisine.",
+   "A different side of Gulf city life."
+  ],
+  "route": [
+   "Kuwait City"
+  ]
+ },
+ {
+  "slug": "malaysia",
+  "name": "Malaysia",
+  "continent": "Asia",
+  "coords": "3.1°N, 101.7°E",
+  "year": "2025",
+  "focus": [
+   "Borneo",
+   "Rainforest",
+   "Orangutans"
+  ],
+  "blurb": "Rainforest, islands and some of Southeast Asia's richest wildlife.",
+  "story": [
+   "Borneo was the highlight here — rainforest thick enough to feel genuinely remote, and wildlife encounters that made every early wake-up worth it.",
+   "Orangutans in the wild, alongside islands and reef further south, made Malaysia one of the strongest wildlife trips on the list."
+  ],
+  "highlights": [
+   "Seeing wild orangutans in Borneo's rainforest.",
+   "Diving and snorkelling off Malaysia's islands.",
+   "Kuala Lumpur's mix of skyline and street food."
+  ],
+  "route": [
+   "Johor Bahru",
+   "Kuala Lumpur",
+   "Sandakan",
+   "Kota Kinabalu"
+  ]
+ },
+ {
+  "slug": "oman",
+  "name": "Oman",
+  "continent": "Asia",
+  "coords": "23.6°N, 58.5°E",
+  "year": null,
+  "focus": [
+   "Desert",
+   "Wadis",
+   "Coastline"
+  ],
+  "blurb": "Dramatic wadis, desert dunes and a quieter side of the Gulf.",
+  "story": [
+   "Oman is one of the most underrated countries for landscape — canyons, wadis and mountains that don't get nearly enough attention compared to its neighbours.",
+   "Between the desert and the coastline, it felt like several very different trips packed into one country."
+  ],
+  "highlights": [
+   "Swimming in a wadi carved through the mountains.",
+   "Watching the desert change colour at sunset.",
+   "The dramatic drive through Oman's canyon roads."
+  ],
+  "route": [
+   "Muscat",
+   "Dimaniyat Islands",
+   "Nizwa",
+   "Wahiba Sands",
+   "Sur",
+   "Salalah"
+  ]
+ },
+ {
+  "slug": "morocco",
+  "name": "Morocco",
+  "continent": "Africa",
+  "coords": "31.6°N, 8.0°W",
+  "year": null,
+  "focus": [
+   "Tangier",
+   "Medina",
+   "Strait of Gibraltar"
+  ],
+  "blurb": "Tangier, the port city at the edge of Africa, with Europe in sight across the Strait.",
+  "story": [
+   "Morocco was a short stop in Tangier, the port city where the Mediterranean meets the Atlantic and Europe is just across the water.",
+   "The old medina and the feeling of standing at a crossroads between two continents made it a quick but memorable change of pace."
+  ],
+  "highlights": [
+   "Getting lost in the lanes of Tangier's medina.",
+   "Seeing Europe across the Strait of Gibraltar.",
+   "A first taste of Morocco."
+  ],
+  "route": [
+   "Tangier"
+  ]
+ },
+ {
+  "slug": "philippines",
+  "name": "Philippines",
+  "continent": "Asia",
+  "coords": "14.6°N, 121.0°E",
+  "year": null,
+  "focus": [
+   "Islands",
+   "Diving",
+   "Beaches"
+  ],
+  "blurb": "Island-hopping, clear water and some of Southeast Asia's best diving.",
+  "story": [
+   "The Philippines is built for exactly the kind of trip I like — islands, boats and time spent mostly in or near the water.",
+   "Between diving, beach-hopping and the sheer number of islands to choose from, this was a trip that could easily have been twice as long."
+  ],
+  "highlights": [
+   "Diving in some of the country's clearest water.",
+   "Hopping between islands with barely any plan.",
+   "Local seafood eaten within sight of the boat that caught it."
+  ],
+  "route": [
+   "Manila",
+   "Coron",
+   "El Nido",
+   "Puerto Princesa",
+   "Cebu",
+   "Malapascua",
+   "Siargao"
+  ]
+ },
+ {
+  "slug": "singapore",
+  "name": "Singapore",
+  "continent": "Asia",
+  "coords": "1.35°N, 103.8°E",
+  "year": null,
+  "focus": [
+   "Cityscape",
+   "Food",
+   "Stopover"
+  ],
+  "blurb": "A hyper-efficient city-state and one of the best food stopovers in Asia.",
+  "story": [
+   "Singapore usually ended up as a stopover on the way to somewhere else, but it earned a trip in its own right — the food alone justifies a few extra days.",
+   "The contrast between its skyline and its green spaces made it feel far less concrete-heavy than expected."
+  ],
+  "highlights": [
+   "Hawker-centre food that outclassed most restaurants.",
+   "Gardens by the Bay at night.",
+   "A city that somehow runs on time, every time."
+  ],
+  "route": [
+   "Singapore"
+  ]
+ },
+ {
+  "slug": "sri-lanka",
+  "name": "Sri Lanka",
+  "continent": "Asia",
+  "coords": "7.9°N, 80.7°E",
+  "year": null,
+  "focus": [
+   "Ella train",
+   "Ancient cities",
+   "Wildlife"
+  ],
+  "blurb": "Sigiriya, the white stupas of Anuradhapura, the Ella train through fog-covered tea country, elephants and a palm-lined coast.",
+  "story": [
+   "The train from Kandy to Ella is one of those routes people talk about for good reason — hours of tea plantations and mountains rolling past an open door. The day I rode it the whole hill country was wrapped in fog.",
+   "Sri Lanka packed a surprising range into a small island: ancient stupas and the rock fortress of Sigiriya, jungle rivers, elephants and monkeys, and a coast of palm-lined railway lines and surf bays.",
+   "I climbed neighbouring Pidurangala at sunset to see Sigiriya from above, walked around the white stupas of Anuradhapura, floated down a rainforest river in lifejackets and helmets with friends, and watched an elephant bathe in a lake. Toque macaques and a crested serpent eagle turned up along the way, and there were beach sunsets and a stretch of south-coast railway between the palms."
+  ],
+  "highlights": [
+   "Riding the Ella train through fog-covered tea country.",
+   "Climbing Pidurangala at sunset for the view of Sigiriya rock.",
+   "Walking among the white stupas of Anuradhapura.",
+   "Floating down a jungle river in lifejackets and helmets.",
+   "Watching an elephant bathe, toque macaques and a crested serpent eagle.",
+   "Sunsets on the beach and the surf bays of the coast."
+  ],
+  "route": [
+   "Wilpattu",
+   "Anuradhapura",
+   "Sigiriya",
+   "Kitulgala",
+   "Kandy",
+   "Ella",
+   "Arugam Bay",
+   "Ahangama"
+  ]
+ },
+ {
+  "slug": "thailand",
+  "name": "Thailand",
+  "continent": "Asia",
+  "coords": "13.75°N, 100.5°E",
+  "year": "2026",
+  "focus": [
+   "Diving",
+   "Jungle",
+   "Elephants"
+  ],
+  "blurb": "A mix of terrestrial and underwater wildlife exploration.",
+  "story": [
+   "Thailand mixed jungle and ocean in a way few other countries manage — wild elephants and forest trails inland at Khao Yai, reefs and dive sites further south around Koh Tao.",
+   "It became a trip about wildlife more than temples, though there was plenty of both.",
+   "Bangkok set the scene with neon-lit Chinatown nights and gilded temple roofs. Then came the jungle: elephants crossing the road with their calves, a great hornbill at its nest, pit vipers and golden tree snakes on night walks, and everything from porcupines to tarantulas along the trails."
+  ],
+  "highlights": [
+   "Watching wild elephants and their calves cross the road in Khao Yai.",
+   "Diving Thailand's southern reefs.",
+   "Night walks and jungle treks for snakes, spiders, hornbills and porcupines.",
+   "Bangkok's Chinatown neon and temple roofs against the skyline.",
+   "Sunset over the Gulf of Thailand from the beach at Koh Tao."
+  ],
+  "route": [
+   "Bangkok",
+   "Khao Yai",
+   "Koh Tao"
+  ]
+ },
+ {
+  "slug": "turkey",
+  "name": "Turkey",
+  "continent": "Asia",
+  "coords": "38.6°N, 34.8°E",
+  "year": null,
+  "focus": [
+   "Cappadocia",
+   "Balloon",
+   "History"
+  ],
+  "blurb": "Sunrise over Cappadocia from a hot-air balloon, and history at every turn.",
+  "story": [
+   "Turkey bridges two continents in more than just geography — the history, food and landscape all feel like a meeting point.",
+   "Rising over Cappadocia's valleys in a hot-air balloon at dawn is one of those experiences that photos genuinely undersell."
+  ],
+  "highlights": [
+   "A hot-air balloon ride over Cappadocia at sunrise.",
+   "Exploring Istanbul's layered history in a single afternoon.",
+   "Cave hotels carved straight into the rock."
+  ],
+  "route": [
+   "Istanbul",
+   "Cappadocia",
+   "Pamukkale",
+   "Selçuk",
+   "Bodrum"
+  ]
+ },
+ {
+  "slug": "united-arab-emirates",
+  "name": "United Arab Emirates",
+  "continent": "Asia",
+  "coords": "25.2°N, 55.3°E",
+  "year": null,
+  "focus": [
+   "Desert safari",
+   "Skyline",
+   "Culture"
+  ],
+  "blurb": "Desert safaris, a skyline built at speed, and a hub for exploring the wider Gulf.",
+  "story": [
+   "The UAE is an easy place to underestimate — beyond the skyline, the desert on its doorstep is genuinely worth the detour.",
+   "It doubled as a stopover for several other Middle East and Asia trips, so it's tied to more journeys than most countries on this list."
+  ],
+  "highlights": [
+   "A desert safari and dune bashing outside Dubai.",
+   "The view from the top of a record-breaking skyline.",
+   "Old Dubai's souks versus the new city, side by side."
+  ],
+  "route": [
+   "Dubai",
+   "Sharjah",
+   "Hatta",
+   "Khor Fakkan",
+   "Abu Dhabi"
+  ]
+ },
+ {
+  "slug": "uzbekistan",
+  "name": "Uzbekistan",
+  "continent": "Asia",
+  "coords": "39.65°N, 66.96°E",
+  "year": null,
+  "focus": [
+   "Silk Road",
+   "Samarkand",
+   "Architecture"
+  ],
+  "blurb": "Turquoise-tiled Silk Road cities and some of Central Asia's finest architecture.",
+  "story": [
+   "Uzbekistan doesn't get nearly enough credit for what it holds — Samarkand and Bukhara are two of the most striking city centres I've walked through anywhere.",
+   "Following the old Silk Road route made the history feel tangible rather than just read about."
+  ],
+  "highlights": [
+   "Registan Square in Samarkand at golden hour.",
+   "Wandering the old town of Bukhara.",
+   "Tracing a small stretch of the historic Silk Road."
+  ],
+  "route": [
+   "Tashkent",
+   "Chimgan",
+   "Samarkand",
+   "Bukhara"
+  ]
+ },
+ {
+  "slug": "vietnam",
+  "name": "Vietnam",
+  "continent": "Asia",
+  "coords": "21.0°N, 105.8°E",
+  "year": "2026",
+  "focus": [
+   "Mountains",
+   "Road trip",
+   "Wildlife"
+  ],
+  "blurb": "Northern mountains, limestone bays, countryside, caves and the coast.",
+  "story": [
+   "The Ha Giang Loop was the centrepiece of this trip — days on a motorbike through northern mountains that kept getting more dramatic around every bend.",
+   "From caves in the north to the pace of the south, Vietnam turned into one of the best road trips on this list.",
+   "Off the bike there was just as much variety: the limestone bays around Cát Bà Island, boat rides between the forested karsts of Ninh Binh, and sunset over the coast at Da Nang."
+  ],
+  "highlights": [
+   "Riding the Ha Giang Loop through the northern mountains.",
+   "Drifting between limestone karsts on a boat around Cát Bà Island.",
+   "Rowing between forested cliffs in Ninh Binh.",
+   "Exploring the cave systems near Phong Nha.",
+   "Parasailers and a white Buddha over the bay at Da Nang.",
+   "The contrast between rural north and buzzing south."
+  ],
+  "route": [
+   "Hanoi",
+   "Ha Giang",
+   "Cat Ba Island",
+   "Ninh Binh",
+   "Phong Nha",
+   "Da Nang",
+   "Hoi An",
+   "Da Lat",
+   "Ho Chi Minh City"
+  ]
+ },
+ {
+  "slug": "austria",
+  "name": "Austria",
+  "continent": "Europe",
+  "coords": "47.5°N, 14.6°E",
+  "year": null,
+  "focus": [
+   "Vienna",
+   "Architecture",
+   "Coffee houses"
+  ],
+  "blurb": "Imperial Vienna and its coffee-house culture.",
+  "story": [
+   "Austria was Vienna — imperial palaces, grand boulevards and a coffee-house culture that makes slowing down easy.",
+   "It also fit neatly into a Central European loop with Bratislava and Budapest."
+  ],
+  "highlights": [
+   "A long afternoon in a Viennese coffee house.",
+   "Vienna's imperial architecture and coffee houses.",
+   "Easy train connections to Bratislava and Budapest."
+  ],
+  "route": [
+   "Vienna"
+  ]
+ },
+ {
+  "slug": "belgium",
+  "name": "Belgium",
+  "continent": "Europe",
+  "coords": "50.85°N, 4.35°E",
+  "year": null,
+  "focus": [
+   "Bruges",
+   "Beer",
+   "Chocolate"
+  ],
+  "blurb": "Canals, medieval streets and more beer and chocolate than strictly necessary.",
+  "story": [
+   "Belgium is an easy country to underrate — Bruges alone is worth a dedicated trip, canals and all.",
+   "Between the food, the beer and the compact old towns, it made for a relaxed, low-effort few days."
+  ],
+  "highlights": [
+   "Walking Bruges' canals at dusk.",
+   "A proper Belgian beer tasting.",
+   "Brussels' mix of grand architecture and comic-book murals."
+  ],
+  "route": [
+   "Brussels",
+   "Bruges",
+   "Ghent",
+   "Antwerp"
+  ]
+ },
+ {
+  "slug": "bulgaria",
+  "name": "Bulgaria",
+  "continent": "Europe",
+  "coords": "42.7°N, 23.3°E",
+  "year": null,
+  "focus": [
+   "Mountains",
+   "History",
+   "Value"
+  ],
+  "blurb": "Sofia, Plovdiv and the Seven Rila Lakes: underrated mountains and one of Europe's best-value trips.",
+  "story": [
+   "Bulgaria surprised me more than almost anywhere else in Europe — a lively capital, Plovdiv's old town and the Rila mountains, all with barely any crowds.",
+   "It's the kind of country that quietly outperforms its reputation once you actually spend time there."
+  ],
+  "highlights": [
+   "Hiking up to the Seven Rila Lakes.",
+   "Plovdiv's old town and Roman theatre.",
+   "Sofia's mix of Roman, Ottoman and Soviet layers."
+  ],
+  "route": [
+   "Sofia",
+   "Plovdiv",
+   "Rila Lakes"
+  ]
+ },
+ {
+  "slug": "croatia",
+  "name": "Croatia",
+  "continent": "Europe",
+  "coords": "45.8°N, 15.9°E",
+  "year": null,
+  "focus": [
+   "Zagreb",
+   "Pag island",
+   "Adriatic"
+  ],
+  "blurb": "Zagreb's old upper town and the Adriatic island of Pag.",
+  "story": [
+   "Croatia split neatly in two: Zagreb's old upper town and cafés, and the Adriatic island of Pag, where Novalja sits on the coast.",
+   "A short trip, but it covered both the capital and the sea."
+  ],
+  "highlights": [
+   "Wandering Zagreb's old upper town.",
+   "Swimming in the Adriatic's clear water off Pag.",
+   "Novalja, on the island of Pag."
+  ],
+  "route": [
+   "Zagreb",
+   "Novalja"
+  ]
+ },
+ {
+  "slug": "france",
+  "name": "France",
+  "continent": "Europe",
+  "coords": "48.85°N, 2.35°E",
+  "year": null,
+  "focus": [
+   "Paris",
+   "Riviera",
+   "Basque coast"
+  ],
+  "blurb": "Paris, the Riviera at Villefranche-sur-Mer and the Basque coast.",
+  "story": [
+   "France covered a lot of ground — Paris for the obvious reasons, then the Riviera at Villefranche-sur-Mer and the Basque coast around Saint-Jean-de-Luz, Ascain and Hendaye.",
+   "It's a country that rewards slowing down: long lunches, harbour towns and a coastline that changes completely from one end to the other."
+  ],
+  "highlights": [
+   "Paris from a rooftop rather than a queue.",
+   "Villefranche-sur-Mer's colourful harbour on the Riviera.",
+   "The Basque coast around Saint-Jean-de-Luz."
+  ],
+  "route": [
+   "Paris",
+   "Villefranche-sur-Mer",
+   "Saint-Jean-de-Luz"
+  ]
+ },
+ {
+  "slug": "germany",
+  "name": "Germany",
+  "continent": "Europe",
+  "coords": "52.5°N, 13.4°E",
+  "year": null,
+  "focus": [
+   "Cities",
+   "Beer gardens",
+   "History"
+  ],
+  "blurb": "History-dense cities, Bavarian beer gardens and efficient everything.",
+  "story": [
+   "Germany's cities each felt distinctly different — Berlin's history, Munich's beer-garden culture, and everything in between.",
+   "It became a trip built around contrasts: heavy 20th-century history one day, easy beer-garden afternoons the next."
+  ],
+  "highlights": [
+   "Walking Berlin's layered Cold War history.",
+   "A proper Bavarian beer garden in Munich.",
+   "Munich's Marienplatz and old town."
+  ],
+  "route": [
+   "Berlin",
+   "Munich"
+  ]
+ },
+ {
+  "slug": "hungary",
+  "name": "Hungary",
+  "continent": "Europe",
+  "coords": "47.5°N, 19.05°E",
+  "year": null,
+  "focus": [
+   "Budapest",
+   "Thermal baths",
+   "Danube"
+  ],
+  "blurb": "Budapest's thermal baths and one of the Danube's finest city skylines.",
+  "story": [
+   "Budapest alone made this trip worthwhile — the Danube skyline at night is one of the best city views in Europe.",
+   "Soaking in a centuries-old thermal bath after a day of walking became the daily routine, and it's hard to argue with that."
+  ],
+  "highlights": [
+   "Soaking in Budapest's thermal baths.",
+   "The Danube skyline lit up at night.",
+   "Ruin bars in the old Jewish quarter."
+  ],
+  "route": [
+   "Budapest"
+  ]
+ },
+ {
+  "slug": "italy",
+  "name": "Italy",
+  "continent": "Europe",
+  "coords": "46.4°N, 11.9°E",
+  "year": "2026",
+  "focus": [
+   "Dolomites",
+   "Hiking",
+   "Lakes"
+  ],
+  "blurb": "A hiking-focused journey through the Dolomites, with Venice, Florence, Rome and a run down to Sicily.",
+  "story": [
+   "The Dolomites were the whole point of this trip — jagged limestone peaks that look almost unreal in the right light.",
+   "Multiple days of hut-to-hut hiking, with lakes and small alpine towns along the way, made it one of the best mountain trips on the list.",
+   "The classics were all there — the Tre Cime di Lavaredo, Lago di Braies, the little church of St John in Val di Funes — and the trip also took in the canals and lagoon of Venice, Florence, Rome and Pompeii, Taormina in Sicily and the Matterhorn from the Aosta Valley."
+  ],
+  "highlights": [
+   "Hut-to-hut hiking through the Dolomites.",
+   "Lake Braies at first light, before the crowds.",
+   "The Tre Cime di Lavaredo against a deep blue sky.",
+   "St John's chapel in Ranui, with the Odle rising behind it.",
+   "Gondolas and quiet canals in Venice.",
+   "Small alpine towns that felt frozen in time."
+  ],
+  "route": [
+   "Aosta",
+   "Dolomites",
+   "Venice",
+   "Florence",
+   "Rome",
+   "Pompeii",
+   "Taormina"
+  ]
+ },
+ {
+  "slug": "monaco",
+  "name": "Monaco",
+  "continent": "Europe",
+  "coords": "43.73°N, 7.42°E",
+  "year": null,
+  "focus": [
+   "Riviera",
+   "Day trip",
+   "Coastline"
+  ],
+  "blurb": "A quick, glamorous detour along the French Riviera.",
+  "story": [
+   "Monaco was a short, easy detour along the Riviera — more a walk around than a full trip, but worth the stop.",
+   "The contrast between the harbour's superyachts and the old town on the hill above made it an interesting hour or two."
+  ],
+  "highlights": [
+   "Walking the harbour lined with superyachts.",
+   "The old town of Monaco-Ville above the coast.",
+   "A short stretch of the legendary Grand Prix circuit."
+  ],
+  "route": [
+   "Monaco"
+  ]
+ },
+ {
+  "slug": "netherlands",
+  "name": "Netherlands",
+  "continent": "Europe",
+  "coords": "52.37°N, 4.9°E",
+  "year": null,
+  "focus": [
+   "Canals",
+   "Cycling",
+   "Cities"
+  ],
+  "blurb": "Canal-lined cities, flat roads made for cycling, and easy trains between them.",
+  "story": [
+   "The Netherlands is one of the easiest countries to travel around — flat, well-connected and built for cycling everywhere.",
+   "Amsterdam's canals got most of the attention, but the smaller cities further out were just as worth the trip."
+  ],
+  "highlights": [
+   "Cycling between canal-lined towns.",
+   "Amsterdam's museums and canal architecture.",
+   "Tulip fields in full bloom outside the city."
+  ],
+  "route": [
+   "Amsterdam",
+   "The Hague",
+   "Delft"
+  ]
+ },
+ {
+  "slug": "poland",
+  "name": "Poland",
+  "continent": "Europe",
+  "coords": "52.23°N, 21.0°E",
+  "year": null,
+  "focus": [
+   "History",
+   "Old town",
+   "Cities"
+  ],
+  "blurb": "Warsaw's rebuilt old town and a capital shaped by heavy history.",
+  "story": [
+   "Poland's history is impossible to separate from a visit — Warsaw's old town, rebuilt after the war, tells the story of the twentieth century on its own.",
+   "It's a city that rewards taking the history seriously rather than rushing between photo spots."
+  ],
+  "highlights": [
+   "Walking Warsaw's rebuilt old town.",
+   "Warsaw's old town, rebuilt brick by brick after the war.",
+   "A capital that mixes heavy history with modern city life."
+  ],
+  "route": [
+   "Warsaw"
+  ]
+ },
+ {
+  "slug": "slovakia",
+  "name": "Slovakia",
+  "continent": "Europe",
+  "coords": "48.15°N, 17.1°E",
+  "year": null,
+  "focus": [
+   "Bratislava",
+   "Old town",
+   "Danube"
+  ],
+  "blurb": "Bratislava's compact old town on the Danube.",
+  "story": [
+   "Slovakia was a short stop in Bratislava, the capital that sits right on the Danube, close to Vienna and Budapest.",
+   "A compact old town and a castle on the hill made for an easy, underrated visit."
+  ],
+  "highlights": [
+   "Bratislava Castle above the Danube.",
+   "Bratislava's compact, walkable old town.",
+   "How close it sits to Vienna and Budapest."
+  ],
+  "route": [
+   "Bratislava"
+  ]
+ },
+ {
+  "slug": "spain",
+  "name": "Spain",
+  "continent": "Europe",
+  "coords": "40.4°N, 3.7°W",
+  "year": null,
+  "focus": [
+   "Canary Islands",
+   "Home turf",
+   "Volcanoes"
+  ],
+  "blurb": "Home ground — from the Canary Islands to the cities and coasts of the mainland.",
+  "story": [
+   "Being home turf, Spain gets explored differently — less like a single trip and more like an ongoing project, from the Canary Islands to Madrid, Barcelona, Andalucía and the north coast.",
+   "Between the regional food differences, the coastline and the mountains, it rarely gets old, even close to home."
+  ],
+  "highlights": [
+   "Watching sunrise over Roque Nublo with Teide across the water.",
+   "Driving through Teide National Park's volcanic landscape.",
+   "Regional food that changes completely every few hundred kilometres."
+  ],
+  "route": [
+   "Barcelona",
+   "Madrid",
+   "Andalusia",
+   "Tenerife",
+   "Gran Canaria",
+   "Fuerteventura",
+   "Lanzarote",
+   "La Graciosa"
+  ]
+ },
+ {
+  "slug": "uk",
+  "name": "United Kingdom",
+  "continent": "Europe",
+  "coords": "51.5°N, 0.13°W",
+  "year": null,
+  "focus": [
+   "Manchester",
+   "Liverpool",
+   "Cities"
+  ],
+  "blurb": "Manchester and Liverpool — two northern English cities, a short train ride apart.",
+  "story": [
+   "The UK trip was built around two northern English cities, Manchester and Liverpool, a short train ride apart.",
+   "Industrial heritage, football and music history run through both, and each has a very different feel."
+  ],
+  "highlights": [
+   "Manchester's red-brick industrial heritage.",
+   "Liverpool's waterfront and Beatles history.",
+   "How close two very different cities sit."
+  ],
+  "route": [
+   "Manchester",
+   "Liverpool"
+  ]
+ },
+ {
+  "slug": "vatican",
+  "name": "Vatican City",
+  "continent": "Europe",
+  "coords": "41.9°N, 12.45°E",
+  "year": null,
+  "focus": [
+   "St Peter's",
+   "Museums",
+   "Rome day trip"
+  ],
+  "blurb": "The smallest country in the world, and one of its densest concentrations of art.",
+  "story": [
+   "Vatican City is easy to fold into a Rome trip, but it deserves its own mention — the scale of St Peter's Basilica alone is disorienting.",
+   "The Sistine Chapel gets the attention, but the sheer density of art through the Vatican Museums is the real experience."
+  ],
+  "highlights": [
+   "Standing beneath the dome of St Peter's Basilica.",
+   "The Sistine Chapel ceiling, in person rather than in photos.",
+   "Walking through the Vatican Museums' endless corridors."
+  ],
+  "route": [
+   "Vatican City"
+  ]
+ },
+ {
+  "slug": "canada",
+  "name": "Canada",
+  "continent": "North America",
+  "coords": "45.4°N, 75.7°W",
+  "year": null,
+  "focus": [
+   "Quebec",
+   "Old town",
+   "Cities"
+  ],
+  "blurb": "Quebec City's walled old town, a French-speaking corner of North America.",
+  "story": [
+   "Canada was Quebec City, the walled, French-speaking city on the St Lawrence River.",
+   "Cobbled streets, the Château Frontenac and a European feel made it seem more like a trip across the Atlantic than across a continent."
+  ],
+  "highlights": [
+   "Walking Quebec City's walled old town.",
+   "The Château Frontenac above the St Lawrence.",
+   "A little bit of Europe in North America."
+  ],
+  "route": [
+   "Quebec"
+  ]
+ },
+ {
+  "slug": "guatemala",
+  "name": "Guatemala",
+  "continent": "North America",
+  "coords": "14.6°N, 90.5°W",
+  "year": "2026",
+  "focus": [
+   "Acatenango",
+   "Volcanoes",
+   "Adventure"
+  ],
+  "blurb": "Volcanoes, highland landscapes and an unforgettable ascent of Acatenango.",
+  "story": [
+   "Climbing Acatenango overnight to watch neighbouring Volcán de Fuego erupt in the dark was one of the most striking things I've seen on any trip.",
+   "Beyond the volcano, the highlands and colonial towns gave the trip a completely different rhythm — slower, quieter, older."
+  ],
+  "highlights": [
+   "Watching Volcán de Fuego erupt from Acatenango's summit camp.",
+   "Colonial streets of Antigua beneath Volcán de Agua at golden hour.",
+   "Highland markets that felt untouched by tourism."
+  ],
+  "route": [
+   "Guatemala City",
+   "Antigua",
+   "Acatenango"
+  ]
+ },
+ {
+  "slug": "mexico",
+  "name": "Mexico",
+  "continent": "North America",
+  "coords": "23.6°N, 102.5°W",
+  "year": "2026",
+  "focus": [
+   "Sharks",
+   "Mantas",
+   "Marine life"
+  ],
+  "blurb": "Baja California, marine megafauna and the Yucatán.",
+  "story": [
+   "Mexico turned into one of the best diving trips on this list — Baja California's marine life is hard to overstate.",
+   "From sea lions and mobula rays in the Pacific to the cenotes and reefs of the Yucatán, the country delivered on both coasts.",
+   "On land it was just as rewarding: the colonial streets and Mayan ruins of the Yucatán, flamingos wading in the shallows, and birds like the turquoise-browed motmot."
+  ],
+  "highlights": [
+   "Diving with sea lions and mobula rays in Baja California.",
+   "Snorkelling a cenote in the Yucatán.",
+   "Flamingos wading in a Yucatán lagoon under a storm sky.",
+   "Colonial streets, bright churches and the pyramid at Chichén Itzá.",
+   "Street food that outclassed every restaurant nearby."
+  ],
+  "route": [
+   "La Paz",
+   "Cabo Pulmo",
+   "Mexico City",
+   "Mérida",
+   "Chichén Itzá",
+   "Holbox"
+  ]
+ },
+ {
+  "slug": "usa",
+  "name": "United States",
+  "continent": "North America",
+  "coords": "38.9°N, 77.0°W",
+  "year": null,
+  "focus": [
+   "Road trips",
+   "Cities",
+   "Coast"
+  ],
+  "blurb": "From the California coast to New York, Washington and the rocky coast of Maine.",
+  "story": [
+   "The US rewards distance — Southern California, the East Coast cities and the rocky coast of Maine felt like three different countries.",
+   "Every region felt like visiting a slightly different country, which is most of the appeal of covering it piece by piece."
+  ],
+  "highlights": [
+   "Beaches and surf towns along the Southern California coast.",
+   "Skylines that look exactly like the films, and still impress.",
+   "The rocky Maine coast around Bar Harbor and Acadia."
+  ],
+  "route": [
+   "San Diego",
+   "Los Angeles",
+   "New York",
+   "Washington, D.C.",
+   "Boston",
+   "Bar Harbor"
+  ]
+ },
+ {
+  "slug": "australia",
+  "name": "Australia",
+  "continent": "Oceania",
+  "coords": "-16.9°S, 145.7°E",
+  "year": "2025",
+  "focus": [
+   "Wildlife",
+   "Diving",
+   "Road trips"
+  ],
+  "blurb": "Tropical forests, the Great Barrier Reef, Gold Coast beaches and unforgettable wildlife encounters.",
+  "story": [
+   "Australia was one of those trips where the reason for going was simple: wildlife.",
+   "I wanted to see what the country looked like beyond the cities — rainforest, reef, beaches, remote roads and the animals that make Australia unlike anywhere else. The trip became a mix of diving on the Great Barrier Reef, exploring the Daintree, searching for cassowaries and platypuses, driving between places that looked ridiculously far apart on a map, and stopping whenever something interesting appeared.",
+   "Away from the far north, the Queensland coast added a gentler side: koalas dozing in eucalyptus trees, kangaroos and kookaburras in the bush, a waterfall in the Gold Coast hinterland, and beach days — and plenty of jump photos — with friends.",
+   "The trip also took in Sydney — the harbour, the Opera House and the skyline from the water — and a humpback whale surfacing offshore."
+  ],
+  "highlights": [
+   "Diving the Great Barrier Reef.",
+   "Exploring the Daintree rainforest and searching for cassowaries.",
+   "Searching for platypuses around Yungaburra.",
+   "Sleeping among Australia's wildlife rather than behind city walls.",
+   "Realising that every road trip in Australia is considerably longer than it looks.",
+   "Spotting koalas, kangaroos and kookaburras in the wild.",
+   "Waterfalls and eucalyptus forest in the Gold Coast hinterland.",
+   "Beach days and sunset jump photos on the Gold Coast.",
+   "Seeing Sydney's harbour, Opera House and skyline from the water.",
+   "Watching a humpback whale surface offshore."
+  ],
+  "route": [
+   "Sydney",
+   "Byron Bay",
+   "Gold Coast",
+   "Brisbane",
+   "Cairns",
+   "Yungaburra",
+   "Daintree",
+   "Great Barrier Reef"
+  ]
+ },
+ {
+  "slug": "new-zealand",
+  "name": "New Zealand",
+  "continent": "Oceania",
+  "coords": "-43.6°S, 170.1°E",
+  "year": "2026",
+  "focus": [
+   "Mountains",
+   "Road trip",
+   "Alpine"
+  ],
+  "blurb": "A South Island road trip built around alpine landscapes, long hikes and native wildlife.",
+  "story": [
+   "A campervan and the South Island turned out to be a near-perfect combination — every day ended somewhere different, usually with a mountain in view.",
+   "The hiking did most of the work here: long alpine trails, glacier valleys and lakes so clear they barely looked real.",
+   "Wildlife kept turning up where I least expected it — kea squabbling on alpine rocks, a falcon on its nest, penguin crossing signs along the coast — and the autumn light on Aoraki / Mount Cook, Lake Wānaka and Lake Wakatipu made every stop feel like a postcard."
+  ],
+  "highlights": [
+   "Hiking the Roy's Peak track at sunrise.",
+   "Campervanning down the South Island with no fixed plan.",
+   "Glacial lakes that looked almost artificially blue.",
+   "Alpenglow on Aoraki / Mount Cook at sunset.",
+   "Meeting kea, the cheeky alpine parrots, up close.",
+   "Driftwood-strewn beaches in Abel Tasman National Park.",
+   "The lone tree in Lake Wānaka, and Queenstown from above."
+  ],
+  "route": [
+   "Christchurch",
+   "Abel Tasman",
+   "Franz Josef",
+   "Mount Cook",
+   "Wanaka",
+   "Queenstown",
+   "Milford Sound",
+   "Otago Coast"
+  ]
+ }
 ]

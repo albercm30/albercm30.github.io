@@ -14,7 +14,8 @@ A3 = {"china":"CHN","india":"IND","japan":"JPN","jordan":"JOR","kazakhstan":"KAZ
 "hungary":"HUN","italy":"ITA","monaco":"MCO","netherlands":"NLD","poland":"POL","slovakia":"SVK","spain":"ESP","uk":"GBR",
 "vatican":"VAT","canada":"CAN","guatemala":"GTM","mexico":"MEX","usa":"USA","australia":"AUS","new-zealand":"NZL"}
 # Spain's page is about the Canary Islands (Gran Canaria, Teide), so draw those.
-ONLY_BOX = {"spain": (-19, 27, -13, 30)}
+ONLY_BOX = {}
+ALL_PARTS = {"spain"}   # mainland, Balearics, Canaries, Ceuta and Melilla
 HEADING = {"spain": "the Canaries."}
 W, H, PAD = 600, 520, 46
 
@@ -63,7 +64,7 @@ def shape(slug, feat, coords):
     for r, a in zip(rings, ar):
         rc = centroid(r)
         near = max(abs(rc[1]-cy), abs(rc[0]-cx)*math.cos(math.radians(cy))) <= 35
-        if slug in ONLY_BOX or (near and a >= 0.004*total) or r is big: keep.append(r)
+        if slug in ONLY_BOX or slug in ALL_PARTS or (near and a >= 0.004*total) or r is big: keep.append(r)
     xs = [x for r in keep for x, _ in r]; ys = [y for r in keep for _, y in r]
     lon0, lat0 = (min(xs)+max(xs))/2, (min(ys)+max(ys))/2
     proj = [[laea(x, y, lon0, lat0) for x, y in r] for r in keep]
@@ -74,7 +75,11 @@ def shape(slug, feat, coords):
     d = []
     for r in proj:
         pts = dp_ring([T(p) for p in r], 0.9)
-        if len(pts) >= 3: d.append("M"+"L".join("%.1f %.1f" % p for p in pts)+"Z")
+        bw = max(p[0] for p in pts)-min(p[0] for p in pts) if pts else 0; bh = max(p[1] for p in pts)-min(p[1] for p in pts) if pts else 0
+        if pts and slug in ALL_PARTS and max(bw, bh) < 5:
+            cxp, cyp = sum(p[0] for p in pts)/len(pts), sum(p[1] for p in pts)/len(pts)
+            d.append("M%.1f %.1fm-2.4 0a2.4 2.4 0 1 0 4.8 0a2.4 2.4 0 1 0-4.8 0Z" % (cxp, cyp))   # tiny territories (Ceuta, Melilla)
+        elif len(pts) >= 3: d.append("M"+"L".join("%.1f %.1f" % p for p in pts)+"Z")
     # graticule crosses
     lonspan = (max(x for r in keep for x, _ in r)-min(x for r in keep for x, _ in r)); latspan = (max(y for r in keep for _, y in r)-min(y for r in keep for _, y in r))
     span = max(lonspan, latspan)

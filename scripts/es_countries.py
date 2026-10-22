@@ -771,6 +771,7 @@ T.update({
 "Warsaw": "Varsovia",
 "Bratislava": "Bratislava",
 "La Graciosa": "La Graciosa",
+"Barcelona": "Barcelona", "Madrid": "Madrid", "Andalusia": "Andalucía",
 "Lanzarote": "Lanzarote",
 "Fuerteventura": "Fuerteventura",
 "Gran Canaria": "Gran Canaria",

@@ -244,7 +244,7 @@
   /* ------------------------------------------------------------ route map */
   function mapSvg(accent) {
     var pts = [], seen = {};
-    st.days.forEach(function (d) { if (d.ll) { var key = d.ll.join(); if (!seen[key]) { seen[key] = 1; pts.push({ n: d.n, name: d.place, ll: d.ll }); } } });
+    st.days.forEach(function (d) { if (d.ll) { var key = (d.place || "").split(",")[0].trim().toLowerCase() || d.ll.join(); if (!seen[key]) { seen[key] = 1; pts.push({ n: d.n, name: (d.place || "").split(",")[0].trim(), ll: d.ll }); } } });
     if (pts.length < 2) return "";
     var la0 = pts.reduce(function (a, p) { return a + p.ll[0]; }, 0) / pts.length, k = Math.cos(la0 * Math.PI / 180);
     var xs = pts.map(function (p) { return p.ll[1] * k; }), ys = pts.map(function (p) { return -p.ll[0]; });
