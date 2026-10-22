@@ -385,20 +385,36 @@
   function find(id) { var r = null, dd = null; st.days.forEach(function (d) { d.sightings.forEach(function (s) { if (s.id === id) { r = s; dd = d; } }); }); return r ? { s: r, d: dd } : null; }
 
   /* ------------------------------------------------------------ the report */
+  function dateRange() {
+    var ds = st.days.map(function (d) { return d.date; }).filter(Boolean).sort();
+    if (!ds.length) return "";
+    var f = function (x) { var p = x.split("-"); return new Date(+p[0], +p[1] - 1, +p[2], 12).toLocaleDateString(st.lang === "es" ? "es-ES" : "en-GB", { day: "numeric", month: "short", year: "numeric" }); };
+    return ds.length === 1 || ds[0] === ds[ds.length - 1] ? f(ds[0]) : f(ds[0]) + " – " + f(ds[ds.length - 1]);
+  }
+  function routeLine() {
+    var seen = {}, out = [];
+    st.days.forEach(function (d) { var n = (d.place || "").split(",")[0].trim(), k = n.toLowerCase(); if (n && !seen[k]) { seen[k] = 1; out.push(n); } });
+    return out.join(" → ");
+  }
   function report() {
-    var R = RT[st.lang], order = aggregate(), out = $("#tr-out"), seenBefore = {}, tot = 0, html, label = tripName();
+    var R = RT[st.lang], L = TR.viz.L(st.lang), order = aggregate(), out = $("#tr-out"), seenBefore = {}, html, label = tripName();
     out.hidden = false;
-    order.forEach(function (r) { tot += r.total; });
-    html = '<article class="tr-report" style="--ac:' + st.color + '"><header class="tr-rh"><p class="tr-brand">' + esc(st.op) + "</p><h4>" + R.title + " · " + esc(label) + "</h4>" + (st.guide ? '<p class="tr-by">' + R.by + ": " + esc(st.guide) + "</p>" : "") +
-      '<div class="tr-stats"><div><strong>' + order.length + "</strong><span>" + R.species + "</span></div><div><strong>" + tot + "</strong><span>" + R.individuals + "</span></div><div><strong>" + st.days.length + "</strong><span>" + R.days + "</span></div></div></header>";
+    var a = TR.viz.analyse(st.days, dn, st.photos), behL = function (b) { return TR.nlp.behLabel(b, st.lang); };
+    var kp = [[a.nSp, R.species], [a.tot, R.individuals], [st.days.length, R.days]];
+    if (a.guests) kp.push([a.guests, L.guests]); if (a.km) kp.push([a.km, L.km]); var nStar = 0; st.days.forEach(function (d) { d.sightings.forEach(function (x) { if (x.kind === "sp" && x.sp && x.done && x.star) nStar++; }); }); if (nStar) kp.push([nStar, "★"]);
+    html = '<article class="tr-report" style="--ac:' + st.color + '"><header class="tr-rh"><p class="tr-brand">' + esc(st.op) + "</p><h4>" + R.title + " · " + esc(label) + "</h4>" +
+      '<p class="tr-by">' + esc([dateRange(), st.guide ? R.by + ": " + st.guide : ""].filter(Boolean).join(" · ")) + "</p>" + (routeLine() && st.days.length > 1 ? '<p class="tr-route">' + esc(routeLine()) + "</p>" : "") +
+      '<div class="tr-stats">' + kp.map(function (k) { return "<div><strong>" + k[0] + "</strong><span>" + esc(k[1]) + "</span></div>"; }).join("") + "</div></header>";
+    html += TR.viz.highlights(a, L, st.lang, behL) + TR.viz.glance(a, L, st.lang);
     var m = mapSvg(st.color);
     if (m) html += '<div class="tr-map">' + m + "</div>";
-    st.days.forEach(function (d) {
-      html += '<section class="tr-day-block"><h5>' + R.day + " " + d.n + (d.place ? " — " + esc(d.place) : "") + ' <small>' + esc(fmtDate(d.date, st.lang)) + "</small></h5><p>" + esc(narrative(d, seenBefore)) + "</p>";
-      var facts = [];
-      if (d.guests) facts.push(d.guests + " " + (st.lang === "es" ? "clientes" : "guests"));
-      if (d.km) facts.push(d.km + " km");
-      if (facts.length) html += '<p class="tr-gnotes">' + facts.join(" · ") + "</p>";
+    html += TR.viz.charts(a, L);
+    html += TR.viz.weather(st.days, L, function (d) { return wxText(d, st.lang); });
+    st.days.forEach(function (d, i) {
+      var pd = a.per[i], good = d.sightings.filter(function (s) { return s.kind === "sp" && s.sp && s.done; });
+      html += '<section class="tr-day-block"><h5>' + R.day + " " + d.n + (d.place ? " — " + esc(d.place) : "") + " <small>" + esc(fmtDate(d.date, st.lang)) + "</small></h5>";
+      html += '<div class="vz-daystats"><span><b>' + pd.sp + "</b> " + R.species + "</span><span><b>" + pd.ind + "</b> " + R.individuals + "</span>" + (pd.first ? "<span>" + pd.first + (pd.last && pd.last !== pd.first ? "–" + pd.last : "") + "</span>" : "") + (pd.nw ? "<span><b>" + pd.nw + "</b> " + (st.lang === "es" ? "nuevas" : "new") + "</span>" : "") + (d.guests ? "<span>" + d.guests + " " + L.guests + "</span>" : "") + (d.km ? "<span>" + d.km + " km</span>" : "") + "</div>";
+      html += "<p>" + esc(narrative(d, seenBefore)) + "</p>";
       if (d.notes.length) html += '<p class="tr-gnotes">' + d.notes.map(esc).join(" · ") + "</p>";
       html += "</section>";
     });
@@ -406,17 +422,22 @@
     if (ph.length) {
       html += '<section class="tr-gal"><h5>' + T.gallery + '</h5><div class="tr-photos">' + ph.map(function (p) { var e = p.sci ? bySci(p.sci) : null, cap = e ? dn(e) : ""; return '<figure><img src="' + esc(p.src) + '" alt="' + esc(T.photoCap + " " + cap) + '" loading="lazy"><figcaption>' + esc(cap) + "</figcaption></figure>"; }).join("") + "</div></section>";
     }
-    html += '<section class="tr-list"><h5>' + T.checklist + '</h5><div class="tr-tw"><table><thead><tr><th>#</th><th>' + (st.lang === "es" ? "Especie" : "Species") + "</th><th></th><th>" + T.days + "</th><th>" + T.count + "</th><th>" + T.status + "</th></tr></thead><tbody>";
-    order.forEach(function (r, i) {
-      html += "<tr><td>" + (i + 1) + '</td><td class="n">' + esc(dn(r.sp)) + (r.star ? ' <span class="tr-star" title="★">★</span>' : "") + '</td><td class="s">' + esc(r.sp.s) + "</td><td>" + r.days.join(", ") + "</td><td>" + (r.exact ? r.total : "≥" + r.total) + '</td><td><span class="tr-st' + (r.fixed ? " fx" : "") + '">' + (r.fixed ? T.corrected : T.confirmed) + "</span></td></tr>";
-    });
-    if (!order.length) html += '<tr><td colspan="6">' + T.noSp + "</td></tr>";
-    html += '</tbody></table></div><p class="tr-fine2">' + R.names + "</p></section>";
+    html += TR.viz.presence(a, st.days, L);
+    html += TR.viz.wishlist(a, L, st.lang, function (n) { var e = TAX.filter(function (t) { return t.n === n; })[0]; return e ? dn(e) : n; });
+    html += '<p class="tr-fine2 tr-names">' + R.names + "</p>";
     if (st.approved) html += '<footer class="tr-foot">✓ ' + R.approved + (st.guide ? " (" + esc(st.guide) + ")" : "") + " · " + esc(st.when) + "</footer>";
     html += "</article>";
     $("#tr-report").innerHTML = html;
     $("#tr-out").classList.toggle("is-approved", st.approved);
   }
+  function printNode(node) {
+    if (!node) return;
+    var old = document.getElementById("tr-print"); if (old) old.remove();
+    var box = document.createElement("div"); box.id = "tr-print"; box.appendChild(node.cloneNode(true)); document.body.appendChild(box);
+    document.documentElement.classList.add("tr-printing");
+    setTimeout(function () { window.print(); }, 60);
+  }
+  TR.printNode = printNode;
   function tripName() {
     var ps = st.days.map(function (d) { return d.place; }).filter(Boolean), first = (ps[0] || "").split(/[,–-]/)[0].trim();
     return first || (LANG === "es" ? "Mi viaje" : "My trip");
@@ -547,7 +568,7 @@
       }
       if (x === "stats") { setTab("stats"); $("#tr-pane-stats").scrollIntoView({ block: "start" }); return; }
       if (x === "edit") { st.approved = false; return draw(); }
-      if (x === "print") { document.documentElement.classList.add("tr-printing"); window.print(); return; }
+      if (x === "print") { return printNode($("#tr-report .tr-report")); }
       if (x === "copy") { v = plain(); (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(function () { flash(b, T.copied); }, function () { var t = document.createElement("textarea"); t.value = v; document.body.appendChild(t); t.select(); try { document.execCommand("copy"); flash(b, T.copied); } catch (z) {} t.remove(); }); return; }
       if (x === "csv") return download("trip-sightings.csv", "text/csv;charset=utf-8", csv());
       if (x === "json") return download("trip-sightings.json", "application/json", JSON.stringify(rows(), null, 2));
@@ -572,7 +593,7 @@
       if (id === "tr-op") { st.op = e.target.value.trim() || "Your Tours"; if (st.generated) report(); }
       if (id === "tr-guide") { st.guide = e.target.value.trim(); if (st.generated) report(); }
     });
-    window.addEventListener("afterprint", function () { document.documentElement.classList.remove("tr-printing"); });
+    window.addEventListener("afterprint", function () { document.documentElement.classList.remove("tr-printing"); var b = document.getElementById("tr-print"); if (b) b.remove(); });
   }
 
   /* ------------------------------------------------------------ boot */

@@ -272,7 +272,7 @@
     }
     var t = b.dataset.t; if (!t) return;
     var c = root._c;
-    if (t === "print") { document.documentElement.classList.add("tr-printing", "tr-print-stats"); window.print(); return; }
+    if (t === "print") { var pr = document.getElementById("ts-proof"); if (pr && TR.printNode) { var cl = pr.cloneNode(true), act = cl.querySelector(".ts-proof-act"); if (act) act.remove(); var pn = document.createElement("div"); pn.appendChild(cl); var node = pn; TR.printNode(node); } return; }
     if (t === "copy") { var v = summaryText(c); (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(function () { flash(b, T.copied); }, function () { var ta = document.createElement("textarea"); ta.value = v; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); flash(b, T.copied); } catch (x) {} ta.remove(); }); return; }
     if (t === "csv") return download("sightings-" + c.rg.a + "_" + c.rg.b + ".csv", "text/csv;charset=utf-8", csvOf(c));
     if (t === "exp") return download("trip-logbook.json", "application/json", JSON.stringify({ v: 1, trips: loadMine() }, null, 2));
@@ -295,6 +295,6 @@
       rd.readAsText(e.target.files[0]);
     }
   });
-  window.addEventListener("afterprint", function () { document.documentElement.classList.remove("tr-print-stats"); });
+  
   TR.logText = T;
 })(window);
