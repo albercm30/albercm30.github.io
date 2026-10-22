@@ -69,7 +69,7 @@
     return s;
   }
   function perDayChart(a, L) {
-    var w = 520, h = 190, pl = 28, pt = 14, pb = 34, n = a.per.length, max = Math.max.apply(0, a.per.map(function (p) { return p.sp; }).concat([2])), bw = (w - pl) / n, bar = Math.min(54, bw * 0.62), s = '<svg viewBox="0 0 ' + w + " " + h + '" class="vz-svg" role="img" aria-label="' + esc(L.perDay) + '">' + axis(max, w, h, pl, pt, pb);
+    var w = 520, h = 190, pl = 28, pt = 26, pb = 34, n = a.per.length, max = Math.max.apply(0, a.per.map(function (p) { return p.sp; }).concat([2])), bw = (w - pl) / n, bar = Math.min(54, bw * 0.62), s = '<svg viewBox="0 0 ' + w + " " + h + '" class="vz-svg" role="img" aria-label="' + esc(L.perDay) + '">' + axis(max, w, h, pl, pt, pb);
     a.per.forEach(function (p, i) {
       var x = pl + i * bw + (bw - bar) / 2, ih = h - pt - pb, hn = ih * p.nw / max, hr = ih * p.rep / max, y0 = h - pb;
       if (p.rep) s += '<rect x="' + x.toFixed(1) + '" y="' + (y0 - hr).toFixed(1) + '" width="' + bar.toFixed(1) + '" height="' + hr.toFixed(1) + '" class="vz-rep"><title>' + esc(L.repL + ": " + p.rep) + "</title></rect>";
@@ -81,8 +81,8 @@
     return s + "</svg>" + '<p class="vz-leg"><i class="vz-new"></i>' + L.newL + '<i class="vz-rep"></i>' + L.repL + "</p>";
   }
   function growthChart(a, L) {
-    var w = 520, h = 190, pl = 28, pt = 14, pb = 28, n = a.per.length, max = Math.max(a.nSp, 2), s = '<svg viewBox="0 0 ' + w + " " + h + '" class="vz-svg" role="img" aria-label="' + esc(L.growth) + '">' + axis(max, w, h, pl, pt, pb);
-    var pts = a.per.map(function (p, i) { return [pl + (n === 1 ? (w - pl) / 2 : 14 + i * (w - pl - 28) / (n - 1)), pt + (h - pt - pb) * (1 - p.cum / max), p]; });
+    var w = 520, h = 190, pl = 34, pt = 28, pb = 28, n = a.per.length, max = Math.max(a.nSp, 2), s = '<svg viewBox="0 0 ' + w + " " + h + '" class="vz-svg" role="img" aria-label="' + esc(L.growth) + '">' + axis(max, w, h, pl, pt, pb);
+    var pts = a.per.map(function (p, i) { return [pl + (n === 1 ? (w - pl) / 2 : 18 + i * (w - pl - 36) / (n - 1)), pt + (h - pt - pb) * (1 - p.cum / max), p]; });
     if (n > 1) s += '<path d="M' + pts[0][0].toFixed(1) + " " + (h - pb) + "L" + pts.map(function (p) { return p[0].toFixed(1) + " " + p[1].toFixed(1); }).join("L") + "L" + pts[n - 1][0].toFixed(1) + " " + (h - pb) + 'Z" class="vz-area"/><path d="M' + pts.map(function (p) { return p[0].toFixed(1) + " " + p[1].toFixed(1); }).join("L") + '" class="vz-line" fill="none"/>';
     pts.forEach(function (p) { s += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="4" class="vz-dot"/><text x="' + p[0].toFixed(1) + '" y="' + (p[1] - 9).toFixed(1) + '" text-anchor="middle" class="vz-val">' + p[2].cum + '</text><text x="' + p[0].toFixed(1) + '" y="' + (h - 10) + '" text-anchor="middle" class="vz-ax">' + L.day + " " + p[2].n + "</text>"; });
     return s + "</svg>";

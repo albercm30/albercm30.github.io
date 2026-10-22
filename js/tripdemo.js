@@ -406,8 +406,6 @@
       '<p class="tr-by">' + esc([dateRange(), st.guide ? R.by + ": " + st.guide : ""].filter(Boolean).join(" · ")) + "</p>" + (routeLine() && st.days.length > 1 ? '<p class="tr-route">' + esc(routeLine()) + "</p>" : "") +
       '<div class="tr-stats">' + kp.map(function (k) { return "<div><strong>" + k[0] + "</strong><span>" + esc(k[1]) + "</span></div>"; }).join("") + "</div></header>";
     html += TR.viz.highlights(a, L, st.lang, behL) + TR.viz.glance(a, L, st.lang);
-    var m = mapSvg(st.color);
-    if (m) html += '<div class="tr-map">' + m + "</div>";
     html += TR.viz.charts(a, L);
     html += TR.viz.weather(st.days, L, function (d) { return wxText(d, st.lang); });
     st.days.forEach(function (d, i) {
