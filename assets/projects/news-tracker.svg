@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b2f3a"/><stop offset="1" stop-color="#6b7a8f"/></linearGradient></defs>
+<rect width="800" height="440" fill="url(#bg)"/>
+<g fill="none" stroke="#e9edf2" stroke-width="1.2" opacity="0.15"><path d="M-20 90 Q 140 30 300 85 T 560 70 T 830 50"/><path d="M-20 350 Q 160 310 330 350 T 640 336 T 830 320"/></g>
+<!-- pile of feed lines -->
+<g transform="translate(70 90)" stroke="#e9edf2" stroke-width="3" stroke-linecap="round" opacity="0.55"><path d="M0 0H150"/><path d="M0 30H120"/><path d="M0 60H165"/><path d="M0 90H100"/><path d="M0 120H140"/><path d="M0 150H110"/><path d="M0 180H160"/><path d="M0 210H90"/></g>
+<g fill="none" stroke="#e9edf2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"><path d="M270 205 H350"/><path d="M334 189 L352 205 L334 221"/></g>
+<!-- ten cards -->
+<g transform="translate(400 70)">
+<g fill="#f3efe0" opacity="0.96"><rect width="320" height="42" rx="8"/><rect y="52" width="320" height="42" rx="8"/><rect y="104" width="320" height="42" rx="8"/><rect y="156" width="320" height="42" rx="8"/><rect y="208" width="320" height="42" rx="8"/></g>
+<g fill="#8b8f7e" opacity="0.7"><rect x="14" y="12" width="52" height="8" rx="4"/><rect x="14" y="64" width="52" height="8" rx="4"/><rect x="14" y="116" width="52" height="8" rx="4"/><rect x="14" y="168" width="52" height="8" rx="4"/><rect x="14" y="220" width="52" height="8" rx="4"/></g>
+<g fill="#3c4250"><rect x="14" y="26" width="250" height="7" rx="3"/><rect x="14" y="78" width="210" height="7" rx="3"/><rect x="14" y="130" width="270" height="7" rx="3"/><rect x="14" y="182" width="190" height="7" rx="3"/><rect x="14" y="234" width="240" height="7" rx="3"/></g>
+<text x="0" y="296" font-family="monospace" font-size="38" font-weight="700" fill="#f4c97a">10 / day</text>
+</g>
+</svg>

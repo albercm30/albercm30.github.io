@@ -69,3 +69,6 @@ Never edit files under `es/` by hand; they are regenerated. Wildlife species nam
 
 ## Ventana demo (`/projects/ventana/`)
 Weather-aware cancellation tool for Canary Islands activity operators. The demo is a self-contained page, `projects/ventana/app.html` (Spanish UI, simulated weather, made-up bookings, 48 ports, 12 activities), embedded in the case study through an iframe that resizes itself via `postMessage` and follows the site's light/dark choice. It is not named `index.html`, so `build_es.py` leaves it alone. The case study text is translated in `scripts/es_projects.py`.
+
+## News Tracker (`/projects/news-tracker/`)
+Daily digest of 10 articles, shown from `data/news.json` by `js/news.js` (full edition for today, headline-only for the previous six days; text in Spanish, UI in the page language). The digest is produced by the "Noticias de la mañana" scheduled task in Claude, and `scripts/news_digest.py` is the code version of the same pipeline (RSS feeds in `scripts/news_sources.json` -> de-duplicate -> score -> pick 10 -> summarise with the Claude API if `ANTHROPIC_API_KEY` is set). `.github/workflows/news-digest.yml` runs it on demand; uncomment its `schedule` to run daily. If you enable it, stop copying `data/news.json` from zips, as with `data/wildlife.json`.

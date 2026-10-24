@@ -1,0 +1,148 @@
+{
+ "updated": "2026-10-24T13:00:00+01:00",
+ "note": "Selección de ejemplo preparada a mano a partir de la edición del 24 de octubre; la tarea diaria genera ediciones de 10 artículos.",
+ "days": [
+  {
+   "date": "2026-10-24",
+   "items": [
+    {
+     "cat": "Fauna, conservación y clima",
+     "source": "Frontiers",
+     "mins": 3,
+     "title": "Baby manta rays hunker down close to coasts before facing the open ocean's dangers",
+     "url": "https://www.frontiersin.org/news/2026/10/22/baby-manta-rays-coasts-open-ocean-dangers",
+     "summary": "Con telemetría acústica y por satélite y fotoidentificación de mantas gigantes en cinco puntos de Centroamérica (proyecto Mantas Costa Rica), el estudio muestra que las juveniles no salen de aguas someras costeras, mientras que los adultos migran cientos de kilómetros por el borde de la plataforma y vuelven a los mismos sitios años después. Los autores piden «corredores de conservación» internacionales, porque fuera de las reservas los adultos quedan expuestos a la pesca industrial y a los choques con barcos.",
+     "why": "Mantas, buceo y más de 12.000 detecciones de sensores: es exactamente el tipo de dato de seguimiento con el que se trabaja en tecnología para la conservación."
+    },
+    {
+     "cat": "Fauna, conservación y clima",
+     "source": "Carbon Brief",
+     "mins": 6,
+     "title": "DeBriefed 23 October 2026: Crossing 1.5C 'unavoidable'",
+     "url": "https://www.carbonbrief.org/debriefed-23-october-2026-crossing-1-5c-unavoidable-ipcc-talks-disappointment-nature-cop-explained",
+     "summary": "El informe anual de brechas de emisiones del PNUMA concluye que superar temporalmente el límite de 1,5 °C es ya inevitable y que las políticas actuales llevan a unos 2,8 °C en 2100. El boletín repasa además el fracaso de la última sesión del IPCC y la COP17 de biodiversidad en Ereván, donde el mundo va mal encaminado en 22 de las 23 metas de naturaleza para 2030.",
+     "why": "Es el resumen más completo de la semana clave para clima y biodiversidad, con la financiación de la conservación como gran punto de bloqueo."
+    },
+    {
+     "cat": "Fauna, conservación y clima",
+     "source": "Mongabay",
+     "mins": 4,
+     "title": "Critics call for halt to road construction in Mexico's Sian Ka'an Biosphere Reserve",
+     "url": "https://news.mongabay.com/2026/10/critics-call-for-halt-to-road-construction-in-mexicos-sian-kaan-biosphere-reserve/",
+     "summary": "El ministerio de Medio Ambiente de México ha prometido limitar las infraestructuras en la reserva de la biosfera de Sian Ka'an, pero grupos conservacionistas denuncian que la carretera Puerta al Mar, ligada al Tren Maya, sigue avanzando por dentro. Vecinos indígenas, cooperativas de pescadores y una empresa han demandado para anularla, aunque la suspensión cautelar se ha rechazado dos veces por dudas sobre su legitimación, y los críticos dicen que la promesa del ministerio no es vinculante.",
+     "why": "Un sitio Patrimonio Mundial con jaguares y tapires en juego: buen ejemplo de la distancia entre una promesa de protección y lo que ocurre sobre el terreno."
+    },
+    {
+     "cat": "IA, tecnología y datos",
+     "source": "Anthropic",
+     "mins": 18,
+     "title": "Formal verification with Claude across 123 open-source libraries",
+     "url": "https://www.anthropic.com/research/formal-verification",
+     "summary": "El equipo de Anthropic usó a Claude para convertir los tests de fuzzing de 123 librerías de código abierto en especificaciones formales y demostrar, con el verificador Rocq, que el código compilado no falla ante ninguna entrada de hasta 64 MB; por el camino aparecieron cientos de fallos, algunos ocultos durante años. Los autores advierten de que «verificado formalmente» no significa libre de errores, porque las pruebas asumen un entorno concreto (RISC-V y musl).",
+     "why": "Junto con el caso PHP de ayer, confirma que la IA está cambiando cómo se asegura el software sobre el que corren tus pipelines de datos."
+    },
+    {
+     "cat": "Ciencia",
+     "source": "TechCrunch",
+     "mins": 6,
+     "title": "Microsoft's Mustafa Suleyman says its AI outperforms doctors on hard cases",
+     "url": "https://techcrunch.com/2026/10/22/microsofts-mustafa-suleyman-says-its-ai-outperforms-doctors-on-hard-cases-as-he-chases-medical-superintelligence/",
+     "summary": "Un estudio publicado en Science muestra que MAI-DxO, un sistema de Microsoft que coordina varios agentes de IA como si fueran un panel médico, acertó el 83 % de casos clínicos complejos del NEJM, frente al 36 % de médicos generalistas trabajando solos. La pieza subraya las limitaciones: fue una simulación, no se comparó con especialistas, casi toda la mejora viene del modelo base y la ventaja desaparece en casos de urgencias.",
+     "why": "Es un buen ejemplo de cómo leer con espíritu crítico un resultado de IA agéntica: separar lo que aporta la orquestación de lo que aporta el modelo."
+    },
+    {
+     "cat": "Ciencia",
+     "source": "Nature",
+     "mins": 4,
+     "title": "A first for CRISPR: powerful prime editing alters DNA directly in the human body",
+     "url": "https://www.nature.com/articles/d41586-026-03371-x",
+     "summary": "Nature informa de la primera vez que la edición por «prime editing», una técnica de edición genética de alta precisión, se aplica dentro del cuerpo de un paciente en un ensayo clínico. El tratamiento se probó en una enfermedad genética que daña el hígado y los nervios. (Resumen basado en el extracto de portada: la página completa no se pudo abrir al preparar la selección.)",
+     "why": "Es un hito de la biotecnología de la semana, y un recordatorio de lo que cambia cuando una técnica pasa del laboratorio a pacientes."
+    },
+    {
+     "cat": "Canarias y España",
+     "source": "RTVC (EFE)",
+     "mins": 2,
+     "title": "Clavijo urge al Estado una junta de seguridad ante el repunte en la llegada de cayucos",
+     "url": "https://rtvc.es/clavijo-urge-al-estado-junta-de-seguridad-por-repunte-de-cayucos-23octubre-2026/",
+     "summary": "El presidente canario pidió por tercera vez al Gobierno central que convoque una junta de seguridad por el aumento de cayucos, que está tensionando la sanidad de El Hierro, donde el jueves llegaron cuatro embarcaciones desde Senegal, Gambia y Mauritania y se esperaban tres más el viernes. Reprocha al Estado no haber firmado los convenios de atención sanitaria y le recuerda que no está en funciones hasta el 29-N. Según Canarias7, el ministro Torres atribuyó el repunte a las condiciones del mar y recordó que las llegadas entre enero y mediados de octubre (8.970) son un 33,5 % menos que en 2025.",
+     "why": "La ruta canaria vuelve a estar en el centro del debate regional y de la campaña de las generales, con las cifras y la polémica en el mismo sitio."
+    },
+    {
+     "cat": "Canarias y España",
+     "source": "Canarias7",
+     "mins": 3,
+     "title": "El Plan Insular de Ordenación de Gran Canaria entra en la UCI",
+     "url": "https://www.canarias7.es/canarias/gran-canaria/plan-insular-ordenacion-gran-canaria-entra-uci-20261023204201-nt.html",
+     "summary": "El plan que ordena el uso del suelo de la isla está a punto de anularse: los tribunales lo declaran nulo porque su revisión se apoyó en una ley derogada cinco años antes de su aprobación definitiva, y el Supremo no ha admitido el recurso del Cabildo por tratarse de derecho canario. El Cabildo estudia retirar otros recursos, explora acudir al Constitucional y a instancias europeas y prepara un plan nuevo con la Ley del Suelo de 2017; si cae, volvería el de 2004 y Morales admite que sustituirlo llevaría varios años.",
+     "why": "Afecta a cómo y dónde se puede construir en la isla donde vives en los próximos años."
+    },
+    {
+     "cat": "Política",
+     "source": "elDiario.es",
+     "mins": 5,
+     "title": "Feijóo reabre el debate sobre el aborto, eliminará el Ministerio de Igualdad y estudiará «la viabilidad» de las pensiones",
+     "url": "https://eldiario.es/politica/feijoo-reabre-debate-aborto-eliminara-ministerio-igualdad-estudiara-viabilidad-pensiones_1_13608554.html",
+     "summary": "En una entrevista en la Cadena SER, el candidato del PP dijo que las menores de 16 y 17 años deberían contar con sus padres para abortar (lo presentó como opinión personal), que suprimirá Igualdad, revalorizará las pensiones con el IPC y pactará el salario mínimo con sindicatos y patronal. Sánchez le acusó de recortar derechos de las mujeres; El Español, de línea editorial distinta, recoge en su directo del 29-N la entrevista junto a sus promesas fiscales y de vivienda en Valencia.",
+     "why": "Es la entrevista con más propuestas concretas del candidato del PP hasta ahora en la precampaña del 29-N."
+    },
+    {
+     "cat": "Viajes, buceo y deporte",
+     "source": "ATP Tour",
+     "mins": 2,
+     "title": "Alcaraz faces Khachanov test in Vienna opener; Zverev meets Landaluce",
+     "url": "https://www.atptour.com/en/news/alcaraz-vienna-2026-draw-preview",
+     "summary": "El cuadro de Viena coloca a Alcaraz, número 3, contra Khachanov en primera ronda; Alcaraz le ha ganado las seis veces que se han enfrentado. Su camino podría pasar por Basilashvili o Rodionov en segunda ronda y por Tommy Paul, séptimo cabeza de serie, en cuartos, con Medvedev en su zona. Zverev, primer cabeza de serie, abre contra el invitado Landaluce y puede asegurarse el número 1 de fin de año si llega a cuartos.",
+     "why": "Tenis de primer nivel y cuadro abierto: un buen torneo para seguir esta semana."
+    }
+   ]
+  },
+  {
+   "date": "2026-10-23",
+   "items": [
+    {
+     "cat": "Fauna, conservación y clima",
+     "source": "AP",
+     "title": "Almost all coral reef ecosystems face risk of collapse within 50 years, study warns",
+     "url": "https://kiro7.com/news/science/almost-all-coral/L66X5QKGMY46ZNUUGWKMPTC33U"
+    },
+    {
+     "cat": "Fauna, conservación y clima",
+     "source": "Reuters (vía TimesLIVE)",
+     "title": "Kenya seals $160m conservation finance deal",
+     "url": "https://www.timeslive.co.za/news/africa/2026-10-21-kenya-seals-160m-conservation-finance-deal/"
+    },
+    {
+     "cat": "IA, tecnología y datos",
+     "source": "OpenAI",
+     "title": "OpenAI's frontier models and Codex are coming to Google Cloud",
+     "url": "https://openai.com/index/openai-models-google-cloud/"
+    },
+    {
+     "cat": "IA, tecnología y datos",
+     "source": "OpenAI",
+     "title": "Coordinated disclosure of critical vulnerabilities in PHP",
+     "url": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/"
+    },
+    {
+     "cat": "Canarias y España",
+     "source": "RTVC",
+     "title": "El paso de una dana deja importantes precipitaciones durante la madrugada en Canarias",
+     "url": "https://rtvc.es/el-paso-de-una-dana-deja-importantes-precipitaciones-en-las-islas-22-octubre-2026/"
+    },
+    {
+     "cat": "Política",
+     "source": "El Progreso (EFE / Europa Press)",
+     "title": "La carrera hacia el 29-N, en directo: Milei llama «impresentable dictador» a Sánchez",
+     "url": "https://www.elprogreso.es/articulo/espana/precampana-29-n-directo/202610211016232007866.html"
+    },
+    {
+     "cat": "Viajes, buceo y deporte",
+     "source": "Punto de Break",
+     "title": "Alcaraz en Viena: rivales, posibles cruces, calendario, horarios y dónde ver",
+     "url": "https://www.puntodebreak.com/2026/10/23/asi-sera-regreso-alcaraz-torneo-viena"
+    }
+   ]
+  }
+ ]
+}

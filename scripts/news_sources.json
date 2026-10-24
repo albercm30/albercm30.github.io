@@ -1,0 +1,30 @@
+{
+  "profile_keywords": {
+    "conservation": 3, "biodiversity": 3, "wildlife": 3, "fauna": 3, "extinction": 2, "marine": 2, "coral": 2, "whale": 2, "shark": 2, "manta": 2,
+    "data engineering": 3, "data engineer": 3, "pipeline": 2, "pyspark": 3, "spark": 1, "sql": 1, "llm": 2, "agent": 2, "machine learning": 2, "ai ": 1, "inteligencia artificial": 2,
+    "canarias": 3, "gran canaria": 3, "tenerife": 2, "lanzarote": 2, "el hierro": 2, "cayuco": 1,
+    "alcaraz": 2, "tenis": 2, "tennis": 2, "padel": 2, "pádel": 2, "diving": 2, "buceo": 2, "scuba": 2,
+    "climate": 1, "clima": 1
+  },
+  "clickbait": ["you won't believe", "this one trick", "shocking", "gallery:", "quiz:", "horoscope", "horóscopo"],
+  "feeds": [
+    {"name": "Mongabay", "url": "https://news.mongabay.com/feed/", "category": "Fauna, conservación y clima", "weight": 1.2},
+    {"name": "Carbon Brief", "url": "https://www.carbonbrief.org/feed/", "category": "Fauna, conservación y clima", "weight": 1.2},
+    {"name": "The Guardian Environment", "url": "https://www.theguardian.com/environment/rss", "category": "Fauna, conservación y clima", "weight": 1.1},
+    {"name": "MIT Technology Review", "url": "https://www.technologyreview.com/feed/", "category": "IA, tecnología y datos", "weight": 1.2},
+    {"name": "Ars Technica", "url": "https://feeds.arstechnica.com/arstechnica/index", "category": "IA, tecnología y datos", "weight": 1.1},
+    {"name": "The Verge", "url": "https://www.theverge.com/rss/index.xml", "category": "IA, tecnología y datos", "weight": 1.0},
+    {"name": "Anthropic", "url": "https://www.anthropic.com/rss.xml", "category": "IA, tecnología y datos", "weight": 1.2},
+    {"name": "RTVC", "url": "https://rtvc.es/feed/", "category": "Canarias y España", "weight": 1.2},
+    {"name": "Canarias7", "url": "https://www.canarias7.es/rss/2.0/portada", "category": "Canarias y España", "weight": 1.2},
+    {"name": "Diario de Avisos", "url": "https://diariodeavisos.elespanol.com/feed/", "category": "Canarias y España", "weight": 1.0},
+    {"name": "eldiario.es", "url": "https://www.eldiario.es/rss/", "category": "Política", "weight": 1.0},
+    {"name": "El País", "url": "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/portada", "category": "Política", "weight": 1.0},
+    {"name": "BBC World", "url": "https://feeds.bbci.co.uk/news/world/rss.xml", "category": "Política", "weight": 1.0},
+    {"name": "Nature", "url": "https://www.nature.com/nature.rss", "category": "Ciencia", "weight": 1.2},
+    {"name": "New Scientist", "url": "https://www.newscientist.com/feed/home/", "category": "Ciencia", "weight": 1.0},
+    {"name": "SINC", "url": "https://www.agenciasinc.es/rss/feed", "category": "Ciencia", "weight": 1.0},
+    {"name": "Deeper Blue", "url": "https://www.deeperblue.com/feed/", "category": "Viajes, buceo y deporte", "weight": 1.0},
+    {"name": "Punto de Break", "url": "https://www.puntodebreak.com/feed", "category": "Viajes, buceo y deporte", "weight": 1.0}
+  ]
+}

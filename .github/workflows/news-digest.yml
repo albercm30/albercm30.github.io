@@ -1,0 +1,45 @@
+# News Tracker: builds data/news.json, the daily digest shown at /projects/news-tracker/.
+# Runs only when you start it (Actions -> "News digest" -> Run workflow) until you uncomment the schedule below.
+# Optional secret ANTHROPIC_API_KEY (Settings -> Secrets and variables -> Actions): without it the digest uses
+# each feed's own snippet instead of written summaries.
+name: News digest
+
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: "11 6 * * *"   # 06:11 UTC, a bit after 07:00 in the Canary Islands
+
+permissions:
+  contents: write
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: python -m pip install requests
+
+      - name: Build the digest
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/news_digest.py
+
+      - name: Commit the digest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/news.json
+          if git diff --cached --quiet; then
+            echo "No digest changes."
+            exit 0
+          fi
+          git commit -m "Update news digest"
+          git push
