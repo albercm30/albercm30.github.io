@@ -67,6 +67,11 @@ Never edit files under `es/` by hand; they are regenerated. Wildlife species nam
 ## Trip Reports demo (`/projects/trip-reports/`)
 `js/tripdemo.js` is a client-side demo of the "AI trip reports for wildlife guides" project: free-form notes in, species matched against `data/taxonomy-demo.json` (284 species, `[common, scientific]`), uncertain or unknown sightings flagged for the guide, templated narrative in three tones and two languages, guide-approval gate, then print/PDF, text copy and CSV/JSON export. Nothing is uploaded. To add species, append `[name, scientific]` pairs to the taxonomy file; places for the route map come from `data/stops.json` plus a few names listed in the script.
 
+The page also describes the separate real product (FastAPI + Postgres + Stripe, repo `albercm30/trip-reports`); the demo remains the browser-only version.
+
+## Flights Tracker (`/projects/flights-tracker/`)
+Case study of the redesigned app (repo `albercm30/FlightsTracker`). Screenshots in `assets/projects/flights-tracker/` come from that repo's `docs/` folder (simulated prices); replace them when the app's look changes.
+
 ## Ventana demo (`/projects/ventana/`)
 Weather-aware cancellation tool for Canary Islands activity operators. The demo is a self-contained page, `projects/ventana/app.html` (Spanish UI, simulated weather, made-up bookings, 48 ports, 12 activities), embedded in the case study through an iframe that resizes itself via `postMessage` and follows the site's light/dark choice. It is not named `index.html`, so `build_es.py` leaves it alone. The case study text is translated in `scripts/es_projects.py`.
 
