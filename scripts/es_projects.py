@@ -394,3 +394,75 @@ T.update({
 "This is an early-stage project, and the demo is a prototype of the workflow, not the finished product. Its species list is small, its language rules will miss unusual phrasing, the narrative is templated, and the logbook lives only in one browser. Uploaded photos are only shown in the report and are not analysed. Spanish and English are covered; German is planned.":
     "Este es un proyecto en fase temprana, y la demo es un prototipo del flujo de trabajo, no el producto final. Su lista de especies es pequeña, sus reglas de lenguaje pasarán por alto formulaciones poco habituales, la narración es de plantilla y el cuaderno vive solo en un navegador. Las fotos subidas solo se muestran en el informe y no se analizan. Se cubren el español y el inglés; el alemán está previsto.",
 })
+
+# ------------------------------------------------ Ventana
+T.update({
+"Ventana · Alberto Castellano Macías": "Ventana · Alberto Castellano Macías",
+"Ventana": "Ventana",
+"Ventana: bad-weather days for activity operators": "Ventana: los días de mal tiempo de los operadores de actividades",
+"Three departures marked as sails, watch and does not sail, leading to a cancellation message sent to the client in their language":
+    "Tres salidas marcadas como sale, vigilar y no sale, que desembocan en un aviso de cancelación enviado al cliente en su idioma",
+"Flags the trips that should not sail in the Canary Islands, warns clients in their language and handles rebookings and refunds. Try the demo.":
+    "Señala las salidas que no deberían zarpar en Canarias, avisa a los clientes en su idioma y gestiona los cambios de día y los reembolsos. Prueba la demo.",
+"A weather-aware tool for activity operators in the Canary Islands: it flags the trips that should not sail, warns clients in their language and handles the rebookings and refunds. Try the demo.":
+    "Una herramienta con previsión meteorológica para operadores de actividades en Canarias: señala las salidas que no deberían zarpar, avisa a los clientes en su idioma y gestiona los cambios de día y los reembolsos. Prueba la demo.",
+"Bad-weather days for boat, diving, surf and kite operators, handled in minutes. Try the demo.":
+    "Los días de mal tiempo de los operadores de barco, buceo, surf y kite, resueltos en minutos. Prueba la demo.",
+"When the wind or the swell is too much, a boat, diving or surf operator has to decide which trips sail, tell every client in their own language and sort out the rebookings and refunds. Ventana does that from the operator's own limits, and the operator confirms every cancellation.":
+    "Cuando el viento o el mar de fondo son demasiado, un operador de barco, buceo o surf tiene que decidir qué salidas zarpan, avisar a cada cliente en su idioma y resolver los cambios de día y los reembolsos. Ventana lo hace a partir de los límites del propio operador, y el operador confirma cada cancelación.",
+"From a weather forecast to": "De una previsión meteorológica a",
+"a handled cancellation.": "una cancelación resuelta.",
+"Pick a typical Canary Islands weather situation, see which of the next three days' trips fall outside the operator's limits, cancel one and watch what the clients receive. Change the limits, the port or the activities under “Mi empresa”. The demo interface is in Spanish, because that is the language of the operators it is built for. The data is made up and everything runs in your browser.":
+    "Elige una situación meteorológica típica de Canarias, mira qué salidas de los próximos tres días quedan fuera de los límites del operador, cancela una y comprueba qué reciben los clientes. Puedes cambiar los límites, el puerto o las actividades en «Mi empresa». La interfaz de la demo está en español, que es el idioma de los operadores a los que va dirigida. Los datos son inventados y todo se ejecuta en tu navegador.",
+"Ventana demo": "Demo de Ventana",
+"Open the demo full screen ↗": "Abrir la demo a pantalla completa ↗",
+"In the Canary Islands the sea decides the working day. The trade wind builds in the afternoon, a long-period swell closes the north coast for days, and a calima episode cuts visibility. Boat trips, whale watching, diving, surf, kite and kayak operators all make the same call, often late in the evening or early in the morning: does tomorrow's trip go ahead?":
+    "En Canarias el mar decide la jornada. El alisio se levanta por la tarde, un mar de fondo de periodo largo cierra la costa norte durante días y un episodio de calima reduce la visibilidad. Los operadores de excursiones en barco, avistamiento de cetáceos, buceo, surf, kite y kayak toman todos la misma decisión, a menudo a última hora de la noche o a primera de la mañana: ¿sale mañana la excursión?",
+"Cancelling is the easy part. What follows is slow: finding every booking, writing to each guest in the right language, offering a new day, tracking who answered, doing the refunds, and cancelling the platform bookings one by one in each platform's portal. On a bad-weather day that is hours of manual work for a small team.":
+    "Cancelar es lo fácil. Lo que viene después es lento: localizar cada reserva, escribir a cada cliente en su idioma, ofrecerle otro día, controlar quién ha contestado, hacer los reembolsos y cancelar una a una las reservas de plataforma en el portal de cada una. Un día de mal tiempo eso son horas de trabajo manual para un equipo pequeño.",
+"Operator's limits": "Límites del operador",
+"Forecast check": "Revisión de la previsión",
+"Operator confirms": "El operador confirma",
+"Clients warned": "Clientes avisados",
+"Rebook or refund": "Cambio o reembolso",
+"Each operator sets, per activity, the limits at which a trip should not sail: mean wind, gusts, wave height, long-period swell, offshore wind, dust. The same forecast means different things for a glass-bottom boat, a surf lesson and a kite school, so nothing is fixed. Ventana compares the hour-by-hour forecast for the operator's port with those limits and sorts every departure of the next three days into sails, watch and does not sail, with the reasons.":
+    "Cada operador fija, para cada actividad, los límites a partir de los cuales una salida no debe zarpar: viento medio, rachas, altura de ola, mar de fondo de periodo largo, viento terral, polvo en suspensión. La misma previsión significa cosas distintas para un barco de fondo de cristal, una clase de surf y una escuela de kite, así que nada está fijado. Ventana compara la previsión hora a hora del puerto del operador con esos límites y clasifica cada salida de los próximos tres días en sale, vigilar y no sale, con los motivos.",
+"When the operator confirms a cancellation, direct clients get an email in their own language (Spanish, English, German, Italian or French) with the reason and a personal link to move to another trip or ask for a refund. The alternatives offered are only trips that are inside the limits and have free places. Platform bookings (GetYourGuide, Viator and similar) are not contacted from outside: Ventana gives the operator the list to cancel in each portal, which refunds the client.":
+    "Cuando el operador confirma una cancelación, los clientes directos reciben un email en su idioma (español, inglés, alemán, italiano o francés) con el motivo y un enlace personal para cambiar a otra salida o pedir el reembolso. Las alternativas que se ofrecen son solo salidas que están dentro de los límites y tienen plazas libres. A las reservas de plataforma (GetYourGuide, Viator y similares) no se les escribe por fuera: Ventana entrega al operador la lista para cancelarlas en cada portal, que reembolsa al cliente.",
+"A pending-tasks tab collects refunds to make, clients who have not answered and platform bookings still to cancel. A statistics tab shows how many trips were cancelled, why, how many guests moved to another day and how much revenue was kept instead of refunded.":
+    "Una pestaña de pendientes reúne los reembolsos por hacer, los clientes que no han contestado y las reservas de plataforma aún por cancelar. Una pestaña de estadísticas muestra cuántas salidas se cancelaron, por qué, cuántos clientes cambiaron de día y cuántos ingresos se conservaron en lugar de reembolsarse.",
+"The operator decides.": "El operador decide.",
+"Ventana proposes and explains the reasons, and nothing is cancelled or sent until the operator confirms. A “watch” never cancels on its own.":
+    "Ventana propone y explica los motivos, y no se cancela ni se envía nada hasta que el operador confirma. Un «vigilar» nunca cancela por sí solo.",
+"The limits are the operator's.": "Los límites son del operador.",
+"The starting values are examples to begin the conversation with each operator; every operator adjusts them to their own boats and customers.":
+    "Los valores iniciales son ejemplos para empezar la conversación con cada operador; cada uno los ajusta a sus propios barcos y clientes.",
+"Clients are told the real reason, in their language.": "Al cliente se le dice el motivo real, en su idioma.",
+"The message says what the forecast shows, never a vague “operational reasons”.":
+    "El mensaje dice lo que muestra la previsión, nunca un vago «motivos operativos».",
+"The demo covers 48 ports across the seven main islands and 12 activities. It has four simulated situations (strong trade wind, north-west swell, calima with an easterly wind, and calm), an operator view and a small administrator view. In the operator view you can cancel a departure, preview exactly what a client receives in each language, click through the client's personal link as if you were the client, simulate replies and 24 hours of silence, import bookings from a CSV, and read the statistics.":
+    "La demo cubre 48 puertos de las siete islas principales y 12 actividades. Tiene cuatro situaciones simuladas (alisio fuerte, mar de fondo del noroeste, calima con levante y calma), una vista de operador y una pequeña vista de administrador. En la vista de operador puedes cancelar una salida, ver exactamente lo que recibe un cliente en cada idioma, pulsar en el enlace personal del cliente como si fueras él, simular respuestas y 24 horas de silencio, importar reservas desde un CSV y consultar las estadísticas.",
+"Business": "Negocio",
+"The customer is the activity operator, and the pitch is simple: bad-weather days cost hours of work and, when handled badly, lost revenue and bad reviews. Keeping guests on another day instead of refunding them is the number operators care about, and the statistics tab shows it. The model to test is a monthly fee per operator. The first step is conversations with operators in Puerto Rico, Mogán and Los Cristianos, to find out whether this is a problem they would pay to solve.":
+    "El cliente es el operador de actividades y el argumento es sencillo: los días de mal tiempo cuestan horas de trabajo y, si se gestionan mal, ingresos perdidos y malas reseñas. Conseguir que el cliente cambie de día en lugar de pedir el reembolso es la cifra que le importa al operador, y la pestaña de estadísticas la muestra. El modelo que hay que probar es una cuota mensual por operador. El primer paso son conversaciones con operadores de Puerto Rico, Mogán y Los Cristianos para saber si es un problema por el que pagarían.",
+"Forecast pipeline": "Pipeline de previsión",
+"that reads wind and wave data for each port, with the port's orientation to work out offshore wind and exposure to swell.":
+    "que lee datos de viento y oleaje de cada puerto, usando la orientación del puerto para calcular el viento terral y la exposición al mar de fondo.",
+"Rules engine": "Motor de reglas",
+"per operator and activity, producing the reasons shown to the operator and used in the client message.":
+    "por operador y actividad, que genera los motivos que ve el operador y que se usan en el mensaje al cliente.",
+"Email or WhatsApp": "Email o WhatsApp",
+"for client messages and a small web page for each client's personal link.":
+    "para los mensajes a los clientes y una pequeña página web para el enlace personal de cada uno.",
+"Booking import": "Importación de reservas",
+"by CSV first, then an API or Zapier and Make connection to the operator's booking system.":
+    "primero por CSV y después por API o conexión con Zapier y Make al sistema de reservas del operador.",
+"This is an early-stage project and the demo is a prototype of the workflow. The weather is a simulation of typical Canary Islands situations, not a real forecast, and the bookings, names, emails, amounts and history are made up. The port factors that turn one forecast into each port's conditions are rough estimates. No emails are sent and nothing is stored. Before it can be used for real it needs a real forecast source, a booking connection, and the validation that decides whether it is worth building: conversations with operators about what they do on bad-weather days.":
+    "Es un proyecto en fase inicial y la demo es un prototipo del flujo de trabajo. El tiempo es una simulación de situaciones típicas de Canarias, no una previsión real, y las reservas, los nombres, los emails, los importes y el historial son inventados. Los factores por puerto que convierten una previsión en las condiciones de cada puerto son estimaciones aproximadas. No se envía ningún email y no se guarda nada. Para usarlo de verdad necesita una fuente de previsión real, una conexión con las reservas y la validación que decide si merece la pena construirlo: conversaciones con operadores sobre lo que hacen los días de mal tiempo.",
+"Weather and wave data": "Datos de viento y oleaje",
+"Email and WhatsApp": "Email y WhatsApp",
+"Boat, whale-watching, diving, surf, kite and kayak operators in the Canary Islands":
+    "Operadores de barco, avistamiento de cetáceos, buceo, surf, kite y kayak en Canarias",
+"In development, being validated with operators. Browser demo available.":
+    "En desarrollo, validándose con operadores. Demo disponible en el navegador.",
+})

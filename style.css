@@ -184,7 +184,7 @@
 :root[data-theme="dark"] .nav-cta{background:var(--green);color:#10170f}
 @media(max-width:620px){:root[data-theme="dark"] .hero-bg{background:linear-gradient(90deg,rgba(17,23,18,.97),rgba(17,23,18,.75)),url("/assets/hero.jpg") center/cover}}
 .project-flights{background:linear-gradient(135deg,#132a44,#4a7ba0)}
-.project-wildstays{background:linear-gradient(135deg,#1c3526,#7d8f4e)}.project-trip-reports{background:linear-gradient(135deg,#1d3a2e,#6f8a55)}
+.project-wildstays{background:linear-gradient(135deg,#1c3526,#7d8f4e)}.project-trip-reports{background:linear-gradient(135deg,#1d3a2e,#6f8a55)}.project-ventana{background:linear-gradient(135deg,#0d3a4a,#3f8ea3)}
 
 /* Accessibility */
 .skip-link{position:absolute;left:12px;top:-64px;background:var(--green2);color:#fff;padding:10px 16px;border-radius:8px;z-index:300;font:700 13px var(--sans)}
@@ -570,3 +570,9 @@ html.tr-printing .tr-tw{overflow:visible}
 html.tr-printing .tr-list table{min-width:0}
 html.tr-printing #tr-print .ts-proof{border:0;margin:0}
 }
+
+/* ===== Ventana demo ===== */
+.vt-demo{padding:70px 0 80px;border-bottom:1px solid var(--line)}
+.vt-frame{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--white)}
+.vt-frame iframe{display:block;width:100%;border:0;min-height:600px}
+.vt-demo .tr-fine{margin-top:14px}

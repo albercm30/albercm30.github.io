@@ -1,0 +1,863 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><meta name="color-scheme" content="light dark">
+<script>/* follow the site's light/dark choice when embedded (same origin) */
+(function(){function t(){try{var v=localStorage.getItem("theme");if(v)document.documentElement.dataset.theme=v;else delete document.documentElement.dataset.theme}catch(e){}}t();addEventListener("storage",t);})();
+</script>
+<style>html,body{margin:0}body{background:var(--bg)}</style>
+<title>Ventana · Demo para operadores</title>
+</head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: the operator's own departures first (one port, their activities), then the action flow for a cancelled departure, pending tasks, bookings, statistics, company setup. A separate admin view shows all clients and all ports. */
+:root {
+  --bg: #f3f6f7; --surface: #ffffff; --sunken: #f7fafb; --ink: #0f2a33; --muted: #5a6e75; --line: #d8e2e5;
+  --accent: #0a6c86; --accent-soft: #e2f0f4;
+  --go: #1d7a4a; --go-soft: #e3f3ea; --watch: #a86400; --watch-soft: #fbf0dc; --no: #b3261e; --no-soft: #fbe6e4;
+  --bar: #9fb6bd;
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c1a1f; --surface: #12252c; --sunken: #0f2026; --ink: #e4eef1; --muted: #93a9b0; --line: #24414a; --accent: #5cc3dd; --accent-soft: #163a45;
+    --go: #5fcf8f; --go-soft: #143425; --watch: #f0b34e; --watch-soft: #3a2b10; --no: #ff8a80; --no-soft: #3d1a18; --bar: #4d6b74; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c1a1f; --surface: #12252c; --sunken: #0f2026; --ink: #e4eef1; --muted: #93a9b0; --line: #24414a; --accent: #5cc3dd; --accent-soft: #163a45;
+  --go: #5fcf8f; --go-soft: #143425; --watch: #f0b34e; --watch-soft: #3a2b10; --no: #ff8a80; --no-soft: #3d1a18; --bar: #4d6b74; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.45; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-block: 16px 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 18px; }
+h1, h2, h3 { font-family: var(--font-display); margin: 0; text-wrap: balance; }
+h2 { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-stretch: 112%; }
+h3 { font-size: 18px; font-weight: 800; font-stretch: 92%; }
+p { margin: 0; }
+.num { font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+button, select, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+.brand { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.brand h1 { font-size: 28px; font-weight: 800; font-stretch: 82%; letter-spacing: -.01em; }
+.tag { font-family: var(--font-data); font-size: 11px; padding: 2px 7px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); }
+.who { font-size: 14px; color: var(--muted); }
+.who b { color: var(--ink); }
+.seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--surface); }
+.seg button { border: 0; background: none; padding: 7px 11px; font-size: 13.5px; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--bg); font-weight: 600; }
+.bar-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.field { display: grid; gap: 4px; font-size: 12px; color: var(--muted); min-width: 0; }
+.field select, .field input[type=text], .field input[type=number], textarea { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px; font-size: 14px; color: var(--ink); max-width: 100%; }
+textarea { width: 100%; font-family: var(--font-data); font-size: 12.5px; min-height: 130px; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); }
+.tabs button { border: 0; background: none; padding: 9px 12px; font-size: 14.5px; font-weight: 600; color: var(--muted); border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+.badge { display: inline-block; min-width: 20px; padding: 0 6px; margin-left: 4px; border-radius: 99px; background: var(--no); color: var(--bg); font-size: 12px; text-align: center; }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 12px; min-width: 0; }
+.head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: baseline; }
+.note { font-size: 12.5px; color: var(--muted); max-width: 84ch; }
+.hint { font-size: 12px; color: var(--muted); }
+
+.days { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.day { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.day-name { font-weight: 700; font-size: 14px; display: flex; justify-content: space-between; gap: 6px; }
+.day-name span { color: var(--muted); font-weight: 400; }
+.slot { width: 100%; text-align: left; border: 1px solid var(--line); border-left: 6px solid var(--st); background: var(--st-soft); border-radius: 6px; padding: 9px 11px; display: grid; gap: 3px; }
+.slot[aria-current="true"] { box-shadow: 0 0 0 2px var(--accent); }
+.slot-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.slot-time { font-family: var(--font-data); font-size: 19px; font-weight: 600; }
+.slot-act { font-size: 13px; font-weight: 600; }
+.status { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--st); font-stretch: 112%; }
+.slot-meta { font-size: 12.5px; color: var(--muted); }
+.go { --st: var(--go); --st-soft: var(--go-soft); }
+.watch { --st: var(--watch); --st-soft: var(--watch-soft); }
+.no { --st: var(--no); --st-soft: var(--no-soft); }
+.done { --st: var(--muted); --st-soft: var(--sunken); }
+
+.pill { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 8px; border-radius: 99px; border: 1px solid var(--st); color: var(--st); background: var(--st-soft); white-space: nowrap; }
+.chan { font-family: var(--font-data); font-size: 11px; padding: 1px 6px; border-radius: 3px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+.chan.plat { background: var(--watch-soft); color: var(--watch); }
+.lang { font-family: var(--font-data); font-size: 11px; color: var(--muted); }
+
+.detail-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.reasons { display: grid; gap: 4px; font-family: var(--font-data); font-size: 13px; }
+.cta { background: var(--ink); color: var(--bg); border: 0; border-radius: 6px; padding: 10px 15px; font-weight: 700; }
+.cta.secondary { background: none; color: var(--ink); border: 1px solid var(--line); }
+.cta.small { padding: 5px 10px; font-size: 13px; font-weight: 600; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.confirm { border: 1px solid var(--no); background: var(--no-soft); border-radius: 8px; padding: 12px 14px; display: grid; gap: 8px; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 700; padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+td.num, th.num { text-align: right; }
+.check { display: flex; gap: 8px; align-items: center; }
+
+.phone { border: 1px solid var(--line); border-radius: 18px; padding: 14px; background: var(--sunken); display: grid; gap: 10px; max-width: 380px; width: 100%; }
+.phone-label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.mail { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px; font-size: 13.5px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.mail b { display: block; margin-bottom: 6px; }
+.client { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 10px; font-size: 14px; }
+.client .opt { width: 100%; text-align: left; border: 1px solid var(--accent); background: var(--accent-soft); color: var(--ink); border-radius: 8px; padding: 10px 12px; font-weight: 600; }
+.client .opt.ref { border-color: var(--line); background: none; font-weight: 500; }
+.client .ok { background: var(--go-soft); border: 1px solid var(--go); border-radius: 8px; padding: 10px 12px; }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+.tile { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 2px; background: var(--surface); }
+.tile b { font-family: var(--font-data); font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.tile span { font-size: 13px; color: var(--muted); }
+.hbars { display: grid; gap: 8px; }
+.hbar { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr) 56px; gap: 10px; align-items: center; font-size: 13.5px; }
+.hbar .track { height: 12px; background: var(--sunken); border-radius: 4px; overflow: hidden; }
+.hbar .fill { height: 100%; background: var(--accent); border-radius: 0 4px 4px 0; }
+.hbar .v { font-family: var(--font-data); text-align: right; }
+.outcome { display: flex; height: 26px; border-radius: 6px; overflow: hidden; gap: 2px; }
+.outcome div { min-width: 0; display: flex; align-items: center; padding-left: 8px; font-size: 12.5px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12.5px; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+.chart-wrap { overflow-x: auto; }
+svg text { font-family: var(--font-data); }
+svg text.t-title { font-family: var(--font-display); }
+.t-muted { fill: var(--muted); } .t-ink { fill: var(--ink); }
+
+.setup { display: grid; gap: 14px; }
+.actcard { border: 1px solid var(--line); border-radius: 8px; padding: 12px; display: grid; gap: 10px; }
+.actcard.off { opacity: .6; }
+.row { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; }
+.limit { display: grid; gap: 3px; min-width: 200px; flex: 1; }
+.limit-row { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; }
+.limit input[type=range] { width: 100%; accent-color: var(--accent); }
+
+.radar { display: grid; gap: 4px; }
+.rrow { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 10px; align-items: start; padding: 6px 0; border-bottom: 1px solid var(--line); }
+.rrow:last-child { border-bottom: 0; }
+.rname { font-weight: 600; font-size: 14px; }
+.rname span { display: block; font-weight: 400; font-size: 12px; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 1px solid var(--st); background: var(--st-soft); border-radius: 99px; padding: 2px 10px; font-size: 12.5px; }
+.chip b { color: var(--st); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+.client-tag { font-size: 11px; font-weight: 700; color: var(--accent); margin-left: 6px; }
+.foot { font-size: 12.5px; color: var(--muted); display: grid; gap: 4px; max-width: 90ch; }
+
+@media (max-width: 900px) { .detail-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 640px) { .days { grid-template-columns: minmax(0, 1fr); } .rrow { grid-template-columns: minmax(0, 1fr); } .hbar { grid-template-columns: minmax(0, 120px) minmax(0, 1fr) 48px; } }
+@media (prefers-reduced-motion: no-preference) { .slot { transition: transform .12s ease; } .slot:hover { transform: translateY(-1px); } }
+</style>
+
+<div class="wrap" style="padding-top:12px">
+  <header class="top">
+    <div class="brand"><h1>Ventana</h1><span class="tag">DEMO</span><span class="who" id="who"></span></div>
+    <div class="bar-controls">
+      <div class="seg" role="group" aria-label="Vista">
+        <button type="button" data-view="op" aria-pressed="true">Operador</button>
+        <button type="button" data-view="admin" aria-pressed="false">Administrador</button>
+      </div>
+      <label class="field" for="scenario">Tiempo de la demo
+        <select id="scenario">
+          <option value="alisio">Alisio fuerte</option>
+          <option value="mar_fondo">Mar de fondo del noroeste</option>
+          <option value="calima">Calima con levante</option>
+          <option value="calma">Calma</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs" role="tablist"></nav>
+  <main id="main" style="display:grid;gap:18px"></main>
+
+  <footer class="foot">
+    <div>Demo con datos de ejemplo: empresas, reservas, nombres, emails, importes e historial son ficticios. El tiempo es una simulación de situaciones típicas de Canarias; la versión real usa la previsión de cada puerto.</div>
+    <div>Las reservas de plataformas (GetYourGuide, Viator…) se cancelan en el portal de cada plataforma, que reembolsa al cliente; Ventana no contacta con esos clientes por fuera.</div>
+  </footer>
+</div>
+
+<script id="ventana-data" type="application/json">{"spots": [{"id": "gc-puerto-rico", "isla": "Gran Canaria", "spot": "Puerto Rico", "municipio": "Mogán", "orientacion": 200.0, "actividades": ["barco", "cetaceos", "pesca", "buceo", "motoagua", "parasailing"], "f_viento": 0.45, "f_mar_fondo_no": 0.1, "f_mar_viento": 0.1, "nota": "Sur resguardado del alisio"}, {"id": "gc-mogan", "isla": "Gran Canaria", "spot": "Puerto de Mogán", "municipio": "Mogán", "orientacion": 215.0, "actividades": ["barco", "fondo_cristal", "buceo"], "f_viento": 0.45, "f_mar_fondo_no": 0.15, "f_mar_viento": 0.1, "nota": "Barcos de fondo de cristal y submarino turístico"}, {"id": "gc-arguineguin", "isla": "Gran Canaria", "spot": "Arguineguín", "municipio": "Mogán", "orientacion": 190.0, "actividades": ["barco", "buceo", "snorkel"], "f_viento": 0.45, "f_mar_fondo_no": 0.1, "f_mar_viento": 0.1, "nota": ""}, {"id": "gc-anfi", "isla": "Gran Canaria", "spot": "Anfi del Mar", "municipio": "Mogán", "orientacion": 200.0, "actividades": ["barco", "motoagua", "kayak", "snorkel"], "f_viento": 0.45, "f_mar_fondo_no": 0.1, "f_mar_viento": 0.1, "nota": ""}, {"id": "gc-pasito-blanco", "isla": "Gran Canaria", "spot": "Pasito Blanco", "municipio": "San Bartolomé de Tirajana", "orientacion": 190.0, "actividades": ["barco", "pesca"], "f_viento": 0.55, "f_mar_fondo_no": 0.1, "f_mar_viento": 0.15, "nota": "Puerto deportivo"}, {"id": "gc-playa-ingles", "isla": "Gran Canaria", "spot": "Playa del Inglés", "municipio": "San Bartolomé de Tirajana", "orientacion": 160.0, "actividades": ["surf", "motoagua", "parasailing"], "f_viento": 0.7, "f_mar_fondo_no": 0.05, "f_mar_viento": 0.3, "nota": ""}, {"id": "gc-pozo", "isla": "Gran Canaria", "spot": "Pozo Izquierdo", "municipio": "Santa Lucía de Tirajana", "orientacion": 100.0, "actividades": ["windsurf", "kite"], "f_viento": 1.4, "f_mar_fondo_no": 0.05, "f_mar_viento": 0.8, "nota": "Zona de aceleración del alisio"}, {"id": "gc-vargas", "isla": "Gran Canaria", "spot": "Vargas", "municipio": "Agüimes", "orientacion": 95.0, "actividades": ["kite", "windsurf"], "f_viento": 1.25, "f_mar_fondo_no": 0.05, "f_mar_viento": 0.7, "nota": ""}, {"id": "gc-arinaga", "isla": "Gran Canaria", "spot": "Arinaga (El Cabrón)", "municipio": "Agüimes", "orientacion": 95.0, "actividades": ["buceo", "snorkel"], "f_viento": 1.1, "f_mar_fondo_no": 0.05, "f_mar_viento": 0.6, "nota": "Reserva marina de El Cabrón"}, {"id": "gc-taliarte", "isla": "Gran Canaria", "spot": "Taliarte", "municipio": "Telde", "orientacion": 90.0, "actividades": ["buceo", "kayak"], "f_viento": 1.0, "f_mar_fondo_no": 0.1, "f_mar_viento": 0.6, "nota": ""}, {"id": "gc-las-palmas", "isla": "Gran Canaria", "spot": "Muelle Deportivo de Las Palmas", "municipio": "Las Palmas de Gran Canaria", "orientacion": 100.0, "actividades": ["barco", "pesca"], "f_viento": 0.9, "f_mar_fondo_no": 0.05, "f_mar_viento": 0.4, "nota": ""}, {"id": "gc-las-canteras", "isla": "Gran Canaria", "spot": "Las Canteras (La Cícer)", "municipio": "Las Palmas de Gran Canaria", "orientacion": 290.0, "actividades": ["surf", "buceo", "snorkel", "kayak"], "f_viento": 0.8, "f_mar_fondo_no": 0.9, "f_mar_viento": 0.3, "nota": "Playa urbana expuesta al mar de fondo del norte"}, {"id": "gc-agaete", "isla": "Gran Canaria", "spot": "Puerto de Las Nieves", "municipio": "Agaete", "orientacion": 270.0, "actividades": ["barco", "buceo"], "f_viento": 0.6, "f_mar_fondo_no": 0.8, "f_mar_viento": 0.2, "nota": ""}, {"id": "gc-sardina", "isla": "Gran Canaria", "spot": "Sardina del Norte", "municipio": "Gáldar", "orientacion": 320.0, "actividades": ["buceo", "snorkel"], "f_viento": 0.8, "f_mar_fondo_no": 0.9, "f_mar_viento": 0.4, "nota": ""}, {"id": "tf-los-cristianos", "isla": "Tenerife", "spot": "Los Cristianos", "municipio": "Arona", "orientacion": 185.0, "actividades": ["barco", "cetaceos", "buceo", "pesca", "motoagua"], "f_viento": 0.5, "f_mar_fondo_no": 0.1, "f_mar_viento": 0.15, "nota": ""}, {"id": "tf-puerto-colon", "isla": "Tenerife", "spot": "Puerto Colón", "municipio": "Adeje", "orientacion": 235.0, "actividades": ["barco", "cetaceos", "pesca", "motoagua", "parasailing"], "f_viento": 0.45, "f_mar_fondo_no": 0.2, "f_mar_viento": 0.1, "nota": ""}, {"id": "tf-los-gigantes", "isla": "Tenerife", "spot": "Los Gigantes", "municipio": "Santiago del Teide", "orientacion": 265.0, "actividades": ["barco", "cetaceos", "kayak", "buceo"], "f_viento": 0.4, "f_mar_fondo_no": 0.6, "f_mar_viento": 0.05, "nota": "Costa oeste: el levante sopla de tierra"}, {"id": "tf-san-juan", "isla": "Tenerife", "spot": "Playa San Juan", "municipio": "Guía de Isora", "orientacion": 250.0, "actividades": ["cetaceos", "kayak", "buceo"], "f_viento": 0.4, "f_mar_fondo_no": 0.5, "f_mar_viento": 0.05, "nota": ""}, {"id": "tf-las-galletas", "isla": "Tenerife", "spot": "Las Galletas", "municipio": "Arona", "orientacion": 175.0, "actividades": ["barco", "cetaceos", "buceo", "kayak"], "f_viento": 0.6, "f_mar_fondo_no": 0.05, "f_mar_viento": 0.2, "nota": ""}, {"id": "tf-americas", "isla": "Tenerife", "spot": "Playa de las Américas", "municipio": "Arona", "orientacion": 220.0, "actividades": ["surf"], "f_viento": 0.45, "f_mar_fondo_no": 0.3, "f_mar_viento": 0.1, "nota": "Picos de surf del sur"}, {"id": "tf-medano", "isla": "Tenerife", "spot": "El Médano", "municipio": "Granadilla de Abona", "orientacion": 120.0, "actividades": ["kite", "windsurf", "surf"], "f_viento": 1.35, "f_mar_fondo_no": 0.05, "f_mar_viento": 0.6, "nota": "Zona de aceleración del alisio"}, {"id": "tf-abades", "isla": "Tenerife", "spot": "Abades", "municipio": "Arico", "orientacion": 120.0, "actividades": ["buceo"], "f_viento": 1.0, "f_mar_fondo_no": 0.05, "f_mar_viento": 0.5, "nota": ""}, {"id": "tf-radazul", "isla": "Tenerife", "spot": "Radazul", "municipio": "El Rosario", "orientacion": 110.0, "actividades": ["buceo", "barco"], "f_viento": 0.8, "f_mar_fondo_no": 0.05, "f_mar_viento": 0.5, "nota": ""}, {"id": "tf-santa-cruz", "isla": "Tenerife", "spot": "Marina Santa Cruz", "municipio": "Santa Cruz de Tenerife", "orientacion": 110.0, "actividades": ["barco", "pesca"], "f_viento": 0.8, "f_mar_fondo_no": 0.05, "f_mar_viento": 0.4, "nota": ""}, {"id": "tf-puerto-cruz", "isla": "Tenerife", "spot": "Puerto de la Cruz (Martiánez)", "municipio": "Puerto de la Cruz", "orientacion": 10.0, "actividades": ["surf", "buceo"], "f_viento": 0.8, "f_mar_fondo_no": 1.0, "f_mar_viento": 0.6, "nota": "Costa norte expuesta"}, {"id": "tf-punta-hidalgo", "isla": "Tenerife", "spot": "Punta del Hidalgo", "municipio": "San Cristóbal de La Laguna", "orientacion": 10.0, "actividades": ["surf"], "f_viento": 1.0, "f_mar_fondo_no": 1.0, "f_mar_viento": 0.7, "nota": ""}, {"id": "lz-puerto-calero", "isla": "Lanzarote", "spot": "Puerto Calero", "municipio": "Yaiza", "orientacion": 185.0, "actividades": ["barco", "cetaceos", "fondo_cristal", "buceo", "pesca"], "f_viento": 0.6, "f_mar_fondo_no": 0.05, "f_mar_viento": 0.2, "nota": ""}, {"id": "lz-rubicon", "isla": "Lanzarote", "spot": "Marina Rubicón", "municipio": "Yaiza", "orientacion": 200.0, "actividades": ["barco", "buceo", "pesca"], "f_viento": 0.7, "f_mar_fondo_no": 0.1, "f_mar_viento": 0.3, "nota": "Salidas a Papagayo"}, {"id": "lz-puerto-carmen", "isla": "Lanzarote", "spot": "Puerto del Carmen", "municipio": "Tías", "orientacion": 150.0, "actividades": ["buceo", "snorkel", "motoagua", "kayak"], "f_viento": 0.7, "f_mar_fondo_no": 0.05, "f_mar_viento": 0.3, "nota": ""}, {"id": "lz-costa-teguise", "isla": "Lanzarote", "spot": "Costa Teguise", "municipio": "Teguise", "orientacion": 135.0, "actividades": ["windsurf", "kite", "surf", "buceo"], "f_viento": 1.1, "f_mar_fondo_no": 0.05, "f_mar_viento": 0.6, "nota": ""}, {"id": "lz-famara", "isla": "Lanzarote", "spot": "Famara", "municipio": "Teguise", "orientacion": 315.0, "actividades": ["surf", "kite"], "f_viento": 1.1, "f_mar_fondo_no": 1.0, "f_mar_viento": 0.7, "nota": "Escuelas de surf con mar de fondo del noroeste"}, {"id": "lz-orzola", "isla": "Lanzarote", "spot": "Órzola", "municipio": "Haría", "orientacion": 30.0, "actividades": ["barco"], "f_viento": 1.0, "f_mar_fondo_no": 0.6, "f_mar_viento": 0.8, "nota": "Barcos a La Graciosa"}, {"id": "lz-arrecife", "isla": "Lanzarote", "spot": "Marina Lanzarote", "municipio": "Arrecife", "orientacion": 140.0, "actividades": ["barco", "pesca"], "f_viento": 0.9, "f_mar_fondo_no": 0.05, "f_mar_viento": 0.4, "nota": ""}, {"id": "fv-corralejo", "isla": "Fuerteventura", "spot": "Corralejo (puerto)", "municipio": "La Oliva", "orientacion": 70.0, "actividades": ["barco", "fondo_cristal", "cetaceos", "buceo", "pesca"], "f_viento": 1.0, "f_mar_fondo_no": 0.4, "f_mar_viento": 0.6, "nota": "Barcos a Lobos y a Lanzarote"}, {"id": "fv-corralejo-norte", "isla": "Fuerteventura", "spot": "Corralejo costa norte", "municipio": "La Oliva", "orientacion": 0.0, "actividades": ["surf"], "f_viento": 1.1, "f_mar_fondo_no": 1.0, "f_mar_viento": 0.7, "nota": ""}, {"id": "fv-flag-beach", "isla": "Fuerteventura", "spot": "Flag Beach", "municipio": "La Oliva", "orientacion": 80.0, "actividades": ["kite", "windsurf"], "f_viento": 1.2, "f_mar_fondo_no": 0.1, "f_mar_viento": 0.6, "nota": ""}, {"id": "fv-cotillo", "isla": "Fuerteventura", "spot": "El Cotillo", "municipio": "La Oliva", "orientacion": 280.0, "actividades": ["surf"], "f_viento": 1.0, "f_mar_fondo_no": 0.9, "f_mar_viento": 0.3, "nota": ""}, {"id": "fv-caleta-fuste", "isla": "Fuerteventura", "spot": "Caleta de Fuste", "municipio": "Antigua", "orientacion": 100.0, "actividades": ["barco", "buceo", "pesca"], "f_viento": 1.0, "f_mar_fondo_no": 0.05, "f_mar_viento": 0.6, "nota": ""}, {"id": "fv-sotavento", "isla": "Fuerteventura", "spot": "Sotavento (Costa Calma)", "municipio": "Pájara", "orientacion": 120.0, "actividades": ["kite", "windsurf"], "f_viento": 1.4, "f_mar_fondo_no": 0.05, "f_mar_viento": 0.5, "nota": "Zona de aceleración del alisio"}, {"id": "fv-morro-jable", "isla": "Fuerteventura", "spot": "Morro Jable", "municipio": "Pájara", "orientacion": 165.0, "actividades": ["barco", "pesca", "buceo"], "f_viento": 0.8, "f_mar_fondo_no": 0.1, "f_mar_viento": 0.3, "nota": ""}, {"id": "lg-valle-gran-rey", "isla": "La Gomera", "spot": "Vueltas (Valle Gran Rey)", "municipio": "Valle Gran Rey", "orientacion": 230.0, "actividades": ["cetaceos", "barco", "buceo"], "f_viento": 0.5, "f_mar_fondo_no": 0.4, "f_mar_viento": 0.1, "nota": "Excursiones a Los Órganos"}, {"id": "lg-san-sebastian", "isla": "La Gomera", "spot": "San Sebastián", "municipio": "San Sebastián de La Gomera", "orientacion": 110.0, "actividades": ["barco"], "f_viento": 0.8, "f_mar_fondo_no": 0.05, "f_mar_viento": 0.4, "nota": ""}, {"id": "lg-playa-santiago", "isla": "La Gomera", "spot": "Playa Santiago", "municipio": "Alajeró", "orientacion": 175.0, "actividades": ["barco", "buceo"], "f_viento": 0.6, "f_mar_fondo_no": 0.05, "f_mar_viento": 0.2, "nota": ""}, {"id": "lp-tazacorte", "isla": "La Palma", "spot": "Puerto de Tazacorte", "municipio": "Tazacorte", "orientacion": 265.0, "actividades": ["barco", "cetaceos", "buceo"], "f_viento": 0.5, "f_mar_fondo_no": 0.6, "f_mar_viento": 0.1, "nota": ""}, {"id": "lp-puerto-naos", "isla": "La Palma", "spot": "Puerto Naos", "municipio": "Los Llanos de Aridane", "orientacion": 255.0, "actividades": ["buceo", "snorkel"], "f_viento": 0.5, "f_mar_fondo_no": 0.6, "f_mar_viento": 0.1, "nota": ""}, {"id": "lp-santa-cruz", "isla": "La Palma", "spot": "Santa Cruz de La Palma", "municipio": "Santa Cruz de La Palma", "orientacion": 100.0, "actividades": ["barco", "pesca"], "f_viento": 0.9, "f_mar_fondo_no": 0.05, "f_mar_viento": 0.5, "nota": ""}, {"id": "eh-restinga", "isla": "El Hierro", "spot": "La Restinga", "municipio": "El Pinar de El Hierro", "orientacion": 180.0, "actividades": ["buceo", "snorkel"], "f_viento": 0.5, "f_mar_fondo_no": 0.1, "f_mar_viento": 0.1, "nota": "Reserva marina Mar de las Calmas"}, {"id": "eh-estaca", "isla": "El Hierro", "spot": "Puerto de La Estaca", "municipio": "Valverde", "orientacion": 90.0, "actividades": ["barco", "pesca"], "f_viento": 0.9, "f_mar_fondo_no": 0.1, "f_mar_viento": 0.5, "nota": ""}], "acts": {"_nota": "Límites iniciales de ejemplo para empezar a hablar con cada operador; cada uno los ajusta. Una regla 'max' cancela si se supera; 'min' cancela si no se llega. 'nivel': 'vigilar' solo avisa, nunca cancela. Se vigila al pasar del 85% de un máximo o al quedar a menos del 15% de un mínimo.", "variables": {"wind": {"nombre": "Viento medio", "unidad": "kn"}, "gust": {"nombre": "Racha", "unidad": "kn"}, "wave": {"nombre": "Ola significativa", "unidad": "m"}, "swell": {"nombre": "Mar de fondo", "unidad": "m"}, "period": {"nombre": "Periodo del mar de fondo", "unidad": "s"}, "swell_long": {"nombre": "Mar de fondo de periodo largo (≥13 s)", "unidad": "m"}, "offshore": {"nombre": "Viento terral (de tierra hacia el mar)", "unidad": "kn"}, "dust": {"nombre": "Polvo en suspensión (calima)", "unidad": "µg/m³"}}, "motivos": {"viento": "Viento fuerte", "rachas": "Rachas fuertes", "oleaje": "Oleaje", "olas_grandes": "Olas demasiado grandes para iniciación", "mar_de_fondo": "Mar de fondo de periodo largo", "terral": "Viento terral: empuja mar adentro", "sin_viento": "Falta de viento", "sin_olas": "Sin olas", "calima": "Calima: visibilidad reducida"}, "actividades": {"barco": {"nombre": "Excursión en barco / catamarán", "salidas": [10, 15], "duracion": 3, "plazas": 60, "precio": 55, "grafico": "viento", "reglas": [{"var": "wind", "max": 20, "motivo": "viento"}, {"var": "gust", "max": 28, "motivo": "rachas"}, {"var": "wave", "max": 2.0, "motivo": "oleaje"}, {"var": "dust", "max": 200, "motivo": "calima", "nivel": "vigilar"}]}, "cetaceos": {"nombre": "Avistamiento de cetáceos", "salidas": [10, 13, 16], "duracion": 2, "plazas": 40, "precio": 35, "grafico": "viento", "reglas": [{"var": "wind", "max": 18, "motivo": "viento"}, {"var": "gust", "max": 26, "motivo": "rachas"}, {"var": "wave", "max": 1.8, "motivo": "oleaje"}, {"var": "dust", "max": 200, "motivo": "calima", "nivel": "vigilar"}]}, "fondo_cristal": {"nombre": "Barco con fondo de cristal / submarino", "salidas": [11, 14], "duracion": 2, "plazas": 40, "precio": 30, "grafico": "oleaje", "reglas": [{"var": "wave", "max": 1.2, "motivo": "oleaje"}, {"var": "swell_long", "max": 0.8, "motivo": "mar_de_fondo"}, {"var": "wind", "max": 18, "motivo": "viento"}, {"var": "gust", "max": 25, "motivo": "rachas"}]}, "pesca": {"nombre": "Pesca de altura", "salidas": [8], "duracion": 5, "plazas": 10, "precio": 70, "grafico": "viento", "reglas": [{"var": "wind", "max": 22, "motivo": "viento"}, {"var": "gust", "max": 30, "motivo": "rachas"}, {"var": "wave", "max": 2.2, "motivo": "oleaje"}]}, "buceo": {"nombre": "Buceo", "salidas": [9, 12], "duracion": 3, "plazas": 12, "precio": 60, "grafico": "oleaje", "reglas": [{"var": "wave", "max": 1.6, "motivo": "oleaje"}, {"var": "swell_long", "max": 0.9, "motivo": "mar_de_fondo"}, {"var": "wind", "max": 20, "motivo": "viento"}]}, "snorkel": {"nombre": "Snorkel", "salidas": [10, 14], "duracion": 2, "plazas": 14, "precio": 35, "grafico": "oleaje", "reglas": [{"var": "wave", "max": 1.0, "motivo": "oleaje"}, {"var": "swell_long", "max": 0.6, "motivo": "mar_de_fondo"}, {"var": "wind", "max": 16, "motivo": "viento"}]}, "kayak": {"nombre": "Kayak / paddle surf", "salidas": [9, 15], "duracion": 3, "plazas": 16, "precio": 45, "grafico": "viento", "reglas": [{"var": "offshore", "max": 8, "motivo": "terral"}, {"var": "wind", "max": 12, "motivo": "viento"}, {"var": "gust", "max": 18, "motivo": "rachas"}, {"var": "wave", "max": 0.9, "motivo": "oleaje"}]}, "surf": {"nombre": "Clase de surf (iniciación)", "salidas": [10, 15], "duracion": 2, "plazas": 16, "precio": 40, "grafico": "oleaje", "reglas": [{"var": "wave", "max": 1.8, "motivo": "olas_grandes"}, {"var": "wave", "min": 0.4, "motivo": "sin_olas", "nivel": "vigilar"}, {"var": "wind", "max": 20, "motivo": "viento"}]}, "kite": {"nombre": "Kitesurf (clases)", "salidas": [11, 15], "duracion": 3, "plazas": 8, "precio": 80, "grafico": "viento", "reglas": [{"var": "wind", "min": 12, "motivo": "sin_viento"}, {"var": "offshore", "max": 6, "motivo": "terral"}, {"var": "wind", "max": 28, "motivo": "viento"}, {"var": "gust", "max": 35, "motivo": "rachas"}]}, "windsurf": {"nombre": "Windsurf (clases)", "salidas": [11, 15], "duracion": 3, "plazas": 10, "precio": 70, "grafico": "viento", "reglas": [{"var": "wind", "min": 11, "motivo": "sin_viento"}, {"var": "offshore", "max": 6, "motivo": "terral"}, {"var": "wind", "max": 32, "motivo": "viento"}, {"var": "gust", "max": 40, "motivo": "rachas"}]}, "motoagua": {"nombre": "Moto de agua", "salidas": [10, 12, 16], "duracion": 1, "plazas": 10, "precio": 70, "grafico": "viento", "reglas": [{"var": "wave", "max": 1.3, "motivo": "oleaje"}, {"var": "wind", "max": 20, "motivo": "viento"}, {"var": "gust", "max": 28, "motivo": "rachas"}]}, "parasailing": {"nombre": "Parasailing", "salidas": [10, 12, 15], "duracion": 1, "plazas": 12, "precio": 60, "grafico": "viento", "reglas": [{"var": "wind", "max": 15, "motivo": "viento"}, {"var": "gust", "max": 20, "motivo": "rachas"}, {"var": "wave", "max": 1.5, "motivo": "oleaje"}, {"var": "dust", "max": 200, "motivo": "calima", "nivel": "vigilar"}]}}}}</script>
+<script>
+(function () {
+  "use strict";
+  const DATA = JSON.parse(document.getElementById("ventana-data").textContent);
+  const SPOTS = DATA.spots, ACTS = DATA.acts.actividades, MOTIVOS = DATA.acts.motivos, VARS = DATA.acts.variables;
+  const LONG_PERIOD = 13, WATCH_MAX = 0.85, WATCH_MIN = 1.15, OFFSHORE_SECTOR = 60, SEV = { go: 0, watch: 1, no: 2 };
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const spotById = (id) => SPOTS.find((s) => s.id === id);
+  const hash = (s) => { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; };
+  const rng = (seed) => { let s = seed || 1; return () => { s ^= s << 13; s ^= s >>> 17; s ^= s << 5; return ((s >>> 0) % 10000) / 10000; }; };
+  const fmt1 = (x) => (Math.round(x * 10) / 10).toFixed(1);
+  const eur = (v) => Math.round(v).toLocaleString("es") + " €";
+  const angleDiff = (a, b) => { const d = Math.abs(((a - b) % 360 + 360) % 360); return d > 180 ? 360 - d : d; };
+  const compass = (deg) => ["N", "NE", "E", "SE", "S", "SO", "O", "NO"][Math.round((((deg % 360) + 360) % 360) / 45) % 8];
+  const startOfDay = (d) => { const x = new Date(d); x.setHours(0, 0, 0, 0); return x; };
+  const today = startOfDay(new Date());
+  const dayDate = (i) => { const d = new Date(today); d.setDate(d.getDate() + i); return d; };
+  const hhmm = (h) => String(h).padStart(2, "0") + ":00";
+  const dayLabel = (i) => i === 0 ? "Hoy" : i === 1 ? "Mañana" : new Intl.DateTimeFormat("es", { weekday: "long" }).format(dayDate(i)).replace(/^./, (c) => c.toUpperCase());
+  const dateShort = (i) => new Intl.DateTimeFormat("es", { day: "numeric", month: "short" }).format(dayDate(i));
+
+  // ---------------------------------------------------------------- weather simulation + rules
+  function simulate(spot, sc) {
+    const days = [], seed = hash(spot.id) % 100 / 10;
+    for (let d = 0; d < 3; d++) {
+      const pts = [];
+      for (let h = 0; h < 24; h++) {
+        const di = Math.exp(-((h - 14) ** 2) / 20), wob = Math.sin(h * 1.7 + d * 2.3 + seed) * 0.8;
+        let wind, dir, swell, period, windsea, dust = 25;
+        if (sc === "alisio") { const t = [13, 22, 12][d]; wind = (t + 4 * di) * spot.f_viento + wob; dir = 25; windsea = spot.f_mar_viento * Math.pow(t / 20, 1.5) * 2; swell = 0.8 * Math.max(spot.f_mar_fondo_no, 0.2); period = 10; }
+        else if (sc === "mar_fondo") { wind = (11 + 3 * di) * spot.f_viento + wob; dir = 20; windsea = spot.f_mar_viento * 0.5; const big = d === 0 ? 1.4 + 0.08 * h : d === 1 ? 3.3 : Math.max(0.6, 1.3 - 0.03 * h); swell = big * Math.max(spot.f_mar_fondo_no, 0.12); period = d === 0 ? 14 : d === 1 ? 16 : 11; }
+        else if (sc === "calima") { dir = 95; const on = Math.max(0, Math.cos(angleDiff(spot.orientacion, dir) * Math.PI / 180)); wind = 12 * (0.75 + 0.45 * on) + 3 * di + wob; windsea = 0.9 * on; swell = 0.4; period = 9; dust = [220, 380, 260][d] + 40 * di; }
+        else { const t = [5, 4, 6][d]; wind = Math.max(1.5, (t + 2 * di) * Math.max(spot.f_viento, 0.6) + wob * 0.5); dir = 30; windsea = 0.1; swell = 0.3; period = 9; }
+        wind = Math.max(1.5, wind);
+        pts.push({ wind, gust: wind * 1.3 + 2, dir, wave: Math.max(0.2, Math.hypot(windsea, swell)), swell, period, dust });
+      }
+      days.push(pts);
+    }
+    return days;
+  }
+  function derived(p, facing) {
+    const off = (facing + 180) % 360;
+    return { ...p, swell_long: p.period >= LONG_PERIOD ? p.swell : 0, offshore: angleDiff(p.dir, off) <= OFFSHORE_SECTOR ? p.wind : 0 };
+  }
+  function checkRule(v, r) {
+    if (v == null) return ["go", 0];
+    const no = r.nivel === "vigilar" ? "watch" : "no";
+    if (r.max != null) {
+      if (r.max <= 0) return v > 0 ? [no, 2] : ["go", 0];
+      const q = v / r.max;
+      if (v > r.max) return [no, q];
+      if (v > r.max * WATCH_MAX && no === "no") return ["watch", q];
+      return ["go", q];
+    }
+    const q = v > 0 ? r.min / v : 9.9;
+    if (v < r.min) return [no, q];
+    if (v < r.min * WATCH_MIN && no === "no") return ["watch", q];
+    return ["go", q];
+  }
+  function evalHours(hours, rules, facing) {
+    let st = "go"; const reasons = {}, mx = {}, mn = {};
+    for (const p of hours) {
+      const d = derived(p, facing);
+      for (const k of ["wind", "gust", "wave", "swell", "period", "swell_long", "offshore", "dust"]) mx[k] = Math.max(mx[k] ?? d[k], d[k]);
+      for (const k of ["wind", "wave"]) mn[k] = Math.min(mn[k] ?? d[k], d[k]);
+      for (const r of rules) {
+        const [s, q] = checkRule(d[r.var], r);
+        if (SEV[s] > SEV[st]) st = s;
+        if (s !== "go") { const pv = reasons[r.motivo]; if (!pv || SEV[s] > SEV[pv.estado] || (SEV[s] === SEV[pv.estado] && q > pv.q)) reasons[r.motivo] = { motivo: r.motivo, estado: s, q, var: r.var, limite: r.max ?? r.min, tipo: r.max != null ? "max" : "min" }; }
+      }
+    }
+    const list = Object.values(reasons).sort((a, b) => SEV[b.estado] - SEV[a.estado] || b.q - a.q);
+    list.forEach((r) => { r.valor = r.tipo === "min" ? mn[r.var] : mx[r.var]; });
+    return { st, reasons: list, mx, mn, dir: hours[0].dir };
+  }
+  function reasonText(r) {
+    const u = VARS[r.var].unidad, v = ["wave", "swell", "swell_long"].includes(r.var) ? fmt1(r.valor) : Math.round(r.valor);
+    return `${MOTIVOS[r.motivo]}: ${v} ${u} ${r.tipo === "min" ? "<" : ">"} ${r.limite} ${u}`;
+  }
+  const shortReason = (r) => MOTIVOS[r.motivo].split(":")[0];
+
+  // ---------------------------------------------------------------- client texts (5 languages)
+  const num = (v, l) => Number(v).toLocaleString(l, { maximumFractionDigits: 1 });
+  const PHR = {
+    viento: { es: (v, l) => `viento de ${num(v.wind, l)} nudos`, en: (v, l) => `${num(v.wind, l)}-knot winds`, de: (v, l) => `Wind mit ${num(v.wind, l)} Knoten`, it: (v, l) => `vento a ${num(v.wind, l)} nodi`, fr: (v, l) => `un vent de ${num(v.wind, l)} nœuds` },
+    rachas: { es: (v, l) => `rachas de ${num(v.gust, l)} nudos`, en: (v, l) => `gusts of ${num(v.gust, l)} knots`, de: (v, l) => `Böen bis ${num(v.gust, l)} Knoten`, it: (v, l) => `raffiche di ${num(v.gust, l)} nodi`, fr: (v, l) => `des rafales à ${num(v.gust, l)} nœuds` },
+    oleaje: { es: (v, l) => `olas de ${num(v.wave, l)} m`, en: (v, l) => `${num(v.wave, l)} m waves`, de: (v, l) => `Wellen von ${num(v.wave, l)} m`, it: (v, l) => `onde di ${num(v.wave, l)} m`, fr: (v, l) => `des vagues de ${num(v.wave, l)} m` },
+    olas_grandes: { es: (v, l) => `olas de ${num(v.wave, l)} m, demasiado grandes para una clase de iniciación`, en: (v, l) => `${num(v.wave, l)} m waves, too big for a beginner lesson`, de: (v, l) => `Wellen von ${num(v.wave, l)} m, zu groß für einen Anfängerkurs`, it: (v, l) => `onde di ${num(v.wave, l)} m, troppo grandi per una lezione per principianti`, fr: (v, l) => `des vagues de ${num(v.wave, l)} m, trop grosses pour un cours d'initiation` },
+    mar_de_fondo: { es: (v, l) => `mar de fondo de ${num(v.swell, l)} m con periodo de ${num(v.period, l)} s`, en: (v, l) => `a ${num(v.swell, l)} m long-period swell (${num(v.period, l)} s)`, de: (v, l) => `Dünung von ${num(v.swell, l)} m mit ${num(v.period, l)} s Periode`, it: (v, l) => `mare lungo di ${num(v.swell, l)} m con periodo di ${num(v.period, l)} s`, fr: (v, l) => `une houle de ${num(v.swell, l)} m de période ${num(v.period, l)} s` },
+    terral: { es: (v, l) => `viento terral de ${num(v.wind, l)} nudos, que empuja mar adentro`, en: (v, l) => `${num(v.wind, l)}-knot offshore winds that push out to sea`, de: (v, l) => `ablandigen Wind mit ${num(v.wind, l)} Knoten, der aufs Meer hinaus drückt`, it: (v, l) => `vento di terra a ${num(v.wind, l)} nodi, che spinge verso il largo`, fr: (v, l) => `un vent de terre de ${num(v.wind, l)} nœuds, qui pousse vers le large` },
+    sin_viento: { es: (v, l) => `muy poco viento (${num(v.windMin, l)} nudos), insuficiente para navegar`, en: (v, l) => `very light wind (${num(v.windMin, l)} knots), not enough to ride`, de: (v, l) => `sehr wenig Wind (${num(v.windMin, l)} Knoten), zu wenig zum Fahren`, it: (v, l) => `pochissimo vento (${num(v.windMin, l)} nodi), insufficiente per uscire`, fr: (v, l) => `très peu de vent (${num(v.windMin, l)} nœuds), insuffisant pour naviguer` },
+  };
+  const JOIN = { es: " y ", en: " and ", de: " und ", it: " e ", fr: " et " };
+  const DATEF = (d, l) => new Intl.DateTimeFormat(l, { weekday: "long", day: "numeric", month: "long" }).format(dayDate(d));
+  const C = {
+    es: { subj: (a, f) => `Tu ${a} del ${f} se cancela por el tiempo`, hi: (n) => `Hola ${n}:`, cancel: (a, f, h, r) => `La previsión para tu ${a} del ${f} a las ${h} indica ${r}, así que tenemos que cancelar la salida.`,
+          opts: (e) => `Puedes cambiarla a otra salida o pedir el reembolso completo de ${e} desde tu enlace personal:`, noopts: (e) => `No tenemos plazas libres en los próximos días. Puedes pedir el reembolso completo de ${e} desde tu enlace personal:`, sign: (c) => `Gracias por tu comprensión,\n${c}`,
+          title: "Tu reserva", choose: "Elige qué prefieres:", refund: (e) => `Prefiero el reembolso de ${e}`, moved: (f, h) => `Hecho. Tu reserva está ahora el ${f} a las ${h}. Te hemos enviado la confirmación.`, refunded: (e, c) => `Hemos registrado tu reembolso de ${e}. ${c} lo tramitará en los próximos días.`, full: "Esa salida acaba de llenarse. Elige otra opción.", ppl: (n) => n === 1 ? "1 persona" : `${n} personas` },
+    en: { subj: (a, f) => `Your ${a} on ${f} is cancelled due to the weather`, hi: (n) => `Hi ${n},`, cancel: (a, f, h, r) => `The forecast for your ${a} on ${f} at ${h} shows ${r}, so we have to cancel the trip.`,
+          opts: (e) => `You can move it to another trip or request a full refund of ${e} from your personal link:`, noopts: (e) => `We have no free places in the next few days. You can request a full refund of ${e} from your personal link:`, sign: (c) => `Thank you for understanding,\n${c}`,
+          title: "Your booking", choose: "Choose what you prefer:", refund: (e) => `I'd rather have the ${e} refund`, moved: (f, h) => `Done. Your booking is now on ${f} at ${h}. We've sent you a confirmation.`, refunded: (e, c) => `We've registered your refund of ${e}. ${c} will process it in the next few days.`, full: "That trip has just filled up. Please choose another option.", ppl: (n) => n === 1 ? "1 person" : `${n} people` },
+    de: { subj: (a, f) => `Ihre ${a} am ${f} fällt wegen des Wetters aus`, hi: (n) => `Hallo ${n},`, cancel: (a, f, h, r) => `Die Vorhersage für Ihre ${a} am ${f} um ${h} Uhr meldet ${r}, deshalb müssen wir den Termin absagen.`,
+          opts: (e) => `Über Ihren persönlichen Link können Sie auf einen anderen Termin wechseln oder die volle Erstattung von ${e} anfordern:`, noopts: (e) => `In den nächsten Tagen haben wir keine freien Plätze. Über Ihren persönlichen Link können Sie die volle Erstattung von ${e} anfordern:`, sign: (c) => `Vielen Dank für Ihr Verständnis,\n${c}`,
+          title: "Ihre Buchung", choose: "Bitte wählen Sie:", refund: (e) => `Lieber die Erstattung von ${e}`, moved: (f, h) => `Erledigt. Ihre Buchung ist jetzt am ${f} um ${h} Uhr. Sie erhalten eine Bestätigung.`, refunded: (e, c) => `Ihre Erstattung von ${e} ist registriert. ${c} bearbeitet sie in den nächsten Tagen.`, full: "Dieser Termin ist gerade ausgebucht. Bitte wählen Sie eine andere Option.", ppl: (n) => n === 1 ? "1 Person" : `${n} Personen` },
+    it: { subj: (a, f) => `La tua ${a} di ${f} è annullata per il meteo`, hi: (n) => `Ciao ${n},`, cancel: (a, f, h, r) => `La previsione per la tua ${a} di ${f} alle ${h} indica ${r}, quindi dobbiamo annullare l'uscita.`,
+          opts: (e) => `Puoi spostarla su un'altra uscita o chiedere il rimborso completo di ${e} dal tuo link personale:`, noopts: (e) => `Nei prossimi giorni non abbiamo posti liberi. Puoi chiedere il rimborso completo di ${e} dal tuo link personale:`, sign: (c) => `Grazie per la comprensione,\n${c}`,
+          title: "La tua prenotazione", choose: "Scegli cosa preferisci:", refund: (e) => `Preferisco il rimborso di ${e}`, moved: (f, h) => `Fatto. La tua prenotazione è ora ${f} alle ${h}. Ti abbiamo inviato la conferma.`, refunded: (e, c) => `Abbiamo registrato il tuo rimborso di ${e}. ${c} lo gestirà nei prossimi giorni.`, full: "Quell'uscita si è appena riempita. Scegli un'altra opzione.", ppl: (n) => n === 1 ? "1 persona" : `${n} persone` },
+    fr: { subj: (a, f) => `Votre ${a} du ${f} est annulée à cause de la météo`, hi: (n) => `Bonjour ${n},`, cancel: (a, f, h, r) => `La météo pour votre ${a} du ${f} à ${h} annonce ${r} : nous devons donc annuler la sortie.`,
+          opts: (e) => `Vous pouvez la déplacer sur une autre sortie ou demander le remboursement complet de ${e} via votre lien personnel :`, noopts: (e) => `Nous n'avons plus de places dans les prochains jours. Vous pouvez demander le remboursement complet de ${e} via votre lien personnel :`, sign: (c) => `Merci de votre compréhension,\n${c}`,
+          title: "Votre réservation", choose: "Choisissez ce que vous préférez :", refund: (e) => `Je préfère le remboursement de ${e}`, moved: (f, h) => `C'est fait. Votre réservation est maintenant le ${f} à ${h}. Nous vous avons envoyé la confirmation.`, refunded: (e, c) => `Nous avons enregistré votre remboursement de ${e}. ${c} le traitera dans les prochains jours.`, full: "Cette sortie vient d'être complète. Choisissez une autre option.", ppl: (n) => n === 1 ? "1 personne" : `${n} personnes` },
+  };
+  const ACT_LANG = {
+    barco: { es: "excursión en barco", en: "boat trip", de: "Bootsausflug", it: "escursione in barca", fr: "excursion en bateau" },
+    cetaceos: { es: "salida de avistamiento de cetáceos", en: "whale and dolphin watching trip", de: "Wal- und Delfinbeobachtung", it: "uscita di avvistamento cetacei", fr: "sortie d'observation des cétacés" },
+    fondo_cristal: { es: "excursión en barco con fondo de cristal", en: "glass-bottom boat trip", de: "Glasbodenbootfahrt", it: "escursione in barca col fondo di vetro", fr: "sortie en bateau à fond de verre" },
+    pesca: { es: "salida de pesca", en: "fishing trip", de: "Angelausfahrt", it: "uscita di pesca", fr: "sortie de pêche" },
+    buceo: { es: "inmersión", en: "dive", de: "Tauchgang", it: "immersione", fr: "plongée" },
+    snorkel: { es: "excursión de snorkel", en: "snorkelling trip", de: "Schnorchelausflug", it: "escursione di snorkeling", fr: "sortie snorkeling" },
+    kayak: { es: "excursión en kayak", en: "kayak tour", de: "Kajaktour", it: "escursione in kayak", fr: "sortie en kayak" },
+    surf: { es: "clase de surf", en: "surf lesson", de: "Surfstunde", it: "lezione di surf", fr: "cours de surf" },
+    kite: { es: "clase de kitesurf", en: "kitesurf lesson", de: "Kitesurfstunde", it: "lezione di kitesurf", fr: "cours de kitesurf" },
+    windsurf: { es: "clase de windsurf", en: "windsurf lesson", de: "Windsurfstunde", it: "lezione di windsurf", fr: "cours de planche à voile" },
+    motoagua: { es: "salida en moto de agua", en: "jet ski ride", de: "Jetski-Fahrt", it: "uscita in moto d'acqua", fr: "sortie en jet ski" },
+    parasailing: { es: "salida de parasailing", en: "parasailing trip", de: "Parasailing-Fahrt", it: "uscita di parasailing", fr: "sortie en parachute ascensionnel" },
+  };
+
+  // ---------------------------------------------------------------- demo data
+  const NAMES = [["Emma W.", "en"], ["Jonas K.", "de"], ["Lucía M.", "es"], ["Giulia R.", "it"], ["Pierre L.", "fr"], ["Oliver T.", "en"], ["Hanna S.", "de"], ["Carlos D.", "es"], ["Sophie B.", "fr"], ["Marco F.", "it"], ["Amelia H.", "en"], ["Lena V.", "de"], ["Javier P.", "es"], ["Noah G.", "en"], ["Chiara M.", "it"], ["Felix B.", "de"], ["Ana R.", "es"], ["Léa C.", "fr"], ["James O.", "en"], ["Mia N.", "de"], ["Sara L.", "es"], ["Tom H.", "en"], ["Elena V.", "it"], ["Luca P.", "it"]];
+  const DIRECT = ["WhatsApp", "Web propia", "Puerto", "Hotel"];
+  const PLATFORMS = ["GetYourGuide", "Viator"];
+  const CLIENTS = [
+    { name: "Atlántico Dive (ejemplo)", spot: "gc-sardina", acts: ["buceo"] },
+    { name: "Escuela Viento Este (ejemplo)", spot: "gc-pozo", acts: ["kite", "windsurf"] },
+    { name: "Cetáceos del Sur (ejemplo)", spot: "tf-los-cristianos", acts: ["cetaceos", "barco"] },
+    { name: "Gigantes Kayak (ejemplo)", spot: "tf-los-gigantes", acts: ["kayak"] },
+    { name: "Olas Norte Escuela (ejemplo)", spot: "lz-famara", acts: ["surf"] },
+    { name: "Calero Cristal (ejemplo)", spot: "lz-puerto-calero", acts: ["fondo_cristal", "cetaceos"] },
+    { name: "Vueltas Mar (ejemplo)", spot: "lg-valle-gran-rey", acts: ["cetaceos"] },
+  ];
+
+  const state = {
+    view: "op", tab: "salidas", adminTab: "clientes", scenario: "alisio", island: null,
+    company: null, selected: null, preview: null, confirm: false, imported: 0,
+    B: {}, slotBookings: {}, cancelled: {}, log: [],
+  };
+  function defaultCompany(spotId) {
+    const spot = spotById(spotId), acts = {};
+    const pref = ["barco", "cetaceos"].filter((a) => spot.actividades.includes(a));
+    const onSet = pref.length ? pref : spot.actividades.slice(0, 2);
+    spot.actividades.forEach((a) => {
+      const A = ACTS[a];
+      acts[a] = { on: onSet.includes(a), times: A.salidas.slice(), dur: A.duracion, cap: A.plazas, price: A.precio, rules: A.reglas.map((r) => ({ ...r })) };
+    });
+    return { name: (state.company && state.company.name) || "Mar Azul Excursiones", spot: spotId, acts, platformShare: state.company ? state.company.platformShare : 0.35 };
+  }
+  function resetBookings() { state.B = {}; state.slotBookings = {}; state.cancelled = {}; state.selected = null; state.preview = null; state.confirm = false; state.log = []; }
+  state.company = defaultCompany("fv-corralejo");
+  state.island = spotById("fv-corralejo").isla;
+
+  const actsOn = () => Object.entries(state.company.acts).filter(([, a]) => a.on).map(([k]) => k);
+  const spot = () => spotById(state.company.spot);
+  let WEATHER = null;
+  function weather() { if (!WEATHER || WEATHER.key !== state.company.spot + state.scenario) WEATHER = { key: state.company.spot + state.scenario, days: simulate(spot(), state.scenario) }; return WEATHER.days; }
+
+  function slotsOf(code) {
+    const cfg = state.company.acts[code], days = weather(), out = [], nowH = new Date().getHours();
+    for (let d = 0; d < 3; d++) for (const h of cfg.times) {
+      const hours = days[d].slice(h, h + cfg.dur);
+      if (!hours.length) continue;
+      const res = evalHours(hours, cfg.rules, spot().orientacion);
+      out.push({ key: `${code}|${d}|${h}`, code, d, h, past: d === 0 && h + cfg.dur <= nowH, ...res });
+    }
+    return out;
+  }
+  const allSlots = () => actsOn().flatMap(slotsOf).sort((a, b) => a.d - b.d || a.h - b.h);
+  const slotByKey = (key) => allSlots().find((s) => s.key === key);
+
+  function bookingsOf(key) {
+    if (!state.slotBookings[key]) {
+      const [code, d, h] = key.split("|"), cfg = state.company.acts[code];
+      const r = rng(hash(state.company.spot + key + state.company.platformShare));
+      const target = Math.round(cfg.cap * (0.4 + r() * 0.35)); let pax = 0, i = Math.floor(r() * NAMES.length); const ids = [];
+      while (pax < target && ids.length < 14) {
+        const [name, lang] = NAMES[i % NAMES.length]; i += 5;
+        const n = Math.min(target - pax, 1 + Math.floor(r() * (cfg.cap > 20 ? 4 : 2)));
+        const plat = r() < state.company.platformShare;
+        const id = "R" + (1000 + (hash(key + i) % 9000));
+        state.B[id] = { id, slot: key, orig: key, name, lang, email: name.split(" ")[0].toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "") + "@example.com",
+          pax: n, amount: n * cfg.price, channel: plat ? PLATFORMS[Math.floor(r() * 2)] : DIRECT[Math.floor(r() * DIRECT.length)], plat, status: "confirmada", options: [], by: null };
+        ids.push(id); pax += n;
+      }
+      state.slotBookings[key] = ids;
+    }
+    return Object.values(state.B).filter((b) => b.slot === key || b.orig === key);
+  }
+  const liveIn = (key) => { bookingsOf(key); return Object.values(state.B).filter((b) => b.slot === key && (b.status === "confirmada" || b.status === "reprogramada")); };
+  const paxOf = (l) => l.reduce((s, b) => s + b.pax, 0);
+  const freeIn = (key) => state.company.acts[key.split("|")[0]].cap - paxOf(liveIn(key));
+
+  function alternatives(b) {
+    const s0 = slotByKey(b.orig);
+    const later = slotsOf(b.orig.split("|")[0]).filter((s) => !s.past && !state.cancelled[s.key] && s.st !== "no" && (s.d > s0.d || (s.d === s0.d && s.h > s0.h)));
+    const ordered = [...later.filter((s) => s.st === "go"), ...later.filter((s) => s.st === "watch")];
+    return ordered.filter((s) => freeIn(s.key) >= b.pax).slice(0, 2).map((s) => s.key);
+  }
+  function note(t) { state.log.unshift({ at: new Date(), t }); }
+
+  function cancelSlot(key) {
+    const s = slotByKey(key);
+    state.cancelled[key] = { at: new Date(), reasons: s.reasons, mx: s.mx, mn: s.mn };
+    const list = bookingsOf(key).filter((b) => b.slot === key && b.status === "confirmada");
+    list.forEach((b) => {
+      if (b.plat) b.status = "plataforma_pendiente";
+      else { b.status = "afectada"; b.options = alternatives(b); }
+    });
+    note(`Salida ${labelKey(key)} cancelada: ${list.filter((b) => !b.plat).length} avisos enviados, ${list.filter((b) => b.plat).length} reservas de plataforma por cancelar en su portal.`);
+  }
+  function choose(id, choice, by) {
+    const b = state.B[id];
+    if (choice === "refund") { b.status = "reembolso_pendiente"; b.by = by; note(`${b.name}: pide reembolso (${eur(b.amount)}).`); return true; }
+    if (freeIn(choice) < b.pax) return false;
+    b.slot = choice; b.status = "reprogramada"; b.by = by; note(`${b.name}: cambia a ${labelKey(choice)}.`); return true;
+  }
+  function labelKey(key) { const [code, d, h] = key.split("|"); return `${dayLabel(+d).toLowerCase()} ${hhmm(+h)} (${ACTS[code].nombre})`; }
+  function slotLabelLang(key, l) { const [, d, h] = key.split("|"); return `${DATEF(+d, l)}, ${hhmm(+h)}`; }
+
+  function emailFor(b) {
+    const l = b.lang, c = C[l], cx = state.cancelled[b.orig], [code, d, h] = b.orig.split("|");
+    const vals = { wind: Math.round(cx.mx.wind), gust: Math.round(cx.mx.gust), wave: Math.round(cx.mx.wave * 10) / 10, swell: Math.round(cx.mx.swell * 10) / 10, period: Math.round(cx.mx.period), windMin: Math.round(cx.mn.wind) };
+    const group = (v) => (v === "wind" || v === "offshore" ? "w" : v === "gust" ? "g" : "s");
+    const picked = []; for (const r of cx.reasons) { if (r.estado === "no" && PHR[r.motivo] && !picked.find((p) => group(p.var) === group(r.var))) picked.push(r); if (picked.length === 2) break; }
+    const reason = picked.map((r) => PHR[r.motivo][l](vals, l)).join(JOIN[l]);
+    const act = ACT_LANG[code][l], amount = b.amount.toLocaleString(l) + " €";
+    const body = [c.hi(b.name.split(" ")[0]), "", c.cancel(act, DATEF(+d, l), hhmm(+h), reason), "", b.options.length ? c.opts(amount) : c.noopts(amount), `→ [${{ es: "tu enlace personal", en: "your personal link", de: "Ihr persönlicher Link", it: "il tuo link personale", fr: "votre lien personnel" }[l]}]`, "", c.sign(state.company.name)].join("\n");
+    return { subject: c.subj(act, DATEF(+d, l)), body };
+  }
+
+  // ---------------------------------------------------------------- statistics (example history + this demo)
+  const MONTHS = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+  const WIND_TYPES = ["barco", "cetaceos", "pesca", "motoagua", "parasailing", "kayak"], SEA_TYPES = ["buceo", "snorkel", "fondo_cristal", "surf"], SAIL_TYPES = ["kite", "windsurf"];
+  const BASE = { barco: .05, cetaceos: .07, fondo_cristal: .06, pesca: .07, buceo: .06, snorkel: .08, kayak: .10, surf: .11, kite: .14, windsurf: .12, motoagua: .06, parasailing: .09 };
+  function history() {
+    const sp = spot(), out = [], now = new Date();
+    for (let k = 11; k >= 0; k--) {
+      const m = new Date(now.getFullYear(), now.getMonth() - k, 1), mi = m.getMonth(), dim = new Date(m.getFullYear(), mi + 1, 0).getDate();
+      const row = { label: MONTHS[mi] + (mi === 0 || k === 11 ? " " + String(m.getFullYear()).slice(2) : ""), deps: 0, cancelled: 0, reasons: {}, moved: 0, refund: 0, silent: 0, plat: 0, kept: 0, returned: 0, affected: 0 };
+      for (const code of actsOn()) {
+        const cfg = state.company.acts[code], r = rng(hash(sp.id + code + m.getFullYear() + "-" + mi));
+        const summer = [5, 6, 7].includes(mi), winter = [10, 11, 0, 1].includes(mi);
+        let p = BASE[code];
+        if (WIND_TYPES.includes(code)) p *= (summer ? 1.6 : winter ? 0.9 : 1) * Math.min(1.4, Math.max(0.6, sp.f_viento));
+        if (SEA_TYPES.includes(code)) p *= (winter ? 1.8 : summer ? 0.6 : 1) * (0.5 + sp.f_mar_fondo_no);
+        if (SAIL_TYPES.includes(code)) p *= winter || mi === 9 ? 1.6 : summer ? 0.5 : 1;
+        const deps = dim * cfg.times.length; let canc = 0;
+        for (let i = 0; i < deps; i++) if (r() < p) canc++;
+        row.deps += deps; row.cancelled += canc;
+        const weights = {};
+        cfg.rules.filter((x) => x.nivel !== "vigilar").forEach((x) => {
+          let w = 1;
+          if (x.motivo === "viento") w = summer ? 2.4 : 1.4; if (x.motivo === "rachas") w = summer ? 1.4 : 0.9;
+          if (x.motivo === "mar_de_fondo" || x.motivo === "olas_grandes") w = winter ? 3 : 0.8; if (x.motivo === "oleaje") w = winter ? 1.6 : 1;
+          if (x.motivo === "sin_viento") w = summer ? 0.6 : 3; if (x.motivo === "terral") w = 1.2;
+          weights[x.motivo] = (weights[x.motivo] || 0) + w;
+        });
+        const wsum = Object.values(weights).reduce((a, b) => a + b, 0);
+        for (let i = 0; i < canc; i++) {
+          let x = r() * wsum, pick = Object.keys(weights)[0];
+          for (const [k2, w] of Object.entries(weights)) { if (x < w) { pick = k2; break; } x -= w; }
+          row.reasons[pick] = (row.reasons[pick] || 0) + 1;
+          const pax = Math.round(cfg.cap * (0.4 + r() * 0.35)); row.affected += pax;
+          const platPax = Math.round(pax * state.company.platformShare), dir = pax - platPax;
+          const moved = Math.round(dir * (0.52 + r() * 0.14)), silent = Math.round(dir * (0.08 + r() * 0.08)), refund = Math.max(0, dir - moved - silent);
+          row.moved += moved; row.refund += refund + silent; row.silent += silent; row.plat += platPax;
+          row.kept += moved * cfg.price; row.returned += (refund + silent + platPax) * cfg.price;
+        }
+      }
+      out.push(row);
+    }
+    // what happened in this demo counts in the current month
+    const cur = out[out.length - 1], demo = Object.values(state.B);
+    cur.cancelled += Object.keys(state.cancelled).length;
+    Object.values(state.cancelled).forEach((c) => { const r = c.reasons.find((x) => x.estado === "no"); if (r) cur.reasons[r.motivo] = (cur.reasons[r.motivo] || 0) + 1; });
+    demo.filter((b) => state.cancelled[b.orig]).forEach((b) => {
+      cur.affected += b.pax;
+      if (b.status === "reprogramada") { cur.moved += b.pax; cur.kept += b.amount; }
+      else if (b.plat) { cur.plat += b.pax; cur.returned += b.amount; }
+      else if (b.status === "reembolso_pendiente" || b.status === "reembolsada") { cur.refund += b.pax; cur.returned += b.amount; if (b.status === "sin_respuesta") cur.silent += b.pax; }
+      else if (b.status === "sin_respuesta") { cur.silent += b.pax; cur.refund += b.pax; cur.returned += b.amount; }
+    });
+    return out;
+  }
+
+  // ---------------------------------------------------------------- rendering: shell
+  function renderTabs() {
+    const pend = Object.values(state.B).filter((b) => ["reembolso_pendiente", "sin_respuesta", "plataforma_pendiente"].includes(b.status)).length;
+    const tabs = state.view === "op"
+      ? [["salidas", "Mis salidas"], ["pendientes", `Pendientes${pend ? `<span class="badge">${pend}</span>` : ""}`], ["reservas", "Reservas"], ["estadisticas", "Estadísticas"], ["empresa", "Mi empresa"]]
+      : [["clientes", "Clientes"], ["prospeccion", "Prospección"]];
+    const cur = state.view === "op" ? state.tab : state.adminTab;
+    $("tabs").innerHTML = tabs.map(([k, l]) => `<button type="button" role="tab" data-tab="${k}" aria-selected="${k === cur}">${l}</button>`).join("");
+    $("tabs").querySelectorAll("button").forEach((b) => b.addEventListener("click", () => { if (state.view === "op") state.tab = b.dataset.tab; else state.adminTab = b.dataset.tab; render(); }));
+    $("who").innerHTML = state.view === "op" ? `<b>${esc(state.company.name)}</b> · ${esc(spot().spot)}, ${esc(spot().isla)}` : "<b>Panel de administración</b> · todos los clientes y puertos";
+  }
+  function render() {
+    renderTabs();
+    const m = $("main");
+    if (state.view === "admin") { m.innerHTML = state.adminTab === "clientes" ? adminClients() : adminProspect(); bindAdmin(); return; }
+    m.innerHTML = { salidas: viewSalidas, pendientes: viewPendientes, reservas: viewReservas, estadisticas: viewStats, empresa: viewEmpresa }[state.tab]();
+    bind();
+  }
+
+  // ---------------------------------------------------------------- Mis salidas
+  function slotCard(s) {
+    const live = liveIn(s.key), cx = state.cancelled[s.key];
+    const cls = cx ? "done" : s.past ? "done" : s.st;
+    const label = cx ? "Cancelada" : s.past ? "Realizada" : { go: "Sale", watch: "Vigilar", no: "No sale" }[s.st];
+    const plat = live.filter((b) => b.plat).length;
+    const sub = cx ? cancelProgress(s.key) : `${paxOf(live)} pers. · ${live.length} reservas${plat ? ` (${plat} de plataforma)` : ""}`;
+    const why = !cx && !s.past && s.reasons.length ? ` · ${esc(shortReason(s.reasons[0]).toLowerCase())}` : "";
+    return `<button type="button" class="slot ${cls}" data-slot="${s.key}" aria-current="${state.selected === s.key}">
+      <div class="slot-top"><span class="slot-time">${hhmm(s.h)}</span><span class="status">${label}</span></div>
+      <div class="slot-act">${esc(ACTS[s.code].nombre)}${why}</div><div class="slot-meta">${sub}</div></button>`;
+  }
+  function cancelProgress(key) {
+    const list = bookingsOf(key).filter((b) => b.orig === key);
+    const open = list.filter((b) => ["afectada", "plataforma_pendiente", "sin_respuesta", "reembolso_pendiente"].includes(b.status)).length;
+    return open ? `${list.length - open} de ${list.length} reservas resueltas` : `${list.length} reservas resueltas`;
+  }
+  function viewSalidas() {
+    const slots = allSlots();
+    if (!state.selected || !slots.find((s) => s.key === state.selected)) {
+      const f = slots.find((s) => !s.past && s.st === "no" && !state.cancelled[s.key]) || slots.find((s) => !s.past);
+      state.selected = f ? f.key : null;
+    }
+    const bad = slots.filter((s) => !s.past && s.st === "no" && !state.cancelled[s.key]);
+    const affected = bad.reduce((n, s) => n + paxOf(liveIn(s.key)), 0);
+    const summary = bad.length
+      ? `<div class="panel" style="border-color:var(--no);background:var(--no-soft)"><h3>${bad.length} salida${bad.length > 1 ? "s" : ""} no debería${bad.length > 1 ? "n" : ""} salir · ${affected} personas afectadas</h3><p class="note" style="color:var(--ink)">Revisa cada una y confirma la cancelación: Ventana avisa a tus clientes directos y te prepara la lista de reservas de plataforma.</p></div>`
+      : `<div class="panel" style="border-color:var(--go);background:var(--go-soft)"><h3>Todas tus salidas dentro de tus límites</h3><p class="note" style="color:var(--ink)">No hay que avisar a nadie. Ventana revisa la previsión cada tarde y te escribe si algo cambia.</p></div>`;
+    const days = [0, 1, 2].map((d) => `<div class="day"><div class="day-name">${dayLabel(d)} <span>${dateShort(d)}</span></div>${slots.filter((s) => s.d === d).map(slotCard).join("")}</div>`).join("");
+    return summary + `<section class="panel"><div class="head"><h2>Tus salidas · próximos 3 días</h2><span class="hint">${esc(spot().spot)} · tus límites</span></div><div class="days">${days}</div></section>` + viewDetail();
+  }
+
+  function viewDetail() {
+    const s = state.selected && slotByKey(state.selected);
+    if (!s) return "";
+    const cx = state.cancelled[s.key], cfg = state.company.acts[s.code];
+    const list = bookingsOf(s.key).filter((b) => b.orig === s.key);
+    const direct = list.filter((b) => !b.plat), plat = list.filter((b) => b.plat);
+    const reasons = (cx ? cx.reasons : s.reasons);
+    const headCls = cx ? "done" : s.st;
+    let html = `<section class="panel"><div class="head"><h3>${dayLabel(s.d)}, ${hhmm(s.h)} · ${esc(ACTS[s.code].nombre)} <span class="pill ${headCls}">${cx ? "Cancelada" : { go: "Sale", watch: "Vigilar", no: "No sale" }[s.st]}</span></h3>
+      <span class="hint">${paxOf(list)} personas · ${list.length} reservas · ${direct.length} directas, ${plat.length} de plataforma</span></div>`;
+    html += `<div class="detail-grid"><div style="display:grid;gap:12px;min-width:0">`;
+    html += reasons.length ? `<div class="reasons">${reasons.map((r) => `<div>${r.estado === "no" ? "No sale" : "Vigilar"} · ${esc(reasonText(r))}</div>`).join("")}<div class="hint">Viento del ${compass(s.dir)}${s.mx.period >= LONG_PERIOD ? ` · mar de fondo de periodo largo (${Math.round(s.mx.period)} s)` : ""}</div></div>` : `<p class="note">Dentro de todos tus límites.</p>`;
+    html += chart(s);
+    html += `</div><div style="display:grid;gap:12px;min-width:0">`;
+    if (!cx && !s.past && (s.st === "no" || s.st === "watch")) {
+      if (!state.confirm) html += `<div class="actions"><button type="button" class="cta" id="ask-cancel">${s.st === "no" ? "Cancelar salida y avisar" : "Cancelar igualmente"}</button>${s.st === "watch" ? `<span class="hint">o mantenla: no hace falta hacer nada</span>` : ""}</div>`;
+      else html += `<div class="confirm"><b>Vas a cancelar esta salida</b>
+        <div>• ${direct.length} clientes directos reciben un email en su idioma con el motivo y un enlace para cambiar de día o pedir el reembolso.</div>
+        <div>• ${plat.length} reservas de plataforma: te damos la lista para cancelarlas en cada portal; la plataforma reembolsa al cliente.</div>
+        <div class="actions"><button type="button" class="cta" id="do-cancel">Confirmar y enviar avisos</button><button type="button" class="cta secondary" id="no-cancel">Volver</button></div></div>`;
+    }
+    if (cx) html += cancelledSummary(direct);
+    else html += `<div class="table-wrap"><table><thead><tr><th>Cliente</th><th>Canal</th><th class="num">Pers.</th></tr></thead><tbody>${list.map((b) => `<tr><td>${esc(b.name)} <span class="lang">${b.lang.toUpperCase()}</span></td><td><span class="chan ${b.plat ? "plat" : ""}">${esc(b.channel)}</span></td><td class="num">${b.pax}</td></tr>`).join("")}</tbody></table></div>`;
+    html += `</div></div>`;
+    if (cx) html += cancelledTables(direct, plat);
+    html += `</section>`;
+    if (state.preview && state.B[state.preview]) html += previewPanel(state.B[state.preview]);
+    return html;
+  }
+
+  const STATUS = {
+    afectada: ["watch", "Esperando respuesta"], reprogramada: ["go", "Cambió de día"], reembolso_pendiente: ["no", "Reembolso pendiente"],
+    reembolsada: ["done", "Reembolsada"], sin_respuesta: ["no", "Sin respuesta"], plataforma_pendiente: ["watch", "Cancelar en el portal"],
+    plataforma_cancelada: ["done", "Cancelada en el portal"], confirmada: ["go", "Confirmada"],
+  };
+  function statusPill(b) { const [c, t] = STATUS[b.status]; return `<span class="pill ${c}">${t}${b.status === "reprogramada" ? ": " + esc(labelKey(b.slot).split(" (")[0]) : ""}</span>`; }
+  function rowActions(b) {
+    if (b.status === "afectada" || b.status === "sin_respuesta") {
+      const opts = b.options.map((k, i) => `<button type="button" class="cta small secondary" data-act="move" data-id="${b.id}" data-to="${k}">Cambiar a ${esc(labelKey(k).split(" (")[0])}</button>`).join("");
+      return `${opts}<button type="button" class="cta small secondary" data-act="refund" data-id="${b.id}">Reembolsar</button><button type="button" class="cta small secondary" data-act="preview" data-id="${b.id}">Ver como cliente</button>`;
+    }
+    if (b.status === "reembolso_pendiente") return `<button type="button" class="cta small" data-act="refunded" data-id="${b.id}">Marcar reembolsado</button>`;
+    if (b.status === "plataforma_pendiente") return `<label class="check"><input type="checkbox" data-act="portal" data-id="${b.id}"> Cancelada en ${esc(b.channel)}</label>`;
+    if (b.status === "reprogramada" || b.status === "reembolsada") return `<button type="button" class="cta small secondary" data-act="preview" data-id="${b.id}">Ver como cliente</button>`;
+    return "";
+  }
+  function cancelledSummary(direct) {
+    const moved = direct.filter((b) => b.status === "reprogramada"), refund = direct.filter((b) => b.status === "reembolso_pendiente" || b.status === "reembolsada");
+    const waiting = direct.filter((b) => b.status === "afectada"), silent = direct.filter((b) => b.status === "sin_respuesta");
+    let h = `<div class="tiles">
+      <div class="tile"><b>${paxOf(moved)}</b><span>personas cambiaron de día · ${eur(moved.reduce((a, b) => a + b.amount, 0))} conservados</span></div>
+      <div class="tile"><b>${paxOf(refund)}</b><span>personas con reembolso · ${eur(refund.reduce((a, b) => a + b.amount, 0))}</span></div>
+      <div class="tile"><b>${waiting.length + silent.length}</b><span>${silent.length ? `sin respuesta: llámales o reembolsa` : "esperando respuesta"}</span></div></div>`;
+    h += `<div class="actions">${waiting.length ? `<button type="button" class="cta small secondary" id="sim-replies">Simular respuestas de los clientes</button>` : ""}${waiting.length ? `<button type="button" class="cta small secondary" id="sim-24h">Pasar 24 h sin respuesta</button>` : ""}</div>`;
+    return h;
+  }
+  function cancelledTables(direct, plat) {
+    let h = `<h2>Clientes directos · aviso enviado</h2><div class="table-wrap"><table><thead><tr><th>Cliente</th><th>Canal</th><th class="num">Pers.</th><th>Estado</th><th>Acciones</th></tr></thead><tbody>${direct.map((b) => `<tr><td>${esc(b.name)} <span class="lang">${b.lang.toUpperCase()}</span></td><td><span class="chan">${esc(b.channel)}</span></td><td class="num">${b.pax}</td><td>${statusPill(b)}</td><td><div class="actions">${rowActions(b)}</div></td></tr>`).join("") || `<tr><td colspan="5" class="hint">Sin reservas directas</td></tr>`}</tbody></table></div>`;
+    if (plat.length) h += `<h2>Reservas de plataforma · cancélalas en su portal</h2><p class="note">Marca cada una como «meteorología» en el portal de la plataforma. La plataforma reembolsa al cliente.</p><div class="table-wrap"><table><thead><tr><th>Cliente</th><th>Plataforma</th><th class="num">Pers.</th><th>Estado</th><th></th></tr></thead><tbody>${plat.map((b) => `<tr><td>${esc(b.name)} · ${b.id}</td><td><span class="chan plat">${esc(b.channel)}</span></td><td class="num">${b.pax}</td><td>${statusPill(b)}</td><td>${rowActions(b)}</td></tr>`).join("")}</tbody></table></div>`;
+    return h;
+  }
+
+  function previewPanel(b) {
+    const l = b.lang, c = C[l], mail = emailFor(b), amount = b.amount.toLocaleString(l) + " €";
+    let client;
+    if (b.status === "reprogramada") { const [, d, h] = b.slot.split("|"); client = `<div class="ok">${esc(c.moved(DATEF(+d, l), hhmm(+h)))}</div>`; }
+    else if (b.status === "reembolso_pendiente" || b.status === "reembolsada") client = `<div class="ok">${esc(c.refunded(amount, state.company.name))}</div>`;
+    else client = `<div>${esc(c.choose)}</div>${b.options.map((k) => `<button type="button" class="opt" data-cl="${k}" data-id="${b.id}">${esc(slotLabelLang(k, l))}</button>`).join("")}<button type="button" class="opt ref" data-cl="refund" data-id="${b.id}">${esc(c.refund(amount))}</button><div id="cl-msg" class="hint"></div>`;
+    return `<section class="panel"><div class="head"><h2>Lo que recibe ${esc(b.name)} (${l.toUpperCase()})</h2><button type="button" class="cta small secondary" id="close-prev">Cerrar</button></div>
+      <div class="detail-grid"><div class="phone"><div class="phone-label">Email</div><div class="mail"><b>${esc(mail.subject)}</b>${esc(mail.body)}</div></div>
+      <div class="phone"><div class="phone-label">Su enlace personal · pulsa como si fueras el cliente</div><div class="client"><b>${esc(c.title)} · ${esc(state.company.name)}</b><div class="hint">${esc(slotLabelLang(b.orig, l))} · ${esc(c.ppl(b.pax))}</div>${client}</div></div></div></section>`;
+  }
+
+  function chart(s) {
+    const cfg = state.company.acts[s.code], pts = weather()[s.d], waveMode = ACTS[s.code].grafico === "oleaje";
+    const H0 = 7, H1 = 21, W = 640, top = 26, plotH = 120, left = 40, right = 12, step = (W - left - right) / (H1 - H0 + 1);
+    const bv = waveMode ? "wave" : "wind", tv = waveMode ? "swell" : "gust";
+    const rules = cfg.rules.filter((r) => r.var === bv || r.var === tv || (waveMode && r.var === "swell_long"));
+    const vals = pts.slice(H0, H1 + 1).flatMap((p) => [p[bv], p[tv]]), lims = rules.map((r) => r.max ?? r.min);
+    const unit = waveMode ? 0.5 : 5, ymax = Math.max(waveMode ? 2 : 25, Math.ceil(Math.max(...vals, ...lims) * 1.1 / unit) * unit);
+    const y = (v) => top + plotH - v / ymax * plotH, x = (h) => left + (h - H0) * step;
+    const col = { go: "var(--go)", watch: "var(--watch)", no: "var(--no)" };
+    let g = `<div class="chart-wrap"><svg viewBox="0 0 ${W} 200" width="100%" role="img" aria-label="Previsión hora a hora" style="min-width:460px">`;
+    g += `<text x="${left}" y="14" font-size="13" class="t-ink t-title" font-weight="700">${waveMode ? "Ola (barras) y mar de fondo (rayas), m" : "Viento (barras) y rachas (rayas), nudos"}</text>`;
+    for (let v = 0; v <= ymax + 1e-9; v += waveMode ? 0.5 : 10) g += `<line x1="${left}" x2="${W - right}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${left - 6}" y="${y(v) + 4}" text-anchor="end" font-size="10" class="t-muted">${waveMode ? fmt1(v) : v}</text>`;
+    g += `<rect x="${x(s.h)}" y="${top}" width="${step * cfg.dur}" height="${plotH}" fill="var(--accent)" fill-opacity="0.12"/><text x="${x(s.h) + 3}" y="${top + 11}" font-size="10" class="t-muted">salida</text>`;
+    for (let h = H0; h <= H1; h++) {
+      const p = pts[h], bw = step * 0.58, bx = x(h) + (step - bw) / 2, st = evalHours([p], cfg.rules, spot().orientacion).st;
+      g += `<rect x="${bx}" y="${y(p[bv])}" width="${bw}" height="${top + plotH - y(p[bv])}" rx="2" fill="${col[st]}"><title>${hhmm(h)} · viento ${Math.round(p.wind)} kn del ${compass(p.dir)}, racha ${Math.round(p.gust)} kn, ola ${fmt1(p.wave)} m, mar de fondo ${fmt1(p.swell)} m (${Math.round(p.period)} s)</title></rect>`;
+      g += `<line x1="${bx - 2}" x2="${bx + bw + 2}" y1="${y(p[tv])}" y2="${y(p[tv])}" stroke="var(--ink)" stroke-width="2"/><text x="${x(h) + step / 2}" y="${top + plotH + 14}" text-anchor="middle" font-size="10" class="t-muted">${h}</text>`;
+    }
+    rules.forEach((r, i) => { const v = r.max ?? r.min; g += `<line x1="${left}" x2="${W - right}" y1="${y(v)}" y2="${y(v)}" stroke="var(--no)" stroke-dasharray="${r.min != null ? "2 3" : "5 4"}" stroke-width="1.5"/><text x="${W - right - i * 190}" y="${y(v) - 4}" text-anchor="end" font-size="10" font-weight="600" fill="var(--no)" stroke="var(--surface)" stroke-width="3" paint-order="stroke">${VARS[r.var].nombre.toLowerCase()} ${r.min != null ? "mín." : "máx."} ${waveMode ? fmt1(v) : v}</text>`; });
+    g += `<text x="${left}" y="${top + plotH + 34}" font-size="10" class="t-muted">Hora · franja azul = tu salida · rojo = fuera de tus límites</text></svg></div>`;
+    return g;
+  }
+
+  // ---------------------------------------------------------------- Pendientes
+  function viewPendientes() {
+    const all = Object.values(state.B);
+    const sec = (title, list, hint) => `<section class="panel"><div class="head"><h2>${title}</h2><span class="hint">${hint}</span></div>${list.length ? `<div class="table-wrap"><table><thead><tr><th>Cliente</th><th>Salida original</th><th>Canal</th><th class="num">Importe</th><th>Estado</th><th>Acciones</th></tr></thead><tbody>${list.map((b) => `<tr><td>${esc(b.name)} <span class="lang">${b.lang.toUpperCase()}</span></td><td>${esc(labelKey(b.orig))}</td><td><span class="chan ${b.plat ? "plat" : ""}">${esc(b.channel)}</span></td><td class="num">${eur(b.amount)}</td><td>${statusPill(b)}</td><td><div class="actions">${rowActions(b)}</div></td></tr>`).join("")}</tbody></table></div>` : `<p class="note">Nada pendiente.</p>`}</section>`;
+    const refunds = all.filter((b) => b.status === "reembolso_pendiente"), silent = all.filter((b) => b.status === "sin_respuesta"), portal = all.filter((b) => b.status === "plataforma_pendiente");
+    const total = refunds.reduce((a, b) => a + b.amount, 0);
+    return `<div class="tiles"><div class="tile"><b>${refunds.length}</b><span>reembolsos por hacer · ${eur(total)}</span></div><div class="tile"><b>${silent.length}</b><span>clientes sin respuesta</span></div><div class="tile"><b>${portal.length}</b><span>reservas por cancelar en plataformas</span></div></div>`
+      + sec("Reembolsos por hacer", refunds, "Hazlo en tu TPV o pasarela de pago y márcalo: el cliente recibe la confirmación")
+      + sec("Sin respuesta", silent, "Llámales, cámbialos de día o reembolsa")
+      + sec("Reservas de plataforma por cancelar", portal, "Cancélalas en cada portal con motivo meteorológico")
+      + (state.log.length ? `<section class="panel"><h2>Actividad</h2><div class="note" style="display:grid;gap:4px">${state.log.slice(0, 15).map((e) => `<div>${e.at.toLocaleTimeString("es", { hour: "2-digit", minute: "2-digit" })} · ${esc(e.t)}</div>`).join("")}</div></section>` : "");
+  }
+
+  // ---------------------------------------------------------------- Reservas
+  function sampleCsv() {
+    const code = actsOn()[0], cfg = state.company.acts[code], d = dayDate(2).toISOString().slice(0, 10);
+    return `referencia,actividad,fecha,hora,nombre,email,idioma,personas,importe,canal\nW-501,${code},${d},${hhmm(cfg.times[0])},Laura G.,laura@example.com,es,2,${2 * cfg.price},Web propia\nW-502,${code},${d},${hhmm(cfg.times[0])},Ben S.,ben@example.com,en,3,${3 * cfg.price},WhatsApp`;
+  }
+  function viewReservas() {
+    allSlots().forEach((s) => bookingsOf(s.key));
+    const list = Object.values(state.B).sort((a, b) => a.orig.localeCompare(b.orig));
+    const direct = list.filter((b) => !b.plat).length;
+    return `<section class="panel"><div class="head"><h2>Conectar tus reservas</h2><span class="hint">Solo hace falta nombre, email, día, hora y personas</span></div>
+      <div class="tiles"><div class="tile"><b style="font-size:16px">1 · Importar</b><span>Exporta un CSV o Excel de tu sistema de reservas y pégalo aquí. Para empezar sin integración.</span></div>
+      <div class="tile"><b style="font-size:16px">2 · Conexión automática</b><span>Tu sistema envía cada reserva nueva a Ventana por API, o mediante Zapier o Make si tu sistema lo permite.</span></div>
+      <div class="tile"><b style="font-size:16px">3 · A mano</b><span>Para las ventas en el puerto o por teléfono.</span></div></div>
+      <label class="field" for="csv">Pega aquí tus reservas (CSV)<textarea id="csv">${esc(sampleCsv())}</textarea></label>
+      <div class="actions"><button type="button" class="cta" id="import">Importar reservas</button><span class="hint" id="import-msg"></span></div></section>
+      <section class="panel"><div class="head"><h2>Próximas reservas</h2><span class="hint">${list.length} reservas · ${direct} directas, ${list.length - direct} de plataforma</span></div>
+      <div class="table-wrap"><table><thead><tr><th>Ref.</th><th>Salida</th><th>Cliente</th><th>Email</th><th>Idioma</th><th class="num">Pers.</th><th class="num">Importe</th><th>Canal</th><th>Estado</th></tr></thead><tbody>
+      ${list.map((b) => `<tr><td class="num">${b.id}</td><td>${esc(labelKey(b.orig))}</td><td>${esc(b.name)}</td><td>${esc(b.email)}</td><td>${b.lang.toUpperCase()}</td><td class="num">${b.pax}</td><td class="num">${eur(b.amount)}</td><td><span class="chan ${b.plat ? "plat" : ""}">${esc(b.channel)}</span></td><td>${statusPill(b)}</td></tr>`).join("")}</tbody></table></div></section>`;
+  }
+  function importCsv(text) {
+    const lines = text.trim().split(/\r?\n/).filter(Boolean); if (lines.length < 2) return "No hay filas.";
+    const head = lines[0].toLowerCase().split(",").map((x) => x.trim()), idx = (k) => head.indexOf(k);
+    const need = ["actividad", "fecha", "hora", "nombre", "email", "personas"]; const miss = need.filter((k) => idx(k) < 0);
+    if (miss.length) return "Faltan columnas: " + miss.join(", ");
+    let ok = 0; const errs = [];
+    lines.slice(1).forEach((ln, i) => {
+      const c = ln.split(",").map((x) => x.trim()), get = (k) => idx(k) >= 0 ? c[idx(k)] || "" : "";
+      const actRaw = get("actividad").toLowerCase(); const code = actsOn().find((k) => k === actRaw || ACTS[k].nombre.toLowerCase() === actRaw);
+      if (!code) return errs.push(`fila ${i + 2}: actividad «${get("actividad")}» no está en tu empresa`);
+      const dt = new Date(get("fecha") + "T00:00"), d = Math.round((dt - today) / 86400000), h = parseInt(get("hora"), 10);
+      if (isNaN(d) || d < 0 || d > 2) return errs.push(`fila ${i + 2}: la demo solo muestra los próximos 3 días`);
+      if (!state.company.acts[code].times.includes(h)) return errs.push(`fila ${i + 2}: ${hhmm(h)} no es un horario de ${ACTS[code].nombre}`);
+      const key = `${code}|${d}|${h}`; bookingsOf(key);
+      const pax = Math.max(1, parseInt(get("personas"), 10) || 1), lang = (get("idioma") || "es").slice(0, 2).toLowerCase();
+      const id = (get("referencia") || "W" + (2000 + state.imported)).toUpperCase(); state.imported++;
+      const channel = get("canal") || "Web propia", plat = PLATFORMS.some((p) => channel.toLowerCase().includes(p.toLowerCase()));
+      state.B[id] = { id, slot: key, orig: key, name: get("nombre"), lang: C[lang] ? lang : "en", email: get("email"), pax, amount: parseFloat(get("importe")) || pax * state.company.acts[code].price, channel, plat, status: "confirmada", options: [], by: null };
+      ok++;
+    });
+    return `${ok} reservas importadas.${errs.length ? " " + errs.join(" · ") : ""}`;
+  }
+
+  // ---------------------------------------------------------------- Estadísticas
+  function viewStats() {
+    const H = history(), tot = (k) => H.reduce((a, r) => a + r[k], 0);
+    const deps = tot("deps"), canc = tot("cancelled"), aff = tot("affected"), moved = tot("moved"), refund = tot("refund"), silent = tot("silent"), plat = tot("plat");
+    const direct = moved + refund, kept = tot("kept"), returned = tot("returned");
+    const worst = H.reduce((w, r) => r.cancelled > w.cancelled ? r : w, H[0]);
+    const reasons = {}; H.forEach((r) => Object.entries(r.reasons).forEach(([k, v]) => reasons[k] = (reasons[k] || 0) + v));
+    const rlist = Object.entries(reasons).sort((a, b) => b[1] - a[1]), rmax = Math.max(1, ...rlist.map((x) => x[1]));
+    const pct = (a, b) => b ? Math.round(a / b * 100) : 0;
+    // monthly chart
+    const W = 760, Hh = 230, left = 36, right = 12, top = 34, plotH = 150, n = H.length, bw = (W - left - right) / n;
+    const ymax = Math.max(4, Math.ceil(Math.max(...H.map((r) => r.cancelled)) * 1.15 / 2) * 2);
+    const y = (v) => top + plotH - v / ymax * plotH;
+    let svg = `<div class="chart-wrap"><svg viewBox="0 0 ${W} ${Hh}" width="100%" role="img" aria-label="Salidas canceladas por mes" style="min-width:520px">`;
+    svg += `<text x="${left}" y="16" font-size="15" class="t-ink t-title" font-weight="700">${canc} salidas canceladas en 12 meses; el peor mes fue ${worst.label.trim()} con ${worst.cancelled}</text>`;
+    const gstep = ymax > 20 ? 10 : ymax > 8 ? 4 : 2;
+    for (let v = 0; v <= ymax; v += gstep) svg += `<line x1="${left}" x2="${W - right}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${left - 6}" y="${y(v) + 4}" text-anchor="end" font-size="10" class="t-muted">${v}</text>`;
+    H.forEach((r, i) => {
+      const x = left + i * bw + bw * 0.2, w = bw * 0.6, isW = r === worst;
+      svg += `<rect x="${x}" y="${y(r.cancelled)}" width="${w}" height="${Math.max(0, top + plotH - y(r.cancelled))}" rx="3" fill="${isW ? "var(--accent)" : "var(--bar)"}"><title>${r.label.trim()}: ${r.cancelled} de ${r.deps} salidas canceladas (${pct(r.cancelled, r.deps)}%) · ${r.affected} personas afectadas</title></rect>`;
+      if (isW || i === n - 1) svg += `<text x="${x + w / 2}" y="${y(r.cancelled) - 5}" text-anchor="middle" font-size="11" class="t-ink" font-weight="600">${r.cancelled}</text>`;
+      svg += `<text x="${x + w / 2}" y="${top + plotH + 16}" text-anchor="middle" font-size="10.5" class="${i === n - 1 ? "t-ink" : "t-muted"}">${r.label}</text>`;
+    });
+    svg += `<text x="${left}" y="${top + plotH + 38}" font-size="10.5" class="t-muted">Salidas canceladas por mes · el último mes incluye lo que hagas en esta demo</text></svg></div>`;
+    const seg = (v, cls, label) => v ? `<div style="flex:${v};background:var(--${cls}-soft);border:1px solid var(--${cls})" title="${label}: ${v} personas">${pct(v, direct)}%</div>` : "";
+    return `<section class="panel"><div class="head"><h2>Tus últimos 12 meses</h2><span class="hint">Historial de ejemplo para la demo; en tu cuenta se calcula con tus salidas reales</span></div>
+      <div class="tiles">
+        <div class="tile"><b>${canc}</b><span>salidas canceladas de ${deps.toLocaleString("es")} (${(canc / deps * 100).toLocaleString("es", { maximumFractionDigits: 1 })} %)</span></div>
+        <div class="tile"><b>${aff.toLocaleString("es")}</b><span>clientes afectados</span></div>
+        <div class="tile"><b>${eur(kept)}</b><span>ingresos conservados al cambiar de día</span></div>
+        <div class="tile"><b>${eur(returned)}</b><span>devueltos en reembolsos (incluye plataformas)</span></div>
+        <div class="tile"><b>${18 + (hash(spot().id) % 5)} h</b><span>antelación media del aviso al cliente</span></div>
+      </div></section>
+      <section class="panel">${svg}</section>
+      <div class="detail-grid">
+        <section class="panel"><h2>Qué hicieron tus clientes directos afectados</h2>
+          <p class="note">${direct.toLocaleString("es")} personas avisadas por Ventana. ${pct(moved, direct)}% cambiaron de día; el resto se reembolsó${silent ? `, incluidos ${silent} que no contestaron` : ""}.</p>
+          <div class="outcome">${seg(moved, "go", "Cambiaron de día")}${seg(refund - silent, "no", "Pidieron reembolso")}${seg(silent, "watch", "No contestaron")}</div>
+          <div class="legend"><span><i style="background:var(--go)"></i>Cambiaron de día · ${moved}</span><span><i style="background:var(--no)"></i>Pidieron reembolso · ${refund - silent}</span><span><i style="background:var(--watch)"></i>No contestaron (reembolsados) · ${silent}</span></div>
+          <p class="note">Además, ${plat.toLocaleString("es")} personas reservadas por plataformas: las reembolsa la plataforma (${pct(plat, aff)}% de los afectados).</p></section>
+        <section class="panel"><h2>Motivos de cancelación</h2><div class="hbars">${rlist.map(([k, v]) => `<div class="hbar"><span>${esc(MOTIVOS[k].split(":")[0])}</span><div class="track"><div class="fill" style="width:${v / rmax * 100}%"></div></div><span class="v">${v}</span></div>`).join("") || `<p class="note">Sin cancelaciones.</p>`}</div>
+          <p class="note">Ayuda a fijar bien tus límites y a planificar la temporada: los meses con más cancelaciones conviene vender con más flexibilidad.</p></section>
+      </div>`;
+  }
+
+  // ---------------------------------------------------------------- Mi empresa
+  function viewEmpresa() {
+    const islands = [...new Set(SPOTS.map((s) => s.isla))];
+    const sp = spot();
+    const portSel = `<label class="field" for="emp-port">Puerto o spot desde el que sales<select id="emp-port">${islands.map((i) => `<optgroup label="${esc(i)}">${SPOTS.filter((s) => s.isla === i).map((s) => `<option value="${s.id}" ${s.id === sp.id ? "selected" : ""}>${esc(s.spot)}</option>`).join("")}</optgroup>`).join("")}</select></label>`;
+    const cards = sp.actividades.map((code) => {
+      const a = state.company.acts[code], A = ACTS[code];
+      const lims = a.rules.map((r, i) => {
+        const u = VARS[r.var].unidad, step = u === "m" ? 0.1 : u === "µg/m³" ? 10 : 1, max = u === "m" ? 4 : u === "µg/m³" ? 600 : 45, v = r.max ?? r.min;
+        return `<div class="limit"><div class="limit-row"><label for="l-${code}-${i}">${esc(VARS[r.var].nombre)} ${r.min != null ? "mín." : "máx."}${r.nivel === "vigilar" ? " (aviso)" : ""}</label><span class="num" id="lv-${code}-${i}">${u === "m" ? fmt1(v) : v} ${u}</span></div><input type="range" id="l-${code}-${i}" data-code="${code}" data-i="${i}" min="${u === "m" ? 0.2 : 0}" max="${max}" step="${step}" value="${v}"></div>`;
+      }).join("");
+      return `<div class="actcard ${a.on ? "" : "off"}"><label class="check"><input type="checkbox" data-on="${code}" ${a.on ? "checked" : ""}> <b>${esc(A.nombre)}</b></label>
+        ${a.on ? `<div class="row"><label class="field" for="t-${code}">Horarios de salida<input type="text" id="t-${code}" data-times="${code}" value="${a.times.map(hhmm).join(", ")}"></label>
+        <label class="field" for="c-${code}">Plazas<input type="number" id="c-${code}" data-cap="${code}" value="${a.cap}" min="1" max="300" style="width:90px"></label>
+        <label class="field" for="p-${code}">Precio por persona (€)<input type="number" id="p-${code}" data-price="${code}" value="${a.price}" min="0" style="width:110px"></label></div>
+        <div class="row">${lims}</div>` : `<span class="hint">Actívala si la ofreces desde este puerto.</span>`}</div>`;
+    }).join("");
+    return `<section class="panel setup"><div class="head"><h2>Tu empresa</h2><span class="hint">Se configura una vez; luego solo ves tus salidas</span></div>
+      <div class="row"><label class="field" for="emp-name">Nombre<input type="text" id="emp-name" value="${esc(state.company.name)}"></label>${portSel}
+      <label class="field" for="emp-share">Reservas que te llegan por plataformas<input type="range" id="emp-share" min="0" max="1" step="0.05" value="${state.company.platformShare}"><span class="num" id="emp-share-v">${Math.round(state.company.platformShare * 100)}%</span></label></div>
+      <p class="note">${esc(sp.spot)} (${esc(sp.municipio)}): la costa mira al ${compass(sp.orientacion)}${sp.nota ? ". " + esc(sp.nota) : ""}. Con eso Ventana sabe qué viento es terral y qué mar de fondo te entra.</p>
+      ${cards}</section>`;
+  }
+
+  // ---------------------------------------------------------------- Admin
+  function clientRows() {
+    const own = { name: state.company.name + " (tu demo)", spot: state.company.spot, acts: actsOn(), own: true };
+    return [own, ...CLIENTS].map((c) => {
+      const sp = spotById(c.spot), days = simulate(sp, state.scenario), chips = [];
+      let affected = 0, nslots = 0;
+      c.acts.forEach((code) => {
+        const A = ACTS[code], cfg = c.own ? state.company.acts[code] : { times: A.salidas, dur: A.duracion, cap: A.plazas, rules: A.reglas };
+        cfg.times.forEach((h) => {
+          const res = evalHours(days[1].slice(h, h + cfg.dur), cfg.rules, sp.orientacion); nslots++;
+          const pax = c.own ? paxOf(liveIn(`${code}|1|${h}`)) : Math.round(cfg.cap * (0.4 + (hash(c.name + h) % 35) / 100));
+          if (res.st === "no") affected += pax;
+          const key = `${code}|1|${h}`, cx = c.own && state.cancelled[key];
+          chips.push(`<span class="chip ${cx ? "done" : res.st}">${hhmm(h)} ${esc(A.nombre)} <b>${cx ? "cancelada" : { go: "sale", watch: "vigilar", no: "no sale" }[res.st]}${res.st !== "go" && res.reasons[0] && !cx ? " · " + esc(shortReason(res.reasons[0]).toLowerCase()) : ""}</b></span>`);
+        });
+      });
+      const pend = c.own ? Object.values(state.B).filter((b) => ["reembolso_pendiente", "sin_respuesta", "plataforma_pendiente", "afectada"].includes(b.status)).length : null;
+      return { c, sp, chips, affected, nslots, pend };
+    });
+  }
+  function adminClients() {
+    const rows = clientRows(), withBad = rows.filter((r) => r.affected > 0);
+    return `<div class="tiles"><div class="tile"><b>${rows.length}</b><span>clientes activos</span></div><div class="tile"><b>${withBad.length}</b><span>con salidas canceladas mañana</span></div><div class="tile"><b>${withBad.reduce((a, r) => a + r.affected, 0)}</b><span>personas a avisar mañana</span></div></div>
+      <section class="panel"><div class="head"><h2>Clientes · salidas de mañana</h2><span class="hint">Con el tiempo de la demo</span></div><div class="radar">
+      ${rows.map((r) => `<div class="rrow"><div class="rname">${esc(r.c.name)}<span>${esc(r.sp.spot)} · ${esc(r.sp.isla)}${r.pend != null ? ` · ${r.pend} tareas abiertas` : ""}${r.affected ? ` · ${r.affected} personas afectadas` : ""}</span></div><div class="chips">${r.chips.join("")}</div></div>`).join("")}</div></section>`;
+  }
+  function adminProspect() {
+    const islands = [...new Set(SPOTS.map((s) => s.isla))];
+    const clientSpots = new Set([state.company.spot, ...CLIENTS.map((c) => c.spot)]);
+    const list = SPOTS.filter((s) => s.isla === state.island);
+    const rows = list.map((sp) => {
+      const days = simulate(sp, state.scenario);
+      const chips = sp.actividades.map((code) => {
+        const A = ACTS[code]; let worst = null;
+        A.salidas.forEach((h) => { const res = evalHours(days[1].slice(h, h + A.duracion), A.reglas, sp.orientacion); if (!worst || SEV[res.st] > SEV[worst.st]) worst = res; });
+        return `<span class="chip ${worst.st}">${esc(A.nombre)} <b>${{ go: "sale", watch: "vigilar", no: "no sale" }[worst.st]}${worst.st !== "go" && worst.reasons[0] ? " · " + esc(shortReason(worst.reasons[0]).toLowerCase()) : ""}</b></span>`;
+      }).join("");
+      return `<div class="rrow"><div class="rname">${esc(sp.spot)}${clientSpots.has(sp.id) ? `<span class="client-tag" style="display:inline">CLIENTE</span>` : ""}<span>${esc(sp.municipio)}</span></div><div class="chips">${chips}</div></div>`;
+    }).join("");
+    return `<section class="panel"><div class="head"><h2>Prospección · todos los puertos, mañana</h2>
+      <label class="field" for="adm-island">Isla<select id="adm-island">${islands.map((i) => `<option ${i === state.island ? "selected" : ""}>${esc(i)}</option>`).join("")}</select></label></div>
+      <p class="note">Los puertos con salidas en rojo mañana son los operadores a los que llamar hoy: es cuando más valoran la herramienta.</p><div class="radar">${rows}</div></section>`;
+  }
+
+  // ---------------------------------------------------------------- events
+  function bind() {
+    const m = $("main");
+    m.querySelectorAll("[data-slot]").forEach((b) => b.addEventListener("click", () => { state.selected = b.dataset.slot; state.preview = null; state.confirm = false; render(); }));
+    const on = (id, fn) => { const el = $(id); if (el) el.addEventListener("click", fn); };
+    on("ask-cancel", () => { state.confirm = true; render(); });
+    on("no-cancel", () => { state.confirm = false; render(); });
+    on("do-cancel", () => { cancelSlot(state.selected); state.confirm = false; const first = Object.values(state.B).find((b) => b.orig === state.selected && b.status === "afectada"); state.preview = first ? first.id : null; render(); });
+    on("close-prev", () => { state.preview = null; render(); });
+    on("sim-replies", () => {
+      const r = rng(hash("replies" + state.selected));
+      Object.values(state.B).filter((b) => b.orig === state.selected && b.status === "afectada").forEach((b) => {
+        const x = r();
+        if (x < 0.6 && b.options.length) { if (!choose(b.id, b.options[0], "cliente") && b.options[1]) choose(b.id, b.options[1], "cliente"); }
+        else if (x < 0.86 || !b.options.length) choose(b.id, "refund", "cliente");
+        else { b.status = "sin_respuesta"; note(`${b.name}: sin respuesta.`); }
+      });
+      render();
+    });
+    on("sim-24h", () => { Object.values(state.B).filter((b) => b.orig === state.selected && b.status === "afectada").forEach((b) => { b.status = "sin_respuesta"; note(`${b.name}: sin respuesta tras 24 h.`); }); render(); });
+    m.querySelectorAll("[data-act]").forEach((el) => {
+      const ev = el.type === "checkbox" ? "change" : "click";
+      el.addEventListener(ev, () => {
+        const b = state.B[el.dataset.id], a = el.dataset.act;
+        if (a === "move") { if (!choose(b.id, el.dataset.to, "operador")) alertMsg("Esa salida ya no tiene plazas."); }
+        if (a === "refund") choose(b.id, "refund", "operador");
+        if (a === "refunded") { b.status = "reembolsada"; note(`${b.name}: reembolso de ${eur(b.amount)} hecho; email de confirmación enviado.`); }
+        if (a === "portal") { b.status = "plataforma_cancelada"; note(`${b.name}: cancelada en ${b.channel}.`); }
+        if (a === "preview") { state.selected = b.orig; state.preview = b.id; state.tab = "salidas"; }
+        render();
+      });
+    });
+    m.querySelectorAll("[data-cl]").forEach((el) => el.addEventListener("click", () => {
+      const ok = choose(el.dataset.id, el.dataset.cl, "cliente");
+      if (!ok) { const msg = $("cl-msg"); if (msg) msg.textContent = C[state.B[el.dataset.id].lang].full; return; }
+      render();
+    }));
+    on("import", () => { $("import-msg").textContent = importCsv($("csv").value); const keep = $("import-msg").textContent; render(); const im = $("import-msg"); if (im) im.textContent = keep; });
+    // empresa
+    const name = $("emp-name"); if (name) name.addEventListener("change", () => { state.company.name = name.value || "Mi empresa"; renderTabs(); });
+    const port = $("emp-port"); if (port) port.addEventListener("change", () => { const nm = state.company.name; state.company = defaultCompany(port.value); state.company.name = nm; state.island = spot().isla; resetBookings(); render(); });
+    const share = $("emp-share"); if (share) share.addEventListener("input", () => { state.company.platformShare = +share.value; $("emp-share-v").textContent = Math.round(+share.value * 100) + "%"; });
+    if (share) share.addEventListener("change", () => resetBookings());
+    m.querySelectorAll("[data-on]").forEach((el) => el.addEventListener("change", () => { state.company.acts[el.dataset.on].on = el.checked; if (!actsOn().length) state.company.acts[el.dataset.on].on = true; resetBookings(); render(); }));
+    m.querySelectorAll("[data-times]").forEach((el) => el.addEventListener("change", () => {
+      const t = el.value.split(/[,\s]+/).map((x) => parseInt(x, 10)).filter((x) => x >= 6 && x <= 20);
+      if (t.length) { state.company.acts[el.dataset.times].times = [...new Set(t)].sort((a, b) => a - b); resetBookings(); }
+      render();
+    }));
+    m.querySelectorAll("[data-cap]").forEach((el) => el.addEventListener("change", () => { state.company.acts[el.dataset.cap].cap = Math.max(1, +el.value || 1); resetBookings(); }));
+    m.querySelectorAll("[data-price]").forEach((el) => el.addEventListener("change", () => { state.company.acts[el.dataset.price].price = Math.max(0, +el.value || 0); resetBookings(); }));
+    m.querySelectorAll("input[type=range][data-code]").forEach((el) => el.addEventListener("input", () => {
+      const r = state.company.acts[el.dataset.code].rules[+el.dataset.i], v = parseFloat(el.value), u = VARS[r.var].unidad;
+      if (r.min != null) r.min = v; else r.max = v;
+      $(`lv-${el.dataset.code}-${el.dataset.i}`).textContent = `${u === "m" ? fmt1(v) : v} ${u}`;
+    }));
+  }
+  function alertMsg(t) { note(t); }
+  function bindAdmin() { const s = $("adm-island"); if (s) s.addEventListener("change", () => { state.island = s.value; render(); }); }
+
+  document.querySelectorAll("[data-view]").forEach((b) => b.addEventListener("click", () => {
+    state.view = b.dataset.view; document.querySelectorAll("[data-view]").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); render();
+  }));
+  $("scenario").addEventListener("change", (e) => { state.scenario = e.target.value; WEATHER = null; resetBookings(); render(); });
+  render();
+})();
+
+(function(){ if (window.parent === window) return;
+  var last = 0, post = function(){ var h = Math.ceil(document.documentElement.scrollHeight); if (Math.abs(h-last) > 1) { last = h; parent.postMessage({ventanaHeight: h}, location.origin); } };
+  new ResizeObserver(post).observe(document.body); addEventListener("load", post); post();
+})();
+</script>
+</body></html>
